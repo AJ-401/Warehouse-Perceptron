@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Temporary and scratch images
+*.jpg
+*.jpeg
+*.png
+!assets/*.png
+
+# Output folders & Video files (too large for standard Git pushes)
+outputs_live/
+outputs_hoi/
+outputs_hoi_v2/
+outputs_user_test/
+outputs_wet_floor/
+outputs_person_a/*.mp4
+*.mp4
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE configuration
+.vscode/
+.idea/

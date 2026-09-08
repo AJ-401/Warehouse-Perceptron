@@ -1,0 +1,62 @@
+{
+  "total_videos": 8,
+  "total_time_sec": 698.53,
+  "results": [
+    {
+      "video": "Dock level, dragging cupboard.mp4",
+      "frames": 930,
+      "time_sec": 91.53,
+      "fps": 0,
+      "status": "Success"
+    },
+    {
+      "video": "KD packets dragged, heavy box kept on other packets.mp4",
+      "frames": 1012,
+      "time_sec": 176.69,
+      "fps": 0,
+      "status": "Success"
+    },
+    {
+      "video": "Rolling and dragging on wet floor.mp4",
+      "frames": 183,
+      "time_sec": 33.69,
+      "fps": 0,
+      "status": "Success"
+    },
+    {
+      "video": "Rolling and dropping carton.mp4",
+      "frames": 282,
+      "time_sec": 35.21,
+      "fps": 0,
+      "status": "Success"
+    },
+    {
+      "video": "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4",
+      "frames": 1471,
+      "time_sec": 139.64,
+      "fps": 0,
+      "status": "Success"
+    },
+    {
+      "video": "Throwing Mattresses.mp4",
+      "frames": 1249,
+      "time_sec": 133.47,
+      "fps": 0,
+      "status": "Success"
+    },
+    {
+      "video": "Throwing seating cartons, using strap to hold.mp4",
+      "frames": 451,
+      "time_sec": 59.09,
+      "fps": 0,
+      "status": "Success"
+    },
+    {
+      "video": "WIN_20260908_14_39_18_Pro.mp4",
+      "frames": 221,
+      "time_sec": 26.02,
+      "fps": 0,
+      "status": "Success"
+    }
+  ]
+}
