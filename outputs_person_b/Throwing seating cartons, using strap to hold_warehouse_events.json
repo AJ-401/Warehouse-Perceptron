@@ -1,0 +1,2139 @@
+{
+  "events": [
+    {
+      "event_id": "EVT-20260908-0001",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:00.033",
+      "timestamp_end": "00:00:02.800",
+      "frame_range": [
+        1,
+        84
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2436,
+          2470
+        ],
+        "package_track_ids": [
+          1190
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.35,
+        "floor_contact_duration_sec": 2.5,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 6
+      },
+      "reason": "Carton #1190 dragged across warehouse floor (0.35m over 2.5s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_1.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_1_84.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0002",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:00.067",
+      "timestamp_end": "00:00:00.400",
+      "frame_range": [
+        2,
+        12
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          3440
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.37,
+        "vertical_speed_m_per_sec": 1.06,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #3440 underwent uncontrolled downward drop of approximately 0.37m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_2.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_2_12.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0003",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:00.067",
+      "timestamp_end": "00:00:02.833",
+      "frame_range": [
+        2,
+        85
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2436,
+          2438,
+          2470
+        ],
+        "package_track_ids": [
+          3440
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.3,
+        "floor_contact_duration_sec": 0.37,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 32
+      },
+      "reason": "Carton #3440 dragged across warehouse floor (0.3m over 0.37s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_2.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_2_85.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0004",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:00.067",
+      "timestamp_end": "00:00:06.033",
+      "frame_range": [
+        2,
+        181
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2436,
+          2438,
+          2470
+        ],
+        "package_track_ids": [
+          3440
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 4.4,
+        "carry_height_m": 0.84,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 81
+      },
+      "reason": "Operator #2438 handled carton #3440 at controlled speed (4.4 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_2.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_2_181.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0005",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:00.333",
+      "timestamp_end": "00:00:02.867",
+      "frame_range": [
+        10,
+        86
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2436,
+          2438,
+          2470
+        ],
+        "package_track_ids": [
+          3446
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.3,
+        "floor_contact_duration_sec": 0.17,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 39
+      },
+      "reason": "Carton #3446 dragged across warehouse floor (0.3m over 0.17s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_10.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_10_86.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0006",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:00.333",
+      "timestamp_end": "00:00:06.933",
+      "frame_range": [
+        10,
+        208
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2462,
+          2470
+        ],
+        "package_track_ids": [
+          3446
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 1.0,
+        "carry_height_m": 0.02,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 61
+      },
+      "reason": "Operator #2462 handled carton #3446 at controlled speed (1.0 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_10.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_10_208.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0007",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:01.600",
+      "timestamp_end": "00:00:02.167",
+      "frame_range": [
+        48,
+        65
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          3440
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.5,
+        "vertical_speed_m_per_sec": 1.14,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #3440 underwent uncontrolled downward drop of approximately 0.50m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_48.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_48_65.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0008",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:02.467",
+      "timestamp_end": "00:00:11.067",
+      "frame_range": [
+        74,
+        332
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2547,
+          2634,
+          2666,
+          2668,
+          2669,
+          2670,
+          2683
+        ],
+        "package_track_ids": [
+          1190
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 3.1,
+        "carry_height_m": 0.06,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 22
+      },
+      "reason": "Operator #2547 handled carton #1190 at controlled speed (3.1 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_74.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_74_332.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0009",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:03.800",
+      "timestamp_end": "00:00:05.433",
+      "frame_range": [
+        114,
+        163
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2436,
+          2470
+        ],
+        "package_track_ids": [
+          3446
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.28,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 26
+      },
+      "reason": "Carton #3446 dragged across warehouse floor (0.28m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_114.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_114_163.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0010",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:03.833",
+      "timestamp_end": "00:00:06.100",
+      "frame_range": [
+        115,
+        183
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2436,
+          2470
+        ],
+        "package_track_ids": [
+          3525
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.28,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 24
+      },
+      "reason": "Carton #3525 dragged across warehouse floor (0.28m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_115.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_115_183.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0011",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:03.867",
+      "timestamp_end": "00:00:05.033",
+      "frame_range": [
+        116,
+        151
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2436,
+          2470
+        ],
+        "package_track_ids": [
+          3440
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.29,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 14
+      },
+      "reason": "Carton #3440 dragged across warehouse floor (0.29m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_116.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_116_151.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0012",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:04.033",
+      "timestamp_end": "00:00:04.600",
+      "frame_range": [
+        121,
+        138
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2470
+        ],
+        "package_track_ids": [
+          3525
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.86,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #3525 propelled horizontally across floor/surface at excessive speed (0.86 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_121.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_121_138.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0013",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:04.233",
+      "timestamp_end": "00:00:05.033",
+      "frame_range": [
+        127,
+        151
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2470
+        ],
+        "package_track_ids": [
+          3440
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.16,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #3440 propelled horizontally across floor/surface at excessive speed (1.16 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_127.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_127_151.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0014",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:04.833",
+      "timestamp_end": "00:00:05.267",
+      "frame_range": [
+        145,
+        158
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2470
+        ],
+        "package_track_ids": [
+          3525
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 0.0,
+        "carry_height_m": 0.02,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Operator #2470 handled carton #3525 at controlled speed (0.0 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_145.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_145_158.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0015",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:05.367",
+      "timestamp_end": "00:00:05.700",
+      "frame_range": [
+        161,
+        171
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2470
+        ],
+        "package_track_ids": [
+          3525
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.87,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #3525 propelled horizontally across floor/surface at excessive speed (0.87 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_161.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_161_171.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0016",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:05.367",
+      "timestamp_end": "00:00:05.633",
+      "frame_range": [
+        161,
+        169
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          3525
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.52,
+        "vertical_speed_m_per_sec": 7.83,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 7
+      },
+      "reason": "Carton #3525 underwent uncontrolled downward drop of approximately 0.52m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_161.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_161_169.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0017",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:05.667",
+      "timestamp_end": "00:00:05.667",
+      "frame_range": [
+        170,
+        170
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2558
+        ],
+        "package_track_ids": [
+          3440
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.6,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #2558's foot detected stepping or standing on top surface of carton #3440.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_170.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_170_170.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0018",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:05.667",
+      "timestamp_end": "00:00:05.700",
+      "frame_range": [
+        170,
+        171
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2558
+        ],
+        "package_track_ids": [
+          3446
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.6,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Operator #2558's foot detected stepping or standing on top surface of carton #3446.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_170.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_170_171.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0019",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:05.700",
+      "timestamp_end": "00:00:07.233",
+      "frame_range": [
+        171,
+        217
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2470,
+          2547,
+          2597
+        ],
+        "package_track_ids": [
+          3525
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 5.5,
+        "carry_height_m": 0.06,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 20
+      },
+      "reason": "Operator #2470 handled carton #3525 at controlled speed (5.5 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_171.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_171_217.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0020",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:06.467",
+      "timestamp_end": "00:00:06.467",
+      "frame_range": [
+        194,
+        194
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2551
+        ],
+        "package_track_ids": [
+          3525
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.63,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #2551's foot detected stepping or standing on top surface of carton #3525.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_194.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_194_194.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0021",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:06.500",
+      "timestamp_end": "00:00:08.200",
+      "frame_range": [
+        195,
+        246
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2547
+        ],
+        "package_track_ids": [
+          3507
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 6.4,
+        "carry_height_m": 0.05,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 18
+      },
+      "reason": "Operator #2547 handled carton #3507 at controlled speed (6.4 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_195.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_195_246.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0022",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:06.700",
+      "timestamp_end": "00:00:06.700",
+      "frame_range": [
+        201,
+        201
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2551
+        ],
+        "package_track_ids": [
+          3446
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.62,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #2551's foot detected stepping or standing on top surface of carton #3446.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_201.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_201_201.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0023",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:08.200",
+      "timestamp_end": "00:00:11.033",
+      "frame_range": [
+        246,
+        331
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2634,
+          2666,
+          2670
+        ],
+        "package_track_ids": [
+          3674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 28.8,
+        "carry_height_m": 0.08,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 5
+      },
+      "reason": "Operator #2666 handled carton #3674 at controlled speed (28.8 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_246.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_246_331.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0024",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:08.367",
+      "timestamp_end": "00:00:10.933",
+      "frame_range": [
+        251,
+        328
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2634,
+          2670
+        ],
+        "package_track_ids": [
+          1190
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.25,
+        "floor_contact_duration_sec": 2.0,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #1190 dragged across warehouse floor (0.25m over 2.0s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_251.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_251_328.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0025",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:09.733",
+      "timestamp_end": "00:00:09.933",
+      "frame_range": [
+        291,
+        298
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2629,
+          2656
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 2.15,
+        "speed_px_per_sec": 466.2,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Operator #2656 observed executing rapid horizontal throwing/slinging motion (466.2 px/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_291.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_291_298.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0026",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:10.167",
+      "timestamp_end": "00:00:15.000",
+      "frame_range": [
+        305,
+        450
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1190
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0635,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 7
+      },
+      "reason": "Carton #1190 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_305.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_305_450.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0027",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:10.433",
+      "timestamp_end": "00:00:10.433",
+      "frame_range": [
+        313,
+        313
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2679
+        ],
+        "package_track_ids": [
+          3674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.34,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #2679's foot detected stepping or standing on top surface of carton #3674.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_313.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_313_313.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0028",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.033",
+      "timestamp_end": "00:00:11.500",
+      "frame_range": [
+        331,
+        345
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          3695
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.73,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #3695 dragged across warehouse floor (0.73m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_331.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_331_345.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0029",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.100",
+      "timestamp_end": "00:00:11.867",
+      "frame_range": [
+        333,
+        356
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          3674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.73,
+        "floor_contact_duration_sec": 0.43,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #3674 dragged across warehouse floor (0.73m over 0.43s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_333.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_333_356.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0030",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.233",
+      "timestamp_end": "00:00:11.833",
+      "frame_range": [
+        337,
+        355
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.98,
+      "entities_involved": {
+        "person_track_ids": [
+          2670,
+          2683
+        ],
+        "package_track_ids": [
+          3674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 340.0,
+        "carry_height_m": 1.14,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #3674 carried by operator #2683 at elevated height (1.14m) and excessive speed (340.0 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_337.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_337_355.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0031",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.433",
+      "timestamp_end": "00:00:11.733",
+      "frame_range": [
+        343,
+        352
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.7,
+        "vertical_speed_m_per_sec": 10.44,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #1178 underwent uncontrolled downward drop of approximately 0.70m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_343.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_343_352.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0032",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.433",
+      "timestamp_end": "00:00:13.067",
+      "frame_range": [
+        343,
+        392
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.61,
+        "floor_contact_duration_sec": 1.63,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1178 dragged across warehouse floor (0.61m over 1.63s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_343.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_343_392.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0033",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.500",
+      "timestamp_end": "00:00:11.933",
+      "frame_range": [
+        345,
+        358
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          3674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 45.8,
+        "carry_height_m": 0.91,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #2683 handled carton #3674 at controlled speed (45.8 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_345.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_345_358.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0034",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.500",
+      "timestamp_end": "00:00:11.567",
+      "frame_range": [
+        345,
+        347
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          3695
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.525,
+        "box_top_norm": 0.522,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #2683 lifting carton #3695 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_345.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_345_347.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0035",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.533",
+      "timestamp_end": "00:00:12.000",
+      "frame_range": [
+        346,
+        360
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683,
+          2701
+        ],
+        "package_track_ids": [
+          3674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.514,
+        "box_top_norm": 0.515,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Operator #2683 lifting carton #3674 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_346.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_346_360.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0036",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.533",
+      "timestamp_end": "00:00:11.800",
+      "frame_range": [
+        346,
+        354
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          3696
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 1.62,
+        "vertical_speed_m_per_sec": 24.23,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #3696 underwent uncontrolled downward drop of approximately 1.62m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_346.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_346_354.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0037",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.533",
+      "timestamp_end": "00:00:11.900",
+      "frame_range": [
+        346,
+        357
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          3696
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.35,
+        "floor_contact_duration_sec": 0.17,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 5
+      },
+      "reason": "Carton #3696 dragged across warehouse floor (0.35m over 0.17s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_346.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_346_357.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0038",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.533",
+      "timestamp_end": "00:00:11.867",
+      "frame_range": [
+        346,
+        356
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          3696
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.44,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #3696 propelled horizontally across floor/surface at excessive speed (1.44 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_346.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_346_356.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0039",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.567",
+      "timestamp_end": "00:00:12.033",
+      "frame_range": [
+        347,
+        361
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          3696
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0411,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #3696 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_347.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_347_361.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0040",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.600",
+      "timestamp_end": "00:00:11.600",
+      "frame_range": [
+        348,
+        348
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.98,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          3695
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 324.8,
+        "carry_height_m": 1.26,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #3695 carried by operator #2683 at elevated height (1.26m) and excessive speed (324.8 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_348.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_348_348.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0041",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.633",
+      "timestamp_end": "00:00:11.967",
+      "frame_range": [
+        349,
+        359
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          3696
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.515,
+        "box_top_norm": 0.506,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 6
+      },
+      "reason": "Operator #2683 lifting carton #3696 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_349.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_349_359.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0042",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.667",
+      "timestamp_end": "00:00:12.000",
+      "frame_range": [
+        350,
+        360
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.98,
+      "entities_involved": {
+        "person_track_ids": [
+          2683
+        ],
+        "package_track_ids": [
+          3696
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 544.5,
+        "carry_height_m": 1.33,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 5
+      },
+      "reason": "Carton #3696 carried by operator #2683 at elevated height (1.33m) and excessive speed (544.5 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_350.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_350_360.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0043",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.867",
+      "timestamp_end": "00:00:12.333",
+      "frame_range": [
+        356,
+        370
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          3695
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0525,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #3695 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_356.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_356_370.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0044",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.900",
+      "timestamp_end": "00:00:12.500",
+      "frame_range": [
+        357,
+        375
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.065,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #1463 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_357.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_357_375.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0045",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:11.933",
+      "timestamp_end": "00:00:12.433",
+      "frame_range": [
+        358,
+        373
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          3709
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0745,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #3709 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_358.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_358_373.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0046",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:12.067",
+      "timestamp_end": "00:00:12.167",
+      "frame_range": [
+        362,
+        365
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2683,
+          2702,
+          2704
+        ],
+        "package_track_ids": [
+          3695
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.542,
+        "box_top_norm": 0.514,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Operator #2704 lifting carton #3695 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_362.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_362_365.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0047",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:12.067",
+      "timestamp_end": "00:00:12.200",
+      "frame_range": [
+        362,
+        366
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.61,
+      "entities_involved": {
+        "person_track_ids": [
+          2683,
+          2702,
+          2704
+        ],
+        "package_track_ids": [
+          3695
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 111.0,
+        "carry_height_m": 1.52,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 5
+      },
+      "reason": "Carton #3695 carried by operator #2683 at elevated height (1.52m) and excessive speed (111.0 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_362.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_362_366.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0048",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:12.533",
+      "timestamp_end": "00:00:12.533",
+      "frame_range": [
+        376,
+        376
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.89,
+      "entities_involved": {
+        "person_track_ids": [
+          2704
+        ],
+        "package_track_ids": [
+          3712
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 122.2,
+        "carry_height_m": 2.53,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #3712 carried by operator #2704 at elevated height (2.53m) and excessive speed (122.2 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_376.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_376_376.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0049",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:12.567",
+      "timestamp_end": "00:00:12.833",
+      "frame_range": [
+        377,
+        385
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.98,
+      "entities_involved": {
+        "person_track_ids": [
+          2683,
+          2714
+        ],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 394.6,
+        "carry_height_m": 2.35,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #1463 carried by operator #2714 at elevated height (2.35m) and excessive speed (394.6 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_377.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_377_385.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0050",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:12.600",
+      "timestamp_end": "00:00:12.900",
+      "frame_range": [
+        378,
+        387
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.34,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #1463 propelled horizontally across floor/surface at excessive speed (1.34 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_378.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_378_387.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0051",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:12.733",
+      "timestamp_end": "00:00:13.300",
+      "frame_range": [
+        382,
+        399
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.89,
+        "vertical_speed_m_per_sec": 2.12,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #1463 underwent uncontrolled downward drop of approximately 0.89m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_382.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_382_399.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0052",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:13.167",
+      "timestamp_end": "00:00:14.800",
+      "frame_range": [
+        395,
+        444
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0708,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #1463 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_395.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_395_444.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0053",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:13.367",
+      "timestamp_end": "00:00:14.367",
+      "frame_range": [
+        400,
+        431
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2668,
+          2721,
+          2732
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.98,
+        "speed_px_per_sec": 428.8,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Operator #2668 observed executing rapid horizontal throwing/slinging motion (428.8 px/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_400.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_400_431.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0054",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:14.400",
+      "timestamp_end": "00:00:14.767",
+      "frame_range": [
+        432,
+        443
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.85,
+        "vertical_speed_m_per_sec": 2.34,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1463 underwent uncontrolled downward drop of approximately 0.85m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_432.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_432_443.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0055",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:14.433",
+      "timestamp_end": "00:00:14.800",
+      "frame_range": [
+        433,
+        444
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.25,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1463 propelled horizontally across floor/surface at excessive speed (1.25 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_433.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_433_444.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0056",
+      "video_id": "Throwing seating cartons, using strap to hold.mp4",
+      "timestamp_start": "00:00:14.467",
+      "timestamp_end": "00:00:14.633",
+      "frame_range": [
+        434,
+        439
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          3744
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 2.81,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #3744 propelled horizontally across floor/surface at excessive speed (2.81 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Throwing seating cartons, using strap to hold_434.jpg",
+        "clip_url": "/evidence/clips/Throwing seating cartons, using strap to hold_434_439.mp4"
+      }
+    }
+  ],
+  "shift_summary": {
+    "total_events": 56,
+    "near_misses_prevented": 6,
+    "high_critical_risks": 40,
+    "estimated_damage_avoided_inr": 27000,
+    "most_frequent_risk": "Carton / KD Floor Dragging"
+  }
+}

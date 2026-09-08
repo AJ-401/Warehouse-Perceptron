@@ -15,6 +15,14 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 
+# ── Person B inline risk engine (Method 1 integration) ──────────────────────
+try:
+    from pipeline_person_b import RiskEngine as _RiskEngine
+    _RISK_ENGINE_AVAILABLE = True
+except ImportError:
+    _RISK_ENGINE_AVAILABLE = False
+    _RiskEngine = None
+
 # COCO Keypoint names for YOLO-Pose (17 points)
 KEYPOINT_NAMES = [
     "nose", "left_eye", "right_eye", "left_ear", "right_ear",
@@ -349,12 +357,13 @@ class PersonAPipeline:
         self.pose_model = YOLO(pose_model_path)
         self.interaction_tracker = DynamicHOITracker(max_missing_frames=45)
 
-    def run(self, video_path: str, output_dir: str = "outputs_hoi_v2", max_frames: Optional[int] = None, save_video: bool = True):
+    def run(self, video_path: str, output_dir: str = "outputs_hoi_v2", max_frames: Optional[int] = None, save_video: bool = True, enable_risk_engine: bool = True):
         os.makedirs(output_dir, exist_ok=True)
         video_filename = os.path.basename(video_path)
         base_name = os.path.splitext(video_filename)[0]
         json_out_path = os.path.join(output_dir, f"{base_name}_tracking_results.json")
         video_out_path = os.path.join(output_dir, f"{base_name}_perception.mp4")
+        events_out_path = os.path.join(output_dir, f"{base_name}_warehouse_events.json")
 
         cap = cv2.VideoCapture(video_path)
         fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
@@ -362,6 +371,16 @@ class PersonAPipeline:
         total_video_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         limit_frames = min(total_video_frames, max_frames) if max_frames else total_video_frames
         writer = cv2.VideoWriter(video_out_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height)) if save_video else None
+
+        # ── Inline Person B Risk Engine ──────────────────────────────────────
+        risk_engine = None
+        active_alert = None          # last fired event dict (shown for N frames)
+        alert_frames_left = 0
+        if enable_risk_engine and _RISK_ENGINE_AVAILABLE:
+            risk_engine = _RiskEngine(video_id=video_filename, fps=fps, resolution=[width, height])
+            print("[Person B] Risk Engine attached inline — live risk scoring ENABLED.")
+        elif enable_risk_engine:
+            print("[Person B] pipeline_person_b.py not found — risk scoring DISABLED.")
 
         tracking_data = {"video_metadata": {"filename": video_filename, "fps": round(fps, 2), "resolution": [width, height], "total_frames_processed": 0}, "frames": []}
         frame_idx, t_start = 0, time.time()
@@ -443,6 +462,26 @@ class PersonAPipeline:
                     "tracks": all_frame_tracks
                 })
 
+                # ── Inline Risk Engine: process current frame ────────────────
+                if risk_engine is not None:
+                    frame_payload = {
+                        "frame_idx": frame_idx,
+                        "frame_id": frame_idx,
+                        "timestamp_sec": timestamp_sec,
+                        "tracks": all_frame_tracks
+                    }
+                    new_events = risk_engine.process_frame(frame_payload)
+                    if new_events:
+                        # Show the highest-severity new event as the active HUD alert
+                        _level_rank = {"Critical": 4, "High": 3, "Medium": 2, "Low": 1}
+                        best = max(new_events, key=lambda e: _level_rank.get(e.get("risk_level", "Low"), 0))
+                        active_alert = best
+                        alert_frames_left = int(fps * 4)  # show for 4 seconds
+                    elif alert_frames_left > 0:
+                        alert_frames_left -= 1
+                    else:
+                        active_alert = None
+
                 if writer:
                     vis_frame = frame.copy()
                     for t in all_frame_tracks:
@@ -473,8 +512,41 @@ class PersonAPipeline:
                                     kp_col = (0, 0, 255) if "wrist" in k_name else (255, 0, 255) if "ankle" in k_name else (0, 255, 0)
                                     cv2.circle(vis_frame, (int(kx), int(ky)), 6 if "wrist" in k_name or "ankle" in k_name else 3, kp_col, -1)
 
-                    hud_text = f"PERSON A HOI V2 PIPELINE | Frame: {frame_idx}/{limit_frames} | Time: {timestamp_sec:.2f}s | Workers: {len(person_tracks)} | Boxes: {len(final_box_tracks)}"
-                    cv2.putText(vis_frame, hud_text, (15, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.60, (0, 255, 255), 2, cv2.LINE_AA)
+                    # ── Top HUD bar ──────────────────────────────────────────
+                    risk_tag = " | RISK ENGINE: ON" if risk_engine else ""
+                    hud_text = f"GODREJ AI | Frame: {frame_idx}/{limit_frames} | {timestamp_sec:.2f}s | W:{len(person_tracks)} B:{len(final_box_tracks)}{risk_tag}"
+                    cv2.rectangle(vis_frame, (0, 0), (width, 36), (20, 20, 20), -1)
+                    cv2.putText(vis_frame, hud_text, (12, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (220, 220, 220), 1, cv2.LINE_AA)
+
+                    # ── Risk Alert Banner (Person B) ─────────────────────────
+                    if active_alert and alert_frames_left > 0:
+                        level = active_alert.get("risk_level", "Medium")
+                        btype = active_alert.get("behaviour_type", "Safety Alert")
+                        action = active_alert.get("recommended_action", "Follow safe handling guidelines.")
+                        prob = active_alert.get("near_miss_probability", 0.0)
+
+                        _bg = {"Critical": (0, 0, 180), "High": (0, 100, 220), "Medium": (20, 160, 220), "Low": (30, 140, 50)}
+                        _tag = {"Critical": "CRITICAL ALERT", "High": "HIGH RISK", "Medium": "RISK WARNING", "Low": "SAFE"}
+                        bg_col = _bg.get(level, (50, 50, 50))
+                        txt_col = (255, 255, 255) if level != "Medium" else (10, 10, 10)
+                        tag_str = _tag.get(level, level.upper())
+
+                        bh = 62
+                        by1 = height - bh - 14
+                        by2 = height - 14
+                        cv2.rectangle(vis_frame, (18, by1), (width - 18, by2), bg_col, -1)
+                        cv2.rectangle(vis_frame, (18, by1), (width - 18, by2), (255, 255, 255), 2)
+
+                        if prob > 0.0:
+                            t1 = f"[{tag_str}] {btype.upper()}  (Near-Miss: {int(prob * 100)}%)"
+                        else:
+                            t1 = f"[{tag_str}] {btype.upper()}"
+                        t2 = f"ACTION: {action}"
+                        if len(t2) > 98: t2 = t2[:95] + "..."
+
+                        cv2.putText(vis_frame, t1, (32, by1 + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.62, txt_col, 2, cv2.LINE_AA)
+                        cv2.putText(vis_frame, t2, (32, by1 + 48), cv2.FONT_HERSHEY_SIMPLEX, 0.46, txt_col, 1, cv2.LINE_AA)
+
                     writer.write(vis_frame)
 
         finally:
@@ -485,15 +557,24 @@ class PersonAPipeline:
         tracking_data["video_metadata"]["total_frames_processed"] = frame_idx
         tracking_data["video_metadata"]["processing_time_sec"] = round(elapsed_total, 2)
         with open(json_out_path, "w") as f: json.dump(tracking_data, f, indent=2)
+
+        # ── Save Person B events JSON ────────────────────────────────────────
+        if risk_engine is not None:
+            events_output = risk_engine.finalize()
+            with open(events_out_path, "w") as f: json.dump(events_output, f, indent=2)
+            n_events = len(events_output.get("events", []))
+            print(f"[Person B] {n_events} risk event(s) saved → {events_out_path}")
+
         return json_out_path
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=str, required=True)
+    parser = argparse.ArgumentParser(description="Person A Perception + Person B Risk Engine (Method 1)")
+    parser.add_argument("--input", type=str, required=True, help="Path to video file")
     parser.add_argument("--output_dir", type=str, default="outputs_person_a")
     parser.add_argument("--max_frames", type=int, default=None)
     parser.add_argument("--no_video", action="store_true")
+    parser.add_argument("--no_risk", action="store_true", help="Disable inline Person B risk engine")
     args = parser.parse_args()
     pipeline = PersonAPipeline()
-    pipeline.run(args.input, args.output_dir, args.max_frames, not args.no_video)
+    pipeline.run(args.input, args.output_dir, args.max_frames, not args.no_video, not args.no_risk)
 

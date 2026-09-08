@@ -1,0 +1,1015 @@
+{
+  "events": [
+    {
+      "event_id": "EVT-20260908-0001",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:00.033",
+      "timestamp_end": "00:00:01.100",
+      "frame_range": [
+        1,
+        33
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1040
+        ],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 32.9,
+        "carry_height_m": 0.02,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 15
+      },
+      "reason": "Operator #1040 handled carton #2045 at controlled speed (32.9 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_1.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_1_33.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0002",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:00.567",
+      "timestamp_end": "00:00:00.867",
+      "frame_range": [
+        17,
+        26
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2063
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.7,
+        "vertical_speed_m_per_sec": 10.57,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #2063 underwent uncontrolled downward drop of approximately 0.70m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_17.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_17_26.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0003",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:00.833",
+      "timestamp_end": "00:00:02.133",
+      "frame_range": [
+        25,
+        64
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2,
+          1040,
+          1041,
+          1076,
+          1093,
+          1097
+        ],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.17,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 17
+      },
+      "reason": "Carton #2045 dragged across warehouse floor (0.17m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_25.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_25_64.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0004",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:01.200",
+      "timestamp_end": "00:00:01.500",
+      "frame_range": [
+        36,
+        45
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2080
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 1.05,
+        "vertical_speed_m_per_sec": 15.65,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #2080 underwent uncontrolled downward drop of approximately 1.05m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_36.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_36_45.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0005",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:01.200",
+      "timestamp_end": "00:00:01.300",
+      "frame_range": [
+        36,
+        39
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2080
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.64,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #2080 propelled horizontally across floor/surface at excessive speed (0.64 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_36.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_36_39.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0006",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:01.767",
+      "timestamp_end": "00:00:02.633",
+      "frame_range": [
+        53,
+        79
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1040,
+          1118
+        ],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 48.1,
+        "carry_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 6
+      },
+      "reason": "Operator #1040 handled carton #2045 at controlled speed (48.1 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_53.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_53_79.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0007",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:01.833",
+      "timestamp_end": "00:00:02.100",
+      "frame_range": [
+        55,
+        63
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2091
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.43,
+        "vertical_speed_m_per_sec": 6.37,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 7
+      },
+      "reason": "Carton #2091 underwent uncontrolled downward drop of approximately 0.43m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_55.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_55_63.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0008",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:01.833",
+      "timestamp_end": "00:00:01.933",
+      "frame_range": [
+        55,
+        58
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2091
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.55,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #2091 propelled horizontally across floor/surface at excessive speed (0.55 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_55.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_55_58.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0009",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:01.833",
+      "timestamp_end": "00:00:03.433",
+      "frame_range": [
+        55,
+        103
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2091
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0395,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 11
+      },
+      "reason": "Carton #2091 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_55.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_55_103.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0010",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:02.667",
+      "timestamp_end": "00:00:04.067",
+      "frame_range": [
+        80,
+        122
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1133,
+          1158
+        ],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.19,
+        "floor_contact_duration_sec": 1.03,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 12
+      },
+      "reason": "Carton #2045 dragged across warehouse floor (0.19m over 1.03s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_80.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_80_122.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0011",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:02.900",
+      "timestamp_end": "00:00:03.733",
+      "frame_range": [
+        87,
+        112
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2091
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.69,
+        "vertical_speed_m_per_sec": 1.23,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 7
+      },
+      "reason": "Carton #2091 underwent uncontrolled downward drop of approximately 0.69m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_87.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_87_112.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0012",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:03.133",
+      "timestamp_end": "00:00:03.233",
+      "frame_range": [
+        94,
+        97
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.75,
+      "entities_involved": {
+        "person_track_ids": [
+          1120,
+          1149
+        ],
+        "package_track_ids": [
+          2091
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 96.0,
+        "carry_height_m": 2.2,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #2091 carried by operator #1149 at elevated height (2.20m) and excessive speed (96.0 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_94.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_94_97.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0013",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:04.000",
+      "timestamp_end": "00:00:06.833",
+      "frame_range": [
+        120,
+        205
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0226,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 24
+      },
+      "reason": "Carton #2045 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_120.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_120_205.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0014",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:04.200",
+      "timestamp_end": "00:00:05.367",
+      "frame_range": [
+        126,
+        161
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1133
+        ],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.29,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 14
+      },
+      "reason": "Operator #1133's foot detected stepping or standing on top surface of carton #2045.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_126.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_126_161.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0015",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:04.633",
+      "timestamp_end": "00:00:05.367",
+      "frame_range": [
+        139,
+        161
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1133
+        ],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.18,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 9
+      },
+      "reason": "Carton #2045 dragged across warehouse floor (0.18m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_139.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_139_161.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0016",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:04.633",
+      "timestamp_end": "00:00:04.633",
+      "frame_range": [
+        139,
+        139
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1181
+        ],
+        "package_track_ids": [
+          2192
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.402,
+        "box_top_norm": 0.408,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #1181 lifting carton #2192 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_139.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_139_139.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0017",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:04.733",
+      "timestamp_end": "00:00:04.900",
+      "frame_range": [
+        142,
+        147
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1181
+        ],
+        "package_track_ids": [
+          2189
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.34,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Operator #1181's foot detected stepping or standing on top surface of carton #2189.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_142.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_142_147.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0018",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:04.933",
+      "timestamp_end": "00:00:04.933",
+      "frame_range": [
+        148,
+        148
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1181
+        ],
+        "package_track_ids": [
+          2204
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.475,
+        "box_top_norm": 0.47,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #1181 lifting carton #2204 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_148.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_148_148.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0019",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:04.933",
+      "timestamp_end": "00:00:05.133",
+      "frame_range": [
+        148,
+        154
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2204
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.19,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #2204 propelled horizontally across floor/surface at excessive speed (1.19 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_148.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_148_154.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0020",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:05.033",
+      "timestamp_end": "00:00:07.933",
+      "frame_range": [
+        151,
+        238
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1158
+        ],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 17.8,
+        "carry_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 18
+      },
+      "reason": "Operator #1158 handled carton #2045 at controlled speed (17.8 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_151.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_151_238.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0021",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:06.567",
+      "timestamp_end": "00:00:07.033",
+      "frame_range": [
+        197,
+        211
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2182
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.9,
+        "vertical_speed_m_per_sec": 1.98,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #2182 underwent uncontrolled downward drop of approximately 0.90m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_197.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_197_211.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0022",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:06.600",
+      "timestamp_end": "00:00:07.500",
+      "frame_range": [
+        198,
+        225
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2182
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0303,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 14
+      },
+      "reason": "Carton #2182 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_198.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_198_225.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0023",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:06.700",
+      "timestamp_end": "00:00:06.700",
+      "frame_range": [
+        201,
+        201
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1133
+        ],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.28,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #1133's foot detected stepping or standing on top surface of carton #2045.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_201.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_201_201.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0024",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:07.967",
+      "timestamp_end": "00:00:08.667",
+      "frame_range": [
+        239,
+        260
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2182
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.81,
+        "vertical_speed_m_per_sec": 1.87,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #2182 underwent uncontrolled downward drop of approximately 0.81m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_239.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_239_260.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0025",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:08.667",
+      "timestamp_end": "00:00:09.100",
+      "frame_range": [
+        260,
+        273
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1133
+        ],
+        "package_track_ids": [
+          2045
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.25,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Operator #1133's foot detected stepping or standing on top surface of carton #2045.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_260.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_260_273.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0026",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:08.800",
+      "timestamp_end": "00:00:09.167",
+      "frame_range": [
+        264,
+        275
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2259
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 1.22,
+        "vertical_speed_m_per_sec": 9.07,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #2259 underwent uncontrolled downward drop of approximately 1.22m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_264.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_264_275.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0027",
+      "video_id": "Rolling and dropping carton.mp4",
+      "timestamp_start": "00:00:09.033",
+      "timestamp_end": "00:00:09.400",
+      "frame_range": [
+        271,
+        282
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          2263
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 1.2,
+        "vertical_speed_m_per_sec": 3.37,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #2263 underwent uncontrolled downward drop of approximately 1.20m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dropping carton_271.jpg",
+        "clip_url": "/evidence/clips/Rolling and dropping carton_271_282.mp4"
+      }
+    }
+  ],
+  "shift_summary": {
+    "total_events": 27,
+    "near_misses_prevented": 1,
+    "high_critical_risks": 19,
+    "estimated_damage_avoided_inr": 4500,
+    "most_frequent_risk": "High-Impact Carton Drop (>0.8m)"
+  }
+}

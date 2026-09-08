@@ -1,0 +1,3885 @@
+{
+  "events": [
+    {
+      "event_id": "EVT-20260908-0001",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:00.100",
+      "timestamp_end": "00:00:00.567",
+      "frame_range": [
+        3,
+        17
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          358
+        ],
+        "package_track_ids": [
+          1357
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.19,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1357 dragged across warehouse floor (0.19m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_3.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_3_17.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0002",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:00.700",
+      "timestamp_end": "00:00:01.133",
+      "frame_range": [
+        21,
+        34
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          358
+        ],
+        "package_track_ids": [
+          1357
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 35.2,
+        "carry_height_m": 0.5,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #358 handled carton #1357 at controlled speed (35.2 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_21.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_21_34.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0003",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:00.900",
+      "timestamp_end": "00:00:01.667",
+      "frame_range": [
+        27,
+        50
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          358
+        ],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 25.6,
+        "carry_height_m": 0.73,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Operator #358 handled carton #1001 at controlled speed (25.6 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_27.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_27_50.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0004",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:00.933",
+      "timestamp_end": "00:00:01.433",
+      "frame_range": [
+        28,
+        43
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.46,
+        "vertical_speed_m_per_sec": 1.08,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #1001 underwent uncontrolled downward drop of approximately 0.46m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_28.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_28_43.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0005",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:01.300",
+      "timestamp_end": "00:00:01.400",
+      "frame_range": [
+        39,
+        42
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1357
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.65,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1357 propelled horizontally across floor/surface at excessive speed (0.65 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_39.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_39_42.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0006",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:01.300",
+      "timestamp_end": "00:00:01.767",
+      "frame_range": [
+        39,
+        53
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1357
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0423,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1357 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_39.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_39_53.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0007",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:01.333",
+      "timestamp_end": "00:00:02.400",
+      "frame_range": [
+        40,
+        72
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0423,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 6
+      },
+      "reason": "Carton #1001 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_40.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_40_72.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0008",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:01.400",
+      "timestamp_end": "00:00:02.433",
+      "frame_range": [
+        42,
+        73
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1406
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0408,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #1406 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_42.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_42_73.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0009",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:01.633",
+      "timestamp_end": "00:00:07.367",
+      "frame_range": [
+        49,
+        221
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          483
+        ],
+        "package_track_ids": [
+          1357
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.72,
+        "floor_contact_duration_sec": 5.7,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #1357 dragged across warehouse floor (0.72m over 5.7s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_49.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_49_221.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0010",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:01.900",
+      "timestamp_end": "00:00:01.933",
+      "frame_range": [
+        57,
+        58
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          358
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #358 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_57.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_57_58.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0011",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:04.567",
+      "timestamp_end": "00:00:05.267",
+      "frame_range": [
+        137,
+        158
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          358
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 19
+      },
+      "reason": "Operator #358 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_137.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_137_158.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0012",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:05.467",
+      "timestamp_end": "00:00:06.200",
+      "frame_range": [
+        164,
+        186
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.59,
+        "vertical_speed_m_per_sec": 18.02,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #1463 underwent uncontrolled downward drop of approximately 0.59m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_164.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_164_186.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0013",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:05.800",
+      "timestamp_end": "00:00:06.500",
+      "frame_range": [
+        174,
+        195
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.88,
+        "vertical_speed_m_per_sec": 1.85,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #1463 underwent uncontrolled downward drop of approximately 0.88m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_174.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_174_195.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0014",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:06.133",
+      "timestamp_end": "00:00:06.867",
+      "frame_range": [
+        184,
+        206
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.1083,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 5
+      },
+      "reason": "Carton #1001 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_184.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_184_206.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0015",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:06.133",
+      "timestamp_end": "00:00:06.867",
+      "frame_range": [
+        184,
+        206
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 4.7,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 6
+      },
+      "reason": "Carton #1001 propelled horizontally across floor/surface at excessive speed (4.7 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_184.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_184_206.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0016",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:06.167",
+      "timestamp_end": "00:00:06.233",
+      "frame_range": [
+        185,
+        187
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.55,
+      "entities_involved": {
+        "person_track_ids": [
+          464
+        ],
+        "package_track_ids": [
+          1463
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 107.1,
+        "carry_height_m": 1.3,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #1463 carried by operator #464 at elevated height (1.30m) and excessive speed (107.1 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_185.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_185_187.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0017",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:06.200",
+      "timestamp_end": "00:00:06.633",
+      "frame_range": [
+        186,
+        199
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.92,
+        "vertical_speed_m_per_sec": 2.34,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1001 underwent uncontrolled downward drop of approximately 0.92m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_186.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_186_199.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0018",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:06.600",
+      "timestamp_end": "00:00:06.600",
+      "frame_range": [
+        198,
+        198
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.84,
+      "entities_involved": {
+        "person_track_ids": [
+          464
+        ],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 251.3,
+        "carry_height_m": 1.27,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1001 carried by operator #464 at elevated height (1.27m) and excessive speed (251.3 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_198.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_198_198.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0019",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.133",
+      "timestamp_end": "00:00:07.400",
+      "frame_range": [
+        214,
+        222
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1480
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.34,
+        "vertical_speed_m_per_sec": 9.97,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #1480 underwent uncontrolled downward drop of approximately 0.34m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_214.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_214_222.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0020",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.233",
+      "timestamp_end": "00:00:07.300",
+      "frame_range": [
+        217,
+        219
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.88,
+        "vertical_speed_m_per_sec": 25.82,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #1178 underwent uncontrolled downward drop of approximately 0.88m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_217.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_217_219.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0021",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.233",
+      "timestamp_end": "00:00:08.000",
+      "frame_range": [
+        217,
+        240
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 2.08,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #1178 propelled horizontally across floor/surface at excessive speed (2.08 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_217.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_217_240.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0022",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.233",
+      "timestamp_end": "00:00:08.367",
+      "frame_range": [
+        217,
+        251
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          483,
+          499
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.2,
+        "floor_contact_duration_sec": 0.3,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #1178 dragged across warehouse floor (0.2m over 0.3s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_217.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_217_251.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0023",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.233",
+      "timestamp_end": "00:00:07.733",
+      "frame_range": [
+        217,
+        232
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          483
+        ],
+        "package_track_ids": [
+          1489
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.19,
+        "floor_contact_duration_sec": 0.33,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 5
+      },
+      "reason": "Carton #1489 dragged across warehouse floor (0.19m over 0.33s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_217.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_217_232.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0024",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.233",
+      "timestamp_end": "00:00:07.867",
+      "frame_range": [
+        217,
+        236
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1489
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.72,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 9
+      },
+      "reason": "Carton #1489 propelled horizontally across floor/surface at excessive speed (0.72 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_217.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_217_236.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0025",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.233",
+      "timestamp_end": "00:00:07.867",
+      "frame_range": [
+        217,
+        236
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1489
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0896,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #1489 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_217.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_217_236.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0026",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.267",
+      "timestamp_end": "00:00:07.767",
+      "frame_range": [
+        218,
+        233
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1498
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.45,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1498 propelled horizontally across floor/surface at excessive speed (1.45 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_218.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_218_233.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0027",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.267",
+      "timestamp_end": "00:00:07.767",
+      "frame_range": [
+        218,
+        233
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1498
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0956,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1498 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_218.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_218_233.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0028",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.300",
+      "timestamp_end": "00:00:07.700",
+      "frame_range": [
+        219,
+        231
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1481
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.85,
+        "vertical_speed_m_per_sec": 5.28,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #1481 underwent uncontrolled downward drop of approximately 0.85m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_219.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_219_231.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0029",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.300",
+      "timestamp_end": "00:00:20.933",
+      "frame_range": [
+        219,
+        628
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          686
+        ],
+        "package_track_ids": [
+          1481
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.39,
+        "floor_contact_duration_sec": 13.63,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1481 dragged across warehouse floor (0.39m over 13.63s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_219.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_219_628.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0030",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.333",
+      "timestamp_end": "00:00:07.333",
+      "frame_range": [
+        220,
+        220
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.98,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 864.0,
+        "carry_height_m": 1.9,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1178 carried by operator #1 at elevated height (1.90m) and excessive speed (864.0 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_220.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_220_220.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0031",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.400",
+      "timestamp_end": "00:00:21.033",
+      "frame_range": [
+        222,
+        631
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          686
+        ],
+        "package_track_ids": [
+          1481
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 6.1,
+        "carry_height_m": 0.43,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #686 handled carton #1481 at controlled speed (6.1 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_222.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_222_631.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0032",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.467",
+      "timestamp_end": "00:00:10.633",
+      "frame_range": [
+        224,
+        319
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0597,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 9
+      },
+      "reason": "Carton #1178 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_224.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_224_319.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0033",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.467",
+      "timestamp_end": "00:00:21.333",
+      "frame_range": [
+        224,
+        640
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1481
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.1306,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 6
+      },
+      "reason": "Carton #1481 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_224.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_224_640.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0034",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.533",
+      "timestamp_end": "00:00:07.967",
+      "frame_range": [
+        226,
+        239
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1504
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0422,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1504 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_226.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_226_239.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0035",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.600",
+      "timestamp_end": "00:00:07.667",
+      "frame_range": [
+        228,
+        230
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          483
+        ],
+        "package_track_ids": [
+          1481
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.9,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Operator #483's foot detected stepping or standing on top surface of carton #1481.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_228.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_228_230.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0036",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.800",
+      "timestamp_end": "00:00:08.367",
+      "frame_range": [
+        234,
+        251
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.66,
+        "vertical_speed_m_per_sec": 1.22,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1178 underwent uncontrolled downward drop of approximately 0.66m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_234.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_234_251.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0037",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.900",
+      "timestamp_end": "00:00:10.033",
+      "frame_range": [
+        237,
+        301
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1529
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0514,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 7
+      },
+      "reason": "Carton #1529 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_237.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_237_301.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0038",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.933",
+      "timestamp_end": "00:00:08.333",
+      "frame_range": [
+        238,
+        250
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.91,
+      "entities_involved": {
+        "person_track_ids": [
+          483,
+          499,
+          505
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 246.8,
+        "carry_height_m": 1.58,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #1178 carried by operator #483 at elevated height (1.58m) and excessive speed (246.8 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_238.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_238_250.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0039",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:07.933",
+      "timestamp_end": "00:00:08.400",
+      "frame_range": [
+        238,
+        252
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          483,
+          505,
+          513
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.214,
+        "box_top_norm": 0.167,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Operator #483 lifting carton #1178 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_238.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_238_252.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0040",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:08.033",
+      "timestamp_end": "00:00:08.200",
+      "frame_range": [
+        241,
+        246
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.67,
+      "entities_involved": {
+        "person_track_ids": [
+          499
+        ],
+        "package_track_ids": [
+          1504
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 198.4,
+        "carry_height_m": 1.04,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #1504 carried by operator #499 at elevated height (1.04m) and excessive speed (198.4 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_241.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_241_246.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0041",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:08.100",
+      "timestamp_end": "00:00:08.100",
+      "frame_range": [
+        243,
+        243
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.52,
+      "entities_involved": {
+        "person_track_ids": [
+          499
+        ],
+        "package_track_ids": [
+          1489
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 92.8,
+        "carry_height_m": 1.31,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1489 carried by operator #499 at elevated height (1.31m) and excessive speed (92.8 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_243.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_243_243.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0042",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:08.267",
+      "timestamp_end": "00:00:08.267",
+      "frame_range": [
+        248,
+        248
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          510
+        ],
+        "package_track_ids": [
+          1504
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.146,
+        "box_top_norm": 0.157,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #510 lifting carton #1504 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_248.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_248_248.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0043",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:08.467",
+      "timestamp_end": "00:00:09.200",
+      "frame_range": [
+        254,
+        276
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          520
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Operator #1 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_254.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_254_276.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0044",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:09.233",
+      "timestamp_end": "00:00:10.367",
+      "frame_range": [
+        277,
+        311
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1560
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0327,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1560 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_277.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_277_311.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0045",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:09.333",
+      "timestamp_end": "00:00:10.533",
+      "frame_range": [
+        280,
+        316
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          563
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.41,
+        "floor_contact_duration_sec": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1178 dragged across warehouse floor (0.41m over 1.2s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_280.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_280_316.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0046",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:09.433",
+      "timestamp_end": "00:00:11.600",
+      "frame_range": [
+        283,
+        348
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1566
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0648,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 13
+      },
+      "reason": "Carton #1566 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_283.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_283_348.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0047",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:09.533",
+      "timestamp_end": "00:00:10.033",
+      "frame_range": [
+        286,
+        301
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1529
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 2.97,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 13
+      },
+      "reason": "Carton #1529 propelled horizontally across floor/surface at excessive speed (2.97 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_286.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_286_301.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0048",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:09.533",
+      "timestamp_end": "00:00:10.033",
+      "frame_range": [
+        286,
+        301
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          545,
+          547
+        ],
+        "package_track_ids": [
+          1529
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.35,
+        "floor_contact_duration_sec": 0.23,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 5
+      },
+      "reason": "Carton #1529 dragged across warehouse floor (0.35m over 0.23s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_286.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_286_301.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0049",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:09.600",
+      "timestamp_end": "00:00:10.200",
+      "frame_range": [
+        288,
+        306
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          1529
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 20.6,
+        "carry_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Operator #1 handled carton #1529 at controlled speed (20.6 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_288.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_288_306.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0050",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:10.133",
+      "timestamp_end": "00:00:10.133",
+      "frame_range": [
+        304,
+        304
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          1529
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.165,
+        "box_top_norm": 0.15,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #1 lifting carton #1529 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_304.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_304_304.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0051",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:10.500",
+      "timestamp_end": "00:00:10.600",
+      "frame_range": [
+        315,
+        318
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          500
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #1 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_315.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_315_318.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0052",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:10.800",
+      "timestamp_end": "00:00:10.800",
+      "frame_range": [
+        324,
+        324
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.58,
+      "entities_involved": {
+        "person_track_ids": [
+          2
+        ],
+        "package_track_ids": [
+          1566
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 113.7,
+        "carry_height_m": 1.36,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1566 carried by operator #2 at elevated height (1.36m) and excessive speed (113.7 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_324.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_324_324.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0053",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:10.800",
+      "timestamp_end": "00:00:10.800",
+      "frame_range": [
+        324,
+        324
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2
+        ],
+        "package_track_ids": [
+          1566
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.203,
+        "box_top_norm": 0.224,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #2 lifting carton #1566 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_324.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_324_324.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0054",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:11.133",
+      "timestamp_end": "00:00:13.933",
+      "frame_range": [
+        334,
+        418
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0248,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 14
+      },
+      "reason": "Carton #1178 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_334.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_334_418.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0055",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:11.167",
+      "timestamp_end": "00:00:12.200",
+      "frame_range": [
+        335,
+        366
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1590
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.025,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Carton #1590 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_335.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_335_366.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0056",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:11.433",
+      "timestamp_end": "00:00:11.433",
+      "frame_range": [
+        343,
+        343
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #1 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_343.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_343_343.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0057",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:11.533",
+      "timestamp_end": "00:00:11.533",
+      "frame_range": [
+        346,
+        346
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          585
+        ],
+        "package_track_ids": [
+          1566
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.121,
+        "box_top_norm": 0.161,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #585 lifting carton #1566 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_346.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_346_346.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0058",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:11.767",
+      "timestamp_end": "00:00:11.867",
+      "frame_range": [
+        353,
+        356
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          591,
+          594
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.161,
+        "box_top_norm": 0.178,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #591 lifting carton #1178 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_353.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_353_356.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0059",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:11.833",
+      "timestamp_end": "00:00:12.333",
+      "frame_range": [
+        355,
+        370
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1611
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0247,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #1611 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_355.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_355_370.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0060",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:12.000",
+      "timestamp_end": "00:00:12.000",
+      "frame_range": [
+        360,
+        360
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          594
+        ],
+        "package_track_ids": [
+          1590
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.172,
+        "box_top_norm": 0.158,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #594 lifting carton #1590 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_360.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_360_360.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0061",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:12.200",
+      "timestamp_end": "00:00:12.867",
+      "frame_range": [
+        366,
+        386
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 1.2,
+        "vertical_speed_m_per_sec": 2.74,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #1178 underwent uncontrolled downward drop of approximately 1.20m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_366.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_366_386.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0062",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:12.200",
+      "timestamp_end": "00:00:12.867",
+      "frame_range": [
+        366,
+        386
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.74,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #1178 propelled horizontally across floor/surface at excessive speed (0.74 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_366.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_366_386.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0063",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:12.433",
+      "timestamp_end": "00:00:12.867",
+      "frame_range": [
+        373,
+        386
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          582
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.32,
+        "floor_contact_duration_sec": 0.43,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1178 dragged across warehouse floor (0.32m over 0.43s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_373.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_373_386.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0064",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:13.167",
+      "timestamp_end": "00:00:13.300",
+      "frame_range": [
+        395,
+        399
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          620,
+          624
+        ],
+        "package_track_ids": [
+          1611
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.151,
+        "box_top_norm": 0.173,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #620 lifting carton #1611 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_395.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_395_399.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0065",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:13.233",
+      "timestamp_end": "00:00:13.233",
+      "frame_range": [
+        397,
+        397
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          582,
+          586
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #582 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_397.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_397_397.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0066",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:13.667",
+      "timestamp_end": "00:00:13.733",
+      "frame_range": [
+        410,
+        412
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          636,
+          639
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.223,
+        "box_top_norm": 0.217,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #636 lifting carton #1178 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_410.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_410_412.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0067",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:13.767",
+      "timestamp_end": "00:00:13.900",
+      "frame_range": [
+        413,
+        417
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          586
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #586 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_413.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_413_417.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0068",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:13.933",
+      "timestamp_end": "00:00:14.467",
+      "frame_range": [
+        418,
+        434
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          662
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 33.6,
+        "carry_height_m": 0.86,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #662 handled carton #1178 at controlled speed (33.6 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_418.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_418_434.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0069",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:14.000",
+      "timestamp_end": "00:00:14.767",
+      "frame_range": [
+        420,
+        443
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
+      "behaviour_code": "CARTON_SLIP_LOW",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.72,
+        "vertical_speed_m_per_sec": 1.32,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 8
+      },
+      "reason": "Carton #1178 underwent uncontrolled downward drop of approximately 0.72m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_420.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_420_443.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0070",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:14.167",
+      "timestamp_end": "00:00:15.633",
+      "frame_range": [
+        425,
+        469
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          662,
+          665,
+          673
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.19,
+        "floor_contact_duration_sec": 0.5,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 9
+      },
+      "reason": "Carton #1178 dragged across warehouse floor (0.19m over 0.5s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_425.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_425_469.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0071",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:14.367",
+      "timestamp_end": "00:00:16.333",
+      "frame_range": [
+        431,
+        490
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          673,
+          684
+        ],
+        "package_track_ids": [
+          1674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.46,
+        "floor_contact_duration_sec": 1.07,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 16
+      },
+      "reason": "Carton #1674 dragged across warehouse floor (0.46m over 1.07s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_431.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_431_490.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0072",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:14.400",
+      "timestamp_end": "00:00:15.467",
+      "frame_range": [
+        432,
+        464
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 1.42,
+        "vertical_speed_m_per_sec": 1.2,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #1178 underwent uncontrolled downward drop of approximately 1.42m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_432.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_432_464.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0073",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:14.600",
+      "timestamp_end": "00:00:15.633",
+      "frame_range": [
+        438,
+        469
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.7,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #1178 propelled horizontally across floor/surface at excessive speed (0.7 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_438.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_438_469.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0074",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:14.633",
+      "timestamp_end": "00:00:15.633",
+      "frame_range": [
+        439,
+        469
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0888,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1178 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_439.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_439_469.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0075",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:14.833",
+      "timestamp_end": "00:00:15.367",
+      "frame_range": [
+        445,
+        461
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          586,
+          665,
+          666,
+          672,
+          673
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 19
+      },
+      "reason": "Operator #665 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_445.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_445_461.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0076",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:15.467",
+      "timestamp_end": "00:00:15.967",
+      "frame_range": [
+        464,
+        479
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          673
+        ],
+        "package_track_ids": [
+          1674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.32,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 5
+      },
+      "reason": "Carton #1674 propelled horizontally across floor/surface at excessive speed (1.32 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_464.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_464_479.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0077",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:15.467",
+      "timestamp_end": "00:00:16.767",
+      "frame_range": [
+        464,
+        503
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0429,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 21
+      },
+      "reason": "Carton #1674 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_464.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_464_503.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0078",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:15.767",
+      "timestamp_end": "00:00:19.800",
+      "frame_range": [
+        473,
+        594
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          639,
+          642,
+          684,
+          689,
+          690,
+          691,
+          693,
+          700,
+          702
+        ],
+        "package_track_ids": [
+          1674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.93,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 189
+      },
+      "reason": "Operator #642's foot detected stepping or standing on top surface of carton #1674.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_473.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_473_594.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0079",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:18.100",
+      "timestamp_end": "00:00:19.267",
+      "frame_range": [
+        543,
+        578
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          701,
+          706,
+          707,
+          710
+        ],
+        "package_track_ids": [
+          1674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 4.1,
+        "carry_height_m": 0.5,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 17
+      },
+      "reason": "Operator #701 handled carton #1674 at controlled speed (4.1 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_543.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_543_578.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0080",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:18.567",
+      "timestamp_end": "00:00:19.133",
+      "frame_range": [
+        557,
+        574
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "STRAP_LIFT_PULL",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          701,
+          706,
+          707
+        ],
+        "package_track_ids": [
+          1674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.147,
+        "box_top_norm": 0.249,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 14
+      },
+      "reason": "Operator #701 lifting carton #1674 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_557.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_557_574.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0081",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:20.533",
+      "timestamp_end": "00:00:21.800",
+      "frame_range": [
+        616,
+        654
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0266,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 18
+      },
+      "reason": "Carton #1674 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_616.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_616_654.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0082",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:22.233",
+      "timestamp_end": "00:00:24.467",
+      "frame_range": [
+        667,
+        734
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          753,
+          762,
+          765,
+          770,
+          774,
+          775,
+          787
+        ],
+        "package_track_ids": [
+          1674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 21.9,
+        "carry_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 19
+      },
+      "reason": "Operator #753 handled carton #1674 at controlled speed (21.9 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_667.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_667_734.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0083",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:23.333",
+      "timestamp_end": "00:00:24.433",
+      "frame_range": [
+        700,
+        733
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          762,
+          769,
+          770,
+          778,
+          779,
+          780
+        ],
+        "package_track_ids": [
+          1674
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.82,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 24
+      },
+      "reason": "Operator #762's foot detected stepping or standing on top surface of carton #1674.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_700.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_700_733.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0084",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:26.500",
+      "timestamp_end": "00:00:26.967",
+      "frame_range": [
+        795,
+        809
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          1406
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.23,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1406 dragged across warehouse floor (0.23m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_795.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_795_809.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0085",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:26.767",
+      "timestamp_end": "00:00:33.367",
+      "frame_range": [
+        803,
+        1001
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          836,
+          859,
+          861,
+          873,
+          898
+        ],
+        "package_track_ids": [
+          1406
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 31.8,
+        "carry_height_m": 0.24,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 21
+      },
+      "reason": "Operator #836 handled carton #1406 at controlled speed (31.8 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_803.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_803_1001.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0086",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:26.833",
+      "timestamp_end": "00:00:32.333",
+      "frame_range": [
+        805,
+        970
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1406
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0551,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #1406 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_805.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_805_970.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0087",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:26.933",
+      "timestamp_end": "00:00:31.467",
+      "frame_range": [
+        808,
+        944
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          861
+        ],
+        "package_track_ids": [
+          1863
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 13.6,
+        "carry_height_m": 0.24,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #861 handled carton #1863 at controlled speed (13.6 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_808.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_808_944.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0088",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:27.033",
+      "timestamp_end": "00:00:29.567",
+      "frame_range": [
+        811,
+        887
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          806,
+          808,
+          814,
+          816,
+          820,
+          822,
+          825
+        ],
+        "package_track_ids": [
+          1800
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.92,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 110
+      },
+      "reason": "Operator #806's foot detected stepping or standing on top surface of carton #1800.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_811.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_811_887.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0089",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:29.133",
+      "timestamp_end": "00:00:29.733",
+      "frame_range": [
+        874,
+        892
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          836
+        ],
+        "package_track_ids": [
+          1800
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 26.4,
+        "carry_height_m": 0.37,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 3
+      },
+      "reason": "Operator #836 handled carton #1800 at controlled speed (26.4 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_874.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_874_892.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0090",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:29.333",
+      "timestamp_end": "00:00:30.400",
+      "frame_range": [
+        880,
+        912
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1800
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0226,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 12
+      },
+      "reason": "Carton #1800 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_880.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_880_912.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0091",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:29.767",
+      "timestamp_end": "00:00:30.433",
+      "frame_range": [
+        893,
+        913
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          1800
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.23,
+        "floor_contact_duration_sec": 0.63,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Carton #1800 dragged across warehouse floor (0.23m over 0.63s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_893.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_893_913.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0092",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:29.767",
+      "timestamp_end": "00:00:32.267",
+      "frame_range": [
+        893,
+        968
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1870
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0504,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1870 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_893.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_893_968.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0093",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:29.833",
+      "timestamp_end": "00:00:29.933",
+      "frame_range": [
+        895,
+        898
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          820,
+          839,
+          840
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Operator #820 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_895.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_895_898.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0094",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:29.967",
+      "timestamp_end": "00:00:32.333",
+      "frame_range": [
+        899,
+        970
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          856
+        ],
+        "package_track_ids": [
+          1406
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.29,
+        "floor_contact_duration_sec": 2.37,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1406 dragged across warehouse floor (0.29m over 2.37s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_899.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_899_970.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0095",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:29.967",
+      "timestamp_end": "00:00:29.967",
+      "frame_range": [
+        899,
+        899
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          820
+        ],
+        "package_track_ids": [
+          1406
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.74,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 2
+      },
+      "reason": "Operator #820's foot detected stepping or standing on top surface of carton #1406.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_899.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_899_899.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0096",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:30.000",
+      "timestamp_end": "00:00:30.033",
+      "frame_range": [
+        900,
+        901
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Stepping / Standing on Carton",
+      "behaviour_code": "STEPPING_ON_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          820
+        ],
+        "package_track_ids": [
+          1800
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.85,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Operator #820's foot detected stepping or standing on top surface of carton #1800.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_900.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_900_901.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0097",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:30.633",
+      "timestamp_end": "00:00:31.100",
+      "frame_range": [
+        919,
+        933
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Safe Handling Benchmark (Control)",
+      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "risk_level": "Low",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          855
+        ],
+        "package_track_ids": [
+          1800
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 45.2,
+        "carry_height_m": 0.22,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #855 handled carton #1800 at controlled speed (45.2 px/s) and safe elevation \u2014 matches benchmark.",
+      "recommended_action": "No action required. Logged as positive coaching reinforcement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_919.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_919_933.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0098",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:31.167",
+      "timestamp_end": "00:00:31.400",
+      "frame_range": [
+        935,
+        942
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          856,
+          857,
+          858,
+          859
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 7
+      },
+      "reason": "Operator #856 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_935.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_935_942.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0099",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:31.500",
+      "timestamp_end": "00:00:32.100",
+      "frame_range": [
+        945,
+        963
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1863
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.21,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 12
+      },
+      "reason": "Carton #1863 propelled horizontally across floor/surface at excessive speed (1.21 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_945.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_945_963.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0100",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:31.500",
+      "timestamp_end": "00:00:32.133",
+      "frame_range": [
+        945,
+        964
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          861,
+          865
+        ],
+        "package_track_ids": [
+          1863
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.19,
+        "floor_contact_duration_sec": 0.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 14
+      },
+      "reason": "Carton #1863 dragged across warehouse floor (0.19m over 0.2s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_945.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_945_964.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0101",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:31.500",
+      "timestamp_end": "00:00:32.100",
+      "frame_range": [
+        945,
+        963
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1863
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0295,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 5
+      },
+      "reason": "Carton #1863 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_945.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_945_963.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0102",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:32.167",
+      "timestamp_end": "00:00:32.167",
+      "frame_range": [
+        965,
+        965
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Critical",
+      "confidence_stage": "Confirmed Damage",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          856
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Operator #856 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_965.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_965_965.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0103",
+      "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+      "timestamp_start": "00:00:33.433",
+      "timestamp_end": "00:00:33.667",
+      "frame_range": [
+        1003,
+        1010
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          856,
+          873
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Operator #873 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/KD packets dragged, heavy box kept on other packets_1003.jpg",
+        "clip_url": "/evidence/clips/KD packets dragged, heavy box kept on other packets_1003_1010.mp4"
+      }
+    }
+  ],
+  "shift_summary": {
+    "total_events": 103,
+    "near_misses_prevented": 7,
+    "high_critical_risks": 73,
+    "estimated_damage_avoided_inr": 31500,
+    "most_frequent_risk": "Carton / KD Floor Dragging"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "events": [
+    {
+      "event_id": "EVT-20260908-0001",
+      "video_id": "WIN_20260908_14_39_18_Pro.mp4",
+      "timestamp_start": "00:00:00.402",
+      "timestamp_end": "00:00:06.705",
+      "frame_range": [
+        12,
+        200
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          2769,
+          2774
+        ],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.63,
+        "floor_contact_duration_sec": 3.66,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 19
+      },
+      "reason": "Carton #1001 dragged across warehouse floor (0.63m over 3.66s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/WIN_20260908_14_39_18_Pro_12.jpg",
+        "clip_url": "/evidence/clips/WIN_20260908_14_39_18_Pro_12_200.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0002",
+      "video_id": "WIN_20260908_14_39_18_Pro.mp4",
+      "timestamp_start": "00:00:00.469",
+      "timestamp_end": "00:00:06.705",
+      "frame_range": [
+        14,
+        200
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0718,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 6
+      },
+      "reason": "Carton #1001 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/WIN_20260908_14_39_18_Pro_14.jpg",
+        "clip_url": "/evidence/clips/WIN_20260908_14_39_18_Pro_14_200.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0003",
+      "video_id": "WIN_20260908_14_39_18_Pro.mp4",
+      "timestamp_start": "00:00:04.090",
+      "timestamp_end": "00:00:06.705",
+      "frame_range": [
+        122,
+        200
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "CARTON_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1001
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.63,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 4
+      },
+      "reason": "Carton #1001 propelled horizontally across floor/surface at excessive speed (0.63 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/WIN_20260908_14_39_18_Pro_122.jpg",
+        "clip_url": "/evidence/clips/WIN_20260908_14_39_18_Pro_122_200.mp4"
+      }
+    }
+  ],
+  "shift_summary": {
+    "total_events": 3,
+    "near_misses_prevented": 0,
+    "high_critical_risks": 2,
+    "estimated_damage_avoided_inr": 0,
+    "most_frequent_risk": "Carton / KD Floor Dragging"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "events": [
+    {
+      "event_id": "EVT-20260908-0001",
+      "video_id": "Rolling and dragging on wet floor.mp4",
+      "timestamp_start": "00:00:00.100",
+      "timestamp_end": "00:00:06.100",
+      "frame_range": [
+        3,
+        183
+      ],
+      "location_id": "Loading Bay Area",
+      "behaviour_type": "Carton / KD Floor Dragging",
+      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          915,
+          919,
+          920,
+          924,
+          925,
+          926,
+          931,
+          933,
+          949,
+          958,
+          963,
+          964,
+          969,
+          970,
+          973,
+          990,
+          991,
+          993,
+          994,
+          997,
+          999,
+          1010,
+          1012,
+          1026,
+          1030,
+          1033,
+          1036,
+          1038,
+          1039
+        ],
+        "package_track_ids": [],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "floor_contact_duration_sec": 1.0,
+        "horizontal_distance_m": 1.2,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 126
+      },
+      "reason": "Operator #919 observed in sustained floor-dragging / pulling posture without handling equipment.",
+      "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
+      "evidence": {
+        "snapshot_url": "/evidence/snapshots/Rolling and dragging on wet floor_3.jpg",
+        "clip_url": "/evidence/clips/Rolling and dragging on wet floor_3_183.mp4"
+      }
+    }
+  ],
+  "shift_summary": {
+    "total_events": 1,
+    "near_misses_prevented": 0,
+    "high_critical_risks": 1,
+    "estimated_damage_avoided_inr": 0,
+    "most_frequent_risk": "Carton / KD Floor Dragging"
+  }
+}
