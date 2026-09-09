@@ -27,63 +27,114 @@ from pipeline_person_a import PersonAPipeline, KEYPOINT_NAMES, SKELETON_PAIRS
 from pipeline_person_b import RiskEngine
 
 
+SHORT_ISSUE_NAMES = {
+    "DROP_HIGH_IMPACT": "HIGH DROP",
+    "DROP_LOW_SLIP": "CARTON SLIP",
+    "High-Impact Carton Drop (>0.8m)": "HIGH DROP",
+    "Low-Height Drop / Slip (<0.5m)": "CARTON SLIP",
+    "High-Impact Carton Drop": "HIGH DROP",
+    "Low-Height Drop / Carton Slip": "CARTON SLIP",
+    "NEAR_MISS_UNSAFE_CARRY": "UNSAFE CARRY",
+    "Predictive Near-Miss (USP)": "UNSAFE CARRY",
+    "Near-Miss Unsafe Carry": "UNSAFE CARRY",
+    "UNSAFE_FLOOR_DRAG": "FLOOR DRAG",
+    "Floor Dragging (No Equipment)": "FLOOR DRAG",
+    "Carton / KD Packet Floor Dragging": "FLOOR DRAG",
+    "Carton Floor Dragging": "FLOOR DRAG",
+    "ROUGH_THROW_SLIDE": "CARTON THROW",
+    "Carton Throwing / Sliding": "CARTON THROW",
+    "Carton Throwing": "CARTON THROW",
+    "ROUGH_CARTON_ROLLING": "CARTON ROLLING",
+    "Rolling Cartons": "CARTON ROLLING",
+    "Rolling Cartons on Floor": "CARTON ROLLING",
+    "STACK_INVERTED_PYRAMID": "BAD STACK",
+    "Inverted Pyramid Stacking": "BAD STACK",
+    "STACK_UNSTABLE_WOBBLE": "UNSTABLE STACK",
+    "Unstable Multi-Tier Stack Wobble": "UNSTABLE STACK",
+    "EQUIPMENT_STRAP_LIFT": "STRAP LIFT",
+    "Strap Lifting / Pulling": "STRAP LIFT",
+    "OPERATOR_STEPPING_CARTON": "STEPPING HAZARD",
+    "Stepping / Standing on Products": "STEPPING HAZARD",
+    "Stepping / Standing on Carton": "STEPPING HAZARD",
+    "Stepping on Cartons": "STEPPING HAZARD",
+    "IMPROPER_MISORIENTATION": "WRONG ORIENTATION",
+    "Vertical Product Kept Horizontally": "WRONG ORIENTATION",
+    "BENCHMARK_SAFE_HANDLING": "SAFE HANDLING",
+    "Safe Handling Benchmark": "SAFE HANDLING",
+}
+
+
+def get_two_word_issue(btype: str, bcode: str = "") -> str:
+    """Returns a clean, punchy 2-word issue title for real-time overlay readability."""
+    if bcode and bcode in SHORT_ISSUE_NAMES:
+        return SHORT_ISSUE_NAMES[bcode]
+    if btype and btype in SHORT_ISSUE_NAMES:
+        return SHORT_ISSUE_NAMES[btype]
+    # Fallback: take first 2 words
+    clean = str(btype or bcode or "SAFETY ALERT").replace("_", " ").replace("-", " ")
+    words = clean.split()
+    return " ".join(words[:2]).upper() if words else "SAFETY ALERT"
+
+
 def draw_hud_banner(vis_frame, active_alert: Optional[Dict], frame_idx: int, fps: float, n_persons: int, n_boxes: int):
-    """Renders the real-time AI supervisor HUD bar and risk alert banners."""
+    """Renders clean real-time AI supervisor status and punchy 2-word risk alert badge (zero numbers)."""
     h, w, _ = vis_frame.shape
 
-    # 1. Top Status HUD Bar
-    cv2.rectangle(vis_frame, (0, 0), (w, 36), (20, 20, 20), -1)
-    cv2.line(vis_frame, (0, 36), (w, 36), (60, 60, 60), 1)
+    # 1. Top Status Bar (Clean, no distracting number clutter)
+    cv2.rectangle(vis_frame, (0, 0), (w, 32), (18, 18, 18), -1)
+    cv2.line(vis_frame, (0, 32), (w, 32), (55, 55, 55), 1)
+    hud_text = "GODREJ AI | FIELD INTELLIGENCE"
+    cv2.putText(vis_frame, hud_text, (15, 22), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (220, 220, 220), 1, cv2.LINE_AA)
 
-    hud_text = f"GODREJ AI FIELD INTELLIGENCE | FPS: {fps:4.1f} | WORKERS: {n_persons} | BOXES: {n_boxes} | FRAME: {frame_idx}"
-    cv2.putText(vis_frame, hud_text, (15, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (220, 220, 220), 1, cv2.LINE_AA)
-
-    # 2. Real-Time Risk Alert Banner
+    # 2. Real-Time Risk Alert Badge (Large, color-coded, 2-word issue, zero numbers)
     if active_alert and active_alert.get("frames_left", 0) > 0:
         level = active_alert.get("risk_level", "Medium")
-        cat = active_alert.get("category", "").upper()
         btype = active_alert.get("behaviour_type", "Safety Alert")
-        action = active_alert.get("recommended_action", active_alert.get("action", "Follow safe handling guidelines."))
+        bcode = active_alert.get("behaviour_code", "")
         prob = active_alert.get("near_miss_probability", active_alert.get("near_miss_prob", 0.0))
+        is_near_miss = active_alert.get("is_near_miss", False) or prob > 0.0
 
-        # Color coding per risk level
-        if level == "Critical":
-            bg_color = (0, 0, 180)       # Bright Crimson Red
+        # Color coding & color label per risk level
+        if is_near_miss:
+            bg_color = (0, 0, 210)       # Bright Crimson Red
             txt_color = (255, 255, 255)
-            tag = "CRITICAL ALERT"
+            tag = "NEAR MISS"
+        elif level == "Critical":
+            bg_color = (0, 0, 210)       # Bright Crimson Red
+            txt_color = (255, 255, 255)
+            tag = "CRITICAL"
         elif level == "High":
-            bg_color = (0, 120, 230)      # Amber / Orange
+            bg_color = (0, 125, 245)     # Vivid Amber / Orange
             txt_color = (255, 255, 255)
             tag = "HIGH RISK"
         elif level == "Medium":
-            bg_color = (0, 180, 220)      # Yellow / Ochre
+            bg_color = (0, 195, 240)     # Warm Yellow
             txt_color = (20, 20, 20)
-            tag = "RISK WARNING"
+            tag = "WARNING"
         else:
-            bg_color = (30, 140, 50)      # Forest Green
+            bg_color = (40, 165, 60)     # Green
             txt_color = (255, 255, 255)
-            tag = "BENCHMARK"
+            tag = "SAFE"
 
-        # Banner Dimensions
-        banner_h = 70
-        banner_y1 = h - banner_h - 15
-        banner_y2 = h - 15
-        cv2.rectangle(vis_frame, (20, banner_y1), (w - 20, banner_y2), bg_color, -1)
-        cv2.rectangle(vis_frame, (20, banner_y1), (w - 20, banner_y2), (255, 255, 255), 2)
+        # Punchy 2-word issue title
+        issue = get_two_word_issue(btype, bcode)
 
-        # Title line
-        if prob > 0.0:
-            title_str = f"[{tag}] {cat or btype.upper()} | PREDICTIVE NEAR-MISS: {int(prob * 100)}% RISK"
-        else:
-            header_cat = cat if cat else btype.upper()
-            title_str = f"[{tag}] {header_cat} -- {btype}"
-        cv2.putText(vis_frame, title_str, (35, banner_y1 + 25), cv2.FONT_HERSHEY_SIMPLEX, 0.65, txt_color, 2, cv2.LINE_AA)
+        # Sleek, highly readable bottom alert pill
+        banner_h = 50
+        banner_y1 = h - banner_h - 18
+        banner_y2 = h - 18
+        cv2.rectangle(vis_frame, (25, banner_y1), (w - 25, banner_y2), bg_color, -1)
+        cv2.rectangle(vis_frame, (25, banner_y1), (w - 25, banner_y2), (255, 255, 255), 2)
 
-        # Action / Guidance line
-        action_str = f"ACTION: {action}"
-        if len(action_str) > 100:
-            action_str = action_str[:97] + "..."
-        cv2.putText(vis_frame, action_str, (35, banner_y1 + 52), cv2.FONT_HERSHEY_SIMPLEX, 0.50, txt_color, 1, cv2.LINE_AA)
+        # Left tag pill (high-contrast label)
+        tag_sz = cv2.getTextSize(tag, cv2.FONT_HERSHEY_DUPLEX, 0.65, 2)[0]
+        badge_w = tag_sz[0] + 20
+        cv2.rectangle(vis_frame, (35, banner_y1 + 7), (35 + badge_w, banner_y2 - 7), (255, 255, 255), -1)
+        cv2.putText(vis_frame, tag, (45, banner_y1 + 34), cv2.FONT_HERSHEY_DUPLEX, 0.65, (10, 10, 10), 2, cv2.LINE_AA)
+
+        # Main 2-word issue in bold letters
+        cv2.putText(vis_frame, issue, (35 + badge_w + 25, banner_y1 + 35), cv2.FONT_HERSHEY_DUPLEX, 0.85, txt_color, 2, cv2.LINE_AA)
+
 
 
 def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_conf: float = 0.15):
@@ -328,22 +379,22 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
 
                 if cls_name == "person":
                     color = (255, 200, 0)
-                    label = f"Worker #{t['track_id']}"
+                    label = "WORKER"
                 else:
                     state = t.get("state", "RESTING")
                     held_by = t.get("held_by")
                     if state == "ROLLING":
                         color = (0, 215, 255)
-                        label = f"Box #{t['track_id']} [ROLLING]"
+                        label = "ROLLING"
                     elif state == "DROPPED":
                         color = (0, 80, 255)
-                        label = f"Box #{t['track_id']} [DROPPED]"
+                        label = "DROPPED"
                     elif held_by:
                         color = (0, 215, 255)
-                        label = f"Box #{t['track_id']} [Worker #{held_by}]"
+                        label = "HELD"
                     else:
                         color = (0, 140, 255)
-                        label = f"Box #{t['track_id']}"
+                        label = "CARTON"
 
                 cv2.rectangle(vis_frame, (x1, y1), (x2, y2), color, 2)
                 badge_sz = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]

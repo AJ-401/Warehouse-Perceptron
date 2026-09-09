@@ -807,14 +807,23 @@ def extract_evidence_for_events(video_path: str, events: List[Dict[str, Any]], o
             cap.set(cv2.CAP_PROP_POS_FRAMES, peak_f)
             ret, frame = cap.read()
             if ret:
-                cat = evt.get("category", "WAREHOUSE ALERT").upper()
-                btype = evt.get("behaviour_type", "")
+                bcode = evt.get("behaviour_code", "")
                 risk = evt.get("risk_level", "Medium")
-                badge_color = (0, 0, 180) if risk == "Critical" else (0, 140, 240) if risk == "High" else (0, 180, 220)
-                cv2.rectangle(frame, (15, 15), (min(w - 15, 750), 75), badge_color, -1)
-                cv2.rectangle(frame, (15, 15), (min(w - 15, 750), 75), (255, 255, 255), 2)
-                cv2.putText(frame, f"[{risk.upper()}] {cat}", (25, 42), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2)
-                cv2.putText(frame, f"{btype} (Frame {peak_f})", (25, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.50, (255, 255, 255), 1)
+                is_nm = evt.get("is_near_miss", False)
+                tag_label = "NEAR MISS" if is_nm else risk.upper()
+                badge_color = (0, 0, 210) if (risk == "Critical" or is_nm) else (0, 125, 245) if risk == "High" else (0, 195, 240)
+                SHORT_MAP = {
+                    "DROP_HIGH_IMPACT": "HIGH DROP", "DROP_LOW_SLIP": "CARTON SLIP",
+                    "NEAR_MISS_UNSAFE_CARRY": "UNSAFE CARRY", "UNSAFE_FLOOR_DRAG": "FLOOR DRAG",
+                    "ROUGH_THROW_SLIDE": "CARTON THROW", "ROUGH_CARTON_ROLLING": "CARTON ROLLING",
+                    "STACK_INVERTED_PYRAMID": "BAD STACK", "STACK_UNSTABLE_WOBBLE": "UNSTABLE STACK",
+                    "EQUIPMENT_STRAP_LIFT": "STRAP LIFT", "OPERATOR_STEPPING_CARTON": "STEPPING HAZARD",
+                    "IMPROPER_MISORIENTATION": "WRONG ORIENTATION", "BENCHMARK_SAFE_HANDLING": "SAFE HANDLING"
+                }
+                issue = SHORT_MAP.get(bcode, SHORT_MAP.get(btype, " ".join(btype.replace("_", " ").split()[:2]).upper()))
+                cv2.rectangle(frame, (20, 20), (min(w - 20, 480), 72), badge_color, -1)
+                cv2.rectangle(frame, (20, 20), (min(w - 20, 480), 72), (255, 255, 255), 2)
+                cv2.putText(frame, f"[{tag_label}]  {issue}", (35, 54), cv2.FONT_HERSHEY_DUPLEX, 0.75, (255, 255, 255), 2, cv2.LINE_AA)
                 cv2.imwrite(snap_path, frame)
 
         # 2. Save Clip (prioritize Critical, High, and Near-Miss events up to 10 clips per video)

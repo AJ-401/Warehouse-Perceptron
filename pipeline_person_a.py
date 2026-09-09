@@ -487,15 +487,15 @@ class PersonAPipeline:
                     vis_frame = frame.copy()
                     for t in all_frame_tracks:
                         x1, y1, x2, y2 = [int(v) for v in t["bbox"]]
-                        cls_name, track_id, conf = t["class"], t["track_id"], t["confidence"]
+                        cls_name = t["class"]
                         if cls_name == "person":
-                            color, label = (255, 200, 0), f"Person #{track_id} ({conf:.2f})"
+                            color, label = (255, 200, 0), "WORKER"
                         else:
                             state, held_by = t.get("state", "RESTING"), t.get("held_by", None)
-                            if state == "ROLLING": color, label = (0, 215, 255), f"Box #{track_id} (HOI) [Worker #{held_by}] - ROLLING"
-                            elif state == "DROPPED": color, label = (0, 165, 255), f"Box #{track_id} (FREE-FALL/SETTLED)"
-                            elif held_by: color, label = (0, 215, 255), f"Box #{track_id} (HOI) [Worker #{held_by}]"
-                            else: color, label = (0, 140, 255), f"Box #{track_id} ({conf:.2f})"
+                            if state == "ROLLING": color, label = (0, 215, 255), "ROLLING"
+                            elif state == "DROPPED": color, label = (0, 165, 255), "DROPPED"
+                            elif held_by: color, label = (0, 215, 255), "HELD"
+                            else: color, label = (0, 140, 255), "CARTON"
 
                         cv2.rectangle(vis_frame, (x1, y1), (x2, y2), color, 2)
                         badge_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
@@ -514,39 +514,50 @@ class PersonAPipeline:
                                     cv2.circle(vis_frame, (int(kx), int(ky)), 6 if "wrist" in k_name or "ankle" in k_name else 3, kp_col, -1)
 
                     # ── Top HUD bar ──────────────────────────────────────────
-                    risk_tag = " | RISK ENGINE: ON" if risk_engine else ""
-                    hud_text = f"GODREJ AI | Frame: {frame_idx}/{limit_frames} | {timestamp_sec:.2f}s | W:{len(person_tracks)} B:{len(final_box_tracks)}{risk_tag}"
-                    cv2.rectangle(vis_frame, (0, 0), (width, 36), (20, 20, 20), -1)
-                    cv2.putText(vis_frame, hud_text, (12, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (220, 220, 220), 1, cv2.LINE_AA)
+                    cv2.rectangle(vis_frame, (0, 0), (width, 32), (18, 18, 18), -1)
+                    cv2.line(vis_frame, (0, 32), (width, 32), (55, 55, 55), 1)
+                    cv2.putText(vis_frame, "GODREJ AI | FIELD INTELLIGENCE", (15, 22), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (220, 220, 220), 1, cv2.LINE_AA)
 
-                    # ── Risk Alert Banner (Person B) ─────────────────────────
+                    # ── Risk Alert Banner (Zero Numbers, Punchy 2-Word Issue) ──
                     if active_alert and alert_frames_left > 0:
                         level = active_alert.get("risk_level", "Medium")
                         btype = active_alert.get("behaviour_type", "Safety Alert")
-                        action = active_alert.get("recommended_action", "Follow safe handling guidelines.")
+                        bcode = active_alert.get("behaviour_code", "")
                         prob = active_alert.get("near_miss_probability", 0.0)
+                        is_near_miss = active_alert.get("is_near_miss", False) or prob > 0.0
 
-                        _bg = {"Critical": (0, 0, 180), "High": (0, 100, 220), "Medium": (20, 160, 220), "Low": (30, 140, 50)}
-                        _tag = {"Critical": "CRITICAL ALERT", "High": "HIGH RISK", "Medium": "RISK WARNING", "Low": "SAFE"}
-                        bg_col = _bg.get(level, (50, 50, 50))
-                        txt_col = (255, 255, 255) if level != "Medium" else (10, 10, 10)
-                        tag_str = _tag.get(level, level.upper())
-
-                        bh = 62
-                        by1 = height - bh - 14
-                        by2 = height - 14
-                        cv2.rectangle(vis_frame, (18, by1), (width - 18, by2), bg_col, -1)
-                        cv2.rectangle(vis_frame, (18, by1), (width - 18, by2), (255, 255, 255), 2)
-
-                        if prob > 0.0:
-                            t1 = f"[{tag_str}] {btype.upper()}  (Near-Miss: {int(prob * 100)}%)"
+                        if is_near_miss:
+                            bg_col, txt_col, tag_str = (0, 0, 210), (255, 255, 255), "NEAR MISS"
+                        elif level == "Critical":
+                            bg_col, txt_col, tag_str = (0, 0, 210), (255, 255, 255), "CRITICAL"
+                        elif level == "High":
+                            bg_col, txt_col, tag_str = (0, 125, 245), (255, 255, 255), "HIGH RISK"
+                        elif level == "Medium":
+                            bg_col, txt_col, tag_str = (0, 195, 240), (20, 20, 20), "WARNING"
                         else:
-                            t1 = f"[{tag_str}] {btype.upper()}"
-                        t2 = f"ACTION: {action}"
-                        if len(t2) > 98: t2 = t2[:95] + "..."
+                            bg_col, txt_col, tag_str = (40, 165, 60), (255, 255, 255), "SAFE"
 
-                        cv2.putText(vis_frame, t1, (32, by1 + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.62, txt_col, 2, cv2.LINE_AA)
-                        cv2.putText(vis_frame, t2, (32, by1 + 48), cv2.FONT_HERSHEY_SIMPLEX, 0.46, txt_col, 1, cv2.LINE_AA)
+                        SHORT_MAP = {
+                            "DROP_HIGH_IMPACT": "HIGH DROP", "DROP_LOW_SLIP": "CARTON SLIP",
+                            "NEAR_MISS_UNSAFE_CARRY": "UNSAFE CARRY", "UNSAFE_FLOOR_DRAG": "FLOOR DRAG",
+                            "ROUGH_THROW_SLIDE": "CARTON THROW", "ROUGH_CARTON_ROLLING": "CARTON ROLLING",
+                            "STACK_INVERTED_PYRAMID": "BAD STACK", "STACK_UNSTABLE_WOBBLE": "UNSTABLE STACK",
+                            "EQUIPMENT_STRAP_LIFT": "STRAP LIFT", "OPERATOR_STEPPING_CARTON": "STEPPING HAZARD",
+                            "IMPROPER_MISORIENTATION": "WRONG ORIENTATION", "BENCHMARK_SAFE_HANDLING": "SAFE HANDLING"
+                        }
+                        issue = SHORT_MAP.get(bcode, SHORT_MAP.get(btype, " ".join(btype.replace("_", " ").split()[:2]).upper()))
+
+                        bh = 50
+                        by1 = height - bh - 18
+                        by2 = height - 18
+                        cv2.rectangle(vis_frame, (25, by1), (width - 25, by2), bg_col, -1)
+                        cv2.rectangle(vis_frame, (25, by1), (width - 25, by2), (255, 255, 255), 2)
+
+                        tag_sz = cv2.getTextSize(tag_str, cv2.FONT_HERSHEY_DUPLEX, 0.65, 2)[0]
+                        badge_w = tag_sz[0] + 20
+                        cv2.rectangle(vis_frame, (35, by1 + 7), (35 + badge_w, by2 - 7), (255, 255, 255), -1)
+                        cv2.putText(vis_frame, tag_str, (45, by1 + 34), cv2.FONT_HERSHEY_DUPLEX, 0.65, (10, 10, 10), 2, cv2.LINE_AA)
+                        cv2.putText(vis_frame, issue, (35 + badge_w + 25, by1 + 35), cv2.FONT_HERSHEY_DUPLEX, 0.85, txt_col, 2, cv2.LINE_AA)
 
                     writer.write(vis_frame)
 
