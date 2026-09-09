@@ -1,0 +1,20 @@
+[
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "DRAG_NO_EQUIPMENT",
+    "timestamp_start": "00:00:00.300",
+    "timestamp_end": "00:00:09.500"
+  },
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+    "timestamp_start": "00:00:09.500",
+    "timestamp_end": "00:00:09.900"
+  },
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "CARTON_SLIP_LOW",
+    "timestamp_start": "00:00:05.000",
+    "timestamp_end": "00:00:06.000"
+  }
+]
