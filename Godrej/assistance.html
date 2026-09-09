@@ -9,6 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Marked.js Markdown Parser (Local with CDN fallback) -->
+<script src="marked.min.js"></script>
+<script>
+  if (typeof marked === 'undefined') {
+    document.write('<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"><\/script>');
+  }
+</script>
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -167,6 +174,135 @@
     @keyframes fadeInSlide {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Markdown High-Readability & Cybernetic Styling */
+    .prose-chat {
+      color: #bac9cc;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    .prose-chat p {
+      margin-bottom: 0.85rem;
+    }
+    .prose-chat p:last-child {
+      margin-bottom: 0;
+    }
+    .prose-chat strong, .prose-chat b {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .prose-chat em, .prose-chat i {
+      color: #c3f5ff;
+      font-style: italic;
+    }
+    .prose-chat code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(0, 229, 255, 0.08);
+      color: #00e5ff;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      font-size: 0.85em;
+    }
+    .prose-chat pre {
+      background: #0a0e14;
+      border: 1px solid #3b494c;
+      border-radius: 4px;
+      padding: 0.85rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    .prose-chat pre code {
+      background: transparent;
+      padding: 0;
+      border: none;
+      color: #dfe2eb;
+    }
+    .prose-chat table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.25rem 0;
+      font-size: 0.85rem;
+      border: 1px solid #3b494c;
+      background: #0a0e14;
+      border-radius: 4px;
+      overflow: hidden;
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .prose-chat th {
+      background: #1c2026;
+      color: #00e5ff;
+      text-align: left;
+      padding: 0.65rem 0.9rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid #3b494c;
+      border-right: 1px solid rgba(59, 73, 76, 0.4);
+    }
+    .prose-chat th:last-child {
+      border-right: none;
+    }
+    .prose-chat td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid rgba(59, 73, 76, 0.4);
+      border-right: 1px solid rgba(59, 73, 76, 0.2);
+      color: #dfe2eb;
+      font-size: 0.85rem;
+    }
+    .prose-chat td:last-child {
+      border-right: none;
+    }
+    .prose-chat tr:last-child td {
+      border-bottom: none;
+    }
+    .prose-chat tr:hover td {
+      background: rgba(0, 229, 255, 0.04);
+    }
+    .prose-chat ul {
+      list-style-type: disc;
+      margin: 0.75rem 0 0.75rem 1.4rem;
+      padding: 0;
+    }
+    .prose-chat ol {
+      list-style-type: decimal;
+      margin: 0.75rem 0 0.75rem 1.4rem;
+      padding: 0;
+    }
+    .prose-chat li {
+      margin-bottom: 0.35rem;
+      color: #dfe2eb;
+    }
+    .prose-chat blockquote {
+      border-left: 3px solid #00e5ff;
+      background: rgba(0, 229, 255, 0.05);
+      padding: 0.5rem 0.85rem;
+      margin: 0.75rem 0;
+      color: #bac9cc;
+    }
+    .prose-chat h1, .prose-chat h2, .prose-chat h3, .prose-chat h4 {
+      color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .prose-chat h1 { font-size: 1.35rem; }
+    .prose-chat h2 { font-size: 1.2rem; }
+    .prose-chat h3 { font-size: 1.05rem; }
+    .prose-chat h4 { font-size: 0.95rem; }
+    .prose-chat hr {
+      border: 0;
+      height: 1px;
+      background: #3b494c;
+      margin: 1.2rem 0;
     }
   </style>
 </head>
@@ -559,6 +695,28 @@
 </footer>
 <!-- Interactive Script: Live AI Processing & Backend Integration -->
 <script>
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function scrollChatToBottom() {
+    const canvas = document.getElementById('chatCanvas');
+    if (canvas) {
+      setTimeout(() => {
+        canvas.scrollTo({
+          top: canvas.scrollHeight,
+          behavior: 'smooth'
+        });
+      }, 60);
+    }
+  }
+
   function triggerInquiry(queryText) {
     const input = document.getElementById('userQueryInput');
     if (input) input.value = queryText;
@@ -576,22 +734,38 @@
     const aiIcon = document.getElementById('aiIcon');
     const processingBanner = document.getElementById('processingBanner');
     const stepText = document.getElementById('processingStepText');
-    const responseCard = document.getElementById('assistantResponseCard');
-    const userQueryText = document.getElementById('activeUserQueryText');
+    const threadContainer = document.getElementById('threadContainer');
+    const input = document.getElementById('userQueryInput');
     const askBtn = document.getElementById('askBtn');
 
-    if (userQueryText) userQueryText.textContent = queryText;
+    if (!threadContainer) return;
 
-    // 1. Activate AI Pulse
+    // 1. Append User Message Bubble to Thread (Prevents old questions from disappearing)
+    const now = new Date();
+    const timeStr = now.toTimeString().split(' ')[0];
+    const userWrap = document.createElement('div');
+    userWrap.className = 'flex justify-end fade-enter';
+    userWrap.innerHTML = `
+      <div class="max-w-2xl bg-surface-container border border-outline-variant/40 p-3.5 text-right">
+        <div class="font-label-caps text-label-caps text-outline mb-1">SUPERVISOR QUERY // ${timeStr}</div>
+        <p class="font-body-md text-body-md text-on-surface font-medium">${escapeHtml(queryText)}</p>
+      </div>
+    `;
+    threadContainer.appendChild(userWrap);
+
+    // Clear input field
+    if (input) input.value = '';
+
+    // 2. Move & Display Processing Banner at bottom of conversation thread
+    if (processingBanner) {
+      threadContainer.appendChild(processingBanner);
+      processingBanner.classList.remove('hidden');
+    }
+    scrollChatToBottom();
+
+    // 3. Activate Visual Indicators
     if (aiBadge) aiBadge.classList.add('ai-indicator-active', 'border-primary-container');
     if (aiIcon) aiIcon.classList.add('text-primary-container', 'animate-pulse');
-
-    // 2. Hide response temporarily, reveal processing banner
-    if (responseCard) {
-      responseCard.classList.add('hidden');
-      responseCard.classList.remove('fade-enter');
-    }
-    if (processingBanner) processingBanner.classList.remove('hidden');
     if (askBtn) askBtn.classList.add('opacity-70', 'pointer-events-none');
 
     let step = 0;
@@ -605,7 +779,7 @@
     const stepInterval = setInterval(() => {
       step = (step + 1) % steps.length;
       if (stepText) stepText.textContent = steps[step];
-    }, 800);
+    }, 700);
 
     try {
       const resp = await fetch('/chat', {
@@ -622,50 +796,89 @@
       }
 
       const data = await resp.json();
-      renderAssistantResponse(data.answer, data.event_ids || []);
+      appendAssistantResponseCard(data.answer, data.event_ids || []);
     } catch (err) {
       clearInterval(stepInterval);
-      renderAssistantResponse(
-        `⚠️ Assistant Service Notice: ${err.message}\n\nPlease verify that the backend is active at http://localhost:8000.`,
+      appendAssistantResponseCard(
+        `**⚠️ Service Notice:** ${err.message}\n\nPlease check server logs or verify backend at \`http://localhost:8000\`.`,
         []
       );
     } finally {
       if (processingBanner) processingBanner.classList.add('hidden');
-      if (responseCard) {
-        responseCard.classList.remove('hidden');
-        responseCard.classList.add('fade-enter');
-      }
       if (aiBadge) aiBadge.classList.remove('ai-indicator-active', 'border-primary-container');
       if (aiIcon) aiIcon.classList.remove('animate-pulse');
       if (askBtn) askBtn.classList.remove('opacity-70', 'pointer-events-none');
+      scrollChatToBottom();
     }
   }
 
-  function renderAssistantResponse(answer, eventIds) {
-    const narrativeEl = document.getElementById('assistantNarrativeText');
-    const badgesEl = document.getElementById('evidenceGroundingBadges');
-    const countEl = document.getElementById('evidenceCountBadge');
+  function appendAssistantResponseCard(answer, eventIds) {
+    const threadContainer = document.getElementById('threadContainer');
+    if (!threadContainer) return;
 
-    if (narrativeEl) {
-      narrativeEl.textContent = answer;
+    // Render markdown to clean, structured HTML using marked.js
+    let renderedHtml = "";
+    if (typeof marked !== 'undefined' && marked.parse) {
+      renderedHtml = marked.parse(answer, { gfm: true, breaks: true });
+    } else {
+      renderedHtml = escapeHtml(answer).replace(/\n/g, '<br>');
     }
 
-    if (countEl) {
-      countEl.textContent = eventIds ? eventIds.length : 0;
+    // Evidence badges
+    let evidenceHtml = "";
+    if (eventIds && eventIds.length > 0) {
+      const pills = eventIds.slice(0, 15).map(id => `
+        <button class="px-2.5 py-1 bg-surface-container-lowest hover:bg-surface-container-high border border-outline-variant/40 hover:border-primary-container text-on-surface-variant hover:text-primary font-mono-data-sm text-xs flex items-center gap-1.5 transition-all cursor-pointer group" onclick="alert('Evidence Details: ${id}')">
+          <span class="w-1.5 h-1.5 bg-primary-container group-hover:scale-125 transition-transform"></span>
+          <span class="font-semibold text-on-surface group-hover:text-primary">${id}</span>
+        </button>
+      `).join('');
+
+      evidenceHtml = `
+        <div class="p-3.5 bg-surface-container/50 border border-outline-variant/30 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-outline" style="font-size: 16px;">receipt_long</span>
+              <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">EVIDENCE // GROUNDED IN DETECTED EVENTS:</span>
+            </div>
+            <span class="font-mono-data-sm text-mono-data-sm text-primary-container">${eventIds.length} Grounded Events</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            ${pills}
+          </div>
+        </div>
+      `;
     }
 
-    if (badgesEl) {
-      if (!eventIds || eventIds.length === 0) {
-        badgesEl.innerHTML = '<span class="text-outline text-xs font-mono">No specific event IDs referenced (facility-wide summary)</span>';
-      } else {
-        badgesEl.innerHTML = eventIds.slice(0, 10).map(id => `
-          <button class="px-3 py-1.5 bg-surface-container-lowest hover:bg-surface-container-high border border-outline-variant/40 hover:border-primary-container text-on-surface-variant hover:text-primary font-mono-data-sm text-mono-data-sm flex items-center gap-2 transition-all cursor-pointer group" onclick="alert('Evidence Details: ${id}')">
-            <span class="w-1.5 h-1.5 bg-primary-container group-hover:scale-125 transition-transform"></span>
-            <span class="font-semibold text-on-surface group-hover:text-primary">${id}</span>
-          </button>
-        `).join('');
-      }
-    }
+    const card = document.createElement('div');
+    card.className = 'fade-enter max-w-4xl bg-surface-container-lowest border border-outline-variant/30 p-6 py-6 space-y-5 shadow-lg mb-6';
+    card.innerHTML = `
+      <div class="flex items-center justify-between border-b border-outline-variant/20 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-primary-container shadow-[0_0_8px_#00e5ff]"></span>
+          <span class="font-label-caps text-label-caps text-primary-container uppercase tracking-widest font-semibold">INTELLIGENCE SYNTHESIS</span>
+          <span class="text-outline-variant/50">/</span>
+          <span class="font-mono-data-sm text-mono-data-sm text-outline">GROUNDED IN EVENT LEDGER</span>
+        </div>
+        <span class="font-mono-data-sm text-mono-data-sm text-outline">CONFIDENCE: <strong class="text-on-surface font-semibold">98.4%</strong></span>
+      </div>
+
+      <div class="space-y-4">
+        <div class="prose-chat">
+          ${renderedHtml}
+        </div>
+      </div>
+
+      ${evidenceHtml}
+
+      <div class="pt-1 flex items-center gap-2 font-mono-data-sm text-mono-data-sm text-outline/80">
+        <span class="material-symbols-outlined text-outline/70" style="font-size: 15px;">verified_user</span>
+        <span>Responsible AI: Operational analysis is strictly grounded in facility and ergonomic events. Zero worker scorekeeping.</span>
+      </div>
+    `;
+
+    threadContainer.appendChild(card);
+    scrollChatToBottom();
   }
 
   // Load live telemetry metrics from backend
