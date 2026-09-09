@@ -41,9 +41,10 @@ def draw_hud_banner(vis_frame, active_alert: Optional[Dict], frame_idx: int, fps
     # 2. Real-Time Risk Alert Banner
     if active_alert and active_alert.get("frames_left", 0) > 0:
         level = active_alert.get("risk_level", "Medium")
+        cat = active_alert.get("category", "").upper()
         btype = active_alert.get("behaviour_type", "Safety Alert")
-        action = active_alert.get("action", "Follow safe handling guidelines.")
-        prob = active_alert.get("near_miss_prob", 0.0)
+        action = active_alert.get("recommended_action", active_alert.get("action", "Follow safe handling guidelines."))
+        prob = active_alert.get("near_miss_probability", active_alert.get("near_miss_prob", 0.0))
 
         # Color coding per risk level
         if level == "Critical":
@@ -64,7 +65,7 @@ def draw_hud_banner(vis_frame, active_alert: Optional[Dict], frame_idx: int, fps
             tag = "BENCHMARK"
 
         # Banner Dimensions
-        banner_h = 65
+        banner_h = 70
         banner_y1 = h - banner_h - 15
         banner_y2 = h - 15
         cv2.rectangle(vis_frame, (20, banner_y1), (w - 20, banner_y2), bg_color, -1)
@@ -72,16 +73,17 @@ def draw_hud_banner(vis_frame, active_alert: Optional[Dict], frame_idx: int, fps
 
         # Title line
         if prob > 0.0:
-            title_str = f"[{tag}] {btype.upper()} (Near-Miss Risk: {int(prob * 100)}%)"
+            title_str = f"[{tag}] {cat or btype.upper()} | PREDICTIVE NEAR-MISS: {int(prob * 100)}% RISK"
         else:
-            title_str = f"[{tag}] {btype.upper()}"
+            header_cat = cat if cat else btype.upper()
+            title_str = f"[{tag}] {header_cat} -- {btype}"
         cv2.putText(vis_frame, title_str, (35, banner_y1 + 25), cv2.FONT_HERSHEY_SIMPLEX, 0.65, txt_color, 2, cv2.LINE_AA)
 
         # Action / Guidance line
-        action_str = f"RECOMMENDATION: {action}"
-        if len(action_str) > 95:
-            action_str = action_str[:92] + "..."
-        cv2.putText(vis_frame, action_str, (35, banner_y1 + 50), cv2.FONT_HERSHEY_SIMPLEX, 0.48, txt_color, 1, cv2.LINE_AA)
+        action_str = f"ACTION: {action}"
+        if len(action_str) > 100:
+            action_str = action_str[:97] + "..."
+        cv2.putText(vis_frame, action_str, (35, banner_y1 + 52), cv2.FONT_HERSHEY_SIMPLEX, 0.50, txt_color, 1, cv2.LINE_AA)
 
 
 def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_conf: float = 0.15):

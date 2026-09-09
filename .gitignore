@@ -32,3 +32,8 @@ Thumbs.db
 # IDE configuration
 .vscode/
 .idea/
+
+# Weights & Temporary
+*.pt
+~$*
+evidence/

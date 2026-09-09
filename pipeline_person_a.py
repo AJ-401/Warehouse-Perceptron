@@ -143,10 +143,11 @@ class DynamicHOITracker:
                 h_center, y_floor, p_height = self._get_worker_pose_anchors(p)
                 if h_center is not None:
                     hx, hy = h_center
-                    dx = max(0, bx1 - hx, hx - bx2)
-                    dy = max(0, by1 - hy, hy - by2)
+                    dx = max(0.0, bx1 - hx, hx - bx2)
+                    dy = max(0.0, by1 - hy, hy - by2)
                     dist = (dx**2 + dy**2)**0.5
-                    if dist < 90 and dist < min_dist:
+                    max_grasp_dist = max(110.0, 0.18 * p_height)
+                    if dist < max_grasp_dist and dist < min_dist:
                         min_dist = dist
                         best_holder_id = pid
                         hx_for_offset = hx
@@ -337,7 +338,7 @@ class DynamicHOITracker:
 
 
 class PersonAPipeline:
-    def __init__(self, box_model_path="weights/box_11s.pt", pose_model_path="yolov8n-pose.pt", box_conf=0.15, person_conf=0.35):
+    def __init__(self, box_model_path="weights/box_11s.pt", pose_model_path="yolov8n-pose.pt", box_conf=0.10, person_conf=0.35):
         self.box_conf = box_conf
         self.person_conf = person_conf
         self.tracker_config = "custom_bytetrack.yaml"
@@ -345,10 +346,10 @@ class PersonAPipeline:
         with open(self.tracker_config, "w") as f:
             f.write(
                 "tracker_type: bytetrack\n"
-                "track_high_thresh: 0.15\n"
+                "track_high_thresh: 0.10\n"
                 "track_low_thresh: 0.05\n"
-                "new_track_thresh: 0.15\n"
-                "track_buffer: 60\n"
+                "new_track_thresh: 0.10\n"
+                "track_buffer: 90\n"
                 "match_thresh: 0.60\n"
                 "fuse_score: True\n"
             )
@@ -419,8 +420,8 @@ class PersonAPipeline:
                         bx1, by1, bx2, by2 = [round(float(v), 1) for v in bbox_obj.xyxy[0].tolist()]
                         bw = bx2 - bx1
                         bh = by2 - by1
-                        # Filter oversized spurious detections (furniture, bed frames spanning huge area)
-                        if bw > (width * 0.58) or bh > (height * 0.58) or (bw * bh) > (width * height * 0.30):
+                        # Filter oversized camera-edge artifacts (allow large cartons, flatpacks and pallets up to 92%)
+                        if bw > (width * 0.92) or bh > (height * 0.92) or (bw * bh) > (width * height * 0.85):
                             continue
 
                         # Robust ID Assignment without proliferating ghost tracks
