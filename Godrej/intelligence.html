@@ -744,22 +744,22 @@ void main() {
 <span class="font-mono-data-sm text-[10px] text-outline">AUTO-SCROLL ON</span>
 </div>
 <!-- Chronological Telemetry Feed -->
-<div class="space-y-1.5 font-mono-data-sm text-[11px] overflow-hidden">
+<div class="space-y-1.5 font-mono-data-sm text-[11px] overflow-hidden" id="liveActivityStream">
 <div class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/70 border-l-2 border-outline-variant/40">
-<span class="text-outline shrink-0">14:32:08</span>
-<span class="text-on-surface-variant">PRODUCT TRACKED <span class="text-primary-container font-semibold">[PR-024]</span></span>
+<span class="text-outline shrink-0">00:00:09</span>
+<span class="text-on-surface-variant">EVT-0002 <span class="text-secondary font-semibold">[High-Impact Carton Drop]</span></span>
 </div>
 <div class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/70 border-l-2 border-primary-container">
-<span class="text-outline shrink-0">14:32:10</span>
-<span class="text-on-surface-variant">MOVEMENT VELOCITY INCREASING <span class="text-primary font-mono">(+1.4 m/s)</span></span>
+<span class="text-outline shrink-0">00:00:10</span>
+<span class="text-on-surface-variant">EVT-0006 <span class="text-primary font-mono">[Rapid Unsafe Carry]</span></span>
 </div>
 <div class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/90 border-l-2 border-secondary">
-<span class="text-secondary shrink-0 font-semibold">14:32:11</span>
-<span class="text-on-surface">RISK SIGNAL DETECTED <span class="text-secondary font-semibold">(TILT +8.4°)</span></span>
+<span class="text-secondary shrink-0 font-semibold">00:00:11</span>
+<span class="text-on-surface">EVT-0012 <span class="text-secondary font-semibold">[Stack Wobble]</span></span>
 </div>
 <div class="flex items-start gap-2 p-1.5 rounded bg-secondary/10 border-l-2 border-secondary text-secondary">
-<span class="shrink-0 font-bold">14:32:12</span>
-<span class="font-semibold">PREDICTIVE WARNING ISSUED (NEAR-MISS AVERTED)</span>
+<span class="shrink-0 font-bold">00:00:14</span>
+<span class="font-semibold">EVT-0017 [Carton / KD Floor Dragging]</span>
 </div>
 </div>
 </div>
@@ -880,6 +880,38 @@ void main() {
     }
     setInterval(updateClock, 100);
     updateClock();
+
+    // Live Telemetry & Event Ingestion from Backend
+    const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
+    
+    async function loadLiveIntelligence() {
+      try {
+        const [mRes, eRes] = await Promise.all([
+          fetch(API_BASE + '/api/metrics'),
+          fetch(API_BASE + '/api/events?limit=6')
+        ]);
+        
+        if (eRes.ok) {
+          const events = await eRes.json();
+          const streamEl = document.getElementById('liveActivityStream');
+          if (streamEl && events.length > 0) {
+            streamEl.innerHTML = events.map(e => {
+              const borderCol = e.risk_level === 'Critical' ? 'border-error' : (e.risk_level === 'High' ? 'border-secondary' : 'border-primary-container');
+              const textCol = e.risk_level === 'Critical' ? 'text-error' : (e.risk_level === 'High' ? 'text-secondary' : 'text-primary-container');
+              return `
+                <div class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/70 border-l-2 ${borderCol}">
+                  <span class="text-outline shrink-0">${e.timestamp_start || '00:00'}</span>
+                  <span class="text-on-surface-variant">${e.event_id} <span class="${textCol} font-semibold">[${e.behaviour_type}]</span></span>
+                </div>
+              `;
+            }).join('');
+          }
+        }
+      } catch (err) {
+        console.log("Telemetry offline, using fallback buffer:", err);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadLiveIntelligence);
   </script>
 
 

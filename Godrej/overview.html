@@ -471,7 +471,7 @@ void main() {
 <div class="flex items-center gap-6">
 <div class="hidden sm:flex items-center gap-2 font-mono text-[11px] text-slate-400 tracking-wider">
 <span class="w-1.5 h-1.5 rounded-full bg-cyan-accent animate-serene-breathe"></span>
-<span class="">SYSTEM ONLINE</span>
+<span id="overviewTelemetry">SYSTEM ONLINE // 250 EVENTS INGESTED</span>
 </div>
 <button onclick="window.location.href='intelligence.html'" class="cursor-pointer group px-4 py-2 bg-cyan-accent hover:bg-cyan-dim text-slate-950 text-xs font-semibold tracking-wider transition-all duration-200 shadow-[0_0_20px_rgba(0,229,255,0.22)] hover:shadow-[0_0_28px_rgba(0,229,255,0.48)] flex items-center gap-1.5 active:scale-[0.98]">
 <span class="">LAUNCH INTELLIGENCE</span>
@@ -741,6 +741,16 @@ void main() {
           reqId = null;
         }
       }
+      // Fetch live shift metrics from backend single-source-of-truth
+      const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
+      fetch(API_BASE + '/api/metrics')
+        .then(r => r.json())
+        .then(m => {
+          const el = document.getElementById('overviewTelemetry');
+          if (el && m.total_events) {
+            el.textContent = `SYSTEM ONLINE // ${m.total_events} EVENTS INGESTED // ${m.near_miss_count} NEAR-MISSES`;
+          }
+        }).catch(() => {});
     })();
   </script>
 

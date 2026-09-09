@@ -373,11 +373,11 @@ void main() {
 <span>UNLOADING BAY 01</span>
 </div>
 <div class="flex items-center gap-3">
-<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">INCIDENT #NM-0042</h1>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight" id="incident-title">INCIDENT #NM-0042</h1>
 <span class="px-2 py-0.5 bg-secondary/15 border border-secondary/60 text-secondary font-label-caps text-label-caps tracking-widest rounded-none shadow-[0_0_10px_rgba(245,158,11,0.2)]">
             POTENTIAL DAMAGE RISK
           </span>
-<span class="px-2 py-0.5 bg-secondary-container/20 border border-secondary-container text-secondary font-label-caps text-label-caps tracking-widest">
+<span class="px-2 py-0.5 bg-secondary-container/20 border border-secondary-container text-secondary font-label-caps text-label-caps tracking-widest" id="incident-risk-badge">
             HIGH RISK
           </span>
 </div>
@@ -386,19 +386,25 @@ void main() {
 <span>Predictive warning issued prior to impact. <strong class="text-on-surface">No confirmed damage recorded</strong> due to autonomous supervisor dispatch.</span>
 </p>
 </div>
-<!-- Quick Telemetry Chips -->
+<!-- Quick Telemetry Chips & Incident Selector -->
 <div class="flex flex-wrap items-center gap-unit-sm font-mono-data-sm text-mono-data-sm">
 <div class="bg-surface-container px-unit-md py-1.5 border border-outline-variant/40 flex items-center gap-2">
+<span class="text-secondary font-semibold">SELECT INCIDENT:</span>
+<select id="incident-select" class="bg-surface-container-lowest text-primary font-mono-data-sm border border-outline-variant/50 px-2 py-0.5 rounded-none focus:outline-none focus:border-primary-container cursor-pointer">
+<option value="">Fetching live incidents...</option>
+</select>
+</div>
+<div class="bg-surface-container px-unit-md py-1.5 border border-outline-variant/40 flex items-center gap-2">
 <span class="text-on-surface-variant">LOCATION:</span>
-<span class="text-primary font-medium">BAY 01 // SOUTH RAMPS</span>
+<span class="text-primary font-medium" id="incident-location">BAY 01 // SOUTH RAMPS</span>
 </div>
 <div class="bg-surface-container px-unit-md py-1.5 border border-outline-variant/40 flex items-center gap-2">
 <span class="text-on-surface-variant">TIMESTAMP:</span>
-<span class="text-secondary font-medium tracking-wide">14:32:12 UTC</span>
+<span class="text-secondary font-medium tracking-wide" id="incident-timestamp">14:32:12 UTC</span>
 </div>
 <div class="bg-surface-container px-unit-md py-1.5 border border-outline-variant/40 flex items-center gap-2">
 <span class="text-on-surface-variant">DURATION:</span>
-<span class="text-primary-container font-medium">15s PRE-IMPACT CAPTURE</span>
+<span class="text-primary-container font-medium" id="incident-duration">15s PRE-IMPACT CAPTURE</span>
 </div>
 </div>
 </section>
@@ -415,7 +421,7 @@ void main() {
 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
 <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
 </span>
-<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider">INCIDENT REPLAY // CAM-LB01-SOUTH [4K 60FPS SYNCHRONIZED]</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider" id="incident-cam-label">INCIDENT REPLAY // CAM-LB01-SOUTH [4K 60FPS SYNCHRONIZED]</span>
 </div>
 <div class="flex items-center gap-3 font-mono-data-sm text-mono-data-sm">
 <span class="text-primary-container bg-primary-container/10 px-1.5 py-0.5 border border-primary-container/30">AI TRACKING: ON</span>
@@ -785,11 +791,11 @@ void main() {
 <span class="font-mono-data-sm text-mono-data-sm text-primary-container">MODEL V4.2</span>
 </div>
 <!-- AI Assessment paragraph -->
-<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed" id="incident-reason">
             "The product's movement velocity increased while it was being handled above the normal working height. No suitable handling equipment was detected nearby. The combined signals crossed the predictive-risk threshold."
           </p>
 <div class="flex flex-wrap gap-2 pt-1">
-<span class="px-2 py-0.5 bg-secondary/15 border border-secondary text-secondary font-label-caps text-label-caps">
+<span class="px-2 py-0.5 bg-secondary/15 border border-secondary text-secondary font-label-caps text-label-caps" id="incident-pill-risk">
               POTENTIAL DAMAGE RISK
             </span>
 <span class="px-2 py-0.5 bg-primary-container/15 border border-primary-container text-primary-container font-label-caps text-label-caps">
@@ -800,14 +806,14 @@ void main() {
 <div class="mt-2 pt-2 border-t border-outline-variant/30 space-y-1.5 font-mono-data-sm text-mono-data-sm">
 <div class="flex items-center justify-between p-1.5 bg-surface-container">
 <span class="text-on-surface-variant">OBSERVED BEHAVIOUR</span>
-<span class="text-primary font-semibold flex items-center gap-1">
+<span class="text-primary font-semibold flex items-center gap-1" id="incident-behaviour-tag">
 <span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
                 VERIFIED [FAST MOTION / ELEVATED]
               </span>
 </div>
 <div class="flex items-center justify-between p-1.5 bg-surface-container">
 <span class="text-on-surface-variant">POTENTIAL RISK</span>
-<span class="text-secondary font-semibold flex items-center gap-1">
+<span class="text-secondary font-semibold flex items-center gap-1" id="incident-risk-score">
 <span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
                 FLAGGED 72%
               </span>
@@ -823,10 +829,10 @@ void main() {
 <!-- Evidence Log Chips -->
 <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-mono-data-sm text-on-surface-variant">
 <span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40">CLIP: 00:08</span>
-<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40">FRAME: 14:32:12</span>
+<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40" id="incident-log-frame">FRAME: 14:32:12</span>
 <span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40">TRACKED: PRODUCT #024</span>
-<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40">LOCATION: UNLOADING BAY 01</span>
-<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40 text-primary">ID: NM-0042</span>
+<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40" id="incident-log-loc">LOCATION: UNLOADING BAY 01</span>
+<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40 text-primary" id="incident-log-id">ID: NM-0042</span>
 </div>
 </div>
 <!-- 5.F RECOMMENDED ACTION & SUPERVISOR DECISION -->
@@ -837,7 +843,7 @@ void main() {
               RECOMMENDED ACTION &amp; SUPERVISOR DECISION
             </span>
 </div>
-<div class="p-2.5 bg-surface-container border-l-2 border-primary-container font-body-sm text-body-sm text-on-surface">
+<div class="p-2.5 bg-surface-container border-l-2 border-primary-container font-body-sm text-body-sm text-on-surface" id="incident-action">
             "Slow the unloading movement and use suitable handling equipment for the product."
           </div>
 <!-- CTAs -->
@@ -1037,6 +1043,87 @@ void main() {
       // Initial auto-sync start
       updatePlayback(8);
       startPlayback();
+
+      // Real API Integration for Incidents & Near-Misses
+      const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
+      const incidentSelect = document.getElementById('incident-select');
+      const incidentTitle = document.getElementById('incident-title');
+      const incidentRiskBadge = document.getElementById('incident-risk-badge');
+      const incidentLocation = document.getElementById('incident-location');
+      const incidentTimestamp = document.getElementById('incident-timestamp');
+      const incidentCamLabel = document.getElementById('incident-cam-label');
+      const incidentReason = document.getElementById('incident-reason');
+      const incidentAction = document.getElementById('incident-action');
+      const incidentBehaviourTag = document.getElementById('incident-behaviour-tag');
+      const incidentRiskScore = document.getElementById('incident-risk-score');
+      const incidentLogFrame = document.getElementById('incident-log-frame');
+      const incidentLogLoc = document.getElementById('incident-log-loc');
+      const incidentLogId = document.getElementById('incident-log-id');
+
+      let liveIncidents = [];
+
+      async function loadLiveIncidents() {
+        try {
+          const res = await fetch(`${API_BASE}/api/incidents`);
+          if (!res.ok) throw new Error('Network response not ok');
+          liveIncidents = await res.json();
+          if (liveIncidents && liveIncidents.length > 0) {
+            incidentSelect.innerHTML = liveIncidents.map((inc, i) => 
+              `<option value="${i}">#${inc.event_id} • [${inc.risk_level.toUpperCase()}] ${inc.behaviour.slice(0, 24)}...</option>`
+            ).join('');
+            populateIncident(liveIncidents[0]);
+          } else {
+            incidentSelect.innerHTML = '<option value="">No near-miss incidents</option>';
+          }
+        } catch (err) {
+          console.warn('Could not fetch /api/incidents:', err);
+          if (incidentSelect) {
+            incidentSelect.innerHTML = '<option value="default">#EVT-0042 • [HIGH] Near-Miss Demonstration</option>';
+          }
+        }
+      }
+
+      function populateIncident(inc) {
+        if (!inc) return;
+        if (incidentTitle) incidentTitle.textContent = `INCIDENT #${inc.event_id}`;
+        if (incidentRiskBadge) {
+          incidentRiskBadge.textContent = `${inc.risk_level.toUpperCase()} RISK`;
+          if (inc.risk_level && inc.risk_level.toLowerCase() === 'critical') {
+            incidentRiskBadge.className = 'px-2 py-0.5 bg-error-container/40 border border-error text-error font-label-caps text-label-caps tracking-widest';
+          } else {
+            incidentRiskBadge.className = 'px-2 py-0.5 bg-secondary-container/20 border border-secondary-container text-secondary font-label-caps text-label-caps tracking-widest';
+          }
+        }
+        if (incidentTimestamp) incidentTimestamp.textContent = inc.timestamp ? `${inc.timestamp} UTC` : '14:32:12 UTC';
+        
+        const camLabel = inc.video ? inc.video.replace('.mp4', '').slice(0, 32) : 'CAM-01 // UNLOADING DOCK';
+        if (incidentLocation) incidentLocation.textContent = `BAY 01 // ${camLabel.toUpperCase()}`;
+        if (incidentCamLabel) incidentCamLabel.textContent = `INCIDENT REPLAY // ${camLabel.toUpperCase()} [SOURCE: ${inc.video || 'CAM-01'}]`;
+
+        if (incidentReason && inc.reason) incidentReason.textContent = `"${inc.reason}"`;
+        if (incidentAction && inc.recommended_action) incidentAction.textContent = `"${inc.recommended_action}"`;
+        if (incidentBehaviourTag && inc.behaviour) {
+          incidentBehaviourTag.innerHTML = `<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> VERIFIED [${inc.behaviour.toUpperCase()}]`;
+        }
+        if (incidentRiskScore) {
+          const score = (inc.risk_level && inc.risk_level.toLowerCase() === 'critical') ? '88%' : '72%';
+          incidentRiskScore.innerHTML = `<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span> FLAGGED ${score}`;
+        }
+        if (incidentLogId) incidentLogId.textContent = `ID: ${inc.event_id}`;
+        if (incidentLogFrame) incidentLogFrame.textContent = `FRAME: ${inc.timestamp || '14:32:12'}`;
+        if (incidentLogLoc) incidentLogLoc.textContent = `SOURCE: ${inc.video || 'BAY 01'}`;
+      }
+
+      if (incidentSelect) {
+        incidentSelect.addEventListener('change', (e) => {
+          const idx = parseInt(e.target.value);
+          if (!isNaN(idx) && liveIncidents[idx]) {
+            populateIncident(liveIncidents[idx]);
+          }
+        });
+      }
+
+      loadLiveIncidents();
     });
   </script>
 </body></html>

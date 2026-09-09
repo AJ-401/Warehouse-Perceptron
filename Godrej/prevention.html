@@ -244,10 +244,10 @@
 <div class="bg-surface-container-low/70 border border-outline-variant/40 px-3.5 py-2 rounded-DEFAULT flex items-center gap-3 self-start md:self-auto backdrop-blur-sm">
 <span class="material-symbols-outlined text-secondary" data-icon="analytics">analytics</span>
 <div class="font-mono-data-sm text-mono-data-sm">
-<span class="text-outline uppercase tracking-wider font-label-caps text-label-caps">TODAY // </span>
-<span class="text-on-surface font-medium">24 DETECTED EVENTS</span>
+<span class="text-outline uppercase tracking-wider font-label-caps text-label-caps">FACILITY TELEMETRY // </span>
+<span class="text-on-surface font-medium" id="prevention-total-events">250 DETECTED EVENTS</span>
 <span class="text-outline-variant mx-1.5">•</span>
-<span class="text-secondary font-medium">08 HIGH-RISK EVENTS</span>
+<span class="text-secondary font-medium" id="prevention-high-risk">186 HIGH-RISK EVENTS</span>
 </div>
 </div>
 </section>
@@ -268,12 +268,12 @@
               </span>
 <span class="text-outline font-label-caps text-label-caps tracking-wider">OPERATIONAL INITIATIVE #PRV-04</span>
 </div>
-<span class="text-outline font-mono-data-sm text-mono-data-sm">ZONE: BAY-01</span>
+<span class="text-outline font-mono-data-sm text-mono-data-sm" id="prevention-zone-tag">ZONE: BAY-01</span>
 </div>
 <!-- Action Title & Description -->
 <div class="pl-1 mb-4">
-<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">TROLLEY HANDLING REFRESHER</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight" id="prevention-card-title">TROLLEY HANDLING REFRESHER</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1" id="prevention-card-desc">
               Repeated floor-level dragging was detected during unloading operations.
             </p>
 </div>
@@ -284,21 +284,21 @@
 <div class="bg-surface-container-low/60 p-2.5 border border-outline-variant/20 rounded-DEFAULT">
 <div class="text-outline font-label-caps text-label-caps">INCIDENT DENSITY</div>
 <div class="font-mono-data-lg text-mono-data-lg text-primary-container font-semibold mt-0.5 flex items-baseline gap-1">
-<span class="">18</span>
+<span id="prevention-incident-density">61</span>
 <span class="font-label-caps text-[9px] text-on-surface-variant uppercase">RELATED EVENTS</span>
 </div>
 </div>
 <div class="bg-surface-container-low/60 p-2.5 border border-outline-variant/20 rounded-DEFAULT">
 <div class="text-outline font-label-caps text-label-caps">DETECTION SITE</div>
-<div class="font-mono-data-md text-mono-data-md text-on-surface font-medium mt-0.5">
+<div class="font-mono-data-md text-mono-data-md text-on-surface font-medium mt-0.5" id="prevention-detection-site">
                   LOADING BAY 01
                 </div>
-<div class="font-mono-data-sm text-[10px] text-outline">CAM-04 DOCK WEST</div>
+<div class="font-mono-data-sm text-[10px] text-outline" id="prevention-cam-label">CAM-01 DOCK GATE A</div>
 </div>
 <div class="bg-surface-container-low/60 p-2.5 border border-outline-variant/20 rounded-DEFAULT">
 <div class="text-outline font-label-caps text-label-caps">SHIFT TREND</div>
 <div class="font-mono-data-md text-mono-data-md text-secondary font-medium mt-0.5 flex items-center gap-1">
-<span class="">↑ 32%</span>
+<span id="prevention-shift-trend">↑ 32%</span>
 <span class="font-label-caps text-[9px] text-outline uppercase">VS PREVIOUS</span>
 </div>
 <div class="font-mono-data-sm text-[10px] text-secondary/80">ACCUMULATING RISK</div>
@@ -572,7 +572,41 @@
 <span class="">PREVENTION MODE</span>
 </div>
 </div>
-</footer>
+  </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
+      const totalEventsEl = document.getElementById('prevention-total-events');
+      const highRiskEl = document.getElementById('prevention-high-risk');
+      const densityEl = document.getElementById('prevention-incident-density');
+      const siteEl = document.getElementById('prevention-detection-site');
+      const camLabelEl = document.getElementById('prevention-cam-label');
+      const zoneTagEl = document.getElementById('prevention-zone-tag');
 
+      try {
+        const res = await fetch(`${API_BASE}/api/metrics`);
+        if (!res.ok) throw new Error('Network error');
+        const data = await res.json();
+
+        if (totalEventsEl && data.total_events) {
+          totalEventsEl.textContent = `${data.total_events} DETECTED EVENTS`;
+        }
+        if (highRiskEl && data.risk_breakdown) {
+          const highAndCrit = (data.risk_breakdown.Critical || 0) + (data.risk_breakdown.High || 0);
+          highRiskEl.textContent = `${highAndCrit < 10 ? '0' : ''}${highAndCrit} HIGH-RISK EVENTS`;
+        }
+        if (densityEl && data.top_behaviours && data.top_behaviours.length > 0) {
+          densityEl.textContent = data.top_behaviours[0].count;
+        }
+        if (data.cameras && data.cameras.length > 0) {
+          if (siteEl) siteEl.textContent = data.cameras[0].camera_name.split('//')[1] || data.cameras[0].camera_name;
+          if (camLabelEl) camLabelEl.textContent = data.cameras[0].camera_name;
+          if (zoneTagEl) zoneTagEl.textContent = `ZONE: ${data.cameras[0].camera_name.slice(0, 14)}`;
+        }
+      } catch (err) {
+        console.warn('Could not load /api/metrics:', err);
+      }
+    });
+  </script>
 </body></html>

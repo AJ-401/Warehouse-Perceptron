@@ -255,10 +255,10 @@
 <span class="w-1.5 h-3 bg-secondary"></span>
 <h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider">BEHAVIOUR FREQUENCY // SHIFT SUMMARY</h2>
 </div>
-<span class="font-mono-data-sm text-mono-data-sm text-outline">250 TOTAL DETECTIONS</span>
+<span class="font-mono-data-sm text-mono-data-sm text-outline" id="total-detections-label">250 TOTAL DETECTIONS</span>
 </div>
 <!-- Proportion Bars List -->
-<div class="space-y-3.5">
+<div class="space-y-3.5" id="behaviour-bars-container">
 <!-- 1. Dragging (Highest - Amber) -->
 <div class="space-y-1">
 <div class="flex justify-between items-baseline">
@@ -330,7 +330,7 @@
 </div>
 </div>
 <!-- MODULE B: RECURRING PATTERN DETECTED -->
-<div class="bg-surface-container-low border border-secondary/50 rounded-DEFAULT p-6 relative overflow-hidden bg-gradient-to-r from-surface-container-low via-surface-container-low to-secondary/10"><div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-outline-variant/20"><div class="inline-flex items-center gap-2 px-2.5 py-1 bg-secondary/15 border border-secondary/40 text-secondary font-label-caps text-label-caps tracking-widest rounded-DEFAULT"><span class="material-symbols-outlined text-[14px]" data-icon="warning">warning</span> RECURRING PATTERN DETECTED</div><span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant font-medium">CONFIDENCE: 94.2%</span></div><div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center"><div class="md:col-span-8 space-y-3"><div class="flex items-baseline gap-4 flex-wrap"><h3 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight text-[28px]">DRAGGING</h3><div class="flex items-baseline gap-2"><span class="font-headline-lg text-[32px] font-bold text-secondary leading-none">105</span><span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">EVENTS</span></div><span class="inline-flex items-center px-2 py-0.5 bg-secondary/15 border border-secondary/40 text-secondary font-label-caps text-label-caps rounded-DEFAULT font-semibold">42% OF FACILITY TOTAL</span></div><p class="font-body-lg text-body-md text-on-surface-variant leading-relaxed">Repeated dragging behaviour is concentrated during unloading operations. In-feed units indicate frequent manual parcel relocation without trolley dock engagement.</p></div><div class="md:col-span-4 flex flex-col justify-center gap-3 bg-surface-container-lowest/80 border border-outline-variant/30 rounded-DEFAULT p-4"><div class="flex justify-between items-center"><span class="font-label-caps text-label-caps text-outline uppercase">PRIMARY HOTSPOT</span><span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary">BAY 01</span></div><div class="flex justify-between items-center pt-2 border-t border-outline-variant/20"><span class="font-label-caps text-label-caps text-outline uppercase">SHARE OF SHIFT</span><span class="font-mono-data-sm text-mono-data-sm font-semibold text-on-surface">42.0%</span></div><div class="flex justify-between items-center pt-2 border-t border-outline-variant/20"><span class="font-label-caps text-label-caps text-outline uppercase">EST. RISK RATING</span><span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary">ELEVATED</span></div></div></div></div>
+<div class="bg-surface-container-low border border-secondary/50 rounded-DEFAULT p-6 relative overflow-hidden bg-gradient-to-r from-surface-container-low via-surface-container-low to-secondary/10"><div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-outline-variant/20"><div class="inline-flex items-center gap-2 px-2.5 py-1 bg-secondary/15 border border-secondary/40 text-secondary font-label-caps text-label-caps tracking-widest rounded-DEFAULT"><span class="material-symbols-outlined text-[14px]" data-icon="warning">warning</span> RECURRING PATTERN DETECTED</div><span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant font-medium">CONFIDENCE: 94.2%</span></div><div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center"><div class="md:col-span-8 space-y-3"><div class="flex items-baseline gap-4 flex-wrap"><h3 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight text-[28px]" id="top-pattern-title">DRAGGING</h3><div class="flex items-baseline gap-2"><span class="font-headline-lg text-[32px] font-bold text-secondary leading-none" id="top-pattern-count">61</span><span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">EVENTS</span></div><span class="inline-flex items-center px-2 py-0.5 bg-secondary/15 border border-secondary/40 text-secondary font-label-caps text-label-caps rounded-DEFAULT font-semibold" id="top-pattern-share">24.4% OF FACILITY TOTAL</span></div><p class="font-body-lg text-body-md text-on-surface-variant leading-relaxed" id="top-pattern-desc">Repeated dragging behaviour is concentrated during unloading operations. In-feed units indicate frequent manual parcel relocation without trolley dock engagement.</p></div><div class="md:col-span-4 flex flex-col justify-center gap-3 bg-surface-container-lowest/80 border border-outline-variant/30 rounded-DEFAULT p-4"><div class="flex justify-between items-center"><span class="font-label-caps text-label-caps text-outline uppercase">PRIMARY HOTSPOT</span><span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary" id="top-pattern-hotspot">BAY 01 // DOCK GATE A</span></div><div class="flex justify-between items-center pt-2 border-t border-outline-variant/20"><span class="font-label-caps text-label-caps text-outline uppercase">SHARE OF SHIFT</span><span class="font-mono-data-sm text-mono-data-sm font-semibold text-on-surface" id="top-pattern-share-stat">24.4%</span></div><div class="flex justify-between items-center pt-2 border-t border-outline-variant/20"><span class="font-label-caps text-label-caps text-outline uppercase">EST. RISK RATING</span><span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary">ELEVATED</span></div></div></div></div>
 <!-- MODULE C: RISK HOTSPOT // FACILITY TOPOLOGY -->
 <div class="bg-surface-container-low border border-outline-variant/30 rounded-DEFAULT p-5 relative"><div class="flex items-center justify-between pb-3 border-b border-outline-variant/20 mb-4"><div class="flex items-center gap-2"><span class="w-1.5 h-3 bg-primary-container"></span><h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider uppercase">FACILITY TOPOLOGY // RISK HOTSPOT</h2></div><span class="font-mono-data-sm text-mono-data-sm text-outline">NORTH WAREHOUSE BAY</span></div><div class="relative w-full h-[240px] bg-surface-container-lowest border border-outline-variant/30 rounded-DEFAULT p-3 select-none flex flex-col justify-between"><div class="grid grid-cols-2 gap-3 h-[48%]"><div class="relative border border-secondary/80 bg-secondary/10 rounded-DEFAULT p-3 flex flex-col justify-between"><div class="flex justify-between items-start"><div class="flex items-center gap-2"><span class="w-2 h-2 bg-secondary rounded-full animate-ping"></span><span class="font-label-caps text-label-caps font-bold text-secondary tracking-wider">LOADING BAY 01</span></div><span class="px-1.5 py-0.5 bg-secondary/20 border border-secondary/60 text-secondary font-label-caps text-[9px] font-bold rounded-DEFAULT">HOTSPOT</span></div><div><div class="font-headline-sm text-headline-sm font-bold text-secondary">18 EVENTS</div><div class="font-mono-data-sm text-[11px] text-on-surface-variant">Elevated Dragging // Gate A</div></div></div><div class="border border-outline-variant/30 bg-surface-container/30 rounded-DEFAULT p-3 flex flex-col justify-between"><div class="flex justify-between items-start"><span class="font-label-caps text-label-caps text-on-surface-variant font-medium">LOADING BAY 02</span><span class="font-mono-data-sm text-[10px] text-outline">NOMINAL</span></div><div><div class="font-mono-data-lg text-mono-data-lg font-semibold text-on-surface">4 EVENTS</div><div class="font-mono-data-sm text-[11px] text-outline">Gate B In-Flow Calm</div></div></div></div><div class="grid grid-cols-3 gap-3 h-[46%]"><div class="col-span-2 border border-outline-variant/40 bg-surface-container/20 rounded-DEFAULT p-3 flex flex-col justify-between"><div class="flex justify-between items-start"><span class="font-label-caps text-label-caps text-on-surface-variant font-medium">STAGING AREA</span><span class="font-mono-data-sm text-[10px] text-outline">ZONE STG-04</span></div><div><div class="font-mono-data-lg text-mono-data-lg font-semibold text-on-surface">9 EVENTS</div><div class="font-mono-data-sm text-[11px] text-outline">Pallet Buffer Consolidation</div></div></div><div class="col-span-1 border border-outline-variant/30 bg-surface-container/20 rounded-DEFAULT p-3 flex flex-col justify-between"><div class="flex justify-between items-start"><span class="font-label-caps text-label-caps text-on-surface-variant">TRANSFER ZONE</span><span class="font-mono-data-sm text-[10px] text-outline">3 EVTS</span></div><div><div class="font-mono-data-sm text-[11px] text-outline">Inter-Aisle Lane</div></div></div></div></div></div>
 </section>
@@ -457,6 +457,75 @@
 <!-- FOOTER (Shared Component Execution)                               -->
 <!-- ================================================================= -->
 
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
+    const totalDetectionsLabel = document.getElementById('total-detections-label');
+    const barsContainer = document.getElementById('behaviour-bars-container');
+    const topTitle = document.getElementById('top-pattern-title');
+    const topCount = document.getElementById('top-pattern-count');
+    const topShare = document.getElementById('top-pattern-share');
+    const topShareStat = document.getElementById('top-pattern-share-stat');
+    const topHotspot = document.getElementById('top-pattern-hotspot');
 
+    try {
+      const res = await fetch(`${API_BASE}/api/metrics`);
+      if (!res.ok) throw new Error('API failed');
+      const data = await res.json();
 
+      if (totalDetectionsLabel && data.total_events) {
+        totalDetectionsLabel.textContent = `${data.total_events} TOTAL DETECTIONS`;
+      }
+
+      if (data.top_behaviours && data.top_behaviours.length > 0 && barsContainer) {
+        const total = data.total_events || 250;
+        // Render top 5
+        barsContainer.innerHTML = data.top_behaviours.slice(0, 5).map((item, idx) => {
+          const pct = ((item.count / total) * 100).toFixed(1);
+          const isHighest = idx === 0;
+          const colorClass = isHighest ? 'text-secondary' : 'text-primary-container';
+          const barColor = isHighest ? 'bg-secondary' : 'bg-primary-container/70';
+          const badge = isHighest ? '<span class="px-1.5 py-0.2 bg-secondary/10 border border-secondary/30 text-secondary font-label-caps text-label-caps rounded-DEFAULT">ELEVATED</span>' : '';
+          const barWidth = Math.min(100, Math.max(10, Math.round((item.count / data.top_behaviours[0].count) * 100)));
+
+          return `
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono-data-sm text-mono-data-sm font-semibold ${isHighest ? 'text-secondary' : 'text-on-surface'}">
+                    0${idx + 1}. ${item.name.toUpperCase()}
+                  </span>
+                  ${badge}
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-mono-data-lg text-mono-data-lg font-bold ${colorClass}">${item.count}</span>
+                  <span class="font-mono-data-sm text-mono-data-sm text-outline">events (${pct}%)</span>
+                </div>
+              </div>
+              <div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded-DEFAULT overflow-hidden">
+                <div class="h-full ${barColor} animate-bar rounded-DEFAULT" style="width: ${barWidth}%;"></div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        // Update Module B top pattern
+        const top = data.top_behaviours[0];
+        if (top) {
+          const topPct = ((top.count / total) * 100).toFixed(1);
+          if (topTitle) topTitle.textContent = top.name.toUpperCase();
+          if (topCount) topCount.textContent = top.count;
+          if (topShare) topShare.textContent = `${topPct}% OF FACILITY TOTAL`;
+          if (topShareStat) topShareStat.textContent = `${topPct}%`;
+        }
+
+        if (data.cameras && data.cameras.length > 0 && topHotspot) {
+          topHotspot.textContent = data.cameras[0].camera_name.replace(' // ', ' // ');
+        }
+      }
+    } catch (err) {
+      console.warn('Could not load /api/metrics:', err);
+    }
+  });
+</script>
 </body></html>

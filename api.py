@@ -91,16 +91,31 @@ async def get_metrics():
     total = len(events)
     near_misses = [e for e in events if getattr(e, "is_near_miss", False)]
     
-    risks = Counter(getattr(e, "risk_level", "LOW") for e in events)
+    # Case-insensitive risk classification
+    risks = Counter(getattr(e, "risk_level", "").upper() for e in events)
     behaviours = Counter(getattr(e, "behaviour_type", "UNKNOWN") for e in events)
-    cameras = Counter(getattr(e, "camera_id", "UNKNOWN") for e in events)
+    
+    VIDEO_TO_CAM = {
+        "KD packets dragged, heavy box kept on other packets.mp4": "CAM-01 // Dock Gate A",
+        "Throwing seating cartons, using strap to hold.mp4": "CAM-02 // Unloading Dock",
+        "Dock level, dragging cupboard.mp4": "CAM-03 // Dock Leveler",
+        "Rolling and dropping carton.mp4": "CAM-04 // Loading Bay 01",
+        "Throwing Mattresses.mp4": "CAM-05 // Bulk Inflow",
+        "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4": "CAM-06 // Sorting Floor",
+        "WIN_20260908_14_39_18_Pro.mp4": "CAM-07 // Staging North",
+        "Rolling and dragging on wet floor.mp4": "CAM-08 // Wet Ingress"
+    }
+    
+    video_counts = Counter(getattr(e, "video_id", "") for e in events)
+    hotspots = [
+        {"camera_id": VIDEO_TO_CAM.get(vid, vid[:20]), "count": count, "video_id": vid}
+        for vid, count in video_counts.most_common(5)
+    ]
     
     top_behaviours = [
         {"behaviour": b, "count": c, "share": round((c / total) * 100, 1)} 
-        for b, c in behaviours.most_common(5)
+        for b, c in behaviours.most_common(8)
     ]
-    
-    hotspots = [{"camera_id": cam, "count": count} for cam, count in cameras.most_common(4)]
 
     return {
         "total_events": total,
@@ -139,7 +154,7 @@ async def get_events(
     if behaviour:
         filtered = [e for e in filtered if getattr(e, "behaviour_type", "").upper() == behaviour.upper()]
         
-    return [e.to_dict() if hasattr(e, "to_dict") else vars(e) for e in filtered[:limit]]
+    return [e.model_dump() if hasattr(e, "model_dump") else (e.to_dict() if hasattr(e, "to_dict") else vars(e)) for e in filtered[:limit]]
 
 @app.get("/api/incidents")
 async def get_incidents():
@@ -147,7 +162,7 @@ async def get_incidents():
     if store is None:
         return []
     near_misses = [e for e in store.events if getattr(e, "is_near_miss", False)]
-    return [e.to_dict() if hasattr(e, "to_dict") else vars(e) for e in near_misses]
+    return [e.model_dump() if hasattr(e, "model_dump") else (e.to_dict() if hasattr(e, "to_dict") else vars(e)) for e in near_misses]
 
 @app.get("/health")
 async def health_check():
