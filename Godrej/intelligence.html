@@ -400,163 +400,6 @@ void main() {
 <div class="grid grid-cols-1 xl:grid-cols-12 gap-4 flex-1 items-start">
 <!-- LEFT COLUMN: LIVE WAREHOUSE PERCEPTION FEED (~68% / col-span-8) -->
 <section class="xl:col-span-8 flex flex-col bg-surface-container-lowest border border-outline-variant/40 rounded overflow-hidden shadow-2xl relative">
-<!-- Video Stream Meta Header HUD -->
-<div class="flex flex-wrap items-center justify-between px-3.5 py-2 bg-surface-container-low border-b border-outline-variant/30 text-on-surface-variant z-20">
-<div class="flex items-center gap-3">
-<span class="inline-flex items-center gap-1.5 font-label-caps text-label-caps text-error bg-error-container/20 px-1.5 py-0.5 rounded border border-error/30">
-<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
-              REC
-            </span>
-<span class="font-headline-sm text-xs text-on-surface tracking-wider font-semibold">BAY-04 // ELEVATION NORTH</span>
-<span class="font-mono-data-sm text-[10px] text-outline px-1.5 py-0.2 bg-surface-container rounded border border-outline-variant/20">CAM-04</span>
-</div>
-<div class="flex items-center gap-4 font-mono-data-sm text-[11px] text-outline">
-<span class="text-primary-container font-mono">60.0 FPS</span>
-<span class="">4K LOW-LATENCY FEED</span>
-<span class="hidden sm:inline">AI INFERENCE: <span class="text-on-surface font-semibold">14ms</span></span>
-<span class="text-on-surface font-mono tracking-tighter" id="video-timer">14:32:12.238</span>
-</div>
-</div>
-<!-- Simulated Interactive 3D/CV Spatial Canvas -->
-<div class="relative w-full aspect-[16/10] bg-[#070a0e] overflow-hidden select-none">
-<!-- Perspective Architectural Grid Lines & Trusses -->
-<svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<pattern height="60" id="grid-pattern" patternUnits="userSpaceOnUse" width="60">
-<path d="M 60 0 L 0 0 0 60" fill="none" stroke="#849396" stroke-width="0.5"></path>
-</pattern>
-</defs>
-<rect fill="url(#grid-pattern)" height="100%" width="100%"></rect>
-<!-- Vanishing Perspective Beams -->
-<line stroke="#00e5ff" stroke-dasharray="4 4" stroke-width="0.75" x1="0" x2="50%" y1="90%" y2="40%"></line>
-<line stroke="#00e5ff" stroke-dasharray="4 4" stroke-width="0.75" x1="100%" x2="50%" y1="90%" y2="40%"></line>
-<line stroke="#849396" stroke-width="0.5" x1="20%" x2="35%" y1="0" y2="40%"></line>
-<line stroke="#849396" stroke-width="0.5" x1="80%" x2="65%" y1="0" y2="40%"></line>
-<line stroke="#849396" stroke-dasharray="2 4" stroke-width="0.5" x1="0" x2="100%" y1="40%" y2="40%"></line>
-</svg>
-<!-- Laser Scan Line FX -->
-<div class="anim-scan absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary-container to-transparent shadow-[0_0_12px_#00e5ff] pointer-events-none z-10"></div>
-<!-- Warehouse Spatial Scenery Elements (CSS & SVG Vector Render) -->
-<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-<!-- Structural Rack / Bays Silhouette -->
-<div class="absolute left-6 bottom-12 w-44 h-64 border-r border-t border-outline-variant/30 flex flex-col justify-between p-2">
-<div class="w-full h-8 bg-surface-container-high/30 border border-outline-variant/20"></div>
-<div class="w-full h-8 bg-surface-container-high/30 border border-outline-variant/20"></div>
-<div class="w-full h-8 bg-surface-container-high/30 border border-outline-variant/20"></div>
-<span class="font-label-caps text-[8px] text-outline/50">BAY RACK #04-L</span>
-</div>
-<!-- Pallet Stack Zone [ID: PL-902] -->
-<div class="absolute left-[38%] bottom-14 w-48 h-36 border border-primary-container/40 bg-surface-container/20 pointer-events-auto group">
-<!-- Corner Ticks -->
-<div class="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-primary-container"></div>
-<div class="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-primary-container"></div>
-<div class="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-primary-container"></div>
-<div class="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-primary-container"></div>
-<!-- Pallet Cargo Vector Graphic -->
-<div class="w-full h-full flex flex-col justify-end p-2 gap-1 opacity-70">
-<div class="w-full h-12 bg-surface-container-highest/60 border border-outline-variant/40 rounded flex items-center justify-center">
-<span class="font-mono-data-sm text-[9px] text-outline">CARGO CONTAINER L2</span>
-</div>
-<div class="w-full h-6 bg-secondary/20 border border-secondary/40 flex items-center justify-around">
-<div class="w-4 h-3 bg-secondary/40"></div>
-<div class="w-4 h-3 bg-secondary/40"></div>
-<div class="w-4 h-3 bg-secondary/40"></div>
-</div>
-</div>
-<!-- Tag Marker -->
-<div class="absolute -top-5 left-0 bg-surface-container-lowest px-1.5 py-0.5 border border-primary-container/40 flex items-center gap-1">
-<span class="w-1 h-1 bg-primary-container rounded-full"></span>
-<span class="font-label-caps text-[9px] text-primary-container tracking-wider">PALLET // BASE LOCKED [PL-902]</span>
-</div>
-</div>
-<!-- Dynamic Motion Trajectory (Vector Path) -->
-<svg class="absolute inset-0 w-full h-full pointer-events-none z-10">
-<path d="M 440 280 Q 420 220 370 215" fill="none" opacity="0.8" stroke="#00e5ff" stroke-dasharray="4 4" stroke-width="1.5"></path>
-<circle cx="370" cy="215" fill="#00e5ff" r="3"></circle>
-<path d="M 370 215 L 340 250" fill="none" stroke="#f59e0b" stroke-dasharray="2 2" stroke-width="1.5"></path>
-</svg>
-<!-- Dynamic Product Box with Tilt & Angle Deviation [ID: PR-024] -->
-<div class="anim-box-tilt absolute left-[35%] top-[40%] w-24 h-20 border-2 border-secondary bg-secondary-container/15 backdrop-blur-xs p-1.5 cursor-pointer z-20 group">
-<!-- Corner Brackets (Alert Amber) -->
-<div class="absolute -top-1 -left-1 w-2.5 h-2.5 border-t-2 border-l-2 border-secondary"></div>
-<div class="absolute -top-1 -right-1 w-2.5 h-2.5 border-t-2 border-r-2 border-secondary"></div>
-<div class="absolute -bottom-1 -left-1 w-2.5 h-2.5 border-b-2 border-l-2 border-secondary"></div>
-<div class="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b-2 border-r-2 border-secondary"></div>
-<!-- Box Content Details -->
-<div class="w-full h-full border border-dashed border-secondary/50 flex flex-col justify-between p-1">
-<div class="flex justify-between items-center text-[8px] font-mono-data-sm text-secondary">
-<span class="">PR-024</span>
-<span class="animate-pulse">TILT +8.4°</span>
-</div>
-<div class="text-center font-mono-data-sm text-[9px] text-secondary font-semibold">
-                  VEL: 1.8 m/s
-                </div>
-</div>
-<!-- Interactive CV Tooltip -->
-<div class="absolute -top-9 left-1/2 -translate-x-1/2 bg-surface-container-lowest border border-secondary px-2 py-0.5 whitespace-nowrap shadow-lg transition-transform group-hover:scale-105">
-<span class="font-label-caps text-[9px] text-secondary tracking-widest font-semibold flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]">warning</span>
-                  PRODUCT #024 // DYNAMIC TRACKING ACTIVE
-                </span>
-</div>
-</div>
-<!-- Operator Person Tracking [ID: OP-418] -->
-<div class="anim-operator absolute right-[34%] bottom-14 w-28 h-64 border border-primary-container/40 bg-primary-container/5 pointer-events-auto">
-<!-- Corner Brackets -->
-<div class="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-primary-container"></div>
-<div class="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-primary-container"></div>
-<div class="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-primary-container"></div>
-<div class="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-primary-container"></div>
-<!-- Vector Operator Silhouette Representation -->
-<div class="w-full h-full flex flex-col items-center justify-center pt-4 opacity-75">
-<!-- Head -->
-<div class="w-7 h-7 rounded-full border border-primary-container/80 bg-primary-container/20 mb-1"></div>
-<!-- Torso & PPE Vest -->
-<div class="w-12 h-24 border border-primary-container/60 bg-surface-container-high/80 rounded-sm relative flex flex-col items-center justify-center">
-<div class="w-full h-3 bg-primary-container/30 my-1"></div>
-<span class="font-mono-data-sm text-[8px] text-primary-container">PPE_OK</span>
-</div>
-<!-- Limbs Vector -->
-<div class="flex gap-2 w-10 justify-between mt-1">
-<div class="w-3 h-24 bg-surface-container-highest/80 border-l border-primary-container/40"></div>
-<div class="w-3 h-24 bg-surface-container-highest/80 border-r border-primary-container/40"></div>
-</div>
-</div>
-<!-- Operator Identification Chip -->
-<div class="absolute -top-5 left-0 bg-surface-container-lowest px-1.5 py-0.5 border border-primary-container/50 whitespace-nowrap">
-<span class="font-label-caps text-[9px] text-primary-container tracking-wider">PERSON [OP-418 // NOMINAL]</span>
-</div>
-</div>
-<!-- High Hazard Floating In-Feed Alert Box HUD -->
-<div class="absolute top-8 right-8 max-w-xs bg-surface-container-lowest/90 border border-secondary p-3 shadow-[0_4px_24px_rgba(245,158,11,0.25)] backdrop-blur-md z-30">
-<div class="flex items-center gap-2 mb-1">
-<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
-<span class="font-label-caps text-[10px] text-secondary font-bold tracking-widest">RISK SIGNAL DETECTED</span>
-</div>
-<p class="font-mono-data-sm text-[11px] text-on-surface leading-tight mb-1.5">
-                TILT DEVIATION +8.4° // PREDICTED CARTON SEPARATION IMPACT
-              </p>
-<div class="flex items-center justify-between font-label-caps text-[9px] text-outline">
-<span class="">SECTOR: ELEV-NORTH</span>
-<span class="text-secondary font-bold font-mono">CONF: 94.2%</span>
-</div>
-</div>
-</div>
-<!-- Bottom HUD Overlay inside Video Stream -->
-<div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-outline font-label-caps text-[9px] pointer-events-none z-20">
-<div class="flex items-center gap-4 bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm border border-outline-variant/30">
-<span class="">FOV: 118° WIDE</span>
-<span class="">EXPOSURE: LOCKED</span>
-<span class="">CALIBRATION: MATRIX_B</span>
-</div>
-<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm border border-outline-variant/30 text-primary-container font-mono">
-              TARGET_BBOX: 3 TRACKED
-            </div>
-</div>
-</div>
-<!-- Video Control Dock Sub-strip -->
-<div class="flex items-center justify-between px-3 py-1.5 bg-surface-container-low border-t border-outline-variant/30 text-xs">
-<div class="flex items-center gap-2">
 <button class="p-1 hover:text-primary-container text-on-surface-variant transition-colors" title="Play / Pause">
 <span class="material-symbols-outlined text-[16px]">pause</span>
 </button>
@@ -885,6 +728,36 @@ void main() {
     const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
     
     async function loadLiveIntelligence() {
+      // Connect live video feed stream with API_BASE
+      const videoFeed = document.getElementById('liveVideoFeed');
+      const cameraSelect = document.getElementById('cameraFeedSelect');
+      const camTitle = document.getElementById('camTitle');
+
+      if (videoFeed) {
+        videoFeed.src = API_BASE + '/api/video_feed';
+      }
+
+      // Populate camera list
+      try {
+        const vRes = await fetch(API_BASE + '/api/video_list');
+        if (vRes.ok) {
+          const list = await vRes.json();
+          if (cameraSelect && list.length > 0) {
+            cameraSelect.innerHTML = list.map(item => `<option value="${item.filename}">${item.cam}</option>`).join('');
+            cameraSelect.addEventListener('change', (e) => {
+              const selected = e.target.value;
+              if (videoFeed) {
+                videoFeed.src = API_BASE + '/api/video_feed?video=' + encodeURIComponent(selected);
+              }
+              const selectedText = cameraSelect.options[cameraSelect.selectedIndex].text;
+              if (camTitle) camTitle.textContent = selectedText.split('//')[0] || selectedText;
+            });
+          }
+        }
+      } catch (e) {
+        console.warn("Could not load video list:", e);
+      }
+
       try {
         const [mRes, eRes] = await Promise.all([
           fetch(API_BASE + '/api/metrics'),

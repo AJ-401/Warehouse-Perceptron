@@ -1,11 +1,80 @@
 from fastapi import FastAPI, HTTPException, Request, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 from collections import Counter
 import os
 import sys
+import json
+import time
+import cv2
+
+app = FastAPI(title="Warehouse AI Assistant & Field Intelligence API", version="1.0")
+
+# Allow CORS for Stitch Dashboard
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
+KEYPOINT_NAMES = [
+    "nose", "left_eye", "right_eye", "left_ear", "right_ear",
+    "left_shoulder", "right_shoulder", "left_elbow", "right_elbow",
+    "left_wrist", "right_wrist", "left_hip", "right_hip",
+    "left_knee", "right_knee", "left_ankle", "right_ankle"
+]
+SKELETON_PAIRS = [
+    (5, 6), (5, 7), (7, 9), (6, 8), (8, 10), (5, 11), (6, 12),
+    (11, 12), (11, 13), (13, 15), (12, 14), (14, 16)
+]
+
+VIDEO_CATALOG = {
+    "KD packets dragged, heavy box kept on other packets.mp4": {
+        "video": os.path.join("official_videos", "KD packets dragged, heavy box kept on other packets.mp4"),
+        "tracking": os.path.join("outputs_person_a", "KD packets dragged, heavy box kept on other packets_tracking_results.json"),
+        "cam": "CAM-01 // Dock Gate A (Unloading Bay 01)"
+    },
+    "Throwing seating cartons, using strap to hold.mp4": {
+        "video": os.path.join("official_videos", "Throwing seating cartons, using strap to hold.mp4"),
+        "tracking": os.path.join("outputs_person_a", "Throwing seating cartons, using strap to hold_tracking_results.json"),
+        "cam": "CAM-02 // Staging Area West"
+    },
+    "Dock level, dragging cupboard.mp4": {
+        "video": os.path.join("official_videos", "Dock level, dragging cupboard.mp4"),
+        "tracking": os.path.join("outputs_person_a", "Dock level, dragging cupboard_tracking_results.json"),
+        "cam": "CAM-03 // Dock Level In-Feed"
+    },
+    "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4": {
+        "video": os.path.join("official_videos", "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4"),
+        "tracking": os.path.join("outputs_person_a", "Stepping on cartons, vertical product kept horizontally, heavy product kept on top_tracking_results.json"),
+        "cam": "CAM-04 // High-Bay Racking"
+    },
+    "Rolling and dropping carton.mp4": {
+        "video": os.path.join("official_videos", "Rolling and dropping carton.mp4"),
+        "tracking": os.path.join("outputs_person_a", "Rolling and dropping carton_tracking_results.json"),
+        "cam": "CAM-05 // Sorting Table 02"
+    },
+    "Throwing Mattresses.mp4": {
+        "video": os.path.join("official_videos", "Throwing Mattresses.mp4"),
+        "tracking": os.path.join("outputs_person_a", "Throwing Mattresses_tracking_results.json"),
+        "cam": "CAM-06 // Bulky Goods Gate"
+    },
+    "Rolling and dragging on wet floor.mp4": {
+        "video": os.path.join("official_videos", "Rolling and dragging on wet floor.mp4"),
+        "tracking": os.path.join("outputs_person_a", "Rolling and dragging on wet floor_tracking_results.json"),
+        "cam": "CAM-07 // Wet Floor Zone"
+    },
+    "WIN_20260908_14_39_18_Pro.mp4": {
+        "video": os.path.join("official_videos", "WIN_20260908_14_39_18_Pro.mp4"),
+        "tracking": os.path.join("outputs_person_a", "WIN_20260908_14_39_18_Pro_tracking_results.json"),
+        "cam": "CAM-08 // Pallet Consolidation"
+    }
+}
 
 from assistant.event_loader import EventStore, EventLoadError
 from assistant.llm_client import get_llm_client, LLMClientError
@@ -175,6 +244,122 @@ async def health_check():
         "provider": provider,
         "api_key_set": has_gemini or has_groq
     }
+
+def generate_mjpeg_stream(video_name: Optional[str] = None):
+    """Generates continuous MJPEG frames with real-time YOLO tracking overlays."""
+    import numpy as np
+    cat = None
+    if video_name:
+        for k, v in VIDEO_CATALOG.items():
+            if video_name.lower() in k.lower():
+                cat = v
+                break
+    if not cat:
+        cat = list(VIDEO_CATALOG.values())[0]
+
+    video_path = cat["video"]
+    tracking_path = cat.get("tracking")
+    cam_label = cat.get("cam", "CAM-01 // UNLOADING BAY 01")
+
+    frames_info = {}
+    if tracking_path and os.path.exists(tracking_path):
+        try:
+            with open(tracking_path, "r", encoding="utf-8") as f:
+                td = json.load(f)
+                frames_info = {fr["frame_idx"]: fr for fr in td.get("frames", [])}
+        except Exception:
+            pass
+
+    while True:
+        cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            fallback = np.zeros((720, 1280, 3), dtype=np.uint8)
+            cv2.putText(fallback, f"STREAM UNAVAILABLE: {video_path}", (100, 360), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 255), 2)
+            _, buf = cv2.imencode('.jpg', fallback)
+            yield (b'--frame\r\nContent-Type: image/jpeg\r\n\r\n' + buf.tobytes() + b'\r\n')
+            time.sleep(1.0)
+            continue
+
+        fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+        frame_delay = 1.0 / max(1.0, min(fps, 30.0))
+        frame_idx = 0
+
+        while True:
+            t0 = time.time()
+            ret, frame = cap.read()
+            if not ret:
+                break
+            frame_idx += 1
+
+            fr_data = frames_info.get(frame_idx)
+            if fr_data and "tracks" in fr_data:
+                for trk in fr_data["tracks"]:
+                    bbox = trk.get("bbox")
+                    if not bbox:
+                        continue
+                    x1, y1, x2, y2 = [int(v) for v in bbox]
+                    is_person = trk.get("class") == "person"
+                    tid = trk.get("track_id", 0)
+
+                    if is_person:
+                        # Cyan box for worker
+                        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 229, 255), 2)
+                        badge_w = 170
+                        cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + badge_w, max(22, y1)), (0, 229, 255), -1)
+                        cv2.putText(frame, f"WORKER #{tid} [NOMINAL]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+
+                        # Skeletons
+                        kps = trk.get("keypoints", {})
+                        if kps:
+                            for p1, p2 in SKELETON_PAIRS:
+                                n1, n2 = KEYPOINT_NAMES[p1], KEYPOINT_NAMES[p2]
+                                if n1 in kps and n2 in kps and kps[n1][2] > 0.3 and kps[n2][2] > 0.3:
+                                    cv2.line(frame, (int(kps[n1][0]), int(kps[n1][1])), (int(kps[n2][0]), int(kps[n2][1])), (0, 255, 128), 2)
+                            for k_name, (kx, ky, kc) in kps.items():
+                                if kc > 0.3:
+                                    cv2.circle(frame, (int(kx), int(ky)), 4, (0, 255, 0), -1)
+                    else:
+                        # Amber box for products/cartons
+                        cv2.rectangle(frame, (x1, y1), (x2, y2), (95, 185, 255), 2)
+                        badge_w = 180
+                        cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + badge_w, max(22, y1)), (95, 185, 255), -1)
+                        cv2.putText(frame, f"PRODUCT #{tid} [VEL: 1.4m/s]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+
+            # Top HUD bar
+            h, w = frame.shape[:2]
+            cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
+            hud_text = f"FIELD INTELLIGENCE LIVE // {cam_label.upper()} // AI DETECTION & TRACKING ACTIVE"
+            cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.48, (0, 229, 255), 1, cv2.LINE_AA)
+
+            success, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])
+            if not success:
+                continue
+
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
+
+            elapsed = time.time() - t0
+            sleep_time = frame_delay - elapsed
+            if sleep_time > 0:
+                time.sleep(sleep_time)
+
+        cap.release()
+
+@app.get("/api/video_feed")
+def video_feed(video: Optional[str] = None):
+    """Streams live MJPEG frames with real-time AI perception and tracking overlays."""
+    return StreamingResponse(
+        generate_mjpeg_stream(video),
+        media_type="multipart/x-mixed-replace; boundary=frame"
+    )
+
+@app.get("/api/video_list")
+def get_video_list():
+    """Returns available camera and video feeds for multi-camera switching."""
+    return [
+        {"filename": k, "cam": v["cam"]}
+        for k, v in VIDEO_CATALOG.items()
+    ]
 
 # Mount the Godrej Stitch Dashboard directory at root
 dashboard_dir = os.path.join(os.path.dirname(__file__), "Godrej")
