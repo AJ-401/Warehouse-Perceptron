@@ -1,0 +1,886 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FIELD INTELLIGENCE // Autonomous Incident Mitigation</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Script -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#00363d",
+            "surface-container-high": "#262a31",
+            "on-tertiary-container": "#b60009",
+            "primary-container": "#00e5ff",
+            "primary": "#c3f5ff",
+            "on-secondary-container": "#5b3800",
+            "secondary-fixed": "#ffddb8",
+            "inverse-on-surface": "#2d3137",
+            "surface-container-lowest": "#0a0e14",
+            "error-container": "#93000a",
+            "primary-fixed-dim": "#00daf3",
+            "on-error-container": "#ffdad6",
+            "secondary-fixed-dim": "#ffb95f",
+            "inverse-surface": "#dfe2eb",
+            "on-tertiary": "#690003",
+            "inverse-primary": "#006875",
+            "on-primary-container": "#00626e",
+            "secondary-container": "#ee9800",
+            "surface-dim": "#10141a",
+            "on-primary-fixed": "#001f24",
+            "surface-container-highest": "#31353c",
+            "on-background": "#dfe2eb",
+            "on-secondary-fixed": "#2a1700",
+            "tertiary": "#ffe8e4",
+            "surface-variant": "#31353c",
+            "surface-bright": "#353940",
+            "surface": "#10141a",
+            "on-tertiary-fixed-variant": "#930005",
+            "tertiary-fixed": "#ffdad5",
+            "tertiary-container": "#ffc2ba",
+            "on-surface-variant": "#bac9cc",
+            "on-surface": "#dfe2eb",
+            "surface-container-low": "#181c22",
+            "on-error": "#690005",
+            "on-secondary": "#472a00",
+            "secondary": "#ffb95f",
+            "on-tertiary-fixed": "#410001",
+            "on-primary-fixed-variant": "#004f58",
+            "error": "#ffb4ab",
+            "surface-container": "#1c2026",
+            "outline-variant": "#3b494c",
+            "surface-tint": "#00daf3",
+            "background": "#10141a",
+            "on-secondary-fixed-variant": "#653e00",
+            "primary-fixed": "#9cf0ff",
+            "outline": "#849396",
+            "tertiary-fixed-dim": "#ffb4aa"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "unit-lg": "16px",
+            "unit-md": "12px",
+            "gutter-dense": "8px",
+            "unit-2xl": "32px",
+            "unit-sm": "8px",
+            "unit-xl": "24px",
+            "unit-2xs": "2px",
+            "unit-xs": "4px",
+            "margin-screen": "16px",
+            "gutter-standard": "12px"
+          },
+          "fontFamily": {
+            "label-caps": ["JetBrains Mono"],
+            "headline-md": ["Space Grotesk"],
+            "display-xl-mobile": ["Space Grotesk"],
+            "mono-data-md": ["JetBrains Mono"],
+            "headline-sm": ["Space Grotesk"],
+            "mono-data-sm": ["JetBrains Mono"],
+            "body-lg": ["Space Grotesk"],
+            "body-md": ["Space Grotesk"],
+            "display-xl": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"],
+            "body-sm": ["Space Grotesk"],
+            "mono-data-lg": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "label-caps": ["10px", { "lineHeight": "14px", "letterSpacing": "0.14em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "mono-data-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "mono-data-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-xl": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "mono-data-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "500" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes scanline {
+      0% { top: 0%; opacity: 0.8; }
+      50% { opacity: 0.3; }
+      100% { top: 100%; opacity: 0.8; }
+    }
+
+    @keyframes operatorShift {
+      0%, 100% { transform: translateY(0px) skewX(0deg); }
+      50% { transform: translateY(-3px) skewX(1deg); }
+    }
+
+    @keyframes boxTiltLoop {
+      0% { transform: translate(0px, 0px) rotate(0deg); }
+      40% { transform: translate(14px, -18px) rotate(4deg); }
+      70% { transform: translate(26px, -24px) rotate(8.4deg); }
+      100% { transform: translate(0px, 0px) rotate(0deg); }
+    }
+
+    @keyframes pulseAura {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.08); }
+    }
+
+    .anim-scan {
+      animation: scanline 4s linear infinite;
+    }
+    .anim-operator {
+      animation: operatorShift 6s ease-in-out infinite;
+    }
+    .anim-box-tilt {
+      animation: boxTiltLoop 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .anim-pulse-aura {
+      animation: pulseAura 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-surface font-body-md overflow-x-hidden min-h-screen flex flex-col">
+<!-- Atmospheric Shader Background -->
+<!-- STITCH_SHADER_START:ANIMATION_20 class="fixed inset-0 w-full h-full pointer-events-none opacity-40 z-0" -->
+<div class="fixed inset-0 w-full h-full pointer-events-none opacity-40 z-0" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_20" style="display:block;width:100%;height:100%" width="1280" height="1008"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_20');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+float hash(vec2 p) {
+    p = fract(p * vec2(123.34, 456.21));
+    p += dot(p, p + 45.32);
+    return fract(p.x * p.y);
+}
+
+float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    float a = hash(i);
+    float b = hash(i + vec2(1.0, 0.0));
+    float c = hash(i + vec2(0.0, 1.0));
+    float d = hash(i + vec2(1.0, 1.0));
+    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+
+float fbm(vec2 p) {
+    float v = 0.0;
+    float a = 0.55;
+    mat2 rot = mat2(0.877, 0.479, -0.479, 0.877);
+    for (int i = 0; i < 4; i++) {
+        v += a * noise(p);
+        p = rot * p * 2.05 + vec2(1.8, 3.2);
+        a *= 0.5;
+    }
+    return v;
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec2 aspect = vec2(u_resolution.x / u_resolution.y, 1.0);
+    vec2 p = uv * aspect;
+
+    vec2 mNorm = (u_mouse / u_resolution) - 0.5;
+    vec2 mouseOffset = mNorm * 0.025;
+
+    // Dark graphite operational palette with restrained cool slate-blue depth
+    vec3 slateDeep      = vec3(0.063, 0.075, 0.094); // #101318 deep calm slate base
+    vec3 slateBase      = vec3(0.086, 0.102, 0.125); // #161a20 graphite tone
+    vec3 mistToneBg     = vec3(0.115, 0.138, 0.168); // #1d232b subtle background mist
+    vec3 mistToneMid    = vec3(0.145, 0.175, 0.212); // #252d36 soft midground wisp
+    vec3 cyanMist       = vec3(0.0, 0.898, 1.0);     // #00e5ff restrained intelligence glow
+    vec3 warmBeamLight  = vec3(0.82, 0.89, 0.96);     // soft clerestory light
+
+    float tSlow = u_time * 0.045;
+    float tMid  = u_time * 0.085;
+
+    // 1. Subtle background mist
+    vec2 uvBg = p * 0.65 - vec2(tSlow * 0.7, tSlow * 0.12) + mouseOffset * 0.2;
+    float bgMist = smoothstep(0.25, 0.80, fbm(uvBg));
+
+    // 2. Subtle midground wisps
+    vec2 uvMid = p * 1.35 - vec2(tMid * 0.95, tMid * 0.18) + mouseOffset * 0.5;
+    float midMist = smoothstep(0.30, 0.85, fbm(uvMid));
+
+    // 3. Volumetric beam sweep
+    float beamCenterX = 0.48 + 0.35 * sin(u_time * 0.4);
+    float beamDistX = abs(uv.x - beamCenterX);
+    float beamAngle = dot(uv - vec2(beamCenterX, 0.98), vec2(-0.45, -0.89));
+    float beamShaft = exp(-abs(beamAngle) * 3.6);
+    float beamIntensity = smoothstep(0.55, 0.0, beamDistX) * beamShaft * 0.45;
+
+    // Base compositing
+    vec3 col = mix(slateDeep, slateBase, uv.y * 0.8 + 0.2);
+
+    // Blend mist layers gently so operational UI has pure contrast
+    col = mix(col, mistToneBg, bgMist * 0.32);
+    col = mix(col, mistToneMid, midMist * 0.28);
+
+    // Add soft traveling light through mist
+    col += warmBeamLight * beamIntensity * (0.08 + (bgMist + midMist) * 0.15);
+
+    // Subtle cyan edge vignette towards right intelligence panel
+    col += cyanMist * midMist * 0.025 * smoothstep(0.4, 1.0, uv.x);
+
+    // Sparse micro motes
+    vec2 partUV = p * 14.0 + vec2(tSlow * 0.7, -tSlow * 0.9) + mouseOffset * 1.2;
+    vec2 partGrid = floor(partUV);
+    float partHash = hash(partGrid);
+    if (partHash > 0.975) {
+        vec2 partFrac = fract(partUV) - 0.5;
+        partFrac.x += sin(u_time * 1.1 + partHash * 6.28) * 0.14;
+        float d = length(partFrac);
+        float pulse = sin(u_time * 1.6 + partHash * 6.28) * 0.5 + 0.5;
+        float particle = smoothstep(0.065, 0.0, d) * pulse * 0.35;
+        col += vec3(0.75, 0.88, 0.98) * particle;
+    }
+
+    gl_FragColor = vec4(col, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_20 -->
+<!-- Top Navigation Shell (Shared Component: TopNavBar) -->
+<header class="flex justify-between items-center h-14 w-full px-6 border-b border-outline-variant/30 bg-surface/90 backdrop-blur-md fixed top-0 left-0 z-50">
+<!-- Brand / Product Identity -->
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 border border-primary-container flex items-center justify-center rotate-45 transition-transform hover:rotate-90 duration-300">
+<div class="w-2 h-2 bg-primary-container"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface">FIELD INTELLIGENCE</span>
+<span class="font-label-caps text-label-caps text-outline tracking-widest text-[9px] -mt-1">WAREHOUSE VIDEO INTELLIGENCE</span>
+</div>
+</div>
+<!-- Navigation Core -->
+<nav class="hidden md:flex items-center space-x-7 h-full">
+<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="overview.html">OVERVIEW</a>
+<!-- Active State Mapped to INTELLIGENCE -->
+<a class="text-primary-container border-b-2 border-primary-container font-medium py-4 flex items-center gap-1" href="intelligence.html">
+<span class="font-label-caps text-label-caps uppercase tracking-widest">INTELLIGENCE</span>
+</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="incidents.html">INCIDENTS</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="behaviour.html">BEHAVIOUR</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="prevention.html">PREVENTION</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="assistance.html">ASSISTANT</a>
+</nav>
+<!-- Trailing Diagnostics and Actions -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest border border-outline-variant/30 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-primary-container tracking-wider">● SYSTEM ONLINE</span>
+</div>
+<div class="hidden lg:block font-mono-data-sm text-mono-data-sm text-on-surface-variant/80 border-l border-outline-variant/30 pl-3">
+        07 SEP 2026 / <span class="text-on-surface font-semibold" id="clock">23:27:59</span>
+</div>
+<div class="flex items-center gap-1 border-l border-outline-variant/30 pl-3">
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors" title="Grid Layout">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors" title="System Settings">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+<button class="hidden sm:flex items-center gap-1.5 bg-primary-container text-surface-container-lowest font-headline-sm text-xs font-semibold px-3 py-1.5 rounded hover:bg-primary-fixed-dim transition-colors">
+<span class="">LAUNCH INTELLIGENCE</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</header>
+<!-- MAIN OPERATIONAL WORKSPACE -->
+<main class="relative z-10 flex-1 pt-16 pb-28 px-4 sm:px-6 max-w-[1920px] mx-auto w-full flex flex-col gap-4">
+<!-- Zone Layout Grid: Video Stream (Hero ~68%) + Predictive Risk Panel (~32%) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-4 flex-1 items-start">
+<!-- LEFT COLUMN: LIVE WAREHOUSE PERCEPTION FEED (~68% / col-span-8) -->
+<section class="xl:col-span-8 flex flex-col bg-surface-container-lowest border border-outline-variant/40 rounded overflow-hidden shadow-2xl relative">
+<!-- Video Stream Meta Header HUD -->
+<div class="flex flex-wrap items-center justify-between px-3.5 py-2 bg-surface-container-low border-b border-outline-variant/30 text-on-surface-variant z-20">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1.5 font-label-caps text-label-caps text-error bg-error-container/20 px-1.5 py-0.5 rounded border border-error/30">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+              REC
+            </span>
+<span class="font-headline-sm text-xs text-on-surface tracking-wider font-semibold">BAY-04 // ELEVATION NORTH</span>
+<span class="font-mono-data-sm text-[10px] text-outline px-1.5 py-0.2 bg-surface-container rounded border border-outline-variant/20">CAM-04</span>
+</div>
+<div class="flex items-center gap-4 font-mono-data-sm text-[11px] text-outline">
+<span class="text-primary-container font-mono">60.0 FPS</span>
+<span class="">4K LOW-LATENCY FEED</span>
+<span class="hidden sm:inline">AI INFERENCE: <span class="text-on-surface font-semibold">14ms</span></span>
+<span class="text-on-surface font-mono tracking-tighter" id="video-timer">14:32:12.238</span>
+</div>
+</div>
+<!-- Simulated Interactive 3D/CV Spatial Canvas -->
+<div class="relative w-full aspect-[16/10] bg-[#070a0e] overflow-hidden select-none">
+<!-- Perspective Architectural Grid Lines & Trusses -->
+<svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="60" id="grid-pattern" patternUnits="userSpaceOnUse" width="60">
+<path d="M 60 0 L 0 0 0 60" fill="none" stroke="#849396" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<rect fill="url(#grid-pattern)" height="100%" width="100%"></rect>
+<!-- Vanishing Perspective Beams -->
+<line stroke="#00e5ff" stroke-dasharray="4 4" stroke-width="0.75" x1="0" x2="50%" y1="90%" y2="40%"></line>
+<line stroke="#00e5ff" stroke-dasharray="4 4" stroke-width="0.75" x1="100%" x2="50%" y1="90%" y2="40%"></line>
+<line stroke="#849396" stroke-width="0.5" x1="20%" x2="35%" y1="0" y2="40%"></line>
+<line stroke="#849396" stroke-width="0.5" x1="80%" x2="65%" y1="0" y2="40%"></line>
+<line stroke="#849396" stroke-dasharray="2 4" stroke-width="0.5" x1="0" x2="100%" y1="40%" y2="40%"></line>
+</svg>
+<!-- Laser Scan Line FX -->
+<div class="anim-scan absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary-container to-transparent shadow-[0_0_12px_#00e5ff] pointer-events-none z-10"></div>
+<!-- Warehouse Spatial Scenery Elements (CSS & SVG Vector Render) -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<!-- Structural Rack / Bays Silhouette -->
+<div class="absolute left-6 bottom-12 w-44 h-64 border-r border-t border-outline-variant/30 flex flex-col justify-between p-2">
+<div class="w-full h-8 bg-surface-container-high/30 border border-outline-variant/20"></div>
+<div class="w-full h-8 bg-surface-container-high/30 border border-outline-variant/20"></div>
+<div class="w-full h-8 bg-surface-container-high/30 border border-outline-variant/20"></div>
+<span class="font-label-caps text-[8px] text-outline/50">BAY RACK #04-L</span>
+</div>
+<!-- Pallet Stack Zone [ID: PL-902] -->
+<div class="absolute left-[38%] bottom-14 w-48 h-36 border border-primary-container/40 bg-surface-container/20 pointer-events-auto group">
+<!-- Corner Ticks -->
+<div class="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-primary-container"></div>
+<div class="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-primary-container"></div>
+<div class="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-primary-container"></div>
+<div class="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-primary-container"></div>
+<!-- Pallet Cargo Vector Graphic -->
+<div class="w-full h-full flex flex-col justify-end p-2 gap-1 opacity-70">
+<div class="w-full h-12 bg-surface-container-highest/60 border border-outline-variant/40 rounded flex items-center justify-center">
+<span class="font-mono-data-sm text-[9px] text-outline">CARGO CONTAINER L2</span>
+</div>
+<div class="w-full h-6 bg-secondary/20 border border-secondary/40 flex items-center justify-around">
+<div class="w-4 h-3 bg-secondary/40"></div>
+<div class="w-4 h-3 bg-secondary/40"></div>
+<div class="w-4 h-3 bg-secondary/40"></div>
+</div>
+</div>
+<!-- Tag Marker -->
+<div class="absolute -top-5 left-0 bg-surface-container-lowest px-1.5 py-0.5 border border-primary-container/40 flex items-center gap-1">
+<span class="w-1 h-1 bg-primary-container rounded-full"></span>
+<span class="font-label-caps text-[9px] text-primary-container tracking-wider">PALLET // BASE LOCKED [PL-902]</span>
+</div>
+</div>
+<!-- Dynamic Motion Trajectory (Vector Path) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10">
+<path d="M 440 280 Q 420 220 370 215" fill="none" opacity="0.8" stroke="#00e5ff" stroke-dasharray="4 4" stroke-width="1.5"></path>
+<circle cx="370" cy="215" fill="#00e5ff" r="3"></circle>
+<path d="M 370 215 L 340 250" fill="none" stroke="#f59e0b" stroke-dasharray="2 2" stroke-width="1.5"></path>
+</svg>
+<!-- Dynamic Product Box with Tilt & Angle Deviation [ID: PR-024] -->
+<div class="anim-box-tilt absolute left-[35%] top-[40%] w-24 h-20 border-2 border-secondary bg-secondary-container/15 backdrop-blur-xs p-1.5 cursor-pointer z-20 group">
+<!-- Corner Brackets (Alert Amber) -->
+<div class="absolute -top-1 -left-1 w-2.5 h-2.5 border-t-2 border-l-2 border-secondary"></div>
+<div class="absolute -top-1 -right-1 w-2.5 h-2.5 border-t-2 border-r-2 border-secondary"></div>
+<div class="absolute -bottom-1 -left-1 w-2.5 h-2.5 border-b-2 border-l-2 border-secondary"></div>
+<div class="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b-2 border-r-2 border-secondary"></div>
+<!-- Box Content Details -->
+<div class="w-full h-full border border-dashed border-secondary/50 flex flex-col justify-between p-1">
+<div class="flex justify-between items-center text-[8px] font-mono-data-sm text-secondary">
+<span class="">PR-024</span>
+<span class="animate-pulse">TILT +8.4°</span>
+</div>
+<div class="text-center font-mono-data-sm text-[9px] text-secondary font-semibold">
+                  VEL: 1.8 m/s
+                </div>
+</div>
+<!-- Interactive CV Tooltip -->
+<div class="absolute -top-9 left-1/2 -translate-x-1/2 bg-surface-container-lowest border border-secondary px-2 py-0.5 whitespace-nowrap shadow-lg transition-transform group-hover:scale-105">
+<span class="font-label-caps text-[9px] text-secondary tracking-widest font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">warning</span>
+                  PRODUCT #024 // DYNAMIC TRACKING ACTIVE
+                </span>
+</div>
+</div>
+<!-- Operator Person Tracking [ID: OP-418] -->
+<div class="anim-operator absolute right-[34%] bottom-14 w-28 h-64 border border-primary-container/40 bg-primary-container/5 pointer-events-auto">
+<!-- Corner Brackets -->
+<div class="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-primary-container"></div>
+<div class="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-primary-container"></div>
+<div class="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-primary-container"></div>
+<div class="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-primary-container"></div>
+<!-- Vector Operator Silhouette Representation -->
+<div class="w-full h-full flex flex-col items-center justify-center pt-4 opacity-75">
+<!-- Head -->
+<div class="w-7 h-7 rounded-full border border-primary-container/80 bg-primary-container/20 mb-1"></div>
+<!-- Torso & PPE Vest -->
+<div class="w-12 h-24 border border-primary-container/60 bg-surface-container-high/80 rounded-sm relative flex flex-col items-center justify-center">
+<div class="w-full h-3 bg-primary-container/30 my-1"></div>
+<span class="font-mono-data-sm text-[8px] text-primary-container">PPE_OK</span>
+</div>
+<!-- Limbs Vector -->
+<div class="flex gap-2 w-10 justify-between mt-1">
+<div class="w-3 h-24 bg-surface-container-highest/80 border-l border-primary-container/40"></div>
+<div class="w-3 h-24 bg-surface-container-highest/80 border-r border-primary-container/40"></div>
+</div>
+</div>
+<!-- Operator Identification Chip -->
+<div class="absolute -top-5 left-0 bg-surface-container-lowest px-1.5 py-0.5 border border-primary-container/50 whitespace-nowrap">
+<span class="font-label-caps text-[9px] text-primary-container tracking-wider">PERSON [OP-418 // NOMINAL]</span>
+</div>
+</div>
+<!-- High Hazard Floating In-Feed Alert Box HUD -->
+<div class="absolute top-8 right-8 max-w-xs bg-surface-container-lowest/90 border border-secondary p-3 shadow-[0_4px_24px_rgba(245,158,11,0.25)] backdrop-blur-md z-30">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label-caps text-[10px] text-secondary font-bold tracking-widest">RISK SIGNAL DETECTED</span>
+</div>
+<p class="font-mono-data-sm text-[11px] text-on-surface leading-tight mb-1.5">
+                TILT DEVIATION +8.4° // PREDICTED CARTON SEPARATION IMPACT
+              </p>
+<div class="flex items-center justify-between font-label-caps text-[9px] text-outline">
+<span class="">SECTOR: ELEV-NORTH</span>
+<span class="text-secondary font-bold font-mono">CONF: 94.2%</span>
+</div>
+</div>
+</div>
+<!-- Bottom HUD Overlay inside Video Stream -->
+<div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-outline font-label-caps text-[9px] pointer-events-none z-20">
+<div class="flex items-center gap-4 bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm border border-outline-variant/30">
+<span class="">FOV: 118° WIDE</span>
+<span class="">EXPOSURE: LOCKED</span>
+<span class="">CALIBRATION: MATRIX_B</span>
+</div>
+<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm border border-outline-variant/30 text-primary-container font-mono">
+              TARGET_BBOX: 3 TRACKED
+            </div>
+</div>
+</div>
+<!-- Video Control Dock Sub-strip -->
+<div class="flex items-center justify-between px-3 py-1.5 bg-surface-container-low border-t border-outline-variant/30 text-xs">
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary-container text-on-surface-variant transition-colors" title="Play / Pause">
+<span class="material-symbols-outlined text-[16px]">pause</span>
+</button>
+<button class="p-1 hover:text-primary-container text-on-surface-variant transition-colors" title="Step Back">
+<span class="material-symbols-outlined text-[16px]">skip_previous</span>
+</button>
+<button class="p-1 hover:text-primary-container text-on-surface-variant transition-colors" title="Step Forward">
+<span class="material-symbols-outlined text-[16px]">skip_next</span>
+</button>
+<span class="h-3 w-px bg-outline-variant/40 mx-1"></span>
+<span class="font-mono-data-sm text-[11px] text-on-surface">SPEED: 1.0X REALTIME</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1 px-2 py-0.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 rounded text-[11px] font-mono-data-sm text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[14px]">screenshot_monitor</span>
+              SNAPSHOT
+            </button>
+<button class="flex items-center gap-1 px-2 py-0.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 rounded text-[11px] font-mono-data-sm text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+              PERCEPTION MASK
+            </button>
+</div>
+</div>
+</section>
+<!-- RIGHT COLUMN: INTELLIGENCE MODULE & RISK ENGINE (~32% / col-span-4) -->
+<section class="xl:col-span-4 flex flex-col gap-3">
+<!-- DOMINANT PREDICTIVE RISK PANEL -->
+<div class="bg-surface-container-low border border-outline-variant/40 rounded p-4 relative overflow-hidden group"><!-- Subtle Glow Accent Top Border -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary-container via-secondary to-primary-container opacity-80"></div>
+
+<!-- Header & Cycle Info -->
+<div class="flex items-center justify-between mb-3">
+  <div class="flex items-center gap-2">
+    <span class="font-headline-sm text-sm font-semibold tracking-wider text-on-surface">LIVE RISK</span>
+    <span class="font-label-caps text-[9px] text-primary-container bg-primary-container/10 border border-primary-container/30 px-1.5 py-0.2 rounded">
+      CALCULATED // 14ms REFRESH
+    </span>
+  </div>
+  <span class="material-symbols-outlined text-outline text-[16px]">analytics</span>
+</div>
+
+<!-- Dominant Centerpiece: SVG Radial Arc Gauge + 72% Authority Display -->
+<div class="relative bg-surface-container-lowest p-4 rounded border border-outline-variant/30 flex flex-col items-center justify-center overflow-hidden mb-3.5">
+  <!-- Ambient Breathing Amber Halo Glow Behind Arc -->
+  <div class="absolute w-44 h-44 rounded-full bg-secondary/10 blur-xl pointer-events-none animate-pulse"></div>
+
+  <!-- Precision Calibrated Dial / Arc SVG -->
+  <div class="relative w-48 h-48 flex items-center justify-center select-none">
+    <svg class="w-full h-full -rotate-90 transform" viewBox="0 0 160 160">
+      <defs>
+        <linearGradient id="risk-arc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ee9800"></stop>
+          <stop offset="65%" stop-color="#ffb95f"></stop>
+          <stop offset="100%" stop-color="#ffddb8"></stop>
+        </linearGradient>
+        <filter id="glow-amber" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3.5" result="blur"></feGaussianBlur>
+          <feMerge>
+            <feMergeNode in="blur"></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Background Track Circle (Subtle Dashed Calibration) -->
+      <circle cx="80" cy="80" r="66" fill="none" stroke="#262a31" stroke-width="4.5" stroke-dasharray="2 4" opacity="0.6"></circle>
+      <circle cx="80" cy="80" r="66" fill="none" stroke="#1c2026" stroke-width="7"></circle>
+
+      <!-- 65% Threshold Reference Tick -->
+      <!-- Circumference = 2 * PI * 66 ~= 414.69. 65% is approx 269.5 px -->
+      <circle cx="80" cy="80" r="66" fill="none" stroke="#dfe2eb" stroke-width="8" stroke-dasharray="2 412.69" stroke-dashoffset="-269.5" opacity="0.85"></circle>
+
+      <!-- Active 72% Gauge Arc (Circumference: 414.7; 72% fill: ~298.58; offset: 414.7 - 298.6 = 116.1) -->
+      <circle cx="80" cy="80" r="66" fill="none" stroke="url(#risk-arc-grad)" stroke-width="7" stroke-linecap="round" stroke-dasharray="414.7" stroke-dashoffset="116.1" filter="url(#glow-amber)" class="transition-all duration-700 ease-out"></circle>
+
+      <!-- Glowing Endpoint Indicator Needle Point at 72% (~259.2 deg from -90) -->
+      <circle cx="59.6" cy="142.8" r="3.5" fill="#ffffff" stroke="#ffb95f" stroke-width="2" filter="url(#glow-amber)" class="animate-pulse"></circle>
+    </svg>
+
+    <!-- Center Numerical Display Inside Dial -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+      <div class="flex items-baseline justify-center tracking-tighter">
+        <span class="font-display-xl text-6xl text-secondary font-bold drop-shadow-[0_0_16px_rgba(255,185,95,0.35)] leading-none">72</span>
+        <span class="font-headline-sm text-2xl text-secondary font-semibold ml-0.5">%</span>
+      </div>
+      <span class="font-label-caps text-[9px] text-outline uppercase tracking-widest mt-1 font-semibold">PREDICTIVE RISK</span>
+    </div>
+  </div>
+
+  <!-- Integrated Status Badging & Telemetry -->
+  <div class="flex flex-col items-center gap-1.5 mt-1 z-10 w-full">
+    <div class="inline-flex items-center gap-1.5 px-3 py-0.5 bg-secondary/15 border border-secondary/50 rounded-full shadow-[0_0_12px_rgba(255,185,95,0.18)]">
+      <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+      <span class="font-label-caps text-[10px] text-secondary font-bold tracking-wider">HIGH RISK (AMBER)</span>
+    </div>
+    <div class="font-mono-data-sm text-[11px] text-secondary-fixed flex items-center gap-1 font-semibold tracking-wide">
+      <span class="">↑ 18% IN LAST 4 SECONDS</span>
+    </div>
+  </div>
+</div>
+
+<!-- Contributing Risk Telemetry Micro-meters -->
+<div class="space-y-2 border-t border-outline-variant/30 pt-3">
+  <div class="flex items-center justify-between mb-1">
+    <span class="font-label-caps text-[10px] text-outline tracking-wider">CONTRIBUTING SIGNALS:</span>
+    <span class="font-mono-data-sm text-[10px] text-outline/70">CONFIDENCE: 94.2%</span>
+  </div>
+  <!-- Signal 1: Fast Movement -->
+  <div>
+    <div class="flex justify-between font-mono-data-sm text-[11px] mb-0.5">
+      <span class="text-on-surface">FAST MOVEMENT</span>
+      <span class="text-secondary font-bold font-mono">88% (HIGH)</span>
+    </div>
+    <div class="w-full h-1 bg-surface-container-lowest rounded overflow-hidden">
+      <div class="h-full bg-secondary w-[88%]"></div>
+    </div>
+  </div>
+  <!-- Signal 2: Handling Height -->
+  <div>
+    <div class="flex justify-between font-mono-data-sm text-[11px] mb-0.5">
+      <span class="text-on-surface">HIGH HANDLING HEIGHT</span>
+      <span class="text-secondary font-bold font-mono">74% (ELEVATED)</span>
+    </div>
+    <div class="w-full h-1 bg-surface-container-lowest rounded overflow-hidden">
+      <div class="h-full bg-secondary/80 w-[74%]"></div>
+    </div>
+  </div>
+  <!-- Signal 3: No Equipment Detected -->
+  <div>
+    <div class="flex justify-between font-mono-data-sm text-[11px] mb-0.5">
+      <span class="text-on-surface">NO EQUIPMENT DETECTED</span>
+      <span class="text-on-surface-variant font-mono">62% (MODERATE)</span>
+    </div>
+    <div class="w-full h-1 bg-surface-container-lowest rounded overflow-hidden">
+      <div class="h-full bg-primary-container/70 w-[62%]"></div>
+    </div>
+  </div>
+  <!-- Signal 4: Stack Proximity -->
+  <div>
+    <div class="flex justify-between font-mono-data-sm text-[11px] mb-0.5">
+      <span class="text-on-surface">STACK PROXIMITY</span>
+      <span class="text-on-surface-variant font-mono">45% (MONITORED)</span>
+    </div>
+    <div class="w-full h-1 bg-surface-container-lowest rounded overflow-hidden">
+      <div class="h-full bg-outline w-[45%]"></div>
+    </div>
+  </div>
+</div></div>
+<!-- PREDICTIVE NEAR-MISS WARNING ACTION BOX -->
+<div class="bg-surface-container-low border border-secondary rounded p-4 shadow-[0_0_20px_rgba(245,158,11,0.12)] relative overflow-hidden">
+<!-- Expanding Radar Pulse Ring in Top-Right Corner -->
+<div class="absolute -top-3 -right-3 w-16 h-16 pointer-events-none">
+<span class="absolute inset-0 rounded-full border border-secondary/40 animate-ping"></span>
+<span class="absolute inset-2 rounded-full border border-secondary/60"></span>
+</div>
+<div class="flex items-start gap-3 mb-3">
+<div class="p-2 bg-secondary/20 text-secondary rounded border border-secondary/40">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div>
+<span class="font-headline-sm text-sm text-secondary font-bold tracking-wider block">PREDICTIVE WARNING</span>
+<p class="font-body-md text-xs text-on-surface font-semibold mt-0.5">Potential damage risk detected.</p>
+<p class="font-mono-data-sm text-[11px] text-outline mt-0.5">Intervention recommended before impact.</p>
+</div>
+</div>
+<!-- Real-Time Immediate Action Buttons -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 pt-2 border-t border-outline-variant/30">
+<button class="flex items-center justify-center gap-1.5 px-3 py-2 bg-secondary/15 hover:bg-secondary/25 text-secondary border border-secondary/60 rounded font-label-caps text-[10px] tracking-wider transition-colors font-bold">
+<span class="material-symbols-outlined text-[14px]">campaign</span>
+              DISPATCH SUPERVISOR AUDIO
+            </button>
+<button class="flex items-center justify-center gap-1 px-3 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant/40 rounded font-label-caps text-[10px] tracking-wider transition-colors">
+<span class="material-symbols-outlined text-[14px]">bookmark</span>
+              TAG EVENT
+            </button>
+</div>
+</div>
+<!-- LIVE AI ACTIVITY STREAM -->
+<div class="bg-surface-container-low border border-outline-variant/40 rounded p-3 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-caps text-[10px] text-outline tracking-wider flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+              LIVE AI ACTIVITY STREAM
+            </span>
+<span class="font-mono-data-sm text-[10px] text-outline">AUTO-SCROLL ON</span>
+</div>
+<!-- Chronological Telemetry Feed -->
+<div class="space-y-1.5 font-mono-data-sm text-[11px] overflow-hidden">
+<div class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/70 border-l-2 border-outline-variant/40">
+<span class="text-outline shrink-0">14:32:08</span>
+<span class="text-on-surface-variant">PRODUCT TRACKED <span class="text-primary-container font-semibold">[PR-024]</span></span>
+</div>
+<div class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/70 border-l-2 border-primary-container">
+<span class="text-outline shrink-0">14:32:10</span>
+<span class="text-on-surface-variant">MOVEMENT VELOCITY INCREASING <span class="text-primary font-mono">(+1.4 m/s)</span></span>
+</div>
+<div class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/90 border-l-2 border-secondary">
+<span class="text-secondary shrink-0 font-semibold">14:32:11</span>
+<span class="text-on-surface">RISK SIGNAL DETECTED <span class="text-secondary font-semibold">(TILT +8.4°)</span></span>
+</div>
+<div class="flex items-start gap-2 p-1.5 rounded bg-secondary/10 border-l-2 border-secondary text-secondary">
+<span class="shrink-0 font-bold">14:32:12</span>
+<span class="font-semibold">PREDICTIVE WARNING ISSUED (NEAR-MISS AVERTED)</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- BOTTOM HORIZONTAL EVENT TIMELINE (Spacious Interactive Bar) -->
+<section class="w-full bg-surface-container-low border border-outline-variant/40 rounded p-3 relative mt-1">
+<div class="flex flex-wrap items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[10px] text-outline tracking-wider">TIMELINE ANALYSIS // BAY-04</span>
+<span class="font-mono-data-sm text-[11px] text-primary-container">ACTIVE WINDOW: 14:25 - 14:35</span>
+</div>
+<div class="flex items-center gap-3 font-mono-data-sm text-[11px] text-outline">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-outline/40"></span> NORMAL</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary-container"></span> BEHAVIOUR DRIFT</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> NEAR-MISS EVENT</span>
+</div>
+</div>
+<!-- Scrubber Track & Markers -->
+<div class="relative w-full h-10 bg-surface-container-lowest rounded border border-outline-variant/30 flex items-center px-6 select-none cursor-pointer">
+<!-- Horizontal Base Line -->
+<div class="absolute left-6 right-6 h-0.5 bg-outline-variant/30"></div>
+<!-- Motion Intensity Heat Strip in Background of Track -->
+<div class="absolute left-[20%] right-[30%] h-1.5 bg-primary-container/20 rounded"></div>
+<div class="absolute left-[65%] right-[25%] h-2 bg-secondary/30 rounded"></div>
+<!-- Timeline Events Nodes -->
+<div class="relative w-full flex justify-between items-center z-10">
+<!-- Node 1: 14:28 Normal -->
+<div class="flex flex-col items-center group/node">
+<div class="w-2.5 h-2.5 rounded-full bg-outline/50 border border-surface group-hover/node:scale-125 transition-transform"></div>
+<span class="font-mono-data-sm text-[10px] text-outline mt-1.5">14:28</span>
+<span class="font-label-caps text-[8px] text-outline/70 -mt-0.5">NORMAL</span>
+</div>
+<!-- Node 2: 14:29 Dragging -->
+<div class="flex flex-col items-center group/node">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container border border-surface shadow-[0_0_6px_#00e5ff] group-hover/node:scale-125 transition-transform"></div>
+<span class="font-mono-data-sm text-[10px] text-primary-container mt-1.5">14:29</span>
+<span class="font-label-caps text-[8px] text-primary-container/80 -mt-0.5">DRAGGING</span>
+</div>
+<!-- Node 3: 14:31 Improper Stacking -->
+<div class="flex flex-col items-center group/node">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container border border-surface shadow-[0_0_6px_#00e5ff] group-hover/node:scale-125 transition-transform"></div>
+<span class="font-mono-data-sm text-[10px] text-primary-container mt-1.5">14:31</span>
+<span class="font-label-caps text-[8px] text-primary-container/80 -mt-0.5">IMPROPER STACK</span>
+</div>
+<!-- Node 4: 14:32 Near-Miss (Active Focus) -->
+<div class="flex flex-col items-center relative group/node">
+<!-- Pulsing Halo Marker -->
+<span class="absolute -top-1 w-5 h-5 rounded-full bg-secondary/30 animate-ping pointer-events-none"></span>
+<div class="w-3.5 h-3.5 rounded-full bg-secondary border-2 border-surface shadow-[0_0_10px_#f59e0b] scale-110"></div>
+<span class="font-mono-data-sm text-[10px] text-secondary font-bold mt-1.5">14:32</span>
+<span class="font-label-caps text-[8px] text-secondary font-bold -mt-0.5">NEAR-MISS</span>
+</div>
+<!-- Node 5: 14:34 Normal -->
+<div class="flex flex-col items-center group/node">
+<div class="w-2.5 h-2.5 rounded-full bg-outline/50 border border-surface group-hover/node:scale-125 transition-transform"></div>
+<span class="font-mono-data-sm text-[10px] text-outline mt-1.5">14:34</span>
+<span class="font-label-caps text-[8px] text-outline/70 -mt-0.5">NORMAL</span>
+</div>
+</div>
+<!-- Active Scrubber Playhead Line (At Current Frame 14:32:12) -->
+<div class="absolute left-[72%] top-0 bottom-0 w-px bg-primary-container shadow-[0_0_8px_#00e5ff] flex flex-col items-center z-20 pointer-events-none">
+<div class="w-2.5 h-2.5 bg-primary-container rotate-45 -mt-1 shadow-sm"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- SYSTEM OPERATIONAL FOOTER DOCK (Shared Component: Footer) -->
+<footer class="fixed bottom-0 left-0 w-full h-8 px-6 flex justify-between items-center bg-surface-container-lowest/95 backdrop-blur-sm border-t border-outline-variant/20 z-40">
+<!-- Architecture Stamp -->
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[9px] text-outline tracking-wider">
+        FIELD INTELLIGENCE ARCHITECTURE // AUTONOMOUS INCIDENT MITIGATION
+      </span>
+</div>
+<!-- Active Telemetry Status Pills -->
+<div class="hidden sm:flex items-center space-x-5 font-mono-data-sm text-[10px]">
+<div class="text-primary-container flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="font-mono">VIDEO INPUT ACTIVE</span>
+</div>
+<div class="text-primary-container flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="font-mono">OBJECT TRACKING ACTIVE</span>
+</div>
+<div class="text-primary-container flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="font-mono">RISK ENGINE ACTIVE</span>
+</div>
+<div class="text-on-surface-variant flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container/60"></span>
+<span class="font-mono">AI ASSISTANT READY</span>
+</div>
+<div class="text-secondary flex items-center gap-1.5 border border-secondary/30 px-1.5 py-0.5 rounded bg-secondary/10">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-mono font-semibold">PREVENTION MODE</span>
+</div>
+</div>
+</footer>
+<!-- Micro-Interactions Script -->
+<script>
+    // Live Clock Display
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      const secs = String(now.getSeconds()).padStart(2, '0');
+      const clockEl = document.getElementById('clock');
+      if (clockEl) {
+        clockEl.textContent = `${hours}:${mins}:${secs}`;
+      }
+
+      const vidTimer = document.getElementById('video-timer');
+      if (vidTimer) {
+        const ms = String(now.getMilliseconds()).padStart(3, '0');
+        vidTimer.textContent = `14:32:12.${ms}`;
+      }
+    }
+    setInterval(updateClock, 100);
+    updateClock();
+  </script>
+
+
+</body></html>

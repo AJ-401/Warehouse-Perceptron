@@ -20,6 +20,7 @@ data/memory/
 *.jpeg
 *.png
 !assets/*.png
+*.zip
 scratch/
 
 # Output folders & Video files (too large for standard Git pushes)

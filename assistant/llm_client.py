@@ -42,12 +42,17 @@ except ImportError:  # pragma: no cover
 DEFAULT_GROQ_MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
 DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.7-flash")
 
-# Working Gemini models with independent quota pools:
-# On rate-limit, the system immediately switches to the next model in 0 seconds (no waiting).
+# Primary Gemini models (gemini-2.5-pro removed as requested):
 GEMINI_MODEL_CHAIN = [
     os.environ.get("GEMINI_MODEL", "gemini-3.7-flash"),
     "gemini-3-flash-preview",
-    "gemini-2.5-pro",
+]
+
+# Fallback Groq models with separate independent quotas:
+GROQ_MODEL_CHAIN = [
+    os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b"),
+    "qwen/qwen3.6-27b",
+    "openai/gpt-oss-120b",
 ]
 
 
@@ -237,6 +242,9 @@ class GroqLLMClient:
                 messages=messages,
             )
         except Exception as e:
+            err_str = str(e)
+            if any(x in err_str.lower() for x in ("rate_limit", "429", "quota", "limit exceeded")):
+                raise LLMClientError(f"Limit exceeded: Rate limit reached for Groq model '{self.model}'.") from e
             raise LLMClientError(
                 f"Groq API call failed: {e}\n"
                 f"(If this is a 404/decommissioned-model error, check "
@@ -314,6 +322,9 @@ class GroqLLMClient:
             return final_content
                 
         except Exception as e:
+            err_str = str(e)
+            if any(x in err_str.lower() for x in ("rate_limit", "429", "quota", "limit exceeded")):
+                raise LLMClientError(f"Limit exceeded: Rate limit reached for Groq model '{self.model}'.") from e
             raise LLMClientError(f"Groq API call (with tools) failed: {e}") from e
 
 
@@ -402,16 +413,130 @@ class GeminiModelChainClient:
         return self._execute_with_failover("ask_with_tools", system, user_message, tools, tool_handler)
 
 
+class GroqModelChainClient:
+    """
+    Cycles through a chain of Groq models when rate limits hit.
+    Zero wait time — immediately switches to the next model in the chain.
+    """
+
+    def __init__(self, models: list[str] = None, memory_file: str = None):
+        self._models = list(models or GROQ_MODEL_CHAIN)
+        self._index = 0
+        self._clients: dict[str, GroqLLMClient] = {}
+        self.memory_file = memory_file
+        self._get_client(self._models[0])
+
+    def _get_client(self, model: str) -> GroqLLMClient:
+        if model not in self._clients:
+            self._clients[model] = GroqLLMClient(model=model, memory_file=self.memory_file)
+        return self._clients[model]
+
+    @property
+    def current_model(self) -> str:
+        return self._models[self._index]
+
+    @property
+    def model(self) -> str:
+        return self.current_model
+
+    def _execute_with_failover(self, method: str, *args, **kwargs) -> str:
+        start_index = self._index
+        while True:
+            model = self._models[self._index]
+            client = self._get_client(model)
+            try:
+                return getattr(client, method)(*args, **kwargs)
+            except Exception as e:
+                err_lower = str(e).lower()
+                if any(x in err_lower for x in ("rate_limit", "429", "resource_exhausted", "quota", "limit exceeded")):
+                    next_index = (self._index + 1) % len(self._models)
+                    if next_index == start_index:
+                        print(f"\n[!] Limit exceeded: All available Groq models reached their request limits.")
+                        raise LLMClientError("Limit exceeded: All Groq models reached their request limits.") from e
+                    print(f"\n[Limit Exceeded on Groq/{model}] Switching immediately to {self._models[next_index]} (no wait)...")
+                    self._index = next_index
+                else:
+                    raise
+
+    def ask(self, system: str, user_message: str, context: str = "") -> str:
+        return self._execute_with_failover("ask", system, user_message, context)
+
+    def ask_with_tools(self, system: str, user_message: str, tools: list[dict], tool_handler: callable) -> str:
+        return self._execute_with_failover("ask_with_tools", system, user_message, tools, tool_handler)
+
+
+class HierarchicalFailoverClient:
+    """
+    Tier 1 (Primary): Gemini Model Chain (gemini-3.7-flash -> gemini-3-flash-preview)
+    Tier 2 (Fallback): Groq Model Chain (qwen/qwen3.8-27b -> qwen/qwen3.6-27b -> openai/gpt-oss-120b)
+
+    If all Gemini models exhaust their rate limits, instantly fails over to the Groq
+    tier without waiting, and cycles through Groq models if needed.
+    """
+
+    def __init__(self, gemini_chain: GeminiModelChainClient, groq_chain: GroqModelChainClient):
+        self.gemini_chain = gemini_chain
+        self.groq_chain = groq_chain
+        self._active_tier = "gemini"
+
+    @property
+    def model(self) -> str:
+        if self._active_tier == "gemini":
+            return f"Gemini ({self.gemini_chain.model})"
+        return f"Groq ({self.groq_chain.model})"
+
+    def _execute(self, method: str, *args, **kwargs) -> str:
+        if self._active_tier == "gemini":
+            try:
+                return getattr(self.gemini_chain, method)(*args, **kwargs)
+            except Exception as e:
+                err_lower = str(e).lower()
+                if any(x in err_lower for x in ("rate", "429", "resource_exhausted", "quota", "limit exceeded")):
+                    print(f"\n[Failover Tier Triggered] All Gemini models exhausted. Switching instantly to Groq tier ({self.groq_chain.model})...")
+                    self._active_tier = "groq"
+                    return getattr(self.groq_chain, method)(*args, **kwargs)
+                raise
+        else:
+            return getattr(self.groq_chain, method)(*args, **kwargs)
+
+    def ask(self, system: str, user_message: str, context: str = "") -> str:
+        return self._execute("ask", system, user_message, context)
+
+    def ask_with_tools(self, system: str, user_message: str, tools: list[dict], tool_handler: callable) -> str:
+        return self._execute("ask_with_tools", system, user_message, tools, tool_handler)
+
+
 def get_llm_client(memory_file: str = None):
     """
     Factory function returning the best configured LLM client:
-    1. GeminiModelChainClient if GEMINI_API_KEY is present (cycles through models instantly on quota, no waiting)
-    2. GroqLLMClient if GROQ_API_KEY is present
-    3. MockLLMClient for testing without credentials
+    1. HierarchicalFailoverClient (Gemini chain -> Groq chain) if both keys present
+    2. GeminiModelChainClient if only GEMINI_API_KEY is present
+    3. GroqModelChainClient if only GROQ_API_KEY is present
+    4. MockLLMClient for testing without credentials
     """
-    if os.environ.get("GEMINI_API_KEY"):
-        return GeminiModelChainClient(memory_file=memory_file)
-    if os.environ.get("GROQ_API_KEY"):
-        return GroqLLMClient(memory_file=memory_file)
+    gemini_key = os.environ.get("GEMINI_API_KEY")
+    groq_key = os.environ.get("GROQ_API_KEY")
+
+    gemini_chain = None
+    if gemini_key:
+        try:
+            gemini_chain = GeminiModelChainClient(memory_file=memory_file)
+        except Exception as e:
+            print(f"[LLM] Gemini chain initialization warning: {e}")
+
+    groq_chain = None
+    if groq_key:
+        try:
+            groq_chain = GroqModelChainClient(memory_file=memory_file)
+        except Exception as e:
+            print(f"[LLM] Groq chain initialization warning: {e}")
+
+    if gemini_chain and groq_chain:
+        print(f"[LLM] Multi-Tier Failover Active: Gemini {gemini_chain._models} -> Groq {groq_chain._models}")
+        return HierarchicalFailoverClient(gemini_chain=gemini_chain, groq_chain=groq_chain)
+    if gemini_chain:
+        return gemini_chain
+    if groq_chain:
+        return groq_chain
     return MockLLMClient(memory_file=memory_file)
 

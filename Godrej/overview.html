@@ -1,0 +1,748 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FIELD INTELLIGENCE // WAREHOUSE VIDEO INTELLIGENCE</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            slate: {
+              950: "#0e1116",
+              900: "#13171d",
+              850: "#161b22",
+              800: "#1e242d",
+              700: "#2d3540",
+              600: "#444e5d",
+              400: "#8996a6",
+              300: "#b5c0ce",
+              200: "#d9e2ec"
+            },
+            cyan: {
+              accent: "#00e5ff",
+              dim: "#00b8cc",
+              subtle: "rgba(0, 229, 255, 0.12)"
+            }
+          },
+          fontFamily: {
+            sans: ["Space Grotesk", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Continuous Serene Breathing Pulse */
+    @keyframes serene-breathe {
+      0%, 100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 2px rgba(0,229,255,0.7)); }
+      50% { opacity: 0.35; transform: scale(0.85); filter: drop-shadow(0 0 0px transparent); }
+    }
+    .animate-serene-breathe {
+      animation: serene-breathe 3.6s ease-in-out infinite;
+    }
+
+    /* Headline Staggered Page-Load Entrance */
+    @keyframes hero-fade-up {
+      0% {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-headline-line1 {
+      animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    }
+    .animate-headline-line2 {
+      animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+    }
+
+    /* Vertical Continuous AI Scan Sweep */
+    @keyframes vertical-scan {
+      0% { top: -4%; opacity: 0; }
+      8% { opacity: 1; }
+      88% { opacity: 1; }
+      98%, 100% { top: 104%; opacity: 0; }
+    }
+    .animate-scan-line {
+      animation: vertical-scan 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    }
+
+    /* AI Perception Cycle Badges: Fading in and out during sweep */
+    @keyframes perception-badge-fade {
+      0%, 15% { opacity: 0.15; transform: translateY(2px); }
+      25%, 55% { opacity: 1; transform: translateY(0); }
+      68%, 100% { opacity: 0.15; transform: translateY(2px); }
+    }
+    .animate-badge-cycle {
+      animation: perception-badge-fade 6.5s ease-in-out infinite;
+    }
+
+    /* Product Transit Motion along trajectory */
+    @keyframes transit-cargo-loop {
+      0% {
+        transform: translate(0px, 0px) rotate(0deg);
+        opacity: 0;
+      }
+      8% {
+        opacity: 1;
+      }
+      45% {
+        transform: translate(52px, 32px) rotate(2deg);
+      }
+      65% {
+        transform: translate(96px, 60px) rotate(7.8deg);
+      }
+      75% {
+        transform: translate(98px, 62px) rotate(8.4deg);
+      }
+      88% {
+        opacity: 1;
+      }
+      96%, 100% {
+        transform: translate(98px, 62px) rotate(8.4deg);
+        opacity: 0;
+      }
+    }
+    .animate-transit-cargo {
+      animation: transit-cargo-loop 6.5s cubic-bezier(0.3, 0.1, 0.25, 1) infinite;
+    }
+
+    /* Trajectory trail stroke animation */
+    @keyframes trajectory-trail-draw {
+      0% {
+        stroke-dashoffset: 240;
+        opacity: 0;
+      }
+      12% {
+        opacity: 0.85;
+      }
+      68% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      88% {
+        opacity: 0.6;
+      }
+      98%, 100% {
+        stroke-dashoffset: -240;
+        opacity: 0;
+      }
+    }
+    .animate-trajectory-trail {
+      stroke-dasharray: 240;
+      animation: trajectory-trail-draw 6.5s cubic-bezier(0.3, 0.1, 0.25, 1) infinite;
+    }
+
+    /* AI Risk Signal Detection Loop (Amber pulse at critical tilt) */
+    @keyframes risk-signal-alert {
+      0%, 55% {
+        opacity: 0;
+        transform: scale(0.96) translateY(4px);
+        pointer-events: none;
+      }
+      62% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      68% {
+        opacity: 0.85;
+        box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+      }
+      74% {
+        opacity: 1;
+        box-shadow: 0 0 24px rgba(245, 158, 11, 0.7);
+      }
+      86% {
+        opacity: 0.9;
+        transform: scale(1) translateY(0);
+      }
+      94%, 100% {
+        opacity: 0;
+        transform: scale(0.98) translateY(-2px);
+      }
+    }
+    .animate-risk-alert {
+      animation: risk-signal-alert 6.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+    }
+
+    /* Bottom Flow Pipeline Particle Loop across VIDEO -> PREVENT */
+    @keyframes flow-particle-transit {
+      0% {
+        left: 0%;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+      }
+      5% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      92% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      98%, 100% {
+        left: 100%;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+      }
+    }
+    .animate-flow-particle {
+      animation: flow-particle-transit 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* Mouse Parallax Transformation Classes */
+    .hero-parallax-canvas {
+      transform: translate3d(calc(var(--mouse-x, 0) * 8px), calc(var(--mouse-y, 0) * 6px), 0);
+      transition: transform 0.15s cubic-bezier(0.1, 0.8, 0.25, 1);
+      will-change: transform;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-200 font-sans antialiased min-h-screen relative overflow-x-hidden flex flex-col justify-between selection:bg-cyan-accent selection:text-slate-950">
+<!-- ========================================================================= -->
+<!-- CINEMATIC VOLUMETRIC ATMOSPHERE (Cinematic Shader ANIMATION_12)           -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<!-- STITCH_SHADER_START:ANIMATION_12 class="fixed inset-0 w-full h-full pointer-events-none -z-10" -->
+<div class="fixed inset-0 w-full h-full pointer-events-none -z-10" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_12" style="display:block;width:100%;height:100%" width="1280" height="874"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_12');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+// High-quality hash and smooth noise functions
+float hash(vec2 p) {
+    p = fract(p * vec2(123.34, 456.21));
+    p += dot(p, p + 45.32);
+    return fract(p.x * p.y);
+}
+
+float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    float a = hash(i);
+    float b = hash(i + vec2(1.0, 0.0));
+    float c = hash(i + vec2(0.0, 1.0));
+    float d = hash(i + vec2(1.0, 1.0));
+    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+
+// Multi-octave FBM for smooth, elegant flowing warehouse mist
+float fbm(vec2 p) {
+    float v = 0.0;
+    float a = 0.55;
+    mat2 rot = mat2(0.877, 0.479, -0.479, 0.877);
+    for (int i = 0; i < 5; i++) {
+        v += a * noise(p);
+        p = rot * p * 2.05 + vec2(1.8, 3.2);
+        a *= 0.5;
+    }
+    return v;
+}
+
+// Warped FBM for natural fluid wisps and billows
+float warpedFbm(vec2 p, float t) {
+    vec2 q = vec2(fbm(p + vec2(t * 0.15, 0.0)), fbm(p + vec2(5.2, 1.3) + vec2(0.0, t * 0.08)));
+    vec2 r = vec2(fbm(p + 3.0 * q + vec2(1.7, 9.2) + vec2(t * 0.22, 0.0)),
+                  fbm(p + 3.0 * q + vec2(8.3, 2.8) - vec2(0.0, t * 0.1)));
+    return fbm(p + 2.5 * r);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec2 aspect = vec2(u_resolution.x / u_resolution.y, 1.0);
+    vec2 p = uv * aspect;
+
+    // Mouse parallax normalized offset (-0.5 to 0.5)
+    vec2 mNorm = (u_mouse / u_resolution) - 0.5;
+    vec2 mouseOffset = mNorm * 0.04;
+
+    // Rich graphite and slate palette (distinctly NOT pure black)
+    vec3 slateDeep      = vec3(0.063, 0.075, 0.094); // #101318 deep calm slate base
+    vec3 slateBase      = vec3(0.090, 0.108, 0.133); // #171c22 graphite tone
+    vec3 mistToneBg     = vec3(0.125, 0.153, 0.188); // #202730 translucent background mist
+    vec3 mistToneMid    = vec3(0.165, 0.200, 0.245); // #2a333e distinct midground mist wisp
+    vec3 mistToneFore   = vec3(0.210, 0.255, 0.310); // #35414f foreground luminous vapor
+    vec3 cyanMist       = vec3(0.0, 0.898, 1.0);     // #00e5ff restrained intelligence tint
+    vec3 warmBeamLight  = vec3(0.88, 0.94, 1.0);     // Soft volumetric clerestory lumination
+
+    // 12 to 14-second seamless cyclical timing
+    float tCycle = u_time * 0.448; // ~14s period (2*PI / 14 ~ 0.448)
+    float tSlow  = u_time * 0.065; // continuous drift speeds (visibly animated)
+    float tMid   = u_time * 0.115;
+    float tFast  = u_time * 0.175;
+
+    // 1. BACKGROUND LAYER: Very large, soft haze mass moving steadily from left to right
+    vec2 uvBg = p * 0.72 - vec2(tSlow * 0.85, tSlow * 0.16) + mouseOffset * 0.3;
+    float bgMistRaw = fbm(uvBg);
+    float bgMist = smoothstep(0.20, 0.75, bgMistRaw);
+
+    // 2. MIDGROUND LAYER: Smaller wisps and fluid eddies moving at different speed and angle
+    vec2 uvMid = p * 1.45 - vec2(tMid * 1.15, tMid * 0.24) + mouseOffset * 0.65;
+    float midMistRaw = warpedFbm(uvMid, tSlow);
+    float midMist = smoothstep(0.26, 0.82, midMistRaw);
+
+    // 3. FOREGROUND LAYER: Very subtle transparent haze passing across the viewport
+    vec2 uvFore = p * 2.30 - vec2(tFast * 1.40, tFast * 0.32) + mouseOffset * 1.1;
+    float foreMistRaw = fbm(uvFore + vec2(midMistRaw * 0.25, 0.0));
+    float foreMist = smoothstep(0.35, 0.88, foreMistRaw);
+
+    // 4. TRAVELLING VOLUMETRIC LIGHT BEAM (12-14s seamless loop across the warehouse mist)
+    // Horizontal sweep from ~0.15 to 0.85 with natural acceleration
+    float sweepPhase = sin(tCycle);
+    float beamCenterX = 0.52 + 0.36 * sin(tCycle);
+    float beamDistX = abs(uv.x - beamCenterX);
+    
+    // Angled clerestory industrial sunbeam shaft
+    float beamAngle = dot(uv - vec2(beamCenterX, 0.98), vec2(-0.48, -0.87));
+    float beamShaft = exp(-abs(beamAngle) * 3.4);
+    // Smooth breathing intensity: illuminates the fog noticeably as it passes, then fades
+    float beamBreath = 0.55 + 0.45 * (0.5 + 0.5 * cos(tCycle));
+    float beamIntensity = smoothstep(0.60, 0.0, beamDistX) * beamShaft * beamBreath;
+
+    // 5. DISTANT ARCHITECTURAL WAREHOUSE SILHOUETTES (Columns & Trusses with Parallax)
+    vec2 bayP = uv * aspect + mouseOffset * 0.5;
+    float colGrid = abs(fract(bayP.x * 3.2) - 0.5);
+    float columnLines = smoothstep(0.038, 0.0, colGrid) * 0.065;
+    float trussLines = smoothstep(0.015, 0.0, abs(fract(bayP.y * 7.5 + bayP.x * 0.75) - 0.5)) * 0.045;
+    float distantWarehouse = (columnLines + trussLines) * smoothstep(0.12, 0.88, uv.y);
+
+    // 6. ATMOSPHERIC PARTICLES (20-40 sparse, slow-floating micro motes)
+    vec2 partUV = p * 15.0 + vec2(tSlow * 0.9, -tSlow * 1.1) + mouseOffset * 1.5;
+    vec2 partGrid = floor(partUV);
+    float partHash = hash(partGrid);
+    float particle = 0.0;
+    if (partHash > 0.966) {
+        vec2 partFrac = fract(partUV) - 0.5;
+        partFrac.x += sin(u_time * 1.3 + partHash * 6.28) * 0.18;
+        float d = length(partFrac);
+        float pulse = sin(u_time * 1.7 + partHash * 6.28) * 0.5 + 0.5;
+        particle = smoothstep(0.075, 0.0, d) * pulse * 0.38;
+    }
+
+    // BASE COMPOSITING: Deep graphite / slate gradient
+    vec3 col = mix(slateDeep, slateBase, uv.y * 0.85 + 0.15);
+    
+    // Distant architectural presence
+    col += vec3(0.05, 0.07, 0.09) * distantWarehouse;
+
+    // COMPOSITE MIST LAYERS (Visible, clearly animated, but elegant & translucent)
+    col = mix(col, mistToneBg, bgMist * 0.48);
+    col = mix(col, mistToneMid, midMist * 0.52);
+    col = mix(col, mistToneFore, foreMist * 0.30);
+
+    // VOLUMETRIC LIGHT BEAM ILLUMINATING THE MIST
+    float totalMistDensity = bgMist * 0.55 + midMist * 0.45 + foreMist * 0.35;
+    // As the beam travels, the mist lights up warmly and realistically
+    col += warmBeamLight * beamIntensity * (0.16 + totalMistDensity * 0.46);
+
+    // Subtle cyan intelligence tinting in the deeper right quadrant
+    col += cyanMist * midMist * 0.045 * smoothstep(0.28, 1.0, uv.x);
+
+    // Floating micro-particles
+    col += vec3(0.85, 0.94, 1.0) * particle;
+
+    // LEFT-SIDE READABILITY VIGNETTE
+    // Ensures crisp 100% legibility of the white hero headline & copy
+    float textProtection = smoothstep(0.04, 0.62, uv.x);
+    col = mix(col * 0.86, col, textProtection);
+
+    gl_FragColor = vec4(col, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_12 -->
+<!-- Soft vignette gradient to guarantee immaculate typography legibility -->
+<div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/50 to-transparent pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-transparent to-slate-900/95 pointer-events-none"></div>
+</div>
+<!-- ========================================================================= -->
+<!-- MINIMAL UNDERSTATED TOP NAVIGATION                                       -->
+<!-- ========================================================================= -->
+<header class="relative z-30 w-full border-b border-white/[0.06] backdrop-blur-md bg-slate-900/60">
+<div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Brand Anchor -->
+<div class="flex items-center gap-3.5">
+<div class="w-6 h-6 border border-white/20 bg-slate-800/80 flex items-center justify-center relative">
+<div class="w-2.5 h-2.5 border border-cyan-accent rotate-45"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold tracking-wider text-white">FIELD INTELLIGENCE</span>
+<span class="font-mono text-[9px] tracking-[0.25em] text-slate-400 uppercase -mt-0.5">WAREHOUSE VIDEO INTELLIGENCE</span>
+</div>
+</div>
+<!-- Center Minimalist Navigation -->
+<nav class="hidden md:flex items-center gap-6 text-[13px] font-medium tracking-wide">
+<a class="text-cyan-accent border-b-2 border-cyan-accent pb-0.5 font-semibold" href="overview.html">Overview</a>
+<a class="text-slate-400 hover:text-cyan-accent transition-colors" href="intelligence.html">Intelligence</a>
+<a class="text-slate-400 hover:text-cyan-accent transition-colors" href="incidents.html">Incidents</a>
+<a class="text-slate-400 hover:text-cyan-accent transition-colors" href="behaviour.html">Behaviour</a>
+<a class="text-slate-400 hover:text-cyan-accent transition-colors" href="prevention.html">Prevention</a>
+<a class="text-slate-400 hover:text-cyan-accent transition-colors" href="assistance.html">Assistant</a>
+</nav>
+<!-- Trailing Status & Single Polished CTA -->
+<div class="flex items-center gap-6">
+<div class="hidden sm:flex items-center gap-2 font-mono text-[11px] text-slate-400 tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-cyan-accent animate-serene-breathe"></span>
+<span class="">SYSTEM ONLINE</span>
+</div>
+<button onclick="window.location.href='intelligence.html'" class="cursor-pointer group px-4 py-2 bg-cyan-accent hover:bg-cyan-dim text-slate-950 text-xs font-semibold tracking-wider transition-all duration-200 shadow-[0_0_20px_rgba(0,229,255,0.22)] hover:shadow-[0_0_28px_rgba(0,229,255,0.48)] flex items-center gap-1.5 active:scale-[0.98]">
+<span class="">LAUNCH INTELLIGENCE</span>
+<span class="font-mono text-sm leading-none transition-transform duration-200 group-hover:translate-x-1">→</span>
+</button>
+</div>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- HERO VIEWPORT SECTION (Dominant, Staggered Load Entrance, Motion First)   -->
+<!-- ========================================================================= -->
+<main class="relative z-20 flex-1 max-w-[1400px] w-full mx-auto px-6 py-12 lg:py-16 flex flex-col justify-center">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- Left Editorial Hero Cluster -->
+<div class="lg:col-span-6 space-y-8">
+<!-- Understated Eyebrow -->
+<div class="inline-flex items-center gap-2.5 font-mono text-[11px] tracking-[0.18em] text-slate-400 uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-cyan-accent animate-serene-breathe"></span>
+<span class="">AI VIDEO INTELLIGENCE / WAREHOUSE OPERATIONS</span>
+</div>
+<!-- Dominant Crisp Headline with Entrance Animation -->
+<div class="space-y-1">
+<h2 class="animate-headline-line1 text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-slate-400 leading-[1.08]">
+            UNDERSTAND THE MOVE
+          </h2>
+<h1 class="animate-headline-line2 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+            BEFORE DAMAGE HAPPENS<span class="text-cyan-accent">.</span>
+</h1>
+</div>
+<!-- Clean, Calm Supporting Copy -->
+<p class="text-base sm:text-lg text-slate-300 max-w-lg font-normal leading-relaxed">
+          Understand handling behaviour in real time. Identify risk early. Help teams prevent damage before it happens.
+        </p>
+<!-- Actions: Primary Cyan CTA + Subtle Secondary Link -->
+<div class="pt-2 flex flex-wrap items-center gap-6">
+<button onclick="window.location.href='intelligence.html'" class="cursor-pointer group h-12 px-7 bg-cyan-accent hover:bg-cyan-dim text-slate-950 font-semibold text-sm tracking-wider flex items-center gap-2.5 transition-all duration-200 shadow-[0_0_24px_rgba(0,229,255,0.25)] hover:shadow-[0_0_35px_rgba(0,229,255,0.52)] active:scale-[0.98]">
+<span class="">LAUNCH INTELLIGENCE</span>
+<span class="font-mono text-base transition-transform duration-200 group-hover:translate-x-1">→</span>
+</button>
+<a class="text-slate-300 hover:text-white font-mono text-xs tracking-widest uppercase transition-colors flex items-center gap-1.5" href="behaviour.html">
+<span class="">SEE HOW IT WORKS</span>
+</a>
+</div>
+</div>
+<!-- Right Cinematic Perception Composition (Parallax + Trajectory + AI Scanner) -->
+<div class="lg:col-span-6">
+<div class="hero-parallax-canvas relative w-full aspect-[4/3] rounded border border-white/[0.08] bg-slate-950/60 overflow-hidden shadow-2xl backdrop-blur-sm group">
+<!-- Architectural Warehouse Illustration Canvas -->
+<svg class="absolute inset-0 w-full h-full object-cover pointer-events-none" fill="none" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- High-bay skylight gentle beam -->
+<linearGradient gradientUnits="userSpaceOnUse" id="skylightBeam" x1="500" x2="320" y1="0" y2="480">
+<stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"></stop>
+<stop offset="60%" stop-color="#ffffff" stop-opacity="0.02"></stop>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+</linearGradient>
+<linearGradient gradientUnits="userSpaceOnUse" id="floorReflection" x1="320" x2="320" y1="360" y2="480">
+<stop offset="0%" stop-color="#1e242d" stop-opacity="0.6"></stop>
+<stop offset="100%" stop-color="#0e1116" stop-opacity="0.95"></stop>
+</linearGradient>
+<!-- Cyan Trajectory Gradient Glow -->
+<linearGradient gradientUnits="userSpaceOnUse" id="trailGrad" x1="120" x2="250" y1="230" y2="300">
+<stop offset="0%" stop-color="#00e5ff" stop-opacity="0.15"></stop>
+<stop offset="70%" stop-color="#00e5ff" stop-opacity="0.9"></stop>
+<stop offset="100%" stop-color="#c3f5ff" stop-opacity="1"></stop>
+</linearGradient>
+</defs>
+<!-- Atmospheric Deep Background Wall -->
+<rect fill="#11151b" height="480" width="640"></rect>
+<!-- Structural Ceiling Truss Lines & Rafters -->
+<g stroke="#ffffff" stroke-opacity="0.07" stroke-width="1">
+<line x1="0" x2="640" y1="64" y2="64"></line>
+<line x1="0" x2="640" y1="96" y2="96"></line>
+<!-- Cross bracing trusses -->
+<line x1="40" x2="120" y1="64" y2="96"></line>
+<line x1="120" x2="200" y1="96" y2="64"></line>
+<line x1="200" x2="280" y1="64" y2="96"></line>
+<line x1="280" x2="360" y1="96" y2="64"></line>
+<line x1="360" x2="440" y1="64" y2="96"></line>
+<line x1="440" x2="520" y1="96" y2="64"></line>
+<line x1="520" x2="600" y1="64" y2="96"></line>
+</g>
+<!-- Structural Industrial Columns (Parallax Layered) -->
+<rect fill="#1b2129" fill-opacity="0.75" height="300" width="10" x="70" y="64"></rect>
+<rect fill="#1b2129" fill-opacity="0.75" height="300" width="12" x="550" y="64"></rect>
+<line stroke="#ffffff" stroke-opacity="0.06" x1="75" x2="75" y1="64" y2="364"></line>
+<line stroke="#ffffff" stroke-opacity="0.06" x1="556" x2="556" y1="64" y2="364"></line>
+<!-- High-bay Racking Bays in Perspective -->
+<!-- Left Racks -->
+<g opacity="0.45">
+<path d="M 40 180 L 140 210 L 140 370 L 40 340 Z" fill="#151b22" stroke="#ffffff" stroke-opacity="0.08"></path>
+<line stroke="#ffffff" stroke-opacity="0.1" x1="40" x2="140" y1="230" y2="260"></line>
+<line stroke="#ffffff" stroke-opacity="0.1" x1="40" x2="140" y1="280" y2="310"></line>
+<!-- Pallets on racks -->
+<rect fill="#222a35" height="16" rx="1" width="60" x="60" y="240"></rect>
+<rect fill="#26303d" height="16" rx="1" width="65" x="60" y="290"></rect>
+</g>
+<!-- Polished Industrial Concrete Floor with Horizon Line -->
+<polygon fill="url(#floorReflection)" points="0,360 640,360 640,480 0,480"></polygon>
+<line stroke="#ffffff" stroke-opacity="0.08" x1="0" x2="640" y1="360" y2="360"></line>
+<!-- Floor Joint Lines & Perspective Grid -->
+<g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+<line x1="320" x2="80" y1="360" y2="480"></line>
+<line x1="320" x2="240" y1="360" y2="480"></line>
+<line x1="320" x2="400" y1="360" y2="480"></line>
+<line x1="320" x2="560" y1="360" y2="480"></line>
+<line x1="120" x2="520" y1="410" y2="410"></line>
+</g>
+<!-- Natural Skylight Volumetric Shaft -->
+<polygon fill="url(#skylightBeam)" points="460,0 560,0 420,480 260,480"></polygon>
+<!-- Dynamic Predicted Motion Trajectory Path Vector -->
+<path class="animate-unified-trajectory" d="M 124 238 C 160 238, 178 268, 222 298" fill="none" stroke="url(#trailGrad)" stroke-dasharray="4 3" stroke-linecap="round" stroke-width="1.75"></path>
+<!-- Center Staged Pallet Stack (Physical Cargo) -->
+<g id="pallet-stack">
+<!-- Wooden Pallet Base -->
+<rect fill="#2d3540" height="12" rx="1" width="130" x="190" y="348"></rect>
+<rect fill="#1a2027" height="5" width="16" x="200" y="360"></rect>
+<rect fill="#1a2027" height="5" width="16" x="250" y="360"></rect>
+<rect fill="#1a2027" height="5" width="16" x="300" y="360"></rect>
+<!-- Stacked Tier 1 Cartons -->
+<rect fill="#27303a" height="46" stroke="#ffffff" stroke-opacity="0.06" width="58" x="195" y="300"></rect>
+<rect fill="#2a3440" height="46" stroke="#ffffff" stroke-opacity="0.06" width="60" x="257" y="300"></rect>
+<!-- Stacked Tier 2 Cartons -->
+<rect fill="#242c36" height="44" stroke="#ffffff" stroke-opacity="0.06" width="116" x="198" y="254"></rect>
+<!-- Subtle Pallet shadow on polished floor -->
+<ellipse cx="255" cy="368" fill="#0b0e12" fill-opacity="0.8" rx="70" ry="6"></ellipse>
+</g>
+<!-- Moving Product / Carton along Trajectory with Dynamic Tilt -->
+<g class="animate-product-transit">
+<rect fill="#2d3744" height="28" rx="1" stroke="#00e5ff" stroke-opacity="0.45" stroke-width="1.2" width="38" x="110" y="222"></rect>
+<line stroke="#00e5ff" stroke-opacity="0.5" x1="110" x2="148" y1="236" y2="236"></line>
+<!-- Subtle package orientation beacon -->
+<circle cx="129" cy="236" fill="#00e5ff" r="1.5"></circle>
+</g>
+<!-- Figure: Material Handling Operator / Worker Silhouette -->
+<g opacity="0.88" class="animate-operator-sway">
+<!-- Head / Safety Helmet -->
+<path d="M 402 268 C 402 261 418 261 418 268 C 418 274 415 276 410 277 C 405 276 402 274 402 268 Z" fill="#cfd8e3"></path>
+<!-- High-Vis Vest & Torso in action posture -->
+<path d="M 398 280 L 422 280 L 425 324 L 396 324 Z" fill="#2e3844"></path>
+<path d="M 403 282 L 417 282 L 420 318 L 400 318 Z" fill="#475569" fill-opacity="0.6"></path>
+<!-- Arms handling scanner/clipboard -->
+<path d="M 397 284 L 388 304 L 394 308 L 401 292" fill="#2e3844"></path>
+<path d="M 422 284 L 428 302 L 420 306 L 418 292" fill="#2e3844"></path>
+<!-- Legs in motion stride -->
+<path d="M 400 324 L 395 365 L 402 366 L 408 328 Z" fill="#1e252e"></path>
+<path d="M 414 324 L 422 363 L 428 363 L 420 328 Z" fill="#1a2027"></path>
+<!-- Floor contact shadow -->
+<ellipse cx="410" cy="366" fill="#0b0e12" fill-opacity="0.85" rx="20" ry="3"></ellipse>
+</g>
+</svg>
+<!-- ========================================================================= -->
+<!-- ELECTRIC CYAN AI SCANNING SWEEP LINE                                      -->
+<!-- ========================================================================= -->
+<div class="animate-unified-scan absolute left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-accent to-transparent pointer-events-none shadow-[0_0_12px_rgba(0,229,255,0.75)] z-10">
+<div class="absolute left-1/2 -translate-x-1/2 -top-1 w-24 h-3 bg-cyan-accent/20 blur-sm"></div>
+</div>
+<!-- ========================================================================= -->
+<!-- COMPUTER-VISION TRACKING FRAMES & PERCEPTION LABELS                       -->
+<!-- ========================================================================= -->
+<!-- 1. CARGO / PALLET BOUNDING BOX -->
+<div class="absolute left-[29%] top-[49%] w-[24%] h-[29%] border border-white/20 group-hover:border-cyan-accent/50 transition-colors pointer-events-none">
+<!-- Precise Cyan Corner Brackets -->
+<div class="absolute -top-[1px] -left-[1px] w-2.5 h-2.5 border-t-2 border-l-2 border-cyan-accent"></div>
+<div class="absolute -top-[1px] -right-[1px] w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-accent"></div>
+<div class="absolute -bottom-[1px] -left-[1px] w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-accent"></div>
+<div class="absolute -bottom-[1px] -right-[1px] w-2.5 h-2.5 border-b-2 border-r-2 border-cyan-accent"></div>
+<!-- Dynamic Perception Tag -->
+<div class="animate-badge-cycle absolute -top-5 left-0 flex items-center gap-1.5 font-mono text-[9px] text-slate-300 bg-slate-950/90 px-1.5 py-0.5 border border-white/10 tracking-wider">
+<span class="w-1 h-1 rounded-full bg-cyan-accent"></span>
+<span class="">PALLET // BASE LOCKED</span>
+</div>
+</div>
+<!-- 2. PRODUCT TRANSIT BOUNDING BOX -->
+<div class="absolute left-[16%] top-[44%] w-[10%] h-[12%] border border-cyan-accent/40 pointer-events-none animate-product-box">
+<div class="animate-product-label absolute -top-5 left-0 flex items-center gap-1.5 font-mono text-[9px] text-cyan-accent bg-slate-950/90 px-1.5 py-0.5 border border-cyan-accent/30 tracking-wider">
+<span class="w-1 h-1 rounded-full bg-cyan-accent animate-pulse"></span>
+<span class="">PRODUCT</span>
+</div>
+</div>
+<!-- 3. OPERATOR MOTION BOUNDING BOX -->
+<div class="absolute left-[59%] top-[51%] w-[12%] h-[27%] border border-white/20 group-hover:border-cyan-accent/50 transition-colors pointer-events-none animate-operator-sway">
+<!-- Precise Cyan Corner Brackets -->
+<div class="absolute -top-[1px] -left-[1px] w-2 h-2 border-t-2 border-l-2 border-cyan-accent"></div>
+<div class="absolute -top-[1px] -right-[1px] w-2 h-2 border-t-2 border-r-2 border-cyan-accent"></div>
+<div class="absolute -bottom-[1px] -left-[1px] w-2 h-2 border-b-2 border-l-2 border-cyan-accent"></div>
+<div class="absolute -bottom-[1px] -right-[1px] w-2 h-2 border-b-2 border-r-2 border-cyan-accent"></div>
+<!-- Micro Perception Tag -->
+<div class="animate-operator-label absolute -top-5 left-0 flex items-center gap-1.5 font-mono text-[9px] text-slate-300 bg-slate-950/90 px-1.5 py-0.5 border border-white/10 tracking-wider whitespace-nowrap">
+<span class="w-1 h-1 rounded-full bg-cyan-accent"></span>
+<span class="">OPERATOR // NOMINAL</span>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- AI RISK SIGNAL DETECTION OVERLAY (Amber Alert Loop)                       -->
+<!-- ========================================================================= -->
+<div class="animate-unified-risk absolute top-5 right-5 z-20 pointer-events-none flex items-center gap-2.5 px-3 py-1.5 bg-amber-950/80 border border-amber-500/50 backdrop-blur-md rounded shadow-[0_0_20px_rgba(245,158,11,0.35)]">
+<span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+<div class="flex flex-col">
+<span class="font-mono text-[9px] tracking-wider text-amber-300 font-semibold uppercase">RISK SIGNAL DETECTED</span>
+<span class="font-mono text-[8.5px] tracking-wide text-amber-200/80">TILT DEVIATION +8.4° // PREDICTED IMPACT</span>
+</div>
+</div>
+<!-- Calm Bottom Camera Identifier -->
+<div class="absolute bottom-3 right-4 font-mono text-[10px] text-slate-500 tracking-wider flex items-center gap-2">
+<span class="">BAY-04 // ELEVATION NORTH</span>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MINIMAL PRODUCT PROOF (Animated Flow Line Pipeline Packet)                -->
+<!-- ========================================================================= -->
+<div class="pt-16 lg:pt-24 pb-4 border-t border-white/[0.06] mt-12">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<!-- Elegant Flow Chain with continuous traveling intelligence packet -->
+<div class="relative inline-block py-1">
+<div class="font-mono text-xs sm:text-sm tracking-[0.25em] text-slate-400 font-medium">
+            VIDEO <span class="text-slate-600">→</span> UNDERSTAND <span class="text-slate-600">→</span> PREDICT <span class="text-slate-600">→</span> WARN <span class="text-slate-600">→</span> <span class="text-slate-200">PREVENT</span>
+</div>
+<!-- Continuous Traveling Intelligence Packet / Particle -->
+<div class="animate-flow-particle absolute top-1/2 pointer-events-none w-2.5 h-2.5 rounded-full bg-cyan-accent shadow-[0_0_12px_#00e5ff,0_0_22px_#00e5ff] -translate-y-1/2">
+<div class="absolute -inset-1 rounded-full bg-cyan-accent/30 blur-[2px]"></div>
+</div>
+</div>
+<!-- Continuous Intelligence Tagline -->
+<div class="text-xs sm:text-sm text-slate-400 font-normal">
+          Continuous intelligence for safer, more disciplined material handling.
+        </div>
+</div>
+</div>
+</main>
+<!-- Empty minimal bottom buffer to seal viewport aesthetic -->
+<footer class="relative z-20 h-4"></footer>
+<!-- ========================================================================= -->
+<!-- SUBTLE PARALLAX MOUSE CONTROLLER                                         -->
+<!-- ========================================================================= -->
+<script>
+    (function () {
+      let reqId = null;
+      let targetX = 0, targetY = 0;
+      let currentX = 0, currentY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        // Normalized coordinates: -1.0 to 1.0 from center
+        const halfW = window.innerWidth / 2;
+        const halfH = window.innerHeight / 2;
+        targetX = (e.clientX - halfW) / halfW;
+        targetY = (e.clientY - halfH) / halfH;
+
+        if (!reqId) {
+          reqId = requestAnimationFrame(updateParallax);
+        }
+      }, { passive: true });
+
+      function updateParallax() {
+        // Smooth lerp for buttery organic responsiveness
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+
+        document.documentElement.style.setProperty('--mouse-x', currentX.toFixed(4));
+        document.documentElement.style.setProperty('--mouse-y', currentY.toFixed(4));
+
+        if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
+          reqId = requestAnimationFrame(updateParallax);
+        } else {
+          reqId = null;
+        }
+      }
+    })();
+  </script>
+
+
+</body></html>
