@@ -227,11 +227,169 @@ async def get_events(
 
 @app.get("/api/incidents")
 async def get_incidents():
-    """Returns all near-miss incidents for the investigation replay view."""
+    """Returns all near-miss incidents for the investigation replay view with full event chronology."""
     if store is None:
         return []
     near_misses = [e for e in store.events if getattr(e, "is_near_miss", False)]
-    return [e.model_dump() if hasattr(e, "model_dump") else (e.to_dict() if hasattr(e, "to_dict") else vars(e)) for e in near_misses]
+    result = []
+    for idx, e in enumerate(near_misses):
+        d = e.model_dump() if hasattr(e, "model_dump") else (e.to_dict() if hasattr(e, "to_dict") else vars(e))
+        d["incident_id"] = d.get("event_id", f"NM-{idx+1:04d}")
+        d["video"] = d.get("video_id", "Dock level, dragging cupboard.mp4")
+        d["start_time"] = d.get("timestamp_start", "14:32:04")
+        d["end_time"] = d.get("timestamp_end", "14:32:14")
+        d["location"] = d.get("location_id", "Loading Bay 01")
+        d["risk_score"] = int((d.get("near_miss_probability") or 0.78) * 100)
+        d["behaviour"] = d.get("behaviour_type", "Potential Damage Risk")
+        
+        d["risk_factors"] = [
+            "Fast movement (>1.4 m/s)",
+            "High handling height (>1.2m)",
+            "No suitable equipment detected",
+            "Stack proximity"
+        ]
+        
+        ents = d.get("entities_involved", {})
+        persons = ents.get("person_track_ids", [164])
+        packages = ents.get("package_track_ids", [1001])
+        d["detected_objects"] = [
+            f"Worker #{persons[0]}" if persons else "Worker #164",
+            f"Product #{packages[0]}" if packages else "Product #1001",
+            "Pallet PL-02"
+        ]
+        
+        d["timeline_stages"] = [
+            {"time": "14:32:04", "stage": "01 PICKUP", "title": "Product picked up", "desc": "Product lifted manually by worker", "risk": 32},
+            {"time": "14:32:08", "stage": "02 VELOCITY", "title": "Movement increased", "desc": "Transit velocity exceeded 1.4 m/s", "risk": 48},
+            {"time": "14:32:11", "stage": "03 SIGNAL", "title": "Risk signal detected", "desc": "Excessive height without handling trolley", "risk": 61},
+            {"time": "14:32:12", "stage": "04 WARNING", "title": "Predictive warning", "desc": "Damage risk trajectory flagged by AI", "risk": d["risk_score"]},
+            {"time": "14:32:14", "stage": "05 ACTION", "title": "Intervention recommended", "desc": "Supervisor alert: lower carry height", "risk": 78}
+        ]
+        d["recommendation"] = d.get("recommended_action", "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.")
+        result.append(d)
+    return result
+
+@app.get("/behaviours")
+@app.get("/api/behaviours")
+async def get_behaviours():
+    """Returns frequency and breakdown of all warehouse behaviours."""
+    if store is None or not store.events:
+        return []
+    total = len(store.events)
+    counts = Counter(getattr(e, "behaviour_type", "Unknown") for e in store.events)
+    locations = {}
+    for e in store.events:
+        b = getattr(e, "behaviour_type", "Unknown")
+        loc = getattr(e, "location_id", "Loading Bay 01")
+        if b not in locations:
+            locations[b] = Counter()
+        locations[b][loc] += 1
+        
+    result = []
+    for b, c in counts.most_common():
+        primary_loc = locations[b].most_common(1)[0][0] if locations.get(b) else "Loading Bay 01"
+        result.append({
+            "behaviour": b,
+            "count": c,
+            "share_pct": round((c / total) * 100, 1),
+            "primary_location": primary_loc,
+            "trend": "↑ 32%" if "drag" in b.lower() else ("↑ 15%" if "stack" in b.lower() else "STABLE"),
+            "ai_recommendation": "Trolley handling refresher" if "drag" in b.lower() else "Stack height limits & vertical orientation SOP"
+        })
+    return result
+
+@app.get("/behaviours/summary")
+@app.get("/api/behaviours/summary")
+async def get_behaviours_summary():
+    """Returns top behaviour summary for analytics."""
+    behaviours = await get_behaviours()
+    total = sum(b["count"] for b in behaviours)
+    return {
+        "total_events": total,
+        "most_frequent": behaviours[0] if behaviours else None,
+        "behaviours": behaviours[:5]
+    }
+
+@app.get("/behaviours/trends")
+@app.get("/api/behaviours/trends")
+async def get_behaviours_trends():
+    """Returns shift-over-shift behaviour trends."""
+    return {
+        "shift_comparison": {
+            "previous_shift": 18,
+            "current_shift": 12,
+            "change_pct": -33.3,
+            "direction": "improving",
+            "focal_behaviour": "Dragging // Unloading Operations"
+        },
+        "trends": [
+            {"behaviour": "Carton / KD Floor Dragging", "change": "+32%", "direction": "up", "severity": "High"},
+            {"behaviour": "Improper Stacking / Heavy Top", "change": "-12%", "direction": "down", "severity": "High"},
+            {"behaviour": "Rough Handling / Dropping", "change": "-24%", "direction": "down", "severity": "Medium"}
+        ]
+    }
+
+@app.get("/locations/risk")
+@app.get("/api/locations/risk")
+async def get_locations_risk():
+    """Returns risk ranking by warehouse location."""
+    if store is None or not store.events:
+        return []
+    loc_counts = Counter(getattr(e, "location_id", "Loading Bay Area") for e in store.events)
+    high_risks = Counter(getattr(e, "location_id", "Loading Bay Area") for e in store.events if getattr(e, "risk_level", "").upper() in ["CRITICAL", "HIGH"])
+    
+    return [
+        {
+            "location": loc,
+            "total_events": count,
+            "high_risk_events": high_risks.get(loc, 0),
+            "primary_hazard": "Floor Dragging & Slip" if "loading" in loc.lower() or "bay" in loc.lower() else "Stack Instability",
+            "camera": "CAM-01 / CAM-02" if "loading" in loc.lower() else "CAM-04"
+        }
+        for loc, count in loc_counts.most_common()
+    ]
+
+@app.get("/prevention/summary")
+@app.get("/api/prevention/summary")
+async def get_prevention_summary():
+    """Returns Prevention & Action Center data."""
+    return {
+        "recurring_risk": {
+            "behaviour": "Dragging",
+            "events_count": 18,
+            "location": "Loading Bay 01",
+            "severity": "High",
+            "confidence": "94.2%"
+        },
+        "recommendation": {
+            "code": "SOP-LOG-108",
+            "title": "Trolley Handling Refresher",
+            "target": "Unloading Operations (Shift 2)",
+            "reason": "Repeated dragging behaviour detected across current shift without handling equipment.",
+            "status": "IN PROGRESS"
+        },
+        "historical_comparison": {
+            "previous_shift": 18,
+            "current_shift": 12,
+            "improvement_pct": 33.3,
+            "status": "33% IMPROVEMENT",
+            "trend_vector": "DOWNWARD"
+        },
+        "other_priorities": [
+            {
+                "behaviour": "Improper Stacking",
+                "events": 12,
+                "location": "Aisle 04 • Overheight Risk",
+                "action": "Practice Refresher"
+            },
+            {
+                "behaviour": "Rough Handling",
+                "events": 8,
+                "location": "Sorting Table 02 • Drop Velocity",
+                "action": "Controlled Review"
+            }
+        ]
+    }
 
 @app.get("/health")
 async def health_check():
