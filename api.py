@@ -245,8 +245,8 @@ async def health_check():
         "api_key_set": has_gemini or has_groq
     }
 
-def generate_mjpeg_stream(video_name: Optional[str] = None):
-    """Generates continuous MJPEG frames with real-time YOLO tracking overlays."""
+def generate_mjpeg_stream(video_name: Optional[str] = None, speed: float = 1.0, mask: bool = True, start_frame: int = 0):
+    """Generates continuous MJPEG frames with real-time YOLO tracking overlays and controllable speed/mask."""
     import numpy as np
     cat = None
     if video_name:
@@ -280,9 +280,14 @@ def generate_mjpeg_stream(video_name: Optional[str] = None):
             time.sleep(1.0)
             continue
 
-        fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
-        frame_delay = 1.0 / max(1.0, min(fps, 30.0))
-        frame_idx = 0
+        if start_frame > 0:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, max(0, start_frame))
+
+        fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+        # Calculate dynamic delay factoring in requested playback speed
+        effective_speed = max(0.2, min(float(speed), 5.0))
+        frame_delay = (1.0 / max(1.0, min(fps, 30.0))) / effective_speed
+        frame_idx = start_frame
 
         while True:
             t0 = time.time()
@@ -291,45 +296,47 @@ def generate_mjpeg_stream(video_name: Optional[str] = None):
                 break
             frame_idx += 1
 
-            fr_data = frames_info.get(frame_idx)
-            if fr_data and "tracks" in fr_data:
-                for trk in fr_data["tracks"]:
-                    bbox = trk.get("bbox")
-                    if not bbox:
-                        continue
-                    x1, y1, x2, y2 = [int(v) for v in bbox]
-                    is_person = trk.get("class") == "person"
-                    tid = trk.get("track_id", 0)
+            if mask:
+                fr_data = frames_info.get(frame_idx)
+                if fr_data and "tracks" in fr_data:
+                    for trk in fr_data["tracks"]:
+                        bbox = trk.get("bbox")
+                        if not bbox:
+                            continue
+                        x1, y1, x2, y2 = [int(v) for v in bbox]
+                        is_person = trk.get("class") == "person"
+                        tid = trk.get("track_id", 0)
 
-                    if is_person:
-                        # Cyan box for worker
-                        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 229, 255), 2)
-                        badge_w = 170
-                        cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + badge_w, max(22, y1)), (0, 229, 255), -1)
-                        cv2.putText(frame, f"WORKER #{tid} [NOMINAL]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+                        if is_person:
+                            # Cyan box for worker
+                            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 229, 255), 2)
+                            badge_w = 170
+                            cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + badge_w, max(22, y1)), (0, 229, 255), -1)
+                            cv2.putText(frame, f"WORKER #{tid} [NOMINAL]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
 
-                        # Skeletons
-                        kps = trk.get("keypoints", {})
-                        if kps:
-                            for p1, p2 in SKELETON_PAIRS:
-                                n1, n2 = KEYPOINT_NAMES[p1], KEYPOINT_NAMES[p2]
-                                if n1 in kps and n2 in kps and kps[n1][2] > 0.3 and kps[n2][2] > 0.3:
-                                    cv2.line(frame, (int(kps[n1][0]), int(kps[n1][1])), (int(kps[n2][0]), int(kps[n2][1])), (0, 255, 128), 2)
-                            for k_name, (kx, ky, kc) in kps.items():
-                                if kc > 0.3:
-                                    cv2.circle(frame, (int(kx), int(ky)), 4, (0, 255, 0), -1)
-                    else:
-                        # Amber box for products/cartons
-                        cv2.rectangle(frame, (x1, y1), (x2, y2), (95, 185, 255), 2)
-                        badge_w = 180
-                        cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + badge_w, max(22, y1)), (95, 185, 255), -1)
-                        cv2.putText(frame, f"PRODUCT #{tid} [VEL: 1.4m/s]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+                            # Skeletons
+                            kps = trk.get("keypoints", {})
+                            if kps:
+                                for p1, p2 in SKELETON_PAIRS:
+                                    n1, n2 = KEYPOINT_NAMES[p1], KEYPOINT_NAMES[p2]
+                                    if n1 in kps and n2 in kps and kps[n1][2] > 0.3 and kps[n2][2] > 0.3:
+                                        cv2.line(frame, (int(kps[n1][0]), int(kps[n1][1])), (int(kps[n2][0]), int(kps[n2][1])), (0, 255, 128), 2)
+                                for k_name, (kx, ky, kc) in kps.items():
+                                    if kc > 0.3:
+                                        cv2.circle(frame, (int(kx), int(ky)), 4, (0, 255, 0), -1)
+                        else:
+                            # Amber box for products/cartons
+                            cv2.rectangle(frame, (x1, y1), (x2, y2), (95, 185, 255), 2)
+                            badge_w = 180
+                            cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + badge_w, max(22, y1)), (95, 185, 255), -1)
+                            cv2.putText(frame, f"PRODUCT #{tid} [VEL: 1.4m/s]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
 
             # Top HUD bar
             h, w = frame.shape[:2]
             cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
-            hud_text = f"FIELD INTELLIGENCE LIVE // {cam_label.upper()} // AI DETECTION & TRACKING ACTIVE"
-            cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.48, (0, 229, 255), 1, cv2.LINE_AA)
+            hud_mode = "AI DETECTION & TRACKING ACTIVE" if mask else "RAW FEED (PERCEPTION MASK OFF)"
+            hud_text = f"FIELD INTELLIGENCE LIVE // {cam_label.upper()} // {hud_mode} // {speed}X"
+            cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
 
             success, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])
             if not success:
@@ -344,13 +351,90 @@ def generate_mjpeg_stream(video_name: Optional[str] = None):
                 time.sleep(sleep_time)
 
         cap.release()
+        start_frame = 0
 
 @app.get("/api/video_feed")
-def video_feed(video: Optional[str] = None):
-    """Streams live MJPEG frames with real-time AI perception and tracking overlays."""
+def video_feed(video: Optional[str] = None, speed: float = 1.0, mask: bool = True, start_frame: int = 0):
+    """Streams live MJPEG frames with real-time AI perception, controllable speed, and mask toggle."""
     return StreamingResponse(
-        generate_mjpeg_stream(video),
+        generate_mjpeg_stream(video_name=video, speed=speed, mask=mask, start_frame=start_frame),
         media_type="multipart/x-mixed-replace; boundary=frame"
+    )
+
+@app.get("/api/video_frame")
+def get_video_frame(video: Optional[str] = None, frame_idx: int = 1, mask: bool = True):
+    """Returns a single annotated JPEG frame at frame_idx for frame-stepping / paused inspection."""
+    import numpy as np
+    from fastapi import Response
+
+    cat = None
+    if video:
+        for k, v in VIDEO_CATALOG.items():
+            if video.lower() in k.lower():
+                cat = v
+                break
+    if not cat:
+        cat = list(VIDEO_CATALOG.values())[0]
+
+    video_path = cat["video"]
+    tracking_path = cat.get("tracking")
+    cam_label = cat.get("cam", "CAM-01")
+
+    cap = cv2.VideoCapture(video_path)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 100)
+    frame_idx = max(1, min(frame_idx, total_frames))
+    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx - 1)
+    ret, frame = cap.read()
+    cap.release()
+
+    if not ret or frame is None:
+        frame = np.zeros((720, 1280, 3), dtype=np.uint8)
+        cv2.putText(frame, f"FRAME {frame_idx} NOT FOUND", (100, 360), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 255), 2)
+    elif mask:
+        if tracking_path and os.path.exists(tracking_path):
+            try:
+                with open(tracking_path, "r", encoding="utf-8") as f:
+                    td = json.load(f)
+                    frames_info = {fr["frame_idx"]: fr for fr in td.get("frames", [])}
+                    fr_data = frames_info.get(frame_idx)
+                    if fr_data and "tracks" in fr_data:
+                        for trk in fr_data["tracks"]:
+                            bbox = trk.get("bbox")
+                            if not bbox: continue
+                            x1, y1, x2, y2 = [int(v) for v in bbox]
+                            is_person = trk.get("class") == "person"
+                            tid = trk.get("track_id", 0)
+                            if is_person:
+                                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 229, 255), 2)
+                                cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + 170, max(22, y1)), (0, 229, 255), -1)
+                                cv2.putText(frame, f"WORKER #{tid} [NOMINAL]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+                                kps = trk.get("keypoints", {})
+                                if kps:
+                                    for p1, p2 in SKELETON_PAIRS:
+                                        n1, n2 = KEYPOINT_NAMES[p1], KEYPOINT_NAMES[p2]
+                                        if n1 in kps and n2 in kps and kps[n1][2] > 0.3 and kps[n2][2] > 0.3:
+                                            cv2.line(frame, (int(kps[n1][0]), int(kps[n1][1])), (int(kps[n2][0]), int(kps[n2][1])), (0, 255, 128), 2)
+                            else:
+                                cv2.rectangle(frame, (x1, y1), (x2, y2), (95, 185, 255), 2)
+                                cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + 180, max(22, y1)), (95, 185, 255), -1)
+                                cv2.putText(frame, f"PRODUCT #{tid} [VEL: 1.4m/s]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+            except Exception:
+                pass
+        # Top HUD bar
+        h, w = frame.shape[:2]
+        cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
+        hud_text = f"FIELD INTELLIGENCE [FRAME {frame_idx}/{total_frames}] // {cam_label.upper()} // PAUSED FRAME INSPECTION"
+        cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
+
+    _, buf = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
+    return Response(
+        content=buf.tobytes(),
+        media_type="image/jpeg",
+        headers={
+            "X-Current-Frame": str(frame_idx),
+            "X-Total-Frames": str(total_frames),
+            "Cache-Control": "no-cache"
+        }
     )
 
 @app.get("/api/video_list")

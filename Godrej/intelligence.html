@@ -408,9 +408,7 @@ void main() {
               LIVE FEED
             </span>
             <span class="font-headline-sm text-xs text-on-surface tracking-wider font-semibold" id="camTitle">BAY-01 // DOCK GATE A</span>
-            <select id="cameraFeedSelect" class="bg-surface-container-lowest text-primary font-mono-data-sm text-[11px] border border-outline-variant/50 px-2 py-0.5 rounded cursor-pointer focus:outline-none focus:border-primary-container">
-              <option value="KD packets dragged, heavy box kept on other packets.mp4">CAM-01 // Dock Gate A (Unloading Bay 01)</option>
-            </select>
+
           </div>
 <div class="flex items-center gap-4 font-mono-data-sm text-[11px] text-outline">
 <span class="text-primary-container font-mono">60.0 FPS</span>
@@ -447,31 +445,63 @@ void main() {
 </div>
 </div>
 <!-- Video Control Dock Sub-strip -->
-<div class="flex items-center justify-between px-3 py-1.5 bg-surface-container-low border-t border-outline-variant/30 text-xs">
-<div class="flex items-center gap-2">
-<button class="p-1 hover:text-primary-container text-on-surface-variant transition-colors" title="Play / Pause">
-<span class="material-symbols-outlined text-[16px]">pause</span>
-</button>
-<button class="p-1 hover:text-primary-container text-on-surface-variant transition-colors" title="Step Back">
-<span class="material-symbols-outlined text-[16px]">skip_previous</span>
-</button>
-<button class="p-1 hover:text-primary-container text-on-surface-variant transition-colors" title="Step Forward">
-<span class="material-symbols-outlined text-[16px]">skip_next</span>
-</button>
-<span class="h-3 w-px bg-outline-variant/40 mx-1"></span>
-<span class="font-mono-data-sm text-[11px] text-on-surface">SPEED: 1.0X REALTIME</span>
-</div>
-<div class="flex items-center gap-2">
-<button class="flex items-center gap-1 px-2 py-0.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 rounded text-[11px] font-mono-data-sm text-on-surface transition-colors">
-<span class="material-symbols-outlined text-[14px]">screenshot_monitor</span>
-              SNAPSHOT
+        <div class="flex flex-wrap items-center justify-between px-3 py-2 bg-surface-container-low border-t border-outline-variant/30 text-xs gap-2 z-20">
+          <!-- Left Controls: Video Selector, Play/Pause, Step Back, Step Forward, Speed -->
+          <div class="flex items-center gap-2 flex-wrap">
+            <!-- Camera/Video Selector -->
+            <div class="flex items-center gap-1.5 bg-surface-container-lowest px-2.5 py-1 rounded border border-primary-container/40 shadow-inner">
+              <span class="material-symbols-outlined text-[15px] text-primary-container">videocam</span>
+              <label for="cameraFeedSelect" class="font-label-caps text-[9px] text-primary-container font-bold tracking-wider">SELECT VIDEO:</label>
+              <select id="cameraFeedSelect" class="bg-surface-container-lowest text-on-surface font-mono-data-sm text-[11px] font-medium cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary-container max-w-[270px] truncate">
+                <!-- Dynamically loaded from /api/video_list -->
+              </select>
+            </div>
+
+            <span class="h-4 w-px bg-outline-variant/40 mx-0.5 hidden sm:inline-block"></span>
+
+            <!-- Play / Pause Button -->
+            <button id="btnPlayPause" class="p-1.5 px-2 bg-surface-container hover:bg-surface-container-high text-on-surface hover:text-primary-container border border-outline-variant/40 rounded transition-all flex items-center gap-1 cursor-pointer" title="Pause / Resume Live Feed">
+              <span id="iconPlayPause" class="material-symbols-outlined text-[17px]">pause</span>
+              <span id="labelPlayPause" class="font-mono-data-sm text-[10px] font-semibold">PAUSE</span>
             </button>
-<button class="flex items-center gap-1 px-2 py-0.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 rounded text-[11px] font-mono-data-sm text-primary-container transition-colors">
-<span class="material-symbols-outlined text-[14px]">tune</span>
-              PERCEPTION MASK
+
+            <!-- Step Back (15 frames / ~0.5s) -->
+            <button id="btnStepBack" class="p-1.5 px-2 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary-container border border-outline-variant/40 rounded transition-all flex items-center gap-0.5 cursor-pointer" title="Step Back 15 Frames (~0.5s)">
+              <span class="material-symbols-outlined text-[17px]">skip_previous</span>
+              <span class="font-mono-data-sm text-[10px]">-0.5s</span>
             </button>
-</div>
-</div>
+
+            <!-- Step Forward (15 frames / ~0.5s) -->
+            <button id="btnStepForward" class="p-1.5 px-2 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary-container border border-outline-variant/40 rounded transition-all flex items-center gap-0.5 cursor-pointer" title="Step Forward 15 Frames (~0.5s)">
+              <span class="font-mono-data-sm text-[10px]">+0.5s</span>
+              <span class="material-symbols-outlined text-[17px]">skip_next</span>
+            </button>
+
+            <!-- Speed Toggle Button -->
+            <button id="btnSpeed" class="px-2.5 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface hover:text-primary-container border border-outline-variant/40 rounded font-mono-data-sm text-[11px] font-semibold transition-all flex items-center gap-1.5 cursor-pointer" title="Cycle Playback Speed (0.5X, 1.0X, 1.5X, 2.0X, 3.0X)">
+              <span class="material-symbols-outlined text-[15px] text-primary-container">speed</span>
+              <span id="speedLabel">1.0X REALTIME</span>
+            </button>
+
+            <!-- Frame / Playback Status Badge -->
+            <span id="frameStatusBadge" class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary-container/10 font-mono-data-sm text-[10px] text-primary-container rounded border border-primary-container/30">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+              LIVE STREAM
+            </span>
+          </div>
+
+          <!-- Right Controls: Snapshot & Perception Mask -->
+          <div class="flex items-center gap-2">
+            <button id="btnSnapshot" class="flex items-center gap-1.5 px-2.5 py-1.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 rounded text-[11px] font-mono-data-sm text-on-surface hover:text-primary-container transition-all cursor-pointer" title="Capture High-Res Evidence Frame">
+              <span class="material-symbols-outlined text-[15px]">screenshot_monitor</span>
+              <span>SNAPSHOT</span>
+            </button>
+            <button id="btnPerceptionMask" class="flex items-center gap-1.5 px-2.5 py-1.5 bg-surface-container hover:bg-surface-container-high border border-primary-container/50 rounded text-[11px] font-mono-data-sm text-primary-container transition-all cursor-pointer" title="Toggle YOLOv8 Pose & ByteTrack Overlays">
+              <span id="iconPerceptionMask" class="material-symbols-outlined text-[15px]">visibility</span>
+              <span id="labelPerceptionMask">MASK ON</span>
+            </button>
+          </div>
+        </div>
 </section>
 <!-- RIGHT COLUMN: INTELLIGENCE MODULE & RISK ENGINE (~32% / col-span-4) -->
 <section class="xl:col-span-4 flex flex-col gap-3">
@@ -776,6 +806,146 @@ void main() {
     // Live Telemetry & Event Ingestion from Backend
     const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
     
+    // Video Stream State & Controls
+    let isPlaying = true;
+    let currentSpeed = 1.0;
+    let maskEnabled = true;
+    let currentFrameIdx = 1;
+    let totalFrames = 1000;
+    let currentVideo = "";
+    const speeds = [
+      { val: 1.0, label: "1.0X REALTIME" },
+      { val: 1.5, label: "1.5X FAST" },
+      { val: 2.0, label: "2.0X ULTRA" },
+      { val: 3.0, label: "3.0X MAX" },
+      { val: 0.5, label: "0.5X SLOW" }
+    ];
+    let speedIndex = 0;
+
+    function applyStreamSource() {
+      const videoFeed = document.getElementById('liveVideoFeed');
+      const badge = document.getElementById('frameStatusBadge');
+      const iconPlayPause = document.getElementById('iconPlayPause');
+      const labelPlayPause = document.getElementById('labelPlayPause');
+
+      if (!videoFeed) return;
+
+      if (isPlaying) {
+        // Continuous MJPEG stream
+        videoFeed.src = `${API_BASE}/api/video_feed?video=${encodeURIComponent(currentVideo)}&speed=${currentSpeed}&mask=${maskEnabled}&start_frame=${currentFrameIdx}&t=${Date.now()}`;
+        if (iconPlayPause) iconPlayPause.textContent = 'pause';
+        if (labelPlayPause) labelPlayPause.textContent = 'PAUSE';
+        if (badge) {
+          badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span> LIVE STREAM (${currentSpeed}X)`;
+          badge.className = 'hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary-container/10 font-mono-data-sm text-[10px] text-primary-container rounded border border-primary-container/30';
+        }
+      } else {
+        // Single frame inspection
+        fetchSingleFrame(currentFrameIdx);
+      }
+    }
+
+    async function fetchSingleFrame(frameIdx) {
+      const videoFeed = document.getElementById('liveVideoFeed');
+      const badge = document.getElementById('frameStatusBadge');
+      const iconPlayPause = document.getElementById('iconPlayPause');
+      const labelPlayPause = document.getElementById('labelPlayPause');
+
+      if (!videoFeed) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/video_frame?video=${encodeURIComponent(currentVideo)}&frame_idx=${frameIdx}&mask=${maskEnabled}`);
+        if (res.ok) {
+          const cFrame = res.headers.get('X-Current-Frame');
+          const tFrames = res.headers.get('X-Total-Frames');
+          if (cFrame) currentFrameIdx = parseInt(cFrame);
+          if (tFrames) totalFrames = parseInt(tFrames);
+
+          const blob = await res.blob();
+          videoFeed.src = URL.createObjectURL(blob);
+
+          if (iconPlayPause) iconPlayPause.textContent = 'play_arrow';
+          if (labelPlayPause) labelPlayPause.textContent = 'RESUME';
+          if (badge) {
+            badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> FRAME ${currentFrameIdx} / ${totalFrames} [PAUSED]`;
+            badge.className = 'hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 bg-secondary/15 font-mono-data-sm text-[10px] text-secondary rounded border border-secondary/40';
+          }
+        }
+      } catch (err) {
+        console.error("Failed to step frame:", err);
+      }
+    }
+
+    function initVideoControls() {
+      const btnPlayPause = document.getElementById('btnPlayPause');
+      if (btnPlayPause) {
+        btnPlayPause.addEventListener('click', () => {
+          isPlaying = !isPlaying;
+          applyStreamSource();
+        });
+      }
+
+      const btnStepBack = document.getElementById('btnStepBack');
+      if (btnStepBack) {
+        btnStepBack.addEventListener('click', () => {
+          isPlaying = false;
+          currentFrameIdx = Math.max(1, currentFrameIdx - 15);
+          fetchSingleFrame(currentFrameIdx);
+        });
+      }
+
+      const btnStepForward = document.getElementById('btnStepForward');
+      if (btnStepForward) {
+        btnStepForward.addEventListener('click', () => {
+          isPlaying = false;
+          currentFrameIdx = Math.min(totalFrames, currentFrameIdx + 15);
+          fetchSingleFrame(currentFrameIdx);
+        });
+      }
+
+      const btnSpeed = document.getElementById('btnSpeed');
+      const speedLabel = document.getElementById('speedLabel');
+      if (btnSpeed) {
+        btnSpeed.addEventListener('click', () => {
+          speedIndex = (speedIndex + 1) % speeds.length;
+          currentSpeed = speeds[speedIndex].val;
+          if (speedLabel) speedLabel.textContent = speeds[speedIndex].label;
+          if (isPlaying) {
+            applyStreamSource();
+          }
+        });
+      }
+
+      const btnPerceptionMask = document.getElementById('btnPerceptionMask');
+      const iconPerceptionMask = document.getElementById('iconPerceptionMask');
+      const labelPerceptionMask = document.getElementById('labelPerceptionMask');
+      if (btnPerceptionMask) {
+        btnPerceptionMask.addEventListener('click', () => {
+          maskEnabled = !maskEnabled;
+          if (labelPerceptionMask) labelPerceptionMask.textContent = maskEnabled ? 'MASK ON' : 'RAW FEED';
+          if (iconPerceptionMask) iconPerceptionMask.textContent = maskEnabled ? 'visibility' : 'visibility_off';
+          if (isPlaying) {
+            applyStreamSource();
+          } else {
+            fetchSingleFrame(currentFrameIdx);
+          }
+        });
+      }
+
+      const btnSnapshot = document.getElementById('btnSnapshot');
+      if (btnSnapshot) {
+        btnSnapshot.addEventListener('click', () => {
+          const snapshotUrl = `${API_BASE}/api/video_frame?video=${encodeURIComponent(currentVideo)}&frame_idx=${currentFrameIdx}&mask=${maskEnabled}`;
+          const a = document.createElement('a');
+          a.href = snapshotUrl;
+          a.download = `FIELD_INTEL_SNAP_${Date.now()}.jpg`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        });
+      }
+    }
+
     async function loadLiveIntelligence() {
       const videoFeed = document.getElementById('liveVideoFeed');
       const cameraSelect = document.getElementById('cameraFeedSelect');
@@ -785,25 +955,29 @@ void main() {
         videoFeed.src = API_BASE + '/api/video_feed';
       }
 
+      initVideoControls();
+
       try {
         const vRes = await fetch(API_BASE + '/api/video_list');
         if (vRes.ok) {
           const list = await vRes.json();
           if (cameraSelect && list.length > 0) {
             cameraSelect.innerHTML = list.map(item => `<option value="${item.filename}">${item.cam}</option>`).join('');
+            currentVideo = list[0].filename;
             cameraSelect.addEventListener('change', (e) => {
-              const selected = e.target.value;
-              if (videoFeed) {
-                videoFeed.src = API_BASE + '/api/video_feed?video=' + encodeURIComponent(selected);
-              }
+              currentVideo = e.target.value;
+              currentFrameIdx = 1;
               const selectedText = cameraSelect.options[cameraSelect.selectedIndex].text;
               if (camTitle) camTitle.textContent = selectedText.split('//')[0] || selectedText;
+              applyStreamSource();
             });
           }
         }
       } catch (e) {
         console.warn("Could not load video list:", e);
       }
+
+      applyStreamSource();
 
       try {
         const [mRes, eRes] = await Promise.all([
