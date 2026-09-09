@@ -19,6 +19,7 @@ for tests without making network calls.
 from __future__ import annotations
 import os
 import json
+import time
 
 try:
     from dotenv import load_dotenv
@@ -31,11 +32,165 @@ try:
 except ImportError:  # pragma: no cover
     groq = None
 
+try:
+    from google import genai
+    from google.genai import types
+except ImportError:  # pragma: no cover
+    genai = None
+    types = None
+
 DEFAULT_GROQ_MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
+DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.7-flash")
+
+# Working Gemini models with independent quota pools:
+# On rate-limit, the system immediately switches to the next model in 0 seconds (no waiting).
+GEMINI_MODEL_CHAIN = [
+    os.environ.get("GEMINI_MODEL", "gemini-3.7-flash"),
+    "gemini-3-flash-preview",
+    "gemini-2.5-pro",
+]
 
 
 class LLMClientError(Exception):
     """Raised when the LLM client is misconfigured or the API call fails."""
+
+
+class GeminiLLMClient:
+    """
+    Google Gemini backend using the modern google-genai SDK.
+    Provides a 1,000,000+ token context window, eliminating token limit issues.
+    Supports native tool calling and persistent session memory.
+    """
+
+    def __init__(self, model: str = DEFAULT_GEMINI_MODEL, memory_file: str = None):
+        if genai is None:
+            raise LLMClientError(
+                "The 'google-genai' package is not installed. Run: pip install google-genai"
+            )
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key:
+            raise LLMClientError(
+                "GEMINI_API_KEY is not set. Export it or set it in .env before running the assistant."
+            )
+        self._client = genai.Client(api_key=api_key)
+        self.model = model
+        self.memory_file = memory_file
+
+    def ask(self, system: str, user_message: str, context: str = "") -> str:
+        prompt = user_message
+        if context:
+            prompt = f"{user_message}\n\n{context}"
+
+        config = types.GenerateContentConfig(
+            system_instruction=system,
+        )
+        try:
+            response = self._client.models.generate_content(
+                model=self.model,
+                contents=prompt,
+                config=config,
+            )
+            return (response.text or "").strip()
+        except Exception as e:
+            raise LLMClientError(f"Gemini API call failed: {e}") from e
+
+    def ask_with_tools(self, system: str, user_message: str, tools: list[dict], tool_handler: callable) -> str:
+        # Build function declarations from OpenAI-style tool schemas
+        function_declarations = []
+        for t in tools:
+            fn = t.get("function", t)
+            function_declarations.append({
+                "name": fn["name"],
+                "description": fn.get("description", ""),
+                "parameters": fn.get("parameters", {})
+            })
+        gemini_tools = [types.Tool(function_declarations=function_declarations)]
+
+        # Load session history if available
+        history = []
+        if self.memory_file and os.path.exists(self.memory_file):
+            try:
+                with open(self.memory_file, "r") as f:
+                    saved = json.load(f)
+                    for m in saved:
+                        role = m.get("role")
+                        if role in ("user", "assistant"):
+                            gemini_role = "user" if role == "user" else "model"
+                            history.append(
+                                types.Content(
+                                    role=gemini_role,
+                                    parts=[types.Part.from_text(text=m.get("content", ""))]
+                                )
+                            )
+            except Exception:
+                pass
+
+        def _execute_or_fail(call_fn):
+            try:
+                return call_fn()
+            except Exception as e:
+                err_str = str(e)
+                if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "quota" in err_str.lower():
+                    raise LLMClientError(f"Limit exceeded: Rate limit reached for '{self.model}'.") from e
+                raise
+
+        try:
+            chat = self._client.chats.create(
+                model=self.model,
+                config=types.GenerateContentConfig(
+                    system_instruction=system,
+                    tools=gemini_tools,
+                ),
+                history=history
+            )
+
+            response = _execute_or_fail(lambda: chat.send_message(user_message))
+
+            # Handle multi-step function calls
+            for _ in range(5):
+                if not response.function_calls:
+                    break
+                tool_parts = []
+                for call in response.function_calls:
+                    fn_name = call.name
+                    fn_args = dict(call.args) if call.args else {}
+                    tool_result = tool_handler(fn_name, fn_args)
+                    tool_parts.append(
+                        types.Part.from_function_response(
+                            name=fn_name,
+                            response={"result": tool_result}
+                        )
+                    )
+                response = _execute_or_fail(lambda: chat.send_message(tool_parts))
+
+            final_text = (response.text or "").strip()
+
+            # Save clean user & assistant turns to session memory
+            saved_history = []
+            if self.memory_file and os.path.exists(self.memory_file):
+                try:
+                    with open(self.memory_file, "r") as f:
+                        saved_history = json.load(f)
+                except Exception:
+                    pass
+
+            saved_history.append({"role": "user", "content": user_message})
+            saved_history.append({"role": "assistant", "content": final_text})
+
+            if self.memory_file:
+                os.makedirs(os.path.dirname(self.memory_file), exist_ok=True)
+                with open(self.memory_file, "w") as f:
+                    json.dump(saved_history, f, indent=4)
+
+            return final_text
+
+        except LLMClientError:
+            raise
+        except Exception as e:
+            err_str = str(e)
+            if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "quota" in err_str.lower():
+                raise LLMClientError(f"Limit exceeded: Rate limit reached for '{self.model}'.") from e
+            raise LLMClientError(f"Gemini API call (with tools) failed: {e}") from e
 
 
 class GroqLLMClient:
@@ -179,3 +334,84 @@ class MockLLMClient:
 
     def ask_with_tools(self, system: str, user_message: str, tools: list[dict], tool_handler: callable) -> str:
         return f"[MOCK] I would answer your question: '{user_message}' using tools."
+
+
+class GeminiModelChainClient:
+    """
+    Cycles instantly through Gemini models when one hits a rate limit.
+    Zero wait time — switches immediately since each model has an independent quota.
+    If all models are exhausted, immediately prints 'Limit exceeded' without waiting.
+    """
+
+    def __init__(self, models: list[str] = None, memory_file: str = None):
+        self._models = list(models or GEMINI_MODEL_CHAIN)
+        self._index = 0
+        self._clients: dict[str, GeminiLLMClient] = {}
+        self.memory_file = memory_file
+        # Validate first client
+        self._get_client(self._models[0])
+
+    def _get_client(self, model: str) -> GeminiLLMClient:
+        if model not in self._clients:
+            self._clients[model] = GeminiLLMClient(model=model, memory_file=self.memory_file)
+        return self._clients[model]
+
+    @property
+    def current_model(self) -> str:
+        return self._models[self._index]
+
+    @property
+    def model(self) -> str:
+        return self.current_model
+
+    def _execute_with_failover(self, method: str, *args, **kwargs) -> str:
+        start_index = self._index
+        while True:
+            model = self._models[self._index]
+            client = self._get_client(model)
+            try:
+                return getattr(client, method)(*args, **kwargs)
+            except LLMClientError as e:
+                err_lower = str(e).lower()
+                if "limit exceeded" in err_lower or "429" in err_lower or "resource_exhausted" in err_lower:
+                    next_index = (self._index + 1) % len(self._models)
+                    if next_index == start_index:
+                        # Full cycle finished - all models reached limit
+                        print(f"\n[!] Limit exceeded: All available Gemini models reached their request limits.")
+                        raise LLMClientError("Limit exceeded: All Gemini models reached their request limits.") from e
+                    print(f"\n[Limit Exceeded on {model}] Switching immediately to {self._models[next_index]} (no wait)...")
+                    self._index = next_index
+                else:
+                    raise
+            except Exception as e:
+                err_lower = str(e).lower()
+                if "429" in err_lower or "resource_exhausted" in err_lower or "quota" in err_lower:
+                    next_index = (self._index + 1) % len(self._models)
+                    if next_index == start_index:
+                        print(f"\n[!] Limit exceeded: All available Gemini models reached their request limits.")
+                        raise LLMClientError("Limit exceeded: All Gemini models reached their request limits.") from e
+                    print(f"\n[Limit Exceeded on {model}] Switching immediately to {self._models[next_index]} (no wait)...")
+                    self._index = next_index
+                else:
+                    raise
+
+    def ask(self, system: str, user_message: str, context: str = "") -> str:
+        return self._execute_with_failover("ask", system, user_message, context)
+
+    def ask_with_tools(self, system: str, user_message: str, tools: list[dict], tool_handler: callable) -> str:
+        return self._execute_with_failover("ask_with_tools", system, user_message, tools, tool_handler)
+
+
+def get_llm_client(memory_file: str = None):
+    """
+    Factory function returning the best configured LLM client:
+    1. GeminiModelChainClient if GEMINI_API_KEY is present (cycles through models instantly on quota, no waiting)
+    2. GroqLLMClient if GROQ_API_KEY is present
+    3. MockLLMClient for testing without credentials
+    """
+    if os.environ.get("GEMINI_API_KEY"):
+        return GeminiModelChainClient(memory_file=memory_file)
+    if os.environ.get("GROQ_API_KEY"):
+        return GroqLLMClient(memory_file=memory_file)
+    return MockLLMClient(memory_file=memory_file)
+

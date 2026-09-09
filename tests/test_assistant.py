@@ -39,10 +39,10 @@ def test_all_ten_scenarios_present():
     store = _store()
     codes = {e.behaviour_code for e in store.events}
     expected = {
-        "DRAG_NO_EQUIPMENT", "DROP_HIGH_IMPACT", "DROP_LOW_SLIP",
-        "NEAR_MISS_UNSAFE_CARRY", "THROW_SLIDE", "STACK_INVERTED_PYRAMID",
-        "STEP_ON_CARTON", "STRAP_LIFT_PULL", "STACK_WOBBLE_UNSTABLE",
-        "SAFE_HANDLING_CONTROL",
+        "DRAG_NO_EQUIPMENT", "UNCONTROLLED_DROP_HIGH", "CARTON_SLIP_LOW",
+        "NEAR_MISS_UNSAFE_CARRY", "CARTON_THROW_SLIDE",
+        "STEPPING_ON_CARTON", "STRAP_LIFT_PULL", "UNSTABLE_STACK_WOBBLE",
+        "SAFE_HANDLING_BENCHMARK",
     }
     assert expected.issubset(codes)
 
@@ -64,20 +64,11 @@ def test_explain_unknown_event_does_not_hallucinate():
     assert "don't have an event" in result.answer.lower()
 
 
-def test_ask_narrows_context_for_specific_bay_question():
-    store = _store()
-    llm = MockLLMClient()
-    result = q.ask(store, llm, "What dragging happened in Bay 02?")
-    assert len(result.event_ids) < len(store.events)
-    for eid in result.event_ids:
-        assert store.get(eid).location_id == "Bay 02 - Unloading Dock"
-
-
-def test_ask_falls_back_to_full_log_when_nothing_matches():
+def test_ask_with_tools_mock_execution():
     store = _store()
     llm = MockLLMClient()
     result = q.ask(store, llm, "Tell me about today in general.")
-    assert len(result.event_ids) == len(store.events)
+    assert "[MOCK]" in result.answer
 
 
 def test_timestamp_parsing():

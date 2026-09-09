@@ -1,20 +1,541 @@
 [
   {
     "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "CARTON_SLIP_LOW",
+    "timestamp_start": "00:00:22.600",
+    "timestamp_end": "00:00:23.067",
+    "description": "Carton #1259 underwent uncontrolled downward drop of approximately 0.29m onto floor surface."
+  },
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:09.567",
+    "timestamp_end": "00:00:10.600",
+    "description": "Carton #1001 propelled horizontally across floor/surface at excessive speed (1.7 m/s)."
+  },
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:22.400",
+    "timestamp_end": "00:00:25.200",
+    "description": "Carton #1259 propelled horizontally across floor/surface at excessive speed (1.86 m/s)."
+  },
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
     "behaviour_code": "DRAG_NO_EQUIPMENT",
-    "timestamp_start": "00:00:00.300",
-    "timestamp_end": "00:00:09.500"
+    "timestamp_start": "00:00:00.367",
+    "timestamp_end": "00:00:30.933",
+    "description": "Operator #2 observed in sustained floor-dragging / pulling posture without handling equipment."
+  },
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+    "timestamp_start": "00:00:09.867",
+    "timestamp_end": "00:00:10.200",
+    "description": "Carton #1001 carried by operator #164 at elevated height (1.21m) and excessive speed (529.1 px/s). L"
+  },
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+    "timestamp_start": "00:00:09.767",
+    "timestamp_end": "00:00:11.933",
+    "description": "Operator #188 handled carton #1001 at controlled speed (49.7 px/s) and safe elevation \u2014 matches benc"
+  },
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+    "timestamp_start": "00:00:19.000",
+    "timestamp_end": "00:00:23.233",
+    "description": "Operator #1 handled carton #1190 at controlled speed (10.4 px/s) and safe elevation \u2014 matches benchm"
   },
   {
     "video_id": "Dock level, dragging cupboard.mp4",
     "behaviour_code": "UNCONTROLLED_DROP_HIGH",
-    "timestamp_start": "00:00:09.500",
-    "timestamp_end": "00:00:09.900"
+    "timestamp_start": "00:00:09.567",
+    "timestamp_end": "00:00:09.900",
+    "description": "Carton #1001 underwent uncontrolled downward drop of approximately 1.22m onto floor surface."
   },
   {
     "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+    "timestamp_start": "00:00:22.400",
+    "timestamp_end": "00:00:22.867",
+    "description": "Carton #1259 underwent uncontrolled downward drop of approximately 0.88m onto floor surface."
+  },
+  {
+    "video_id": "Dock level, dragging cupboard.mp4",
+    "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+    "timestamp_start": "00:00:11.000",
+    "timestamp_end": "00:00:27.433",
+    "description": "Carton #1001 exhibiting significant tilt/jitter while at rest, indicating stack instability."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
     "behaviour_code": "CARTON_SLIP_LOW",
-    "timestamp_start": "00:00:05.000",
-    "timestamp_end": "00:00:06.000"
+    "timestamp_start": "00:00:00.933",
+    "timestamp_end": "00:00:01.433",
+    "description": "Carton #1001 underwent uncontrolled downward drop of approximately 0.46m onto floor surface."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "CARTON_SLIP_LOW",
+    "timestamp_start": "00:00:05.467",
+    "timestamp_end": "00:00:08.367",
+    "description": "Carton #1463 underwent uncontrolled downward drop of approximately 0.59m onto floor surface."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "CARTON_SLIP_LOW",
+    "timestamp_start": "00:00:14.000",
+    "timestamp_end": "00:00:14.767",
+    "description": "Carton #1178 underwent uncontrolled downward drop of approximately 0.72m onto floor surface."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:01.300",
+    "timestamp_end": "00:00:01.400",
+    "description": "Carton #1357 propelled horizontally across floor/surface at excessive speed (0.65 m/s)."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:06.133",
+    "timestamp_end": "00:00:10.033",
+    "description": "Carton #1001 propelled horizontally across floor/surface at excessive speed (4.7 m/s)."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:12.200",
+    "timestamp_end": "00:00:15.967",
+    "description": "Carton #1178 propelled horizontally across floor/surface at excessive speed (0.74 m/s)."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:31.500",
+    "timestamp_end": "00:00:32.100",
+    "description": "Carton #1863 propelled horizontally across floor/surface at excessive speed (1.21 m/s)."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "DRAG_NO_EQUIPMENT",
+    "timestamp_start": "00:00:00.100",
+    "timestamp_end": "00:00:20.933",
+    "description": "Carton #1357 dragged across warehouse floor (0.19m over 0.47s) without mechanical handling equipment"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "DRAG_NO_EQUIPMENT",
+    "timestamp_start": "00:00:26.500",
+    "timestamp_end": "00:00:26.967",
+    "description": "Carton #1406 dragged across warehouse floor (0.23m over 0.47s) without mechanical handling equipment"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "DRAG_NO_EQUIPMENT",
+    "timestamp_start": "00:00:29.767",
+    "timestamp_end": "00:00:33.667",
+    "description": "Carton #1800 dragged across warehouse floor (0.23m over 0.63s) without mechanical handling equipment"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+    "timestamp_start": "00:00:06.167",
+    "timestamp_end": "00:00:08.333",
+    "description": "Carton #1463 carried by operator #464 at elevated height (1.30m) and excessive speed (107.1 px/s). L"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+    "timestamp_start": "00:00:10.800",
+    "timestamp_end": "00:00:10.800",
+    "description": "Carton #1566 carried by operator #2 at elevated height (1.36m) and excessive speed (113.7 px/s). Liv"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+    "timestamp_start": "00:00:00.700",
+    "timestamp_end": "00:00:01.667",
+    "description": "Operator #358 handled carton #1357 at controlled speed (35.2 px/s) and safe elevation \u2014 matches benc"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+    "timestamp_start": "00:00:07.400",
+    "timestamp_end": "00:00:24.467",
+    "description": "Operator #686 handled carton #1481 at controlled speed (6.1 px/s) and safe elevation \u2014 matches bench"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+    "timestamp_start": "00:00:26.767",
+    "timestamp_end": "00:00:33.367",
+    "description": "Operator #836 handled carton #1406 at controlled speed (31.8 px/s) and safe elevation \u2014 matches benc"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:07.600",
+    "timestamp_end": "00:00:07.667",
+    "description": "Operator #483's foot detected stepping or standing on top surface of carton #1481."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:15.767",
+    "timestamp_end": "00:00:19.800",
+    "description": "Operator #642's foot detected stepping or standing on top surface of carton #1674."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:23.333",
+    "timestamp_end": "00:00:24.433",
+    "description": "Operator #762's foot detected stepping or standing on top surface of carton #1674."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:27.033",
+    "timestamp_end": "00:00:30.033",
+    "description": "Operator #806's foot detected stepping or standing on top surface of carton #1800."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "STRAP_LIFT_PULL",
+    "timestamp_start": "00:00:07.933",
+    "timestamp_end": "00:00:13.733",
+    "description": "Operator #483 lifting carton #1178 by packaging straps/top rim rather than using bottom lifting supp"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "STRAP_LIFT_PULL",
+    "timestamp_start": "00:00:18.567",
+    "timestamp_end": "00:00:19.133",
+    "description": "Operator #701 lifting carton #1674 by packaging straps/top rim rather than using bottom lifting supp"
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+    "timestamp_start": "00:00:05.800",
+    "timestamp_end": "00:00:07.700",
+    "description": "Carton #1463 underwent uncontrolled downward drop of approximately 0.88m onto floor surface."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+    "timestamp_start": "00:00:12.200",
+    "timestamp_end": "00:00:15.467",
+    "description": "Carton #1178 underwent uncontrolled downward drop of approximately 1.20m onto floor surface."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+    "timestamp_start": "00:00:01.300",
+    "timestamp_end": "00:00:02.433",
+    "description": "Carton #1357 exhibiting significant tilt/jitter while at rest, indicating stack instability."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+    "timestamp_start": "00:00:06.133",
+    "timestamp_end": "00:00:21.800",
+    "description": "Carton #1001 exhibiting significant tilt/jitter while at rest, indicating stack instability."
+  },
+  {
+    "video_id": "KD packets dragged, heavy box kept on other packets.mp4",
+    "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+    "timestamp_start": "00:00:26.833",
+    "timestamp_end": "00:00:32.333",
+    "description": "Carton #1406 exhibiting significant tilt/jitter while at rest, indicating stack instability."
+  },
+  {
+    "video_id": "Rolling and dragging on wet floor.mp4",
+    "behaviour_code": "DRAG_NO_EQUIPMENT",
+    "timestamp_start": "00:00:00.100",
+    "timestamp_end": "00:00:06.100",
+    "description": "Operator #919 observed in sustained floor-dragging / pulling posture without handling equipment."
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "CARTON_SLIP_LOW",
+    "timestamp_start": "00:00:00.567",
+    "timestamp_end": "00:00:03.733",
+    "description": "Carton #2063 underwent uncontrolled downward drop of approximately 0.70m onto floor surface."
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:01.200",
+    "timestamp_end": "00:00:01.933",
+    "description": "Carton #2080 propelled horizontally across floor/surface at excessive speed (0.64 m/s)."
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:04.933",
+    "timestamp_end": "00:00:05.133",
+    "description": "Carton #2204 propelled horizontally across floor/surface at excessive speed (1.19 m/s)."
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "DRAG_NO_EQUIPMENT",
+    "timestamp_start": "00:00:00.833",
+    "timestamp_end": "00:00:05.367",
+    "description": "Carton #2045 dragged across warehouse floor (0.17m over 0.47s) without mechanical handling equipment"
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+    "timestamp_start": "00:00:03.133",
+    "timestamp_end": "00:00:03.233",
+    "description": "Carton #2091 carried by operator #1149 at elevated height (2.20m) and excessive speed (96.0 px/s). L"
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+    "timestamp_start": "00:00:00.033",
+    "timestamp_end": "00:00:02.633",
+    "description": "Operator #1040 handled carton #2045 at controlled speed (32.9 px/s) and safe elevation \u2014 matches ben"
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+    "timestamp_start": "00:00:05.033",
+    "timestamp_end": "00:00:07.933",
+    "description": "Operator #1158 handled carton #2045 at controlled speed (17.8 px/s) and safe elevation \u2014 matches ben"
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:04.200",
+    "timestamp_end": "00:00:09.100",
+    "description": "Operator #1133's foot detected stepping or standing on top surface of carton #2045."
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "STRAP_LIFT_PULL",
+    "timestamp_start": "00:00:04.633",
+    "timestamp_end": "00:00:04.933",
+    "description": "Operator #1181 lifting carton #2192 by packaging straps/top rim rather than using bottom lifting sup"
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+    "timestamp_start": "00:00:01.200",
+    "timestamp_end": "00:00:01.500",
+    "description": "Carton #2080 underwent uncontrolled downward drop of approximately 1.05m onto floor surface."
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+    "timestamp_start": "00:00:06.567",
+    "timestamp_end": "00:00:09.400",
+    "description": "Carton #2182 underwent uncontrolled downward drop of approximately 0.90m onto floor surface."
+  },
+  {
+    "video_id": "Rolling and dropping carton.mp4",
+    "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+    "timestamp_start": "00:00:01.833",
+    "timestamp_end": "00:00:07.500",
+    "description": "Carton #2091 exhibiting significant tilt/jitter while at rest, indicating stack instability."
+  },
+  {
+    "video_id": "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:01.633",
+    "timestamp_end": "00:00:03.467",
+    "description": "Operator #1267 observed with uneven foot elevation consistent with stepping/standing on warehouse ma"
+  },
+  {
+    "video_id": "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:05.633",
+    "timestamp_end": "00:00:05.633",
+    "description": "Operator #1267 observed with uneven foot elevation consistent with stepping/standing on warehouse ma"
+  },
+  {
+    "video_id": "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:08.933",
+    "timestamp_end": "00:00:09.233",
+    "description": "Operator #1267 observed with uneven foot elevation consistent with stepping/standing on warehouse ma"
+  },
+  {
+    "video_id": "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:18.500",
+    "timestamp_end": "00:00:20.200",
+    "description": "Operator #1447 observed with uneven foot elevation consistent with stepping/standing on warehouse ma"
+  },
+  {
+    "video_id": "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:33.000",
+    "timestamp_end": "00:00:34.333",
+    "description": "Operator #1663 observed with uneven foot elevation consistent with stepping/standing on warehouse ma"
+  },
+  {
+    "video_id": "Throwing Mattresses.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:00.400",
+    "timestamp_end": "00:00:04.533",
+    "description": "Operator #2150 observed executing rapid horizontal throwing/slinging motion (501.5 px/s)."
+  },
+  {
+    "video_id": "Throwing Mattresses.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:09.533",
+    "timestamp_end": "00:00:09.567",
+    "description": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (677.9 px/s)."
+  },
+  {
+    "video_id": "Throwing Mattresses.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:22.000",
+    "timestamp_end": "00:00:25.867",
+    "description": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (912.1 px/s)."
+  },
+  {
+    "video_id": "Throwing Mattresses.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:28.967",
+    "timestamp_end": "00:00:29.000",
+    "description": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (693.9 px/s)."
+  },
+  {
+    "video_id": "Throwing Mattresses.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:32.967",
+    "timestamp_end": "00:00:35.533",
+    "description": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (550.0 px/s)."
+  },
+  {
+    "video_id": "Throwing Mattresses.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:38.033",
+    "timestamp_end": "00:00:41.633",
+    "description": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (483.8 px/s)."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "CARTON_SLIP_LOW",
+    "timestamp_start": "00:00:00.067",
+    "timestamp_end": "00:00:02.167",
+    "description": "Carton #3440 underwent uncontrolled downward drop of approximately 0.37m onto floor surface."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "CARTON_SLIP_LOW",
+    "timestamp_start": "00:00:05.367",
+    "timestamp_end": "00:00:05.633",
+    "description": "Carton #3525 underwent uncontrolled downward drop of approximately 0.52m onto floor surface."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "CARTON_SLIP_LOW",
+    "timestamp_start": "00:00:11.433",
+    "timestamp_end": "00:00:11.733",
+    "description": "Carton #1178 underwent uncontrolled downward drop of approximately 0.70m onto floor surface."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:04.033",
+    "timestamp_end": "00:00:05.700",
+    "description": "Carton #3525 propelled horizontally across floor/surface at excessive speed (0.86 m/s)."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:09.733",
+    "timestamp_end": "00:00:14.800",
+    "description": "Operator #2656 observed executing rapid horizontal throwing/slinging motion (466.2 px/s)."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "DRAG_NO_EQUIPMENT",
+    "timestamp_start": "00:00:00.033",
+    "timestamp_end": "00:00:06.100",
+    "description": "Carton #1190 dragged across warehouse floor (0.35m over 2.5s) without mechanical handling equipment."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "DRAG_NO_EQUIPMENT",
+    "timestamp_start": "00:00:08.367",
+    "timestamp_end": "00:00:13.067",
+    "description": "Carton #1190 dragged across warehouse floor (0.25m over 2.0s) without mechanical handling equipment."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+    "timestamp_start": "00:00:11.233",
+    "timestamp_end": "00:00:12.833",
+    "description": "Carton #3674 carried by operator #2683 at elevated height (1.14m) and excessive speed (340.0 px/s). "
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+    "timestamp_start": "00:00:00.067",
+    "timestamp_end": "00:00:11.933",
+    "description": "Operator #2438 handled carton #3440 at controlled speed (4.4 px/s) and safe elevation \u2014 matches benc"
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:05.667",
+    "timestamp_end": "00:00:06.700",
+    "description": "Operator #2558's foot detected stepping or standing on top surface of carton #3440."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "STEPPING_ON_CARTON",
+    "timestamp_start": "00:00:10.433",
+    "timestamp_end": "00:00:10.433",
+    "description": "Operator #2679's foot detected stepping or standing on top surface of carton #3674."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "STRAP_LIFT_PULL",
+    "timestamp_start": "00:00:11.500",
+    "timestamp_end": "00:00:12.167",
+    "description": "Operator #2683 lifting carton #3695 by packaging straps/top rim rather than using bottom lifting sup"
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+    "timestamp_start": "00:00:11.533",
+    "timestamp_end": "00:00:14.767",
+    "description": "Carton #3696 underwent uncontrolled downward drop of approximately 1.62m onto floor surface."
+  },
+  {
+    "video_id": "Throwing seating cartons, using strap to hold.mp4",
+    "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+    "timestamp_start": "00:00:10.167",
+    "timestamp_end": "00:00:15.000",
+    "description": "Carton #1190 exhibiting significant tilt/jitter while at rest, indicating stack instability."
+  },
+  {
+    "video_id": "WIN_20260908_14_39_18_Pro.mp4",
+    "behaviour_code": "CARTON_THROW_SLIDE",
+    "timestamp_start": "00:00:04.090",
+    "timestamp_end": "00:00:06.705",
+    "description": "Carton #1001 propelled horizontally across floor/surface at excessive speed (0.63 m/s)."
+  },
+  {
+    "video_id": "WIN_20260908_14_39_18_Pro.mp4",
+    "behaviour_code": "DRAG_NO_EQUIPMENT",
+    "timestamp_start": "00:00:00.402",
+    "timestamp_end": "00:00:06.705",
+    "description": "Carton #1001 dragged across warehouse floor (0.63m over 3.66s) without mechanical handling equipment"
+  },
+  {
+    "video_id": "WIN_20260908_14_39_18_Pro.mp4",
+    "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+    "timestamp_start": "00:00:00.469",
+    "timestamp_end": "00:00:06.705",
+    "description": "Carton #1001 exhibiting significant tilt/jitter while at rest, indicating stack instability."
   }
 ]

@@ -23,6 +23,8 @@ import sys
 
 from assistant.event_loader import EventStore, EventLoadError
 from assistant.llm_client import (
+    get_llm_client,
+    GeminiLLMClient,
     GroqLLMClient,
     MockLLMClient,
     LLMClientError,
@@ -32,22 +34,10 @@ from assistant import queries as q
 
 def get_llm(username: str):
     memory_file = f"data/memory/memory_{username}.json" if username else None
-    
-    if os.environ.get("GROQ_API_KEY"):
-        try:
-            client = GroqLLMClient(memory_file=memory_file)
-            print(f"Using Groq ({client.model}).\n")
-            return client
-        except LLMClientError as e:
-            print(f"Groq client failed to start: {e}\n")
-
-    print(
-        "No GROQ_API_KEY found in the environment. "
-        "Running with MockLLMClient instead — you'll see what "
-        "WOULD be sent to the model, but no real answer.\n"
-        "Set GROQ_API_KEY and re-run this for real answers.\n"
-    )
-    return MockLLMClient(memory_file=memory_file)
+    client = get_llm_client(memory_file=memory_file)
+    model_name = getattr(client, "model", getattr(client, "current_model", type(client).__name__))
+    print(f"Using {model_name} [1M Token Context Window].\n")
+    return client
 
 
 
@@ -82,11 +72,9 @@ def main() -> None:
             try:
                 print_result(q.ask(store, llm, question))
             except Exception as e:
-                # We catch a generic Exception here, but specifically we want to handle LLMClientError
                 error_str = str(e)
-                if "rate_limit_exceeded" in error_str or "413" in error_str:
-                    print("\n[!] The API token limit has been exceeded (Rate Limit).")
-                    print("Please wait a minute for your token bucket to refill and try asking your question again.\n")
+                if any(x in error_str.lower() for x in ("limit exceeded", "429", "resource_exhausted", "rate limit")):
+                    print("\n[!] Limit exceeded: API request limit reached. No waiting needed — please try again in a bit or try another question.\n")
                 else:
                     print(f"\n[!] An error occurred while contacting the LLM: {e}\n")
 

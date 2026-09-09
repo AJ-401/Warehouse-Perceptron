@@ -15,11 +15,12 @@ ENV/
 # Chat session memory
 data/memory/
 
-# Temporary and scratch images
+# Temporary and scratch images & scripts
 *.jpg
 *.jpeg
 *.png
 !assets/*.png
+scratch/
 
 # Output folders & Video files (too large for standard Git pushes)
 outputs_live/
