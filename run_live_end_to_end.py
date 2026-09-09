@@ -84,7 +84,7 @@ def draw_hud_banner(vis_frame, active_alert: Optional[Dict], frame_idx: int, fps
         cv2.putText(vis_frame, action_str, (35, banner_y1 + 50), cv2.FONT_HERSHEY_SIMPLEX, 0.48, txt_color, 1, cv2.LINE_AA)
 
 
-def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_conf: float = 0.25):
+def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_conf: float = 0.15):
     os.makedirs(output_dir, exist_ok=True)
     timestamp_str = time.strftime("%Y%m%d_%H%M%S")
     is_cam = isinstance(source, int)
@@ -170,7 +170,7 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
 
             frame_idx += 1
             now = time.time()
-            timestamp_sec = round(now - t_start, 3)
+            timestamp_sec = round(frame_idx / fps, 3)
 
             # FPS calculation
             if frame_idx % 10 == 0:
@@ -234,6 +234,7 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
             )
 
             raw_box_tracks = []
+            used_box_ids = set()
             if box_results and len(box_results) > 0:
                 br = box_results[0]
                 if br.boxes is not None and len(br.boxes) > 0:
@@ -243,7 +244,24 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
                         if bw > (width * 0.58) or bh > (height * 0.58) or (bw * bh) > (width * height * 0.30):
                             continue
 
-                        box_tid = int(bbox_obj.id[0]) + 1000 if bbox_obj.id is not None else (1001 + j)
+                        if bbox_obj.id is not None:
+                            box_tid = int(bbox_obj.id[0]) + 1000
+                        else:
+                            box_tid = None
+                            best_distance = 180.0
+                            current_center = ((bx1 + bx2) / 2.0, (by1 + by2) / 2.0)
+                            for existing_tid, history in pipeline_a.interaction_tracker.box_history.items():
+                                if existing_tid in used_box_ids or not history:
+                                    continue
+                                previous_center = history[-1][:2]
+                                center_distance = ((current_center[0] - previous_center[0]) ** 2 +
+                                                   (current_center[1] - previous_center[1]) ** 2) ** 0.5
+                                if center_distance < best_distance:
+                                    best_distance = center_distance
+                                    box_tid = existing_tid
+                            if box_tid is None:
+                                box_tid = 1001 + j
+                        used_box_ids.add(box_tid)
                         raw_box_tracks.append({
                             "track_id": box_tid,
                             "class": "cardboard box",
@@ -338,6 +356,15 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
                         if n1 in kps and n2 in kps and kps[n1][2] > 0.25 and kps[n2][2] > 0.25:
                             cv2.line(vis_frame, (int(kps[n1][0]), int(kps[n1][1])), (int(kps[n2][0]), int(kps[n2][1])), (0, 255, 128), 2)
 
+                    for k_name, (kx, ky, kc) in kps.items():
+                        if kc > 0.30:
+                            if "wrist" in k_name:
+                                cv2.circle(vis_frame, (int(kx), int(ky)), 6, (0, 0, 255), -1)
+                            elif "ankle" in k_name:
+                                cv2.circle(vis_frame, (int(kx), int(ky)), 6, (255, 0, 255), -1)
+                            else:
+                                cv2.circle(vis_frame, (int(kx), int(ky)), 3, (0, 255, 0), -1)
+
             # Draw Person B HUD & Risk Alert Banner
             draw_hud_banner(vis_frame, active_alert, frame_idx, fps_display, len(person_tracks), len(final_box_tracks))
 
@@ -392,7 +419,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Live End-to-End Warehouse Perception + Risk Engine")
     parser.add_argument("--camera", type=int, default=0, help="Webcam device index (default: 0)")
     parser.add_argument("--video", type=str, default=None, help="Optional video file path to run stream on")
-    parser.add_argument("--box_conf", type=float, default=0.25, help="Detection threshold for cardboard boxes")
+    parser.add_argument("--box_conf", type=float, default=0.15, help="Detection threshold for cardboard boxes")
     parser.add_argument("--output_dir", type=str, default="outputs_live", help="Output directory for deliverables")
     args = parser.parse_args()
 
