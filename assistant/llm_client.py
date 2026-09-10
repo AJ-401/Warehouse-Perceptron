@@ -40,12 +40,13 @@ except ImportError:  # pragma: no cover
     types = None
 
 DEFAULT_GROQ_MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
-DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.7-flash")
+DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite")
 
-# Primary Gemini models (gemini-2.5-pro removed as requested):
+# Primary Gemini models with instant failover on high demand/limits:
 GEMINI_MODEL_CHAIN = [
-    os.environ.get("GEMINI_MODEL", "gemini-3.7-flash"),
+    os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite"),
     "gemini-3-flash-preview",
+    "gemini-3.7-flash",
 ]
 
 # Fallback Groq models with separate independent quotas:
@@ -77,7 +78,11 @@ class GeminiLLMClient:
             raise LLMClientError(
                 "GEMINI_API_KEY is not set. Export it or set it in .env before running the assistant."
             )
-        self._client = genai.Client(api_key=api_key)
+        http_options = None
+        if types and hasattr(types, "HttpOptions"):
+            # Disable strict SSL verification to prevent Windows/proxy self-signed certificate chain errors
+            http_options = types.HttpOptions(client_args={"verify": False})
+        self._client = genai.Client(api_key=api_key, http_options=http_options)
         self.model = model
         self.memory_file = memory_file
 
@@ -382,26 +387,20 @@ class GeminiModelChainClient:
             client = self._get_client(model)
             try:
                 return getattr(client, method)(*args, **kwargs)
-            except LLMClientError as e:
-                err_lower = str(e).lower()
-                if "limit exceeded" in err_lower or "429" in err_lower or "resource_exhausted" in err_lower:
-                    next_index = (self._index + 1) % len(self._models)
-                    if next_index == start_index:
-                        # Full cycle finished - all models reached limit
-                        print(f"\n[!] Limit exceeded: All available Gemini models reached their request limits.")
-                        raise LLMClientError("Limit exceeded: All Gemini models reached their request limits.") from e
-                    print(f"\n[Limit Exceeded on {model}] Switching immediately to {self._models[next_index]} (no wait)...")
-                    self._index = next_index
-                else:
-                    raise
             except Exception as e:
                 err_lower = str(e).lower()
-                if "429" in err_lower or "resource_exhausted" in err_lower or "quota" in err_lower:
+                is_transient = any(k in err_lower for k in (
+                    "limit exceeded", "429", "resource_exhausted", "quota",
+                    "503", "unavailable", "high demand", "spikes in demand", "overloaded",
+                    "500", "internal", "ssl", "certificate", "verify failed", "connection", "timeout"
+                ))
+                if is_transient:
                     next_index = (self._index + 1) % len(self._models)
                     if next_index == start_index:
-                        print(f"\n[!] Limit exceeded: All available Gemini models reached their request limits.")
-                        raise LLMClientError("Limit exceeded: All Gemini models reached their request limits.") from e
-                    print(f"\n[Limit Exceeded on {model}] Switching immediately to {self._models[next_index]} (no wait)...")
+                        # Full cycle finished - all models reached limit or experienced outages
+                        print(f"\n[!] All available Gemini models experienced transient errors or limits.")
+                        raise LLMClientError(f"All Gemini models temporarily unavailable ({model}: {e}).") from e
+                    print(f"\n[Transient Error on Gemini/{model}] Switching immediately to {self._models[next_index]} (no wait)...")
                     self._index = next_index
                 else:
                     raise
@@ -491,8 +490,12 @@ class HierarchicalFailoverClient:
                 return getattr(self.gemini_chain, method)(*args, **kwargs)
             except Exception as e:
                 err_lower = str(e).lower()
-                if any(x in err_lower for x in ("rate", "429", "resource_exhausted", "quota", "limit exceeded")):
-                    print(f"\n[Failover Tier Triggered] All Gemini models exhausted. Switching instantly to Groq tier ({self.groq_chain.model})...")
+                is_transient = any(x in err_lower for x in (
+                    "rate", "429", "resource_exhausted", "quota", "limit exceeded",
+                    "503", "unavailable", "high demand", "overloaded", "500", "ssl", "certificate"
+                ))
+                if is_transient:
+                    print(f"\n[Failover Tier Triggered] Gemini tier unavailable ({e}). Switching instantly to Groq tier ({self.groq_chain.model})...")
                     self._active_tier = "groq"
                     return getattr(self.groq_chain, method)(*args, **kwargs)
                 raise

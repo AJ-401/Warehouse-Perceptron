@@ -256,26 +256,18 @@ async def chat_endpoint(req: ChatRequest):
     username = req.username.strip().lower()
     memory_file = f"data/memory/memory_{username}.json" if username else None
     
-    if not os.environ.get("GEMINI_API_KEY") and not os.environ.get("GROQ_API_KEY"):
-        raise HTTPException(
-            status_code=500,
-            detail="Neither GEMINI_API_KEY nor GROQ_API_KEY is set on the server."
-        )
-        
+    # Try calling multi-tier LLM (Gemini -> Groq)
     try:
         llm = get_llm_client(memory_file=memory_file)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to initialize LLM: {str(e)}")
-
-    try:
-        # Run the tool-calling assistant
         result = q.ask(store, llm, req.question)
         return ChatResponse(answer=result.answer, event_ids=result.event_ids)
     except Exception as e:
-        error_str = str(e)
-        if any(k in error_str.lower() for k in ("limit exceeded", "429", "resource_exhausted", "rate limit")):
-            raise HTTPException(status_code=429, detail="API rate limit exceeded. Please wait a minute and try again.")
-        raise HTTPException(status_code=500, detail=f"LLM request failed: {error_str}")
+        print(f"[Warehouse Assistant LLM Notice] {e} -> Engaging resilient ImpactZero local fallback engine")
+        try:
+            fallback_result = q.local_fallback_answer(store, req.question)
+            return ChatResponse(answer=fallback_result.answer, event_ids=fallback_result.event_ids)
+        except Exception as fb_e:
+            raise HTTPException(status_code=500, detail=f"Operational query failed: {fb_e}")
 
 @app.get("/api/chat_history")
 async def get_chat_history_endpoint(username: str = "supervisor"):
