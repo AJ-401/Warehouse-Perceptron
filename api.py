@@ -34,45 +34,70 @@ SKELETON_PAIRS = [
     (11, 12), (11, 13), (13, 15), (12, 14), (14, 16)
 ]
 
+from run_live_end_to_end import draw_hud_banner, get_two_word_issue, SHORT_ISSUE_NAMES
+
+_SEV_RANK = {"Critical": 4, "High": 3, "Medium": 2, "Low": 1}
+_TYPE_PRIORITY = {
+    "DROP_HIGH_IMPACT": 10,
+    "DROP_LOW_SLIP": 9,
+    "NEAR_MISS_UNSAFE_CARRY": 8,
+    "ROUGH_THROW_SLIDE": 7,
+    "ROUGH_CARTON_ROLLING": 6,
+    "OPERATOR_STEPPING_CARTON": 5,
+    "EQUIPMENT_STRAP_LIFT": 4,
+    "UNSAFE_FLOOR_DRAG": 3,
+    "IMPROPER_MISORIENTATION": 2,
+    "STACK_UNSTABLE_WOBBLE": 2,
+    "STACK_INVERTED_PYRAMID": 2,
+}
+
 VIDEO_CATALOG = {
     "KD packets dragged, heavy box kept on other packets.mp4": {
         "video": os.path.join("official_videos", "KD packets dragged, heavy box kept on other packets.mp4"),
         "tracking": os.path.join("outputs_person_a", "KD packets dragged, heavy box kept on other packets_tracking_results.json"),
+        "events": os.path.join("outputs_person_b", "KD packets dragged, heavy box kept on other packets_warehouse_events.json"),
         "cam": "CAM-01 // Dock Gate A (Unloading Bay 01)"
     },
     "Throwing seating cartons, using strap to hold.mp4": {
         "video": os.path.join("official_videos", "Throwing seating cartons, using strap to hold.mp4"),
         "tracking": os.path.join("outputs_person_a", "Throwing seating cartons, using strap to hold_tracking_results.json"),
+        "events": os.path.join("outputs_person_b", "Throwing seating cartons, using strap to hold_warehouse_events.json"),
         "cam": "CAM-02 // Staging Area West"
     },
     "Dock level, dragging cupboard.mp4": {
         "video": os.path.join("official_videos", "Dock level, dragging cupboard.mp4"),
         "tracking": os.path.join("outputs_person_a", "Dock level, dragging cupboard_tracking_results.json"),
+        "events": os.path.join("outputs_person_b", "Dock level, dragging cupboard_warehouse_events.json"),
         "cam": "CAM-03 // Dock Level In-Feed"
     },
     "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4": {
         "video": os.path.join("official_videos", "Stepping on cartons, vertical product kept horizontally, heavy product kept on top.mp4"),
         "tracking": os.path.join("outputs_person_a", "Stepping on cartons, vertical product kept horizontally, heavy product kept on top_tracking_results.json"),
+        "events": os.path.join("outputs_person_b", "Stepping on cartons, vertical product kept horizontally, heavy product kept on top_warehouse_events.json"),
         "cam": "CAM-04 // High-Bay Racking"
     },
     "Rolling and dropping carton.mp4": {
         "video": os.path.join("official_videos", "Rolling and dropping carton.mp4"),
         "tracking": os.path.join("outputs_person_a", "Rolling and dropping carton_tracking_results.json"),
+        "events": os.path.join("outputs_person_b", "Rolling and dropping carton_warehouse_events.json"),
         "cam": "CAM-05 // Sorting Table 02"
     },
     "Throwing Mattresses.mp4": {
         "video": os.path.join("official_videos", "Throwing Mattresses.mp4"),
         "tracking": os.path.join("outputs_person_a", "Throwing Mattresses_tracking_results.json"),
+        "events": os.path.join("outputs_person_b", "Throwing Mattresses_warehouse_events.json"),
         "cam": "CAM-06 // Bulky Goods Gate"
     },
     "Rolling and dragging on wet floor.mp4": {
         "video": os.path.join("official_videos", "Rolling and dragging on wet floor.mp4"),
         "tracking": os.path.join("outputs_person_a", "Rolling and dragging on wet floor_tracking_results.json"),
+        "events": os.path.join("outputs_person_b", "Rolling and dragging on wet floor_warehouse_events.json"),
         "cam": "CAM-07 // Wet Floor Zone"
     },
     "WIN_20260908_14_39_18_Pro.mp4": {
         "video": os.path.join("official_videos", "WIN_20260908_14_39_18_Pro.mp4"),
         "tracking": os.path.join("outputs_person_a", "WIN_20260908_14_39_18_Pro_tracking_results.json"),
+        "events": os.path.join("outputs_person_b", "WIN_20260908_14_39_18_Pro_warehouse_events.json"),
         "cam": "CAM-08 // Pallet Consolidation"
     }
 }
@@ -714,6 +739,7 @@ def generate_mjpeg_stream(video_name: Optional[str] = None, speed: float = 1.0, 
 
     video_path = cat["video"]
     tracking_path = cat.get("tracking")
+    events_path = cat.get("events")
     cam_label = cat.get("cam", "CAM-01 // UNLOADING BAY 01")
 
     frames_info = {}
@@ -722,6 +748,15 @@ def generate_mjpeg_stream(video_name: Optional[str] = None, speed: float = 1.0, 
             with open(tracking_path, "r", encoding="utf-8") as f:
                 td = json.load(f)
                 frames_info = {fr["frame_idx"]: fr for fr in td.get("frames", [])}
+        except Exception:
+            pass
+
+    events_list = []
+    if events_path and os.path.exists(events_path):
+        try:
+            with open(events_path, "r", encoding="utf-8") as f:
+                ed = json.load(f)
+                events_list = ed.get("events", [])
         except Exception:
             pass
 
@@ -744,6 +779,7 @@ def generate_mjpeg_stream(video_name: Optional[str] = None, speed: float = 1.0, 
         effective_speed = max(0.2, min(float(speed), 5.0))
         frame_delay = (1.0 / max(1.0, min(fps, 30.0))) / effective_speed
         frame_idx = start_frame
+        active_alert = None
 
         while True:
             t0 = time.time()
@@ -751,6 +787,9 @@ def generate_mjpeg_stream(video_name: Optional[str] = None, speed: float = 1.0, 
             if not ret:
                 break
             frame_idx += 1
+
+            n_persons = 0
+            n_boxes = 0
 
             if mask:
                 fr_data = frames_info.get(frame_idx)
@@ -764,35 +803,82 @@ def generate_mjpeg_stream(video_name: Optional[str] = None, speed: float = 1.0, 
                         tid = trk.get("track_id", 0)
 
                         if is_person:
-                            # Cyan box for worker
-                            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 229, 255), 2)
-                            badge_w = 170
-                            cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + badge_w, max(22, y1)), (0, 229, 255), -1)
-                            cv2.putText(frame, f"WORKER #{tid} [NOMINAL]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+                            n_persons += 1
+                            cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 200, 0), 2)
+                            cv2.rectangle(frame, (x1, max(0, y1 - 18)), (x1 + 65, max(18, y1)), (255, 200, 0), -1)
+                            cv2.putText(frame, "WORKER", (x1 + 2, max(14, y1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
 
-                            # Skeletons
                             kps = trk.get("keypoints", {})
                             if kps:
                                 for p1, p2 in SKELETON_PAIRS:
                                     n1, n2 = KEYPOINT_NAMES[p1], KEYPOINT_NAMES[p2]
-                                    if n1 in kps and n2 in kps and kps[n1][2] > 0.3 and kps[n2][2] > 0.3:
+                                    if n1 in kps and n2 in kps and kps[n1][2] > 0.25 and kps[n2][2] > 0.25:
                                         cv2.line(frame, (int(kps[n1][0]), int(kps[n1][1])), (int(kps[n2][0]), int(kps[n2][1])), (0, 255, 128), 2)
                                 for k_name, (kx, ky, kc) in kps.items():
-                                    if kc > 0.3:
-                                        cv2.circle(frame, (int(kx), int(ky)), 4, (0, 255, 0), -1)
+                                    if kc > 0.30:
+                                        if "wrist" in k_name:
+                                            cv2.circle(frame, (int(kx), int(ky)), 6, (0, 0, 255), -1)
+                                        elif "ankle" in k_name:
+                                            cv2.circle(frame, (int(kx), int(ky)), 6, (255, 0, 255), -1)
+                                        else:
+                                            cv2.circle(frame, (int(kx), int(ky)), 3, (0, 255, 0), -1)
                         else:
-                            # Amber box for products/cartons
-                            cv2.rectangle(frame, (x1, y1), (x2, y2), (95, 185, 255), 2)
-                            badge_w = 180
-                            cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + badge_w, max(22, y1)), (95, 185, 255), -1)
-                            cv2.putText(frame, f"PRODUCT #{tid} [VEL: 1.4m/s]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+                            n_boxes += 1
+                            state = trk.get("state", "RESTING")
+                            held_by = trk.get("held_by")
+                            if state == "ROLLING":
+                                color = (0, 215, 255)
+                                label = "ROLLING"
+                            elif state == "DROPPED":
+                                color = (0, 80, 255)
+                                label = "DROPPED"
+                            elif held_by:
+                                color = (0, 215, 255)
+                                label = "HELD"
+                            else:
+                                color = (0, 140, 255)
+                                label = "CARTON"
 
-            # Top HUD bar
-            h, w = frame.shape[:2]
-            cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
-            hud_mode = "AI DETECTION & TRACKING ACTIVE" if mask else "RAW FEED (PERCEPTION MASK OFF)"
-            hud_text = f"FIELD INTELLIGENCE LIVE // {cam_label.upper()} // {hud_mode} // {speed}X"
-            cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
+                            cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
+                            badge_sz = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
+                            cv2.rectangle(frame, (x1, max(0, y1 - 18)), (x1 + badge_sz[0] + 4, max(18, y1)), color, -1)
+                            cv2.putText(frame, label, (x1 + 2, max(14, y1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+
+                # Check active hazard events with 2.5s latching
+                hazard_events = [
+                    e for e in events_list
+                    if e.get("behaviour_type") != "BENCHMARK_SAFE_HANDLING"
+                    and e.get("behaviour_code") != "BENCHMARK_SAFE_HANDLING"
+                ]
+                latch_frames = int(fps * 2.5)
+                cand_events = [
+                    e for e in hazard_events
+                    if e.get("frame_range") and (e["frame_range"][0] <= frame_idx <= e["frame_range"][1] + latch_frames)
+                ]
+                if cand_events:
+                    cand_evt = max(cand_events, key=lambda e: (
+                        _TYPE_PRIORITY.get(e.get("behaviour_code", ""), 0),
+                        _SEV_RANK.get(e.get("risk_level", "Low"), 0)
+                    ))
+                    active_alert = {
+                        "event_id": cand_evt.get("event_id"),
+                        "risk_level": cand_evt.get("risk_level", "Medium"),
+                        "behaviour_type": cand_evt.get("behaviour_type", "Safety Alert"),
+                        "behaviour_code": cand_evt.get("behaviour_code", ""),
+                        "action": cand_evt.get("recommended_action", "Follow standard handling guidelines."),
+                        "near_miss_prob": cand_evt.get("near_miss_probability", 0.0),
+                        "is_near_miss": cand_evt.get("is_near_miss", False),
+                        "frames_left": 10
+                    }
+                else:
+                    active_alert = None
+
+                draw_hud_banner(frame, active_alert, frame_idx, fps, n_persons, n_boxes)
+            else:
+                h, w = frame.shape[:2]
+                cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
+                hud_text = f"FIELD INTELLIGENCE LIVE // {cam_label.upper()} // RAW FEED (MASK OFF) // {speed}X"
+                cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
 
             success, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])
             if not success:
@@ -868,10 +954,21 @@ def get_video_frame(video: Optional[str] = None, frame_idx: int = 1, mask: bool 
 
     video_path = cat["video"]
     tracking_path = cat.get("tracking")
+    events_path = cat.get("events")
     cam_label = cat.get("cam", "CAM-01")
+
+    events_list = []
+    if events_path and os.path.exists(events_path):
+        try:
+            with open(events_path, "r", encoding="utf-8") as f:
+                ed = json.load(f)
+                events_list = ed.get("events", [])
+        except Exception:
+            pass
 
     cap = cv2.VideoCapture(video_path)
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 100)
+    fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
     frame_idx = max(1, min(frame_idx, total_frames))
     cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx - 1)
     ret, frame = cap.read()
@@ -881,6 +978,8 @@ def get_video_frame(video: Optional[str] = None, frame_idx: int = 1, mask: bool 
         frame = np.zeros((720, 1280, 3), dtype=np.uint8)
         cv2.putText(frame, f"FRAME {frame_idx} NOT FOUND", (100, 360), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 255), 2)
     elif mask:
+        n_persons = 0
+        n_boxes = 0
         if tracking_path and os.path.exists(tracking_path):
             try:
                 with open(tracking_path, "r", encoding="utf-8") as f:
@@ -895,26 +994,76 @@ def get_video_frame(video: Optional[str] = None, frame_idx: int = 1, mask: bool 
                             is_person = trk.get("class") == "person"
                             tid = trk.get("track_id", 0)
                             if is_person:
-                                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 229, 255), 2)
-                                cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + 170, max(22, y1)), (0, 229, 255), -1)
-                                cv2.putText(frame, f"WORKER #{tid} [NOMINAL]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+                                n_persons += 1
+                                cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 200, 0), 2)
+                                cv2.rectangle(frame, (x1, max(0, y1 - 18)), (x1 + 65, max(18, y1)), (255, 200, 0), -1)
+                                cv2.putText(frame, "WORKER", (x1 + 2, max(14, y1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
                                 kps = trk.get("keypoints", {})
                                 if kps:
                                     for p1, p2 in SKELETON_PAIRS:
                                         n1, n2 = KEYPOINT_NAMES[p1], KEYPOINT_NAMES[p2]
-                                        if n1 in kps and n2 in kps and kps[n1][2] > 0.3 and kps[n2][2] > 0.3:
+                                        if n1 in kps and n2 in kps and kps[n1][2] > 0.25 and kps[n2][2] > 0.25:
                                             cv2.line(frame, (int(kps[n1][0]), int(kps[n1][1])), (int(kps[n2][0]), int(kps[n2][1])), (0, 255, 128), 2)
+                                    for k_name, (kx, ky, kc) in kps.items():
+                                        if kc > 0.30:
+                                            if "wrist" in k_name:
+                                                cv2.circle(frame, (int(kx), int(ky)), 6, (0, 0, 255), -1)
+                                            elif "ankle" in k_name:
+                                                cv2.circle(frame, (int(kx), int(ky)), 6, (255, 0, 255), -1)
+                                            else:
+                                                cv2.circle(frame, (int(kx), int(ky)), 3, (0, 255, 0), -1)
                             else:
-                                cv2.rectangle(frame, (x1, y1), (x2, y2), (95, 185, 255), 2)
-                                cv2.rectangle(frame, (x1, max(0, y1 - 22)), (x1 + 180, max(22, y1)), (95, 185, 255), -1)
-                                cv2.putText(frame, f"PRODUCT #{tid} [VEL: 1.4m/s]", (x1 + 4, max(16, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+                                n_boxes += 1
+                                state = trk.get("state", "RESTING")
+                                held_by = trk.get("held_by")
+                                if state == "ROLLING":
+                                    color = (0, 215, 255)
+                                    label = "ROLLING"
+                                elif state == "DROPPED":
+                                    color = (0, 80, 255)
+                                    label = "DROPPED"
+                                elif held_by:
+                                    color = (0, 215, 255)
+                                    label = "HELD"
+                                else:
+                                    color = (0, 140, 255)
+                                    label = "CARTON"
+                                cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
+                                badge_sz = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
+                                cv2.rectangle(frame, (x1, max(0, y1 - 18)), (x1 + badge_sz[0] + 4, max(18, y1)), color, -1)
+                                cv2.putText(frame, label, (x1 + 2, max(14, y1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
             except Exception:
                 pass
-        # Top HUD bar
-        h, w = frame.shape[:2]
-        cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
-        hud_text = f"FIELD INTELLIGENCE [FRAME {frame_idx}/{total_frames}] // {cam_label.upper()} // PAUSED FRAME INSPECTION"
-        cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
+
+        hazard_events = [
+            e for e in events_list
+            if e.get("behaviour_type") != "BENCHMARK_SAFE_HANDLING"
+            and e.get("behaviour_code") != "BENCHMARK_SAFE_HANDLING"
+        ]
+        latch_frames = int(fps * 2.5)
+        cand_events = [
+            e for e in hazard_events
+            if e.get("frame_range") and (e["frame_range"][0] <= frame_idx <= e["frame_range"][1] + latch_frames)
+        ]
+        if cand_events:
+            cand_evt = max(cand_events, key=lambda e: (
+                _TYPE_PRIORITY.get(e.get("behaviour_code", ""), 0),
+                _SEV_RANK.get(e.get("risk_level", "Low"), 0)
+            ))
+            active_alert = {
+                "event_id": cand_evt.get("event_id"),
+                "risk_level": cand_evt.get("risk_level", "Medium"),
+                "behaviour_type": cand_evt.get("behaviour_type", "Safety Alert"),
+                "behaviour_code": cand_evt.get("behaviour_code", ""),
+                "action": cand_evt.get("recommended_action", "Follow standard handling guidelines."),
+                "near_miss_prob": cand_evt.get("near_miss_probability", 0.0),
+                "is_near_miss": cand_evt.get("is_near_miss", False),
+                "frames_left": 10
+            }
+        else:
+            active_alert = None
+
+        draw_hud_banner(frame, active_alert, frame_idx, fps, n_persons, n_boxes)
 
     _, buf = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
     return Response(
@@ -1066,11 +1215,37 @@ async def detect_webcam_frame(
         risk_level = "MEDIUM"
         behaviour = "BOX LIFTING / CARRYING"
 
-    # Overlay HUD bar
-    cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
-    hud_mode = "YOLO11 (box_11s.pt) + YOLOv8-POSE" if mask else "RAW WEBCAM (MASK OFF)"
-    hud_text = f"DEVICE WEBCAM // {hud_mode} // {inference_ms}ms // RISK: {risk_score}% [{risk_level}]"
-    cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
+    if mask:
+        if posture_strain:
+            active_alert = {
+                "event_id": f"CAM-DEV-{int(time.time())%10000:04d}",
+                "risk_level": "High",
+                "behaviour_type": "Awkward Posture // Bending Strain",
+                "behaviour_code": "OPERATOR_STEPPING_CARTON",
+                "action": "Maintain upright posture, bend at knees, and avoid twisting while carrying.",
+                "near_miss_prob": 0.82,
+                "is_near_miss": True,
+                "frames_left": 10
+            }
+        elif has_interaction:
+            active_alert = {
+                "event_id": f"CAM-DEV-{int(time.time())%10000:04d}",
+                "risk_level": "Medium",
+                "behaviour_type": "Manual Package Handling",
+                "behaviour_code": "UNSAFE_FLOOR_DRAG",
+                "action": "Keep load centered close to torso; verify weight complies with SOP.",
+                "near_miss_prob": 0.35,
+                "is_near_miss": False,
+                "frames_left": 10
+            }
+        else:
+            active_alert = None
+
+        draw_hud_banner(frame, active_alert, 1, 30.0, persons_detected, boxes_detected)
+    else:
+        cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
+        hud_text = f"DEVICE WEBCAM // RAW FEED (MASK OFF) // {inference_ms}ms"
+        cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
 
     _, buf = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
     return Response(
