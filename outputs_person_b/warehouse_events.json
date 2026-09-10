@@ -1,6 +1,306 @@
 {
   "events": [
     {
+      "event_id": "EVT-20260910-0258",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "08:51:21",
+      "timestamp_end": "08:51:21",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton / Package Manual Lifting",
+      "behaviour_code": "MANUAL_LIFTING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.35,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Operator active in manual package handling (1 package(s) tracked).",
+      "recommended_action": "Verify product weight complies with two-person lift SOP if over 20kg.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789010481",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0257",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "08:51:15",
+      "timestamp_end": "08:51:15",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton / Package Manual Lifting",
+      "behaviour_code": "MANUAL_LIFTING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.35,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102,
+          103,
+          104
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 4,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Operator active in manual package handling (4 package(s) tracked).",
+      "recommended_action": "Verify product weight complies with two-person lift SOP if over 20kg.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789010475",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0256",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "08:51:09",
+      "timestamp_end": "08:51:09",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton / Package Manual Lifting",
+      "behaviour_code": "MANUAL_LIFTING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.35,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Operator active in manual package handling (1 package(s) tracked).",
+      "recommended_action": "Verify product weight complies with two-person lift SOP if over 20kg.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789010469",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0255",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "08:50:52",
+      "timestamp_end": "08:50:52",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton / Package Manual Lifting",
+      "behaviour_code": "MANUAL_LIFTING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.35,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Operator active in manual package handling (1 package(s) tracked).",
+      "recommended_action": "Verify product weight complies with two-person lift SOP if over 20kg.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789010452",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0254",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "08:50:43",
+      "timestamp_end": "08:50:43",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton / Package Manual Lifting",
+      "behaviour_code": "MANUAL_LIFTING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.35,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Operator active in manual package handling (1 package(s) tracked).",
+      "recommended_action": "Verify product weight complies with two-person lift SOP if over 20kg.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789010443",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0253",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "08:50:28",
+      "timestamp_end": "08:50:28",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton / Package Manual Lifting",
+      "behaviour_code": "MANUAL_LIFTING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.35,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Operator active in manual package handling (2 package(s) tracked).",
+      "recommended_action": "Verify product weight complies with two-person lift SOP if over 20kg.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789010428",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0252",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "08:46:55",
+      "timestamp_end": "08:46:55",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Manual Camera Inspection Flag",
+      "behaviour_code": "MANUAL_TAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.82,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Test manual tagging from UI",
+      "recommended_action": "Review handling posture and area safety clearance.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789010215",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0251",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "08:44:50",
+      "timestamp_end": "08:44:50",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Live Camera Ergonomic Test",
+      "behaviour_code": "TEST_LIVE_CAM",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.25,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Automated verification test of live webcam event persistence",
+      "recommended_action": "Ensure proper testing and validation.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789010090",
+        "clip_url": null
+      }
+    },
+    {
       "event_id": "EVT-20260908-0001",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:00.367",
@@ -9443,10 +9743,10 @@
     }
   ],
   "shift_summary": {
-    "total_events": 250,
-    "near_misses_prevented": 15,
-    "high_critical_risks": 186,
-    "estimated_damage_avoided_inr": 67500,
+    "total_events": 258,
+    "near_misses_prevented": 16,
+    "high_critical_risks": 187,
+    "estimated_damage_avoided_inr": 67500.0,
     "most_frequent_risk": "Carton / KD Floor Dragging"
   }
 }

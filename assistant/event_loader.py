@@ -62,7 +62,34 @@ class EventStore:
             ) from e
 
         instance = cls(log)
+        instance._path = path
         return instance
+
+    def add_event(self, event: WarehouseEvent, persist_paths: list[str | Path] | None = None) -> None:
+        """Appends a new event, updates shift_summary metrics, and persists to JSON on disk."""
+        self._log.events.insert(0, event)
+
+        # Update shift summary counts
+        summary = self._log.shift_summary
+        summary.total_events = len(self._log.events)
+        summary.near_misses_prevented = sum(1 for e in self._log.events if e.is_near_miss)
+        summary.high_critical_risks = sum(1 for e in self._log.events if e.risk_level.lower() in ("high", "critical"))
+
+        # Most frequent risk
+        counts = Counter(e.behaviour_type for e in self._log.events)
+        if counts:
+            summary.most_frequent_risk = counts.most_common(1)[0][0]
+
+        # Persist to disk
+        targets = list(persist_paths) if persist_paths else ([self._path] if hasattr(self, "_path") and self._path else [])
+        for p in targets:
+            try:
+                p_path = Path(p)
+                p_path.parent.mkdir(parents=True, exist_ok=True)
+                data = self._log.model_dump() if hasattr(self._log, "model_dump") else self._log.dict()
+                p_path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+            except Exception as ex:
+                print(f"[EventStore] Warning: Failed to persist event to {p}: {ex}")
 
     # ---- basic access --------------------------------------------------
 
