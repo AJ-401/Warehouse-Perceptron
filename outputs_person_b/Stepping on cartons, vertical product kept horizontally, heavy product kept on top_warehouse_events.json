@@ -10,8 +10,9 @@
         56
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Stepping / Standing on Carton",
-      "behaviour_code": "STEPPING_ON_CARTON",
+      "category": "Operator Risk Behaviour",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -31,8 +32,8 @@
       "reason": "Operator #1267 observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
       "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_49.jpg",
-        "clip_url": "/evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_49_56.mp4"
+        "snapshot_url": "evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_49.jpg",
+        "clip_url": "evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_49_56.mp4"
       }
     },
     {
@@ -45,8 +46,9 @@
         71
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Stepping / Standing on Carton",
-      "behaviour_code": "STEPPING_ON_CARTON",
+      "category": "Operator Risk Behaviour",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -66,8 +68,8 @@
       "reason": "Operator #1267 observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
       "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_71.jpg",
-        "clip_url": "/evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_71_71.mp4"
+        "snapshot_url": "evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_71.jpg",
+        "clip_url": "evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_71_71.mp4"
       }
     },
     {
@@ -80,8 +82,9 @@
         104
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Stepping / Standing on Carton",
-      "behaviour_code": "STEPPING_ON_CARTON",
+      "category": "Operator Risk Behaviour",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -101,8 +104,8 @@
       "reason": "Operator #1267 observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
       "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_103.jpg",
-        "clip_url": "/evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_103_104.mp4"
+        "snapshot_url": "evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_103.jpg",
+        "clip_url": "evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_103_104.mp4"
       }
     },
     {
@@ -115,8 +118,9 @@
         169
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Stepping / Standing on Carton",
-      "behaviour_code": "STEPPING_ON_CARTON",
+      "category": "Operator Risk Behaviour",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -136,8 +140,8 @@
       "reason": "Operator #1267 observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
       "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_169.jpg",
-        "clip_url": "/evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_169_169.mp4"
+        "snapshot_url": "evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_169.jpg",
+        "clip_url": "evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_169_169.mp4"
       }
     },
     {
@@ -150,8 +154,9 @@
         277
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Stepping / Standing on Carton",
-      "behaviour_code": "STEPPING_ON_CARTON",
+      "category": "Operator Risk Behaviour",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -171,8 +176,8 @@
       "reason": "Operator #1267 observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
       "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_268.jpg",
-        "clip_url": "/evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_268_277.mp4"
+        "snapshot_url": "evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_268.jpg",
+        "clip_url": "evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_268_277.mp4"
       }
     },
     {
@@ -185,8 +190,9 @@
         555
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Stepping / Standing on Carton",
-      "behaviour_code": "STEPPING_ON_CARTON",
+      "category": "Operator Risk Behaviour",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -206,8 +212,8 @@
       "reason": "Operator #1447 observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
       "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_555.jpg",
-        "clip_url": "/evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_555_555.mp4"
+        "snapshot_url": "evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_555.jpg",
+        "clip_url": "evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_555_555.mp4"
       }
     },
     {
@@ -220,8 +226,9 @@
         606
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Stepping / Standing on Carton",
-      "behaviour_code": "STEPPING_ON_CARTON",
+      "category": "Operator Risk Behaviour",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -241,8 +248,8 @@
       "reason": "Operator #1447 observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
       "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_584.jpg",
-        "clip_url": "/evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_584_606.mp4"
+        "snapshot_url": "evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_584.jpg",
+        "clip_url": "evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_584_606.mp4"
       }
     },
     {
@@ -255,8 +262,9 @@
         991
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Stepping / Standing on Carton",
-      "behaviour_code": "STEPPING_ON_CARTON",
+      "category": "Operator Risk Behaviour",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -276,8 +284,8 @@
       "reason": "Operator #1663 observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
       "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_990.jpg",
-        "clip_url": "/evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_990_991.mp4"
+        "snapshot_url": "evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_990.jpg",
+        "clip_url": "evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_990_991.mp4"
       }
     },
     {
@@ -290,8 +298,9 @@
         1030
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Stepping / Standing on Carton",
-      "behaviour_code": "STEPPING_ON_CARTON",
+      "category": "Operator Risk Behaviour",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -311,8 +320,8 @@
       "reason": "Operator #1663 observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
       "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_1026.jpg",
-        "clip_url": "/evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_1026_1030.mp4"
+        "snapshot_url": "evidence/snapshots/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_1026.jpg",
+        "clip_url": "evidence/clips/Stepping on cartons, vertical product kept horizontally, heavy product kept on top_1026_1030.mp4"
       }
     }
   ],
@@ -321,6 +330,6 @@
     "near_misses_prevented": 0,
     "high_critical_risks": 9,
     "estimated_damage_avoided_inr": 0,
-    "most_frequent_risk": "Stepping / Standing on Carton"
+    "most_frequent_risk": "[Operator Risk Behaviour] Stepping / Standing on Products"
   }
 }

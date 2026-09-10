@@ -40,6 +40,7 @@ import glob
 import json
 import math
 import os
+import cv2
 from collections import Counter, defaultdict, deque
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
@@ -144,16 +145,28 @@ class BoxHistory:
 # --------------------------------------------------------------------------------------
 class RiskEngine:
     SCENARIO_MAP = {
-        "DRAG_NO_EQUIPMENT":        ("Carton / KD Floor Dragging",                1),
-        "UNCONTROLLED_DROP_HIGH":   ("High-Impact Carton Drop (>0.8m)",           2),
-        "CARTON_SLIP_LOW":          ("Low-Height Drop / Carton Slip (<0.5m)",     3),
-        "NEAR_MISS_UNSAFE_CARRY":   ("Predictive Near-Miss: Rapid Unsafe Carry",  4),
-        "CARTON_THROW_SLIDE":       ("Carton Throwing / Sliding",                 5),
-        "IMPROPER_STACKING":        ("Improper Stacking (Inverted Pyramid)",      6),
-        "STEPPING_ON_CARTON":       ("Stepping / Standing on Carton",             7),
-        "STRAP_LIFT_PULL":          ("Strap Lifting / Pulling",                   8),
-        "UNSTABLE_STACK_WOBBLE":    ("Unstable Multi-Tier Stack Wobble",          9),
-        "SAFE_HANDLING_BENCHMARK":  ("Safe Handling Benchmark (Control)",         10),
+        # Primary Problem Statement Category, Specific Behaviour Type, Scenario Index
+        "DROP_HIGH_IMPACT":         ("Dropping or Impact", "High-Impact Carton Drop (>0.8m)", 1),
+        "UNCONTROLLED_DROP_HIGH":   ("Dropping or Impact", "High-Impact Carton Drop (>0.8m)", 1),
+        "DROP_LOW_SLIP":            ("Dropping or Impact", "Low-Height Drop / Slip (<0.5m)", 2),
+        "CARTON_SLIP_LOW":          ("Dropping or Impact", "Low-Height Drop / Slip (<0.5m)", 2),
+        "NEAR_MISS_UNSAFE_CARRY":   ("Unsafe Movement of Material", "Predictive Near-Miss: Rapid Unsafe Carry", 3),
+        "UNSAFE_FLOOR_DRAG":        ("Unsafe Movement of Material", "Floor Dragging (No Equipment)", 4),
+        "DRAG_NO_EQUIPMENT":        ("Unsafe Movement of Material", "Floor Dragging (No Equipment)", 4),
+        "ROUGH_THROW_SLIDE":        ("Rough Handling", "Carton Throwing / Sliding", 5),
+        "CARTON_THROW_SLIDE":       ("Rough Handling", "Carton Throwing / Sliding", 5),
+        "ROUGH_CARTON_ROLLING":     ("Rough Handling", "Rolling Cartons", 6),
+        "STACK_INVERTED_PYRAMID":   ("Incorrect Stacking & Loading", "Inverted Pyramid Stacking", 7),
+        "IMPROPER_STACKING":        ("Incorrect Stacking & Loading", "Inverted Pyramid Stacking", 7),
+        "STACK_UNSTABLE_WOBBLE":    ("Incorrect Stacking & Loading", "Unstable Multi-Tier Stack Wobble", 8),
+        "UNSTABLE_STACK_WOBBLE":    ("Incorrect Stacking & Loading", "Unstable Multi-Tier Stack Wobble", 8),
+        "EQUIPMENT_STRAP_LIFT":     ("Improper Use of Equipment", "Strap Lifting / Pulling", 9),
+        "STRAP_LIFT_PULL":          ("Improper Use of Equipment", "Strap Lifting / Pulling", 9),
+        "OPERATOR_STEPPING_CARTON": ("Operator Risk Behaviour", "Stepping / Standing on Products", 10),
+        "STEPPING_ON_CARTON":       ("Operator Risk Behaviour", "Stepping / Standing on Products", 10),
+        "IMPROPER_MISORIENTATION":  ("Improper Handling", "Vertical Product Kept Horizontally", 11),
+        "BENCHMARK_SAFE_HANDLING":  ("Safe Operating Standard", "Safe Handling Benchmark", 12),
+        "SAFE_HANDLING_BENCHMARK":  ("Safe Operating Standard", "Safe Handling Benchmark", 12),
     }
 
     def __init__(self, video_id: str, fps: float = 30.0, resolution: Optional[List[int]] = None):
@@ -184,24 +197,30 @@ class RiskEngine:
         return rep
 
     def _calculate_dynamic_risk(self, code: str, severity_score: float, repeated: bool) -> str:
-        """
-        Multi-Factor Dynamic Risk Scoring:
-        Combines incident base severity, physical kinematic intensity, and recurrence.
-        """
         base_scores = {
+            "BENCHMARK_SAFE_HANDLING": 0.05,
             "SAFE_HANDLING_BENCHMARK": 0.05,
+            "IMPROPER_MISORIENTATION": 0.30,
+            "ROUGH_CARTON_ROLLING": 0.35,
+            "DROP_LOW_SLIP": 0.35,
             "CARTON_SLIP_LOW": 0.35,
+            "EQUIPMENT_STRAP_LIFT": 0.45,
             "STRAP_LIFT_PULL": 0.45,
-            "IMPROPER_STACKING": 0.50,
+            "STACK_INVERTED_PYRAMID": 0.55,
+            "IMPROPER_STACKING": 0.55,
+            "UNSAFE_FLOOR_DRAG": 0.65,
             "DRAG_NO_EQUIPMENT": 0.65,
+            "ROUGH_THROW_SLIDE": 0.70,
             "CARTON_THROW_SLIDE": 0.70,
+            "STACK_UNSTABLE_WOBBLE": 0.72,
             "UNSTABLE_STACK_WOBBLE": 0.72,
+            "OPERATOR_STEPPING_CARTON": 0.80,
             "STEPPING_ON_CARTON": 0.80,
             "NEAR_MISS_UNSAFE_CARRY": 0.85,
+            "DROP_HIGH_IMPACT": 0.90,
             "UNCONTROLLED_DROP_HIGH": 0.90,
         }
         score = base_scores.get(code, 0.50)
-        # Severity modulation
         score = 0.60 * score + 0.40 * min(1.0, severity_score)
         if repeated:
             score = min(1.0, score + 0.15)
@@ -215,13 +234,9 @@ class RiskEngine:
         return "Low"
 
     def _confidence_stage(self, code: str, inferred: bool, repeated: bool) -> str:
-        """
-        Responsible AI Confidence Ladder:
-        Observed -> Potential Risk -> Confirmed Damage
-        """
-        if code == "SAFE_HANDLING_BENCHMARK":
+        if code in ("BENCHMARK_SAFE_HANDLING", "SAFE_HANDLING_BENCHMARK"):
             return "Observed"
-        if code in ("UNCONTROLLED_DROP_HIGH", "DRAG_NO_EQUIPMENT", "STEPPING_ON_CARTON") and not inferred:
+        if code in ("DROP_HIGH_IMPACT", "UNCONTROLLED_DROP_HIGH", "UNSAFE_FLOOR_DRAG", "DRAG_NO_EQUIPMENT", "OPERATOR_STEPPING_CARTON", "STEPPING_ON_CARTON") and not inferred:
             return "Confirmed Damage" if repeated else "Potential Risk"
         return "Potential Risk"
 
@@ -229,7 +244,9 @@ class RiskEngine:
               person_ids: List[int], box_ids: List[int], telemetry: Dict[str, Any], reason: str,
               recommended_action: str, near_miss: bool = False, near_miss_prob: float = 0.0,
               severity_metric: float = 0.5, inferred: bool = False):
-        behaviour_type, _ = self.SCENARIO_MAP[code]
+        meta = self.SCENARIO_MAP.get(code, ("General Warehouse Handling", code, 99))
+        category = meta[0]
+        behaviour_type = meta[1]
         primary_person = person_ids[0] if person_ids else None
         repeated = self._is_repeated(code, primary_person, t_end)
         risk_lvl = self._calculate_dynamic_risk(code, severity_metric, repeated)
@@ -243,6 +260,7 @@ class RiskEngine:
             "timestamp_end": fmt_ts(t_end),
             "frame_range": list(frame_range),
             "location_id": "Loading Bay Area",
+            "category": category,
             "behaviour_type": behaviour_type,
             "behaviour_code": code,
             "risk_level": risk_lvl,
@@ -258,8 +276,8 @@ class RiskEngine:
             "reason": reason,
             "recommended_action": recommended_action,
             "evidence": {
-                "snapshot_url": f"/evidence/snapshots/{base_v}_{frame_range[0]}.jpg",
-                "clip_url": f"/evidence/clips/{base_v}_{frame_range[0]}_{frame_range[1]}.mp4",
+                "snapshot_url": f"evidence/snapshots/{base_v}_{frame_range[0]}.jpg",
+                "clip_url": f"evidence/clips/{base_v}_{frame_range[0]}_{frame_range[1]}.mp4",
             },
         }
         self.events.append(evt)
@@ -355,7 +373,7 @@ class RiskEngine:
                     dist_m = round(horiz_disp * m_per_norm_y, 2)
                     dur_sec = round(t - hist.buf[0][1], 2)
                     self._emit(
-                        date_str, "DRAG_NO_EQUIPMENT", hist.buf[0][1], t, (f0, f_idx),
+                        date_str, "UNSAFE_FLOOR_DRAG", hist.buf[0][1], t, (f0, f_idx),
                         pids, [bid],
                         {"horizontal_distance_m": dist_m,
                          "floor_contact_duration_sec": dur_sec,
@@ -373,7 +391,7 @@ class RiskEngine:
                 est_drop_m = fall_norm * m_per_norm_y
 
                 if (vspeed >= 0.18 or event == "FREE_FALL") and est_drop_m >= DROP_LOW_HEIGHT_M:
-                    code = "UNCONTROLLED_DROP_HIGH" if est_drop_m >= DROP_HIGH_HEIGHT_M else "CARTON_SLIP_LOW"
+                    code = "DROP_HIGH_IMPACT" if est_drop_m >= DROP_HIGH_HEIGHT_M else "DROP_LOW_SLIP"
                     f0 = hist.buf[0][0]
                     pids = [held_by] if held_by else []
                     vspeed_mps = round(vspeed * m_per_norm_y, 2)
@@ -421,7 +439,7 @@ class RiskEngine:
                     pids = [held_by] if held_by else []
                     speed_mps = round(hspeed * m_per_norm_y, 2)
                     self._emit(
-                        date_str, "CARTON_THROW_SLIDE", hist.buf[0][1], t, (f0, f_idx),
+                        date_str, "ROUGH_THROW_SLIDE", hist.buf[0][1], t, (f0, f_idx),
                         pids, [bid],
                         {"horizontal_speed_m_per_sec": speed_mps},
                         f"Carton #{bid} propelled horizontally across floor/surface at excessive speed ({speed_mps} m/s).",
@@ -444,7 +462,7 @@ class RiskEngine:
                         y_on_top = (bbox_n[1] - 0.08) <= ay_n <= (bbox_n[1] + (bbox_n[3] - bbox_n[1]) * 0.40)
                         if x_in and y_on_top:
                             self._emit(
-                                date_str, "STEPPING_ON_CARTON", t, t, (f_idx, f_idx),
+                                date_str, "OPERATOR_STEPPING_CARTON", t, t, (f_idx, f_idx),
                                 [pid], [bid],
                                 {"ankle_joint": ankle_name, "ankle_confidence": round(ak[2], 2)},
                                 f"Operator #{pid}'s foot detected stepping or standing on top surface of carton #{bid}.",
@@ -464,7 +482,7 @@ class RiskEngine:
                     # If worker holds package purely from top edge/straps while suspended
                     if avg_wy_norm <= bbox_n[1] + 0.05 and bbox_n[3] < y_floor_norm - 0.10:
                         self._emit(
-                            date_str, "STRAP_LIFT_PULL", t, t, (f_idx, f_idx),
+                            date_str, "EQUIPMENT_STRAP_LIFT", t, t, (f_idx, f_idx),
                             [held_by], [bid],
                             {"wrist_elevation_norm": round(avg_wy_norm, 3),
                              "box_top_norm": round(bbox_n[1], 3)},
@@ -480,7 +498,7 @@ class RiskEngine:
                 if jitter >= 0.022:
                     f0 = hist.buf[0][0]
                     self._emit(
-                        date_str, "UNSTABLE_STACK_WOBBLE", hist.buf[0][1], t, (f0, f_idx),
+                        date_str, "STACK_UNSTABLE_WOBBLE", hist.buf[0][1], t, (f0, f_idx),
                         [], [bid],
                         {"center_jitter_norm": round(jitter, 4)},
                         f"Carton #{bid} exhibiting significant tilt/jitter while at rest, indicating stack instability.",
@@ -488,6 +506,35 @@ class RiskEngine:
                         severity_metric=min(1.0, jitter / 0.05),
                         inferred=inferred,
                     )
+
+            # ---- 6. ROLLING CARTONS ----
+            if state == "ROLLING" or (event == "ROLLING" and len(hist.buf) >= 3):
+                hspeed = hist.horiz_speed_norm()
+                f0 = hist.buf[0][0]
+                pids = [held_by] if held_by else []
+                self._emit(
+                    date_str, "ROUGH_CARTON_ROLLING", hist.buf[0][1], t, (f0, f_idx),
+                    pids, [bid],
+                    {"speed_px_per_sec": round(hspeed * self.resolution[0], 1)},
+                    f"Carton #{bid} rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+                    "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+                    severity_metric=0.40,
+                    inferred=inferred,
+                )
+
+            # ---- 11. HORIZONTAL MISORIENTATION (Vertical Product Placed Horizontally) ----
+            bw_norm = bbox_n[2] - bbox_n[0]
+            bh_norm = bbox_n[3] - bbox_n[1]
+            if bh_norm > 0.04 and (bw_norm / bh_norm) >= 1.40 and state in ("RESTING", "DROPPED"):
+                self._emit(
+                    date_str, "IMPROPER_MISORIENTATION", t, t, (f_idx, f_idx),
+                    [], [bid],
+                    {"aspect_ratio_w_over_h": round(bw_norm / bh_norm, 2)},
+                    f"Product carton #{bid} placed horizontally (aspect ratio {bw_norm / bh_norm:.2f}) against vertical handling arrow orientation.",
+                    "Verify orientation arrows on packaging. Store and move upright to prevent structural buckling.",
+                    severity_metric=0.35,
+                    inferred=inferred,
+                )
 
             # ---- 10. SAFE HANDLING BENCHMARK ----
             if state == "HELD" and held_by in persons and len(hist.buf) >= WINDOW:
@@ -497,7 +544,7 @@ class RiskEngine:
                 if hspeed <= SAFE_MAX_SPEED_NORM and carry_height_m < NEAR_MISS_MIN_HEIGHT_M:
                     f0 = hist.buf[0][0]
                     self._emit(
-                        date_str, "SAFE_HANDLING_BENCHMARK", hist.buf[0][1], t, (f0, f_idx),
+                        date_str, "BENCHMARK_SAFE_HANDLING", hist.buf[0][1], t, (f0, f_idx),
                         [held_by], [bid],
                         {"speed_px_per_sec": round(hspeed * self.resolution[0], 1),
                          "carry_height_m": round(carry_height_m, 2)},
@@ -507,37 +554,56 @@ class RiskEngine:
                         inferred=inferred,
                     )
 
-        # ---- 6. IMPROPER STACKING (Physical Contact Required) ----
-        for i in range(len(resting_boxes_this_frame)):
-            for j in range(len(resting_boxes_this_frame)):
-                if i == j:
-                    continue
-                top_id, top_bn = resting_boxes_this_frame[i]
-                bot_id, bot_bn = resting_boxes_this_frame[j]
+        # ---- 7. INVERTED PYRAMID STACKING (Physical & Visual Contact) ----
+        if len(boxes) >= 2:
+            for i in range(len(boxes)):
+                for j in range(len(boxes)):
+                    if i == j:
+                        continue
+                    b_top = boxes[i].get("bbox_normalized") or self._norm_bbox(boxes[i]["bbox"])
+                    b_bot = boxes[j].get("bbox_normalized") or self._norm_bbox(boxes[j]["bbox"])
+                    top_id = boxes[i]["track_id"]
+                    bot_id = boxes[j]["track_id"]
 
-                # Must physically touch vertically
-                vertical_gap = abs(top_bn[3] - bot_bn[1])
-                if vertical_gap > STACK_CONTACT_MAX_GAP:
-                    continue
-                # Must overlap horizontally
-                x_overlap = min(top_bn[2], bot_bn[2]) - max(top_bn[0], bot_bn[0])
-                bot_w = bot_bn[2] - bot_bn[0]
-                if bot_w <= 0 or (x_overlap / bot_w) < 0.40:
-                    continue
+                    # Top box must be physically higher (smaller Y) than bottom box top
+                    if b_top[1] >= b_bot[1]:
+                        continue
 
-                top_area = bbox_area(top_bn)
-                bot_area = bbox_area(bot_bn)
-                if bot_area > 0 and (top_area / bot_area) >= STACK_AREA_RATIO:
-                    self._emit(
-                        date_str, "IMPROPER_STACKING", t, t, (f_idx, f_idx),
-                        [], [top_id, bot_id],
-                        {"top_box_area_norm": round(top_area, 4),
-                         "bottom_box_area_norm": round(bot_area, 4),
-                         "area_ratio": round(top_area / bot_area, 2)},
-                        f"Carton #{top_id} (larger footprint) stacked directly on top of smaller carton #{bot_id} — inverted pyramid stack.",
-                        "Re-stack with heavier/larger packages at the bottom to prevent crushing and tipping.",
-                        severity_metric=min(1.0, (top_area / bot_area) / 2.0),
-                    )
+                    # Vertical contact proximity (bottom of top box near top of bottom box)
+                    vert_contact = b_top[3] - b_bot[1]
+                    if not (-0.06 <= vert_contact <= 0.22):
+                        continue
+
+                    # Horizontal support overlap: top box must overlap bottom box horizontally
+                    x_overlap = min(b_top[2], b_bot[2]) - max(b_top[0], b_bot[0])
+                    bot_w = b_bot[2] - b_bot[0]
+                    if bot_w <= 0 or (x_overlap / bot_w) < 0.35:
+                        continue
+
+                    top_w = b_top[2] - b_top[0]
+                    top_area = bbox_area(b_top)
+                    bot_area = bbox_area(b_bot)
+
+                    is_inverted = False
+                    ratio = 1.0
+                    if bot_area > 0 and (top_area / bot_area) >= 1.15:
+                        is_inverted = True
+                        ratio = top_area / bot_area
+                    elif bot_w > 0 and (top_w / bot_w) >= 1.10:
+                        is_inverted = True
+                        ratio = top_w / bot_w
+
+                    if is_inverted:
+                        self._emit(
+                            date_str, "STACK_INVERTED_PYRAMID", t, t, (f_idx, f_idx),
+                            [], [top_id, bot_id],
+                            {"top_box_area_norm": round(top_area, 4),
+                             "bottom_box_area_norm": round(bot_area, 4),
+                             "area_ratio": round(ratio, 2)},
+                            f"Carton #{top_id} (larger footprint/overhang, ratio {ratio:.2f}x) placed directly on smaller base carton #{bot_id} — inverted pyramid stack.",
+                            "Re-stack with heavier/larger packages at the bottom base to prevent crushing and tipping.",
+                            severity_metric=min(1.0, ratio / 2.0),
+                        )
 
         # -----------------------------------------------------------------
         # Person-Pose Fallback for Sparse Detection Videos
@@ -557,7 +623,7 @@ class RiskEngine:
                     avg_wy_norm = sum(w[1] for w in wrists) / (len(wrists) * self.resolution[1])
                     if avg_wy_norm >= (y_floor_norm - 0.20):
                         self._emit(
-                            date_str, "DRAG_NO_EQUIPMENT", t, t, (f_idx, f_idx),
+                            date_str, "UNSAFE_FLOOR_DRAG", t, t, (f_idx, f_idx),
                             [pid], [],
                             {"floor_contact_duration_sec": 1.0,
                              "horizontal_distance_m": 1.2,
@@ -579,7 +645,7 @@ class RiskEngine:
                         h_speed_px = abs(avg_wx - prev_x) / dt
                         if h_speed_px >= 400.0 and dt < 0.2:
                             self._emit(
-                                date_str, "CARTON_THROW_SLIDE", prev_t, t, (f_idx - 2, f_idx),
+                                date_str, "ROUGH_THROW_SLIDE", prev_t, t, (f_idx - 2, f_idx),
                                 [pid], [],
                                 {"horizontal_speed_m_per_sec": round((h_speed_px / self.resolution[0]) * m_per_norm_y, 2),
                                  "speed_px_per_sec": round(h_speed_px, 1)},
@@ -599,7 +665,7 @@ class RiskEngine:
                         diff_y_norm = abs(ankles[0][1] - ankles[1][1]) / self.resolution[1]
                         if 0.03 <= diff_y_norm <= 0.25:
                             self._emit(
-                                date_str, "STEPPING_ON_CARTON", t, t, (f_idx, f_idx),
+                                date_str, "OPERATOR_STEPPING_CARTON", t, t, (f_idx, f_idx),
                                 [pid], [],
                                 {"foot_elevation_diff_m": round(diff_y_norm * m_per_norm_y, 2)},
                                 f"Operator #{pid} observed with uneven foot elevation consistent with stepping/standing on warehouse material.",
@@ -672,9 +738,11 @@ class RiskEngine:
         }
         base_v = os.path.splitext(self.video_id)[0]
         start_f, end_f = merged["frame_range"][0], merged["frame_range"][1]
+        merged["category"] = best.get("category", "General Warehouse Handling")
+        merged["behaviour_type"] = best.get("behaviour_type", best.get("behaviour_code"))
         merged["evidence"] = {
-            "snapshot_url": f"/evidence/snapshots/{base_v}_{start_f}.jpg",
-            "clip_url": f"/evidence/clips/{base_v}_{start_f}_{end_f}.mp4",
+            "snapshot_url": f"evidence/snapshots/{base_v}_{start_f}.jpg",
+            "clip_url": f"evidence/clips/{base_v}_{start_f}_{end_f}.mp4",
         }
         merged["telemetry"]["is_repeated_behaviour"] = any(e["telemetry"].get("is_repeated_behaviour", False) for e in run)
         merged["telemetry"]["occurrence_count_in_run"] = len(run)
@@ -684,8 +752,8 @@ class RiskEngine:
         self.events = self._consolidate()
         near_misses_prevented = sum(1 for e in self.events if e["is_near_miss"])
         high_critical = sum(1 for e in self.events if e["risk_level"] in ("High", "Critical"))
-        freq = Counter(e["behaviour_type"] for e in self.events)
-        most_frequent = freq.most_common(1)[0][0] if freq else "Safe Handling Benchmark (Control)"
+        freq = Counter(f"[{e.get('category', '')}] {e.get('behaviour_type', '')}" for e in self.events)
+        most_frequent = freq.most_common(1)[0][0] if freq else "Safe Handling Benchmark"
 
         return {
             "events": self.events,
@@ -697,6 +765,83 @@ class RiskEngine:
                 "most_frequent_risk": most_frequent,
             },
         }
+
+
+def extract_evidence_for_events(video_path: str, events: List[Dict[str, Any]], output_base: str = "evidence"):
+    """
+    Extracts annotated JPEG snapshots and 2-3 second MP4 clips for each detected incident.
+    """
+    if not os.path.exists(video_path) or not events:
+        return
+    snap_dir = os.path.join(output_base, "snapshots")
+    clip_dir = os.path.join(output_base, "clips")
+    os.makedirs(snap_dir, exist_ok=True)
+    os.makedirs(clip_dir, exist_ok=True)
+
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        return
+
+    fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    total_f = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    base_v = os.path.splitext(os.path.basename(video_path))[0]
+
+    clip_count = 0
+    for evt in events:
+        start_f, end_f = evt["frame_range"]
+        peak_f = (start_f + end_f) // 2
+        snap_name = f"{base_v}_{start_f}.jpg"
+        clip_name = f"{base_v}_{start_f}_{end_f}.mp4"
+        snap_path = os.path.join(snap_dir, snap_name)
+        clip_path = os.path.join(clip_dir, clip_name)
+
+        evt["evidence"] = {
+            "snapshot_url": f"evidence/snapshots/{snap_name}",
+            "clip_url": f"evidence/clips/{clip_name}",
+        }
+
+        # 1. Save Snapshot
+        if not os.path.exists(snap_path) and peak_f < total_f:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, peak_f)
+            ret, frame = cap.read()
+            if ret:
+                bcode = evt.get("behaviour_code", "")
+                risk = evt.get("risk_level", "Medium")
+                is_nm = evt.get("is_near_miss", False)
+                tag_label = "NEAR MISS" if is_nm else risk.upper()
+                badge_color = (0, 0, 210) if (risk == "Critical" or is_nm) else (0, 125, 245) if risk == "High" else (0, 195, 240)
+                SHORT_MAP = {
+                    "DROP_HIGH_IMPACT": "HIGH DROP", "DROP_LOW_SLIP": "CARTON SLIP",
+                    "NEAR_MISS_UNSAFE_CARRY": "UNSAFE CARRY", "UNSAFE_FLOOR_DRAG": "FLOOR DRAG",
+                    "ROUGH_THROW_SLIDE": "CARTON THROW", "ROUGH_CARTON_ROLLING": "CARTON ROLLING",
+                    "STACK_INVERTED_PYRAMID": "BAD STACK", "STACK_UNSTABLE_WOBBLE": "UNSTABLE STACK",
+                    "EQUIPMENT_STRAP_LIFT": "STRAP LIFT", "OPERATOR_STEPPING_CARTON": "STEPPING HAZARD",
+                    "IMPROPER_MISORIENTATION": "WRONG ORIENTATION", "BENCHMARK_SAFE_HANDLING": "SAFE HANDLING"
+                }
+                issue = SHORT_MAP.get(bcode, SHORT_MAP.get(btype, " ".join(btype.replace("_", " ").split()[:2]).upper()))
+                cv2.rectangle(frame, (20, 20), (min(w - 20, 480), 72), badge_color, -1)
+                cv2.rectangle(frame, (20, 20), (min(w - 20, 480), 72), (255, 255, 255), 2)
+                cv2.putText(frame, f"[{tag_label}]  {issue}", (35, 54), cv2.FONT_HERSHEY_DUPLEX, 0.75, (255, 255, 255), 2, cv2.LINE_AA)
+                cv2.imwrite(snap_path, frame)
+
+        # 2. Save Clip (prioritize Critical, High, and Near-Miss events up to 10 clips per video)
+        should_clip = evt.get("is_near_miss", False) or evt.get("risk_level") in ("Critical", "High")
+        if should_clip and not os.path.exists(clip_path) and clip_count < 10:
+            clip_count += 1
+            c_start = max(0, start_f - 10)
+            c_end = min(total_f - 1, max(end_f + 10, c_start + int(fps * 2)))
+            cap.set(cv2.CAP_PROP_POS_FRAMES, c_start)
+            writer = cv2.VideoWriter(clip_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
+            for f_i in range(c_start, c_end + 1):
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                writer.write(frame)
+            writer.release()
+
+    cap.release()
 
 
 # --------------------------------------------------------------------------------------
@@ -715,8 +860,19 @@ def run_on_file(path: str, out_dir: str) -> Tuple[str, Dict[str, Any]]:
     engine.process(data.get("frames", []))
     result = engine.finalize()
 
-    os.makedirs(out_dir, exist_ok=True)
     out_name = os.path.splitext(os.path.basename(path))[0].replace("_tracking_results", "")
+
+    # Look for matching source video to extract real visual evidence
+    video_candidates = [
+        os.path.join("official_videos", f"{out_name}.mp4"),
+        os.path.join("official_videos", video_id),
+        video_id if os.path.exists(video_id) else None
+    ]
+    video_path = next((vc for vc in video_candidates if vc and os.path.exists(vc)), None)
+    if video_path:
+        extract_evidence_for_events(video_path, result["events"], output_base="evidence")
+
+    os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, f"{out_name}_warehouse_events.json")
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)

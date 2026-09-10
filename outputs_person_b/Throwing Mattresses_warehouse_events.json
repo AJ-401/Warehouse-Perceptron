@@ -10,8 +10,9 @@
         13
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -32,8 +33,8 @@
       "reason": "Operator #2150 observed executing rapid horizontal throwing/slinging motion (501.5 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_11.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_11_13.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_11.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_11_13.mp4"
       }
     },
     {
@@ -46,8 +47,9 @@
         53
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -70,8 +72,8 @@
       "reason": "Operator #2150 observed executing rapid horizontal throwing/slinging motion (459.1 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_26.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_26_53.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_26.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_26_53.mp4"
       }
     },
     {
@@ -84,8 +86,9 @@
         136
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -107,8 +110,8 @@
       "reason": "Operator #1 observed executing rapid horizontal throwing/slinging motion (692.5 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_81.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_81_136.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_81.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_81_136.mp4"
       }
     },
     {
@@ -121,8 +124,9 @@
         287
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -143,8 +147,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (677.9 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_285.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_285_287.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_285.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_285_287.mp4"
       }
     },
     {
@@ -157,8 +161,9 @@
         685
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -180,8 +185,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (912.1 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_659.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_659_685.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_659.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_659_685.mp4"
       }
     },
     {
@@ -194,8 +199,9 @@
         742
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -216,8 +222,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (559.1 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_740.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_740_742.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_740.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_740_742.mp4"
       }
     },
     {
@@ -230,8 +236,9 @@
         758
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -252,8 +259,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (401.5 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_755.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_755_758.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_755.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_755_758.mp4"
       }
     },
     {
@@ -266,8 +273,9 @@
         776
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -288,8 +296,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (845.5 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_772.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_772_776.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_772.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_772_776.mp4"
       }
     },
     {
@@ -302,8 +310,9 @@
         870
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -324,8 +333,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (693.9 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_868.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_868_870.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_868.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_868_870.mp4"
       }
     },
     {
@@ -338,8 +347,9 @@
         1020
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -360,8 +370,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (550.0 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_988.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_988_1020.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_988.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_988_1020.mp4"
       }
     },
     {
@@ -374,8 +384,9 @@
         1066
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -396,8 +407,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (419.7 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_1037.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_1037_1066.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_1037.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_1037_1066.mp4"
       }
     },
     {
@@ -410,8 +421,9 @@
         1147
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -432,8 +444,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (483.8 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_1140.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_1140_1147.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_1140.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_1140_1147.mp4"
       }
     },
     {
@@ -446,8 +458,9 @@
         1199
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -468,8 +481,8 @@
       "reason": "Operator #2176 observed executing rapid horizontal throwing/slinging motion (519.1 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_1197.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_1197_1199.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_1197.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_1197_1199.mp4"
       }
     },
     {
@@ -482,8 +495,9 @@
         1249
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -505,8 +519,8 @@
       "reason": "Operator #2426 observed executing rapid horizontal throwing/slinging motion (513.6 px/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Throwing Mattresses_1223.jpg",
-        "clip_url": "/evidence/clips/Throwing Mattresses_1223_1249.mp4"
+        "snapshot_url": "evidence/snapshots/Throwing Mattresses_1223.jpg",
+        "clip_url": "evidence/clips/Throwing Mattresses_1223_1249.mp4"
       }
     }
   ],
@@ -515,6 +529,6 @@
     "near_misses_prevented": 0,
     "high_critical_risks": 14,
     "estimated_damage_avoided_inr": 0,
-    "most_frequent_risk": "Carton Throwing / Sliding"
+    "most_frequent_risk": "[Rough Handling] Carton Throwing / Sliding"
   }
 }

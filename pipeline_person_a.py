@@ -143,10 +143,11 @@ class DynamicHOITracker:
                 h_center, y_floor, p_height = self._get_worker_pose_anchors(p)
                 if h_center is not None:
                     hx, hy = h_center
-                    dx = max(0, bx1 - hx, hx - bx2)
-                    dy = max(0, by1 - hy, hy - by2)
+                    dx = max(0.0, bx1 - hx, hx - bx2)
+                    dy = max(0.0, by1 - hy, hy - by2)
                     dist = (dx**2 + dy**2)**0.5
-                    if dist < 90 and dist < min_dist:
+                    max_grasp_dist = max(110.0, 0.18 * p_height)
+                    if dist < max_grasp_dist and dist < min_dist:
                         min_dist = dist
                         best_holder_id = pid
                         hx_for_offset = hx
@@ -337,7 +338,7 @@ class DynamicHOITracker:
 
 
 class PersonAPipeline:
-    def __init__(self, box_model_path="weights/box_11s.pt", pose_model_path="yolov8n-pose.pt", box_conf=0.15, person_conf=0.35):
+    def __init__(self, box_model_path="weights/box_11s.pt", pose_model_path="yolov8n-pose.pt", box_conf=0.10, person_conf=0.35):
         self.box_conf = box_conf
         self.person_conf = person_conf
         self.tracker_config = "custom_bytetrack.yaml"
@@ -345,10 +346,10 @@ class PersonAPipeline:
         with open(self.tracker_config, "w") as f:
             f.write(
                 "tracker_type: bytetrack\n"
-                "track_high_thresh: 0.15\n"
+                "track_high_thresh: 0.10\n"
                 "track_low_thresh: 0.05\n"
-                "new_track_thresh: 0.15\n"
-                "track_buffer: 60\n"
+                "new_track_thresh: 0.10\n"
+                "track_buffer: 90\n"
                 "match_thresh: 0.60\n"
                 "fuse_score: True\n"
             )
@@ -419,8 +420,8 @@ class PersonAPipeline:
                         bx1, by1, bx2, by2 = [round(float(v), 1) for v in bbox_obj.xyxy[0].tolist()]
                         bw = bx2 - bx1
                         bh = by2 - by1
-                        # Filter oversized spurious detections (furniture, bed frames spanning huge area)
-                        if bw > (width * 0.58) or bh > (height * 0.58) or (bw * bh) > (width * height * 0.30):
+                        # Filter oversized camera-edge artifacts (allow large cartons, flatpacks and pallets up to 92%)
+                        if bw > (width * 0.92) or bh > (height * 0.92) or (bw * bh) > (width * height * 0.85):
                             continue
 
                         # Robust ID Assignment without proliferating ghost tracks
@@ -471,13 +472,50 @@ class PersonAPipeline:
                         "tracks": all_frame_tracks
                     }
                     new_events = risk_engine.process_frame(frame_payload)
+                    _SEV_RANK = {"Critical": 4, "High": 3, "Medium": 2, "Low": 1}
+                    _TYPE_PRIORITY = {
+                        "DROP_HIGH_IMPACT": 10,
+                        "DROP_LOW_SLIP": 9,
+                        "NEAR_MISS_UNSAFE_CARRY": 8,
+                        "ROUGH_THROW_SLIDE": 7,
+                        "ROUGH_CARTON_ROLLING": 6,
+                        "OPERATOR_STEPPING_CARTON": 5,
+                        "EQUIPMENT_STRAP_LIFT": 4,
+                        "UNSAFE_FLOOR_DRAG": 3,
+                        "IMPROPER_MISORIENTATION": 2,
+                        "STACK_UNSTABLE_WOBBLE": 2,
+                        "STACK_INVERTED_PYRAMID": 2,
+                    }
+
                     if new_events:
-                        # Show the highest-severity new event as the active HUD alert
-                        _level_rank = {"Critical": 4, "High": 3, "Medium": 2, "Low": 1}
-                        best = max(new_events, key=lambda e: _level_rank.get(e.get("risk_level", "Low"), 0))
-                        active_alert = best
-                        alert_frames_left = int(fps * 4)  # show for 4 seconds
-                    elif alert_frames_left > 0:
+                        hazard_events = [
+                            e for e in new_events
+                            if e.get("behaviour_type") != "BENCHMARK_SAFE_HANDLING"
+                            and e.get("behaviour_code") != "BENCHMARK_SAFE_HANDLING"
+                        ]
+                        if hazard_events:
+                            cand_evt = max(hazard_events, key=lambda e: (
+                                _TYPE_PRIORITY.get(e.get("behaviour_code", ""), 0),
+                                _SEV_RANK.get(e.get("risk_level", "Low"), 0)
+                            ))
+                            cand_score = (
+                                _TYPE_PRIORITY.get(cand_evt.get("behaviour_code", ""), 0),
+                                _SEV_RANK.get(cand_evt.get("risk_level", "Low"), 0)
+                            )
+                            curr_score = (
+                                _TYPE_PRIORITY.get(active_alert.get("behaviour_code", ""), 0),
+                                _SEV_RANK.get(active_alert.get("risk_level", "Low"), 0)
+                            ) if (active_alert and alert_frames_left > 0) else (0, 0)
+
+                            is_new = (active_alert is None or alert_frames_left <= 0 or
+                                      cand_evt.get("event_id") != active_alert.get("event_id"))
+
+                            if is_new or cand_score > curr_score:
+                                hold_time = 2.5 if cand_evt.get("is_near_miss", False) or cand_score[1] >= 3 else 2.0
+                                active_alert = cand_evt
+                                alert_frames_left = int(fps * hold_time)
+
+                    if alert_frames_left > 0:
                         alert_frames_left -= 1
                     else:
                         active_alert = None
@@ -486,15 +524,15 @@ class PersonAPipeline:
                     vis_frame = frame.copy()
                     for t in all_frame_tracks:
                         x1, y1, x2, y2 = [int(v) for v in t["bbox"]]
-                        cls_name, track_id, conf = t["class"], t["track_id"], t["confidence"]
+                        cls_name = t["class"]
                         if cls_name == "person":
-                            color, label = (255, 200, 0), f"Person #{track_id} ({conf:.2f})"
+                            color, label = (255, 200, 0), "WORKER"
                         else:
                             state, held_by = t.get("state", "RESTING"), t.get("held_by", None)
-                            if state == "ROLLING": color, label = (0, 215, 255), f"Box #{track_id} (HOI) [Worker #{held_by}] - ROLLING"
-                            elif state == "DROPPED": color, label = (0, 165, 255), f"Box #{track_id} (FREE-FALL/SETTLED)"
-                            elif held_by: color, label = (0, 215, 255), f"Box #{track_id} (HOI) [Worker #{held_by}]"
-                            else: color, label = (0, 140, 255), f"Box #{track_id} ({conf:.2f})"
+                            if state == "ROLLING": color, label = (0, 215, 255), "ROLLING"
+                            elif state == "DROPPED": color, label = (0, 165, 255), "DROPPED"
+                            elif held_by: color, label = (0, 215, 255), "HELD"
+                            else: color, label = (0, 140, 255), "CARTON"
 
                         cv2.rectangle(vis_frame, (x1, y1), (x2, y2), color, 2)
                         badge_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
@@ -513,39 +551,74 @@ class PersonAPipeline:
                                     cv2.circle(vis_frame, (int(kx), int(ky)), 6 if "wrist" in k_name or "ankle" in k_name else 3, kp_col, -1)
 
                     # ── Top HUD bar ──────────────────────────────────────────
-                    risk_tag = " | RISK ENGINE: ON" if risk_engine else ""
-                    hud_text = f"GODREJ AI | Frame: {frame_idx}/{limit_frames} | {timestamp_sec:.2f}s | W:{len(person_tracks)} B:{len(final_box_tracks)}{risk_tag}"
-                    cv2.rectangle(vis_frame, (0, 0), (width, 36), (20, 20, 20), -1)
-                    cv2.putText(vis_frame, hud_text, (12, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (220, 220, 220), 1, cv2.LINE_AA)
+                    cv2.rectangle(vis_frame, (0, 0), (width, 32), (18, 18, 18), -1)
+                    cv2.line(vis_frame, (0, 32), (width, 32), (55, 55, 55), 1)
+                    cv2.putText(vis_frame, "GODREJ AI | FIELD INTELLIGENCE", (15, 22), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (220, 220, 220), 1, cv2.LINE_AA)
 
-                    # ── Risk Alert Banner (Person B) ─────────────────────────
+                    # ── Risk Alert Banner with Recommendations ──
                     if active_alert and alert_frames_left > 0:
                         level = active_alert.get("risk_level", "Medium")
                         btype = active_alert.get("behaviour_type", "Safety Alert")
-                        action = active_alert.get("recommended_action", "Follow safe handling guidelines.")
+                        bcode = active_alert.get("behaviour_code", "")
                         prob = active_alert.get("near_miss_probability", 0.0)
+                        is_near_miss = active_alert.get("is_near_miss", False) or prob > 0.0
 
-                        _bg = {"Critical": (0, 0, 180), "High": (0, 100, 220), "Medium": (20, 160, 220), "Low": (30, 140, 50)}
-                        _tag = {"Critical": "CRITICAL ALERT", "High": "HIGH RISK", "Medium": "RISK WARNING", "Low": "SAFE"}
-                        bg_col = _bg.get(level, (50, 50, 50))
-                        txt_col = (255, 255, 255) if level != "Medium" else (10, 10, 10)
-                        tag_str = _tag.get(level, level.upper())
-
-                        bh = 62
-                        by1 = height - bh - 14
-                        by2 = height - 14
-                        cv2.rectangle(vis_frame, (18, by1), (width - 18, by2), bg_col, -1)
-                        cv2.rectangle(vis_frame, (18, by1), (width - 18, by2), (255, 255, 255), 2)
-
-                        if prob > 0.0:
-                            t1 = f"[{tag_str}] {btype.upper()}  (Near-Miss: {int(prob * 100)}%)"
+                        if is_near_miss:
+                            bg_col, txt_col, tag_str = (0, 0, 210), (255, 255, 255), "NEAR MISS"
+                        elif level == "Critical":
+                            bg_col, txt_col, tag_str = (0, 0, 210), (255, 255, 255), "CRITICAL"
+                        elif level == "High":
+                            bg_col, txt_col, tag_str = (0, 125, 245), (255, 255, 255), "HIGH RISK"
+                        elif level == "Medium":
+                            bg_col, txt_col, tag_str = (0, 195, 240), (20, 20, 20), "WARNING"
                         else:
-                            t1 = f"[{tag_str}] {btype.upper()}"
-                        t2 = f"ACTION: {action}"
-                        if len(t2) > 98: t2 = t2[:95] + "..."
+                            bg_col, txt_col, tag_str = (40, 165, 60), (255, 255, 255), "SAFE"
 
-                        cv2.putText(vis_frame, t1, (32, by1 + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.62, txt_col, 2, cv2.LINE_AA)
-                        cv2.putText(vis_frame, t2, (32, by1 + 48), cv2.FONT_HERSHEY_SIMPLEX, 0.46, txt_col, 1, cv2.LINE_AA)
+                        SHORT_MAP = {
+                            "DROP_HIGH_IMPACT": "HIGH DROP", "DROP_LOW_SLIP": "CARTON SLIP",
+                            "NEAR_MISS_UNSAFE_CARRY": "UNSAFE CARRY", "UNSAFE_FLOOR_DRAG": "FLOOR DRAG",
+                            "ROUGH_THROW_SLIDE": "CARTON THROW", "ROUGH_CARTON_ROLLING": "CARTON ROLLING",
+                            "STACK_INVERTED_PYRAMID": "BAD STACK", "STACK_UNSTABLE_WOBBLE": "UNSTABLE STACK",
+                            "EQUIPMENT_STRAP_LIFT": "STRAP LIFT", "OPERATOR_STEPPING_CARTON": "STEPPING HAZARD",
+                            "IMPROPER_MISORIENTATION": "WRONG ORIENTATION", "BENCHMARK_SAFE_HANDLING": "SAFE HANDLING"
+                        }
+                        issue = SHORT_MAP.get(bcode, SHORT_MAP.get(btype, " ".join(btype.replace("_", " ").split()[:2]).upper()))
+                        action = active_alert.get("recommended_action", active_alert.get("action", "Follow standard material handling guidelines."))
+                        if len(action) > 105:
+                            action = action[:102] + "..."
+
+                        bh = 68
+                        by1 = height - bh - 15
+                        by2 = height - 15
+                        cv2.rectangle(vis_frame, (25, by1), (width - 25, by2), bg_col, -1)
+                        cv2.rectangle(vis_frame, (25, by1), (width - 25, by2), (255, 255, 255), 2)
+
+                        tag_sz = cv2.getTextSize(tag_str, cv2.FONT_HERSHEY_DUPLEX, 0.60, 2)[0]
+                        badge_w = tag_sz[0] + 18
+                        cv2.rectangle(vis_frame, (35, by1 + 8), (35 + badge_w, by1 + 33), (255, 255, 255), -1)
+                        cv2.putText(vis_frame, tag_str, (44, by1 + 27), cv2.FONT_HERSHEY_DUPLEX, 0.58, (10, 10, 10), 2, cv2.LINE_AA)
+                        cv2.putText(vis_frame, issue, (35 + badge_w + 18, by1 + 28), cv2.FONT_HERSHEY_DUPLEX, 0.75, txt_col, 2, cv2.LINE_AA)
+                        cv2.putText(vis_frame, f"RECOMMENDATION: {action}", (35, by1 + 54), cv2.FONT_HERSHEY_SIMPLEX, 0.46, (240, 240, 240), 1, cv2.LINE_AA)
+                    else:
+                        # Safe default banner
+                        bg_col = (35, 145, 55)
+                        txt_col = (255, 255, 255)
+                        tag_str = "SAFE"
+                        issue = "NORMAL OPERATIONS"
+                        action = "All handling practices operating within safe parameters."
+
+                        bh = 68
+                        by1 = height - bh - 15
+                        by2 = height - 15
+                        cv2.rectangle(vis_frame, (25, by1), (width - 25, by2), bg_col, -1)
+                        cv2.rectangle(vis_frame, (25, by1), (width - 25, by2), (100, 220, 130), 2)
+
+                        tag_sz = cv2.getTextSize(tag_str, cv2.FONT_HERSHEY_DUPLEX, 0.60, 2)[0]
+                        badge_w = tag_sz[0] + 18
+                        cv2.rectangle(vis_frame, (35, by1 + 8), (35 + badge_w, by1 + 33), (255, 255, 255), -1)
+                        cv2.putText(vis_frame, tag_str, (44, by1 + 27), cv2.FONT_HERSHEY_DUPLEX, 0.58, (10, 80, 20), 2, cv2.LINE_AA)
+                        cv2.putText(vis_frame, issue, (35 + badge_w + 18, banner_y1 + 28) if 'banner_y1' in locals() else (35 + badge_w + 18, by1 + 28), cv2.FONT_HERSHEY_DUPLEX, 0.75, txt_col, 2, cv2.LINE_AA)
+                        cv2.putText(vis_frame, f"STATUS: {action}", (35, by1 + 54), cv2.FONT_HERSHEY_SIMPLEX, 0.46, (220, 245, 220), 1, cv2.LINE_AA)
 
                     writer.write(vis_frame)
 

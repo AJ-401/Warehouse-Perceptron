@@ -10,8 +10,9 @@
         284
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -54,8 +55,8 @@
       "reason": "Operator #2 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_11.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_11_284.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_11.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_11_284.mp4"
       }
     },
     {
@@ -68,8 +69,9 @@
         297
       ],
       "location_id": "Loading Bay Area",
+      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
-      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -90,8 +92,8 @@
       "reason": "Carton #1001 underwent uncontrolled downward drop of approximately 1.22m onto floor surface.",
       "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_287.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_287_297.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_287.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_287_297.mp4"
       }
     },
     {
@@ -104,8 +106,9 @@
         302
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -125,8 +128,8 @@
       "reason": "Carton #1001 propelled horizontally across floor/surface at excessive speed (1.7 m/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_287.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_287_302.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_287.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_287_302.mp4"
       }
     },
     {
@@ -139,8 +142,9 @@
         823
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -167,8 +171,8 @@
       "reason": "Carton #1001 dragged across warehouse floor (0.23m over 1.13s) without mechanical handling equipment.",
       "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_293.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_293_823.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_293.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_293_823.mp4"
       }
     },
     {
@@ -181,8 +185,9 @@
         337
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Safe Handling Benchmark (Control)",
-      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "category": "Safe Operating Standard",
+      "behaviour_type": "Safe Handling Benchmark",
+      "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
       "confidence_stage": "Observed",
       "is_near_miss": false,
@@ -207,8 +212,8 @@
       "reason": "Operator #188 handled carton #1001 at controlled speed (49.7 px/s) and safe elevation \u2014 matches benchmark.",
       "recommended_action": "No action required. Logged as positive coaching reinforcement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_293.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_293_337.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_293.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_293_337.mp4"
       }
     },
     {
@@ -221,6 +226,7 @@
         306
       ],
       "location_id": "Loading Bay Area",
+      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -249,8 +255,8 @@
       "reason": "Carton #1001 carried by operator #164 at elevated height (1.21m) and excessive speed (529.1 px/s). Live alert raised before drop occurred.",
       "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_296.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_296_306.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_296.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_296_306.mp4"
       }
     },
     {
@@ -263,8 +269,9 @@
         301
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -287,8 +294,8 @@
       "reason": "Operator #166 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_300.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_300_301.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_300.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_300_301.mp4"
       }
     },
     {
@@ -301,8 +308,9 @@
         318
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -322,8 +330,8 @@
       "reason": "Carton #1178 propelled horizontally across floor/surface at excessive speed (1.02 m/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_305.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_305_318.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_305.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_305_318.mp4"
       }
     },
     {
@@ -336,8 +344,9 @@
         322
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -361,8 +370,8 @@
       "reason": "Carton #1178 dragged across warehouse floor (0.22m over 0.23s) without mechanical handling equipment.",
       "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_305.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_305_322.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_305.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_305_322.mp4"
       }
     },
     {
@@ -375,8 +384,9 @@
         358
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Safe Handling Benchmark (Control)",
-      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "category": "Safe Operating Standard",
+      "behaviour_type": "Safe Handling Benchmark",
+      "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
       "confidence_stage": "Observed",
       "is_near_miss": false,
@@ -401,8 +411,8 @@
       "reason": "Operator #181 handled carton #1190 at controlled speed (9.0 px/s) and safe elevation \u2014 matches benchmark.",
       "recommended_action": "No action required. Logged as positive coaching reinforcement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_306.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_306_358.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_306.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_306_358.mp4"
       }
     },
     {
@@ -415,8 +425,9 @@
         330
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Safe Handling Benchmark (Control)",
-      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "category": "Safe Operating Standard",
+      "behaviour_type": "Safe Handling Benchmark",
+      "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
       "confidence_stage": "Observed",
       "is_near_miss": false,
@@ -439,12 +450,50 @@
       "reason": "Operator #181 handled carton #1178 at controlled speed (16.4 px/s) and safe elevation \u2014 matches benchmark.",
       "recommended_action": "No action required. Logged as positive coaching reinforcement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_310.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_310_330.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_310.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_310_330.mp4"
       }
     },
     {
       "event_id": "EVT-20260908-0012",
+      "video_id": "Dock level, dragging cupboard.mp4",
+      "timestamp_start": "00:00:10.433",
+      "timestamp_end": "00:00:10.900",
+      "frame_range": [
+        313,
+        327
+      ],
+      "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          181
+        ],
+        "package_track_ids": [
+          1178
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 54.8,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1178 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_313.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_313_327.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0013",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:11.000",
       "timestamp_end": "00:00:27.433",
@@ -453,8 +502,9 @@
         823
       ],
       "location_id": "Loading Bay Area",
+      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
-      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -474,12 +524,12 @@
       "reason": "Carton #1001 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
       "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_330.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_330_823.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_330.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_330_823.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0013",
+      "event_id": "EVT-20260908-0014",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:11.600",
       "timestamp_end": "00:00:18.933",
@@ -488,8 +538,9 @@
         568
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -515,12 +566,12 @@
       "reason": "Carton #1190 dragged across warehouse floor (2.09m over 5.57s) without mechanical handling equipment.",
       "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_348.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_348_568.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_348.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_348_568.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0014",
+      "event_id": "EVT-20260908-0015",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:11.600",
       "timestamp_end": "00:00:18.933",
@@ -529,8 +580,9 @@
         568
       ],
       "location_id": "Loading Bay Area",
+      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
-      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -550,12 +602,12 @@
       "reason": "Carton #1190 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
       "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_348.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_348_568.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_348.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_348_568.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0015",
+      "event_id": "EVT-20260908-0016",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:12.233",
       "timestamp_end": "00:00:12.667",
@@ -564,8 +616,9 @@
         380
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -590,12 +643,12 @@
       "reason": "Operator #208 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_367.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_367_380.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_367.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_367_380.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0016",
+      "event_id": "EVT-20260908-0017",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:14.133",
       "timestamp_end": "00:00:14.200",
@@ -604,8 +657,9 @@
         426
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -627,12 +681,12 @@
       "reason": "Operator #219 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_424.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_424_426.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_424.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_424_426.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0017",
+      "event_id": "EVT-20260908-0018",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:14.900",
       "timestamp_end": "00:00:15.500",
@@ -641,8 +695,9 @@
         465
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -664,12 +719,12 @@
       "reason": "Operator #219 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_447.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_447_465.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_447.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_447_465.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0018",
+      "event_id": "EVT-20260908-0019",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:16.267",
       "timestamp_end": "00:00:17.133",
@@ -678,8 +733,9 @@
         514
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -704,12 +760,12 @@
       "reason": "Operator #223 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_488.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_488_514.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_488.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_488_514.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0019",
+      "event_id": "EVT-20260908-0020",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:17.567",
       "timestamp_end": "00:00:18.867",
@@ -718,8 +774,9 @@
         566
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -745,12 +802,12 @@
       "reason": "Operator #231 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_527.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_527_566.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_527.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_527_566.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0020",
+      "event_id": "EVT-20260908-0021",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:19.000",
       "timestamp_end": "00:00:23.200",
@@ -759,8 +816,9 @@
         696
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Safe Handling Benchmark (Control)",
-      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "category": "Safe Operating Standard",
+      "behaviour_type": "Safe Handling Benchmark",
+      "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
       "confidence_stage": "Observed",
       "is_near_miss": false,
@@ -784,12 +842,12 @@
       "reason": "Operator #1 handled carton #1190 at controlled speed (10.4 px/s) and safe elevation \u2014 matches benchmark.",
       "recommended_action": "No action required. Logged as positive coaching reinforcement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_570.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_570_696.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_570.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_570_696.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0021",
+      "event_id": "EVT-20260908-0022",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:19.033",
       "timestamp_end": "00:00:23.233",
@@ -798,8 +856,9 @@
         697
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Safe Handling Benchmark (Control)",
-      "behaviour_code": "SAFE_HANDLING_BENCHMARK",
+      "category": "Safe Operating Standard",
+      "behaviour_type": "Safe Handling Benchmark",
+      "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
       "confidence_stage": "Observed",
       "is_near_miss": false,
@@ -823,12 +882,12 @@
       "reason": "Operator #257 handled carton #1259 at controlled speed (11.8 px/s) and safe elevation \u2014 matches benchmark.",
       "recommended_action": "No action required. Logged as positive coaching reinforcement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_571.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_571_697.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_571.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_571_697.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0022",
+      "event_id": "EVT-20260908-0023",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:19.467",
       "timestamp_end": "00:00:19.467",
@@ -837,8 +896,9 @@
         584
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -860,12 +920,12 @@
       "reason": "Operator #239 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_584.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_584_584.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_584.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_584_584.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0023",
+      "event_id": "EVT-20260908-0024",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:20.633",
       "timestamp_end": "00:00:20.767",
@@ -874,8 +934,9 @@
         623
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -897,12 +958,12 @@
       "reason": "Operator #241 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_619.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_619_623.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_619.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_619_623.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0024",
+      "event_id": "EVT-20260908-0025",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:21.500",
       "timestamp_end": "00:00:21.533",
@@ -911,8 +972,9 @@
         646
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -934,12 +996,12 @@
       "reason": "Operator #241 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_645.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_645_646.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_645.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_645_646.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0025",
+      "event_id": "EVT-20260908-0026",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:22.267",
       "timestamp_end": "00:00:25.000",
@@ -948,8 +1010,9 @@
         750
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -975,12 +1038,12 @@
       "reason": "Carton #1190 dragged across warehouse floor (0.33m over 0.53s) without mechanical handling equipment.",
       "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_668.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_668_750.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_668.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_668_750.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0026",
+      "event_id": "EVT-20260908-0027",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:22.400",
       "timestamp_end": "00:00:22.867",
@@ -989,8 +1052,9 @@
         686
       ],
       "location_id": "Loading Bay Area",
+      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
-      "behaviour_code": "UNCONTROLLED_DROP_HIGH",
+      "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -1011,12 +1075,12 @@
       "reason": "Carton #1259 underwent uncontrolled downward drop of approximately 0.88m onto floor surface.",
       "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_672.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_672_686.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_672.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_672_686.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0027",
+      "event_id": "EVT-20260908-0028",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:22.400",
       "timestamp_end": "00:00:22.867",
@@ -1025,8 +1089,9 @@
         686
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -1046,12 +1111,12 @@
       "reason": "Carton #1259 propelled horizontally across floor/surface at excessive speed (1.86 m/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_672.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_672_686.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_672.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_672_686.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0028",
+      "event_id": "EVT-20260908-0029",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:22.400",
       "timestamp_end": "00:00:23.000",
@@ -1060,8 +1125,9 @@
         690
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -1086,12 +1152,50 @@
       "reason": "Carton #1259 dragged across warehouse floor (0.38m over 0.23s) without mechanical handling equipment.",
       "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_672.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_672_690.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_672.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_672_690.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0029",
+      "event_id": "EVT-20260908-0030",
+      "video_id": "Dock level, dragging cupboard.mp4",
+      "timestamp_start": "00:00:22.567",
+      "timestamp_end": "00:00:23.033",
+      "frame_range": [
+        677,
+        691
+      ],
+      "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "Medium",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          262
+        ],
+        "package_track_ids": [
+          1190
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 53.6,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1190 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_677.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_677_691.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0031",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:22.600",
       "timestamp_end": "00:00:23.067",
@@ -1100,8 +1204,9 @@
         692
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Low-Height Drop / Carton Slip (<0.5m)",
-      "behaviour_code": "CARTON_SLIP_LOW",
+      "category": "Dropping or Impact",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -1122,12 +1227,12 @@
       "reason": "Carton #1259 underwent uncontrolled downward drop of approximately 0.29m onto floor surface.",
       "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_678.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_678_692.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_678.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_678_692.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0030",
+      "event_id": "EVT-20260908-0032",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:22.967",
       "timestamp_end": "00:00:24.633",
@@ -1136,8 +1241,9 @@
         739
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -1157,12 +1263,51 @@
       "reason": "Carton #1190 propelled horizontally across floor/surface at excessive speed (1.52 m/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_689.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_689_739.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_689.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_689_739.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0031",
+      "event_id": "EVT-20260908-0033",
+      "video_id": "Dock level, dragging cupboard.mp4",
+      "timestamp_start": "00:00:23.033",
+      "timestamp_end": "00:00:23.033",
+      "frame_range": [
+        691,
+        691
+      ],
+      "location_id": "Loading Bay Area",
+      "category": "Incorrect Stacking & Loading",
+      "behaviour_type": "Inverted Pyramid Stacking",
+      "behaviour_code": "STACK_INVERTED_PYRAMID",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1190,
+          1259
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "top_box_area_norm": 0.0837,
+        "bottom_box_area_norm": 0.0336,
+        "area_ratio": 2.49,
+        "is_repeated_behaviour": false,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1259 (larger footprint/overhang, ratio 2.49x) placed directly on smaller base carton #1190 \u2014 inverted pyramid stack.",
+      "recommended_action": "Re-stack with heavier/larger packages at the bottom base to prevent crushing and tipping.",
+      "evidence": {
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_691.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_691_691.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0034",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:23.267",
       "timestamp_end": "00:00:24.100",
@@ -1171,8 +1316,9 @@
         723
       ],
       "location_id": "Loading Bay Area",
+      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
-      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -1192,12 +1338,12 @@
       "reason": "Carton #1190 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
       "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_698.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_698_723.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_698.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_698_723.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0032",
+      "event_id": "EVT-20260908-0035",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:23.433",
       "timestamp_end": "00:00:25.200",
@@ -1206,8 +1352,9 @@
         756
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -1233,12 +1380,12 @@
       "reason": "Carton #1293 dragged across warehouse floor (0.29m over 0.63s) without mechanical handling equipment.",
       "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_703.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_703_756.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_703.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_703_756.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0033",
+      "event_id": "EVT-20260908-0036",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:23.433",
       "timestamp_end": "00:00:24.067",
@@ -1247,8 +1394,9 @@
         722
       ],
       "location_id": "Loading Bay Area",
+      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
-      "behaviour_code": "UNSTABLE_STACK_WOBBLE",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -1268,12 +1416,12 @@
       "reason": "Carton #1293 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
       "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_703.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_703_722.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_703.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_703_722.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0034",
+      "event_id": "EVT-20260908-0037",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:23.700",
       "timestamp_end": "00:00:23.833",
@@ -1282,8 +1430,9 @@
         715
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -1305,12 +1454,12 @@
       "reason": "Operator #262 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_711.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_711_715.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_711.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_711_715.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0035",
+      "event_id": "EVT-20260908-0038",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:24.067",
       "timestamp_end": "00:00:25.200",
@@ -1319,8 +1468,9 @@
         756
       ],
       "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
-      "behaviour_code": "CARTON_THROW_SLIDE",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -1340,12 +1490,89 @@
       "reason": "Carton #1293 propelled horizontally across floor/surface at excessive speed (0.77 m/s).",
       "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_722.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_722_756.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_722.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_722_756.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0036",
+      "event_id": "EVT-20260908-0039",
+      "video_id": "Dock level, dragging cupboard.mp4",
+      "timestamp_start": "00:00:24.400",
+      "timestamp_end": "00:00:24.400",
+      "frame_range": [
+        732,
+        732
+      ],
+      "location_id": "Loading Bay Area",
+      "category": "Rough Handling",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          262
+        ],
+        "package_track_ids": [
+          1293
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 0.0,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1293 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_732.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_732_732.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0040",
+      "video_id": "Dock level, dragging cupboard.mp4",
+      "timestamp_start": "00:00:24.400",
+      "timestamp_end": "00:00:24.400",
+      "frame_range": [
+        732,
+        732
+      ],
+      "location_id": "Loading Bay Area",
+      "category": "Incorrect Stacking & Loading",
+      "behaviour_type": "Inverted Pyramid Stacking",
+      "behaviour_code": "STACK_INVERTED_PYRAMID",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [],
+        "package_track_ids": [
+          1190,
+          1293
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "top_box_area_norm": 0.1338,
+        "bottom_box_area_norm": 0.0532,
+        "area_ratio": 2.51,
+        "is_repeated_behaviour": true,
+        "occurrence_count_in_run": 1
+      },
+      "reason": "Carton #1190 (larger footprint/overhang, ratio 2.51x) placed directly on smaller base carton #1293 \u2014 inverted pyramid stack.",
+      "recommended_action": "Re-stack with heavier/larger packages at the bottom base to prevent crushing and tipping.",
+      "evidence": {
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_732.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_732_732.mp4"
+      }
+    },
+    {
+      "event_id": "EVT-20260908-0041",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:26.433",
       "timestamp_end": "00:00:29.633",
@@ -1354,8 +1581,9 @@
         889
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -1390,12 +1618,12 @@
       "reason": "Operator #303 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_793.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_793_889.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_793.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_793_889.mp4"
       }
     },
     {
-      "event_id": "EVT-20260908-0037",
+      "event_id": "EVT-20260908-0042",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:30.067",
       "timestamp_end": "00:00:30.933",
@@ -1404,8 +1632,9 @@
         928
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
       "confidence_stage": "Confirmed Damage",
       "is_near_miss": false,
@@ -1431,16 +1660,16 @@
       "reason": "Operator #1 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Dock level, dragging cupboard_902.jpg",
-        "clip_url": "/evidence/clips/Dock level, dragging cupboard_902_928.mp4"
+        "snapshot_url": "evidence/snapshots/Dock level, dragging cupboard_902.jpg",
+        "clip_url": "evidence/clips/Dock level, dragging cupboard_902_928.mp4"
       }
     }
   ],
   "shift_summary": {
-    "total_events": 37,
+    "total_events": 42,
     "near_misses_prevented": 1,
-    "high_critical_risks": 28,
+    "high_critical_risks": 31,
     "estimated_damage_avoided_inr": 4500,
-    "most_frequent_risk": "Carton / KD Floor Dragging"
+    "most_frequent_risk": "[Unsafe Movement of Material] Floor Dragging (No Equipment)"
   }
 }

@@ -27,64 +27,144 @@ from pipeline_person_a import PersonAPipeline, KEYPOINT_NAMES, SKELETON_PAIRS
 from pipeline_person_b import RiskEngine
 
 
+SHORT_ISSUE_NAMES = {
+    "DROP_HIGH_IMPACT": "HIGH DROP",
+    "DROP_LOW_SLIP": "CARTON SLIP",
+    "High-Impact Carton Drop (>0.8m)": "HIGH DROP",
+    "Low-Height Drop / Slip (<0.5m)": "CARTON SLIP",
+    "High-Impact Carton Drop": "HIGH DROP",
+    "Low-Height Drop / Carton Slip": "CARTON SLIP",
+    "NEAR_MISS_UNSAFE_CARRY": "UNSAFE CARRY",
+    "Predictive Near-Miss (USP)": "UNSAFE CARRY",
+    "Near-Miss Unsafe Carry": "UNSAFE CARRY",
+    "UNSAFE_FLOOR_DRAG": "FLOOR DRAG",
+    "Floor Dragging (No Equipment)": "FLOOR DRAG",
+    "Carton / KD Packet Floor Dragging": "FLOOR DRAG",
+    "Carton Floor Dragging": "FLOOR DRAG",
+    "ROUGH_THROW_SLIDE": "CARTON THROW",
+    "Carton Throwing / Sliding": "CARTON THROW",
+    "Carton Throwing": "CARTON THROW",
+    "ROUGH_CARTON_ROLLING": "CARTON ROLLING",
+    "Rolling Cartons": "CARTON ROLLING",
+    "Rolling Cartons on Floor": "CARTON ROLLING",
+    "STACK_INVERTED_PYRAMID": "BAD STACK",
+    "Inverted Pyramid Stacking": "BAD STACK",
+    "STACK_UNSTABLE_WOBBLE": "UNSTABLE STACK",
+    "Unstable Multi-Tier Stack Wobble": "UNSTABLE STACK",
+    "EQUIPMENT_STRAP_LIFT": "STRAP LIFT",
+    "Strap Lifting / Pulling": "STRAP LIFT",
+    "OPERATOR_STEPPING_CARTON": "STEPPING HAZARD",
+    "Stepping / Standing on Products": "STEPPING HAZARD",
+    "Stepping / Standing on Carton": "STEPPING HAZARD",
+    "Stepping on Cartons": "STEPPING HAZARD",
+    "IMPROPER_MISORIENTATION": "WRONG ORIENTATION",
+    "Vertical Product Kept Horizontally": "WRONG ORIENTATION",
+    "BENCHMARK_SAFE_HANDLING": "SAFE HANDLING",
+    "Safe Handling Benchmark": "SAFE HANDLING",
+}
+
+
+def get_two_word_issue(btype: str, bcode: str = "") -> str:
+    """Returns a clean, punchy 2-word issue title for real-time overlay readability."""
+    if bcode and bcode in SHORT_ISSUE_NAMES:
+        return SHORT_ISSUE_NAMES[bcode]
+    if btype and btype in SHORT_ISSUE_NAMES:
+        return SHORT_ISSUE_NAMES[btype]
+    # Fallback: take first 2 words
+    clean = str(btype or bcode or "SAFETY ALERT").replace("_", " ").replace("-", " ")
+    words = clean.split()
+    return " ".join(words[:2]).upper() if words else "SAFETY ALERT"
+
+
 def draw_hud_banner(vis_frame, active_alert: Optional[Dict], frame_idx: int, fps: float, n_persons: int, n_boxes: int):
-    """Renders the real-time AI supervisor HUD bar and risk alert banners."""
+    """Renders clean real-time AI supervisor status and punchy 2-word risk alert badge (zero numbers)."""
     h, w, _ = vis_frame.shape
 
-    # 1. Top Status HUD Bar
-    cv2.rectangle(vis_frame, (0, 0), (w, 36), (20, 20, 20), -1)
-    cv2.line(vis_frame, (0, 36), (w, 36), (60, 60, 60), 1)
+    # 1. Top Status Bar (Clean, no distracting number clutter)
+    cv2.rectangle(vis_frame, (0, 0), (w, 32), (18, 18, 18), -1)
+    cv2.line(vis_frame, (0, 32), (w, 32), (55, 55, 55), 1)
+    hud_text = "GODREJ AI | FIELD INTELLIGENCE"
+    cv2.putText(vis_frame, hud_text, (15, 22), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (220, 220, 220), 1, cv2.LINE_AA)
 
-    hud_text = f"GODREJ AI FIELD INTELLIGENCE | FPS: {fps:4.1f} | WORKERS: {n_persons} | BOXES: {n_boxes} | FRAME: {frame_idx}"
-    cv2.putText(vis_frame, hud_text, (15, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (220, 220, 220), 1, cv2.LINE_AA)
-
-    # 2. Real-Time Risk Alert Banner
+    # 2. Real-Time Risk Alert Badge (Large, color-coded, 2-word issue, zero numbers)
     if active_alert and active_alert.get("frames_left", 0) > 0:
         level = active_alert.get("risk_level", "Medium")
         btype = active_alert.get("behaviour_type", "Safety Alert")
-        action = active_alert.get("action", "Follow safe handling guidelines.")
-        prob = active_alert.get("near_miss_prob", 0.0)
+        bcode = active_alert.get("behaviour_code", "")
+        prob = active_alert.get("near_miss_probability", active_alert.get("near_miss_prob", 0.0))
+        is_near_miss = active_alert.get("is_near_miss", False) or prob > 0.0
 
-        # Color coding per risk level
-        if level == "Critical":
-            bg_color = (0, 0, 180)       # Bright Crimson Red
+        # Color coding & color label per risk level
+        if is_near_miss:
+            bg_color = (0, 0, 210)       # Bright Crimson Red
             txt_color = (255, 255, 255)
-            tag = "CRITICAL ALERT"
+            tag = "NEAR MISS"
+        elif level == "Critical":
+            bg_color = (0, 0, 210)       # Bright Crimson Red
+            txt_color = (255, 255, 255)
+            tag = "CRITICAL"
         elif level == "High":
-            bg_color = (0, 120, 230)      # Amber / Orange
+            bg_color = (0, 125, 245)     # Vivid Amber / Orange
             txt_color = (255, 255, 255)
             tag = "HIGH RISK"
         elif level == "Medium":
-            bg_color = (0, 180, 220)      # Yellow / Ochre
+            bg_color = (0, 195, 240)     # Warm Yellow
             txt_color = (20, 20, 20)
-            tag = "RISK WARNING"
+            tag = "WARNING"
         else:
-            bg_color = (30, 140, 50)      # Forest Green
+            bg_color = (40, 165, 60)     # Green
             txt_color = (255, 255, 255)
-            tag = "BENCHMARK"
+            tag = "SAFE"
 
-        # Banner Dimensions
-        banner_h = 65
+        # Punchy 2-word issue title
+        issue = get_two_word_issue(btype, bcode)
+        action = active_alert.get("action", active_alert.get("recommended_action", "Follow standard material handling guidelines."))
+        if len(action) > 105:
+            action = action[:102] + "..."
+
+        # Sleek, highly readable 2-line bottom alert banner with recommendation
+        banner_h = 68
         banner_y1 = h - banner_h - 15
         banner_y2 = h - 15
-        cv2.rectangle(vis_frame, (20, banner_y1), (w - 20, banner_y2), bg_color, -1)
-        cv2.rectangle(vis_frame, (20, banner_y1), (w - 20, banner_y2), (255, 255, 255), 2)
+        cv2.rectangle(vis_frame, (25, banner_y1), (w - 25, banner_y2), bg_color, -1)
+        cv2.rectangle(vis_frame, (25, banner_y1), (w - 25, banner_y2), (255, 255, 255), 2)
 
-        # Title line
-        if prob > 0.0:
-            title_str = f"[{tag}] {btype.upper()} (Near-Miss Risk: {int(prob * 100)}%)"
-        else:
-            title_str = f"[{tag}] {btype.upper()}"
-        cv2.putText(vis_frame, title_str, (35, banner_y1 + 25), cv2.FONT_HERSHEY_SIMPLEX, 0.65, txt_color, 2, cv2.LINE_AA)
+        # Left tag pill (high-contrast label)
+        tag_sz = cv2.getTextSize(tag, cv2.FONT_HERSHEY_DUPLEX, 0.60, 2)[0]
+        badge_w = tag_sz[0] + 18
+        cv2.rectangle(vis_frame, (35, banner_y1 + 8), (35 + badge_w, banner_y1 + 33), (255, 255, 255), -1)
+        cv2.putText(vis_frame, tag, (44, banner_y1 + 27), cv2.FONT_HERSHEY_DUPLEX, 0.58, (10, 10, 10), 2, cv2.LINE_AA)
 
-        # Action / Guidance line
-        action_str = f"RECOMMENDATION: {action}"
-        if len(action_str) > 95:
-            action_str = action_str[:92] + "..."
-        cv2.putText(vis_frame, action_str, (35, banner_y1 + 50), cv2.FONT_HERSHEY_SIMPLEX, 0.48, txt_color, 1, cv2.LINE_AA)
+        # Main issue title in bold letters
+        cv2.putText(vis_frame, issue, (35 + badge_w + 18, banner_y1 + 28), cv2.FONT_HERSHEY_DUPLEX, 0.75, txt_color, 2, cv2.LINE_AA)
+
+        # Recommendation line
+        cv2.putText(vis_frame, f"RECOMMENDATION: {action}", (35, banner_y1 + 54), cv2.FONT_HERSHEY_SIMPLEX, 0.46, (240, 240, 240), 1, cv2.LINE_AA)
+    else:
+        # Default calm enterprise green HUD when operations are normal
+        bg_color = (35, 145, 55)
+        txt_color = (255, 255, 255)
+        tag = "SAFE"
+        issue = "NORMAL OPERATIONS"
+        action = "All handling practices operating within safe parameters."
+
+        banner_h = 68
+        banner_y1 = h - banner_h - 15
+        banner_y2 = h - 15
+        cv2.rectangle(vis_frame, (25, banner_y1), (w - 25, banner_y2), bg_color, -1)
+        cv2.rectangle(vis_frame, (25, banner_y1), (w - 25, banner_y2), (100, 220, 130), 2)
+
+        tag_sz = cv2.getTextSize(tag, cv2.FONT_HERSHEY_DUPLEX, 0.60, 2)[0]
+        badge_w = tag_sz[0] + 18
+        cv2.rectangle(vis_frame, (35, banner_y1 + 8), (35 + badge_w, banner_y1 + 33), (255, 255, 255), -1)
+        cv2.putText(vis_frame, tag, (44, banner_y1 + 27), cv2.FONT_HERSHEY_DUPLEX, 0.58, (10, 80, 20), 2, cv2.LINE_AA)
+
+        cv2.putText(vis_frame, issue, (35 + badge_w + 18, banner_y1 + 28), cv2.FONT_HERSHEY_DUPLEX, 0.75, txt_color, 2, cv2.LINE_AA)
+        cv2.putText(vis_frame, f"STATUS: {action}", (35, banner_y1 + 54), cv2.FONT_HERSHEY_SIMPLEX, 0.46, (220, 245, 220), 1, cv2.LINE_AA)
 
 
-def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_conf: float = 0.25):
+
+def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_conf: float = 0.15, max_frames: Optional[int] = None):
     os.makedirs(output_dir, exist_ok=True)
     timestamp_str = time.strftime("%Y%m%d_%H%M%S")
     is_cam = isinstance(source, int)
@@ -162,7 +242,7 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
     active_alert: Optional[Dict] = None
 
     try:
-        while True:
+        while cap.isOpened() and (max_frames is None or frame_idx < max_frames):
             ret, frame = cap.read()
             if not ret:
                 print("\n[End of Stream] Video finished or camera disconnected.")
@@ -170,7 +250,7 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
 
             frame_idx += 1
             now = time.time()
-            timestamp_sec = round(now - t_start, 3)
+            timestamp_sec = round(frame_idx / fps, 3)
 
             # FPS calculation
             if frame_idx % 10 == 0:
@@ -234,6 +314,7 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
             )
 
             raw_box_tracks = []
+            used_box_ids = set()
             if box_results and len(box_results) > 0:
                 br = box_results[0]
                 if br.boxes is not None and len(br.boxes) > 0:
@@ -243,7 +324,24 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
                         if bw > (width * 0.58) or bh > (height * 0.58) or (bw * bh) > (width * height * 0.30):
                             continue
 
-                        box_tid = int(bbox_obj.id[0]) + 1000 if bbox_obj.id is not None else (1001 + j)
+                        if bbox_obj.id is not None:
+                            box_tid = int(bbox_obj.id[0]) + 1000
+                        else:
+                            box_tid = None
+                            best_distance = 180.0
+                            current_center = ((bx1 + bx2) / 2.0, (by1 + by2) / 2.0)
+                            for existing_tid, history in pipeline_a.interaction_tracker.box_history.items():
+                                if existing_tid in used_box_ids or not history:
+                                    continue
+                                previous_center = history[-1][:2]
+                                center_distance = ((current_center[0] - previous_center[0]) ** 2 +
+                                                   (current_center[1] - previous_center[1]) ** 2) ** 0.5
+                                if center_distance < best_distance:
+                                    best_distance = center_distance
+                                    box_tid = existing_tid
+                            if box_tid is None:
+                                box_tid = 1001 + j
+                        used_box_ids.add(box_tid)
                         raw_box_tracks.append({
                             "track_id": box_tid,
                             "class": "cardboard box",
@@ -277,22 +375,61 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
             # -----------------------------------------------------------------
             new_events = risk_engine.process_frame(current_frame_dict)
 
-            if new_events:
-                # Update the active HUD alert with the most critical event
-                top_evt = max(new_events, key=lambda e: (
-                    3 if e["risk_level"] == "Critical" else
-                    2 if e["risk_level"] == "High" else
-                    1 if e["risk_level"] == "Medium" else 0
-                ))
-                active_alert = {
-                    "risk_level": top_evt["risk_level"],
-                    "behaviour_type": top_evt["behaviour_type"],
-                    "action": top_evt["recommended_action"],
-                    "near_miss_prob": top_evt.get("near_miss_probability", 0.0),
-                    "frames_left": int(fps * 2.0)  # Display alert banner for 2 seconds
-                }
+            _SEV_RANK = {"Critical": 4, "High": 3, "Medium": 2, "Low": 1}
+            _TYPE_PRIORITY = {
+                "DROP_HIGH_IMPACT": 10,
+                "DROP_LOW_SLIP": 9,
+                "NEAR_MISS_UNSAFE_CARRY": 8,
+                "ROUGH_THROW_SLIDE": 7,
+                "ROUGH_CARTON_ROLLING": 6,
+                "OPERATOR_STEPPING_CARTON": 5,
+                "EQUIPMENT_STRAP_LIFT": 4,
+                "UNSAFE_FLOOR_DRAG": 3,
+                "IMPROPER_MISORIENTATION": 2,
+                "STACK_UNSTABLE_WOBBLE": 2,
+                "STACK_INVERTED_PYRAMID": 2,
+            }
 
-            if active_alert:
+            if new_events:
+                # Filter out benchmarks so positive coaching does not preempt active hazard alerts
+                hazard_events = [
+                    e for e in new_events
+                    if e.get("behaviour_type") != "BENCHMARK_SAFE_HANDLING"
+                    and e.get("behaviour_code") != "BENCHMARK_SAFE_HANDLING"
+                ]
+                if hazard_events:
+                    cand_evt = max(hazard_events, key=lambda e: (
+                        _TYPE_PRIORITY.get(e.get("behaviour_code", ""), 0),
+                        _SEV_RANK.get(e.get("risk_level", "Low"), 0)
+                    ))
+                    cand_score = (
+                        _TYPE_PRIORITY.get(cand_evt.get("behaviour_code", ""), 0),
+                        _SEV_RANK.get(cand_evt.get("risk_level", "Low"), 0)
+                    )
+                    curr_score = (
+                        _TYPE_PRIORITY.get(active_alert.get("behaviour_code", ""), 0),
+                        _SEV_RANK.get(active_alert.get("risk_level", "Low"), 0)
+                    ) if (active_alert and active_alert.get("frames_left", 0) > 0) else (0, 0)
+
+                    is_new = (active_alert is None or active_alert.get("frames_left", 0) <= 0 or
+                              cand_evt.get("event_id") != active_alert.get("event_id"))
+
+                    # Only preempt if alert has expired or new event has strictly higher severity/priority
+                    if is_new or cand_score > curr_score:
+                        hold_time = 2.5 if cand_evt.get("is_near_miss", False) or cand_score[1] >= 3 else 2.0
+                        active_alert = {
+                            "event_id": cand_evt.get("event_id"),
+                            "risk_level": cand_evt["risk_level"],
+                            "behaviour_type": cand_evt["behaviour_type"],
+                            "behaviour_code": cand_evt.get("behaviour_code", ""),
+                            "category": cand_evt.get("category", ""),
+                            "action": cand_evt.get("recommended_action", cand_evt.get("action", "")),
+                            "near_miss_prob": cand_evt.get("near_miss_probability", 0.0),
+                            "is_near_miss": cand_evt.get("is_near_miss", False),
+                            "frames_left": int(fps * hold_time)
+                        }
+
+            if active_alert and active_alert.get("frames_left", 0) > 0:
                 active_alert["frames_left"] -= 1
 
             # -----------------------------------------------------------------
@@ -308,22 +445,22 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
 
                 if cls_name == "person":
                     color = (255, 200, 0)
-                    label = f"Worker #{t['track_id']}"
+                    label = "WORKER"
                 else:
                     state = t.get("state", "RESTING")
                     held_by = t.get("held_by")
                     if state == "ROLLING":
                         color = (0, 215, 255)
-                        label = f"Box #{t['track_id']} [ROLLING]"
+                        label = "ROLLING"
                     elif state == "DROPPED":
                         color = (0, 80, 255)
-                        label = f"Box #{t['track_id']} [DROPPED]"
+                        label = "DROPPED"
                     elif held_by:
                         color = (0, 215, 255)
-                        label = f"Box #{t['track_id']} [Worker #{held_by}]"
+                        label = "HELD"
                     else:
                         color = (0, 140, 255)
-                        label = f"Box #{t['track_id']}"
+                        label = "CARTON"
 
                 cv2.rectangle(vis_frame, (x1, y1), (x2, y2), color, 2)
                 badge_sz = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
@@ -337,6 +474,15 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
                         n1, n2 = KEYPOINT_NAMES[p1], KEYPOINT_NAMES[p2]
                         if n1 in kps and n2 in kps and kps[n1][2] > 0.25 and kps[n2][2] > 0.25:
                             cv2.line(vis_frame, (int(kps[n1][0]), int(kps[n1][1])), (int(kps[n2][0]), int(kps[n2][1])), (0, 255, 128), 2)
+
+                    for k_name, (kx, ky, kc) in kps.items():
+                        if kc > 0.30:
+                            if "wrist" in k_name:
+                                cv2.circle(vis_frame, (int(kx), int(ky)), 6, (0, 0, 255), -1)
+                            elif "ankle" in k_name:
+                                cv2.circle(vis_frame, (int(kx), int(ky)), 6, (255, 0, 255), -1)
+                            else:
+                                cv2.circle(vis_frame, (int(kx), int(ky)), 3, (0, 255, 0), -1)
 
             # Draw Person B HUD & Risk Alert Banner
             draw_hud_banner(vis_frame, active_alert, frame_idx, fps_display, len(person_tracks), len(final_box_tracks))
@@ -390,11 +536,14 @@ def run_live_pipeline(source: Any = 0, output_dir: str = "outputs_live", box_con
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Live End-to-End Warehouse Perception + Risk Engine")
-    parser.add_argument("--camera", type=int, default=0, help="Webcam device index (default: 0)")
+    parser.add_argument("positional_video", nargs="?", default=None, help="Video file path (positional)")
+    parser.add_argument("--camera", type=int, default=None, help="Webcam device index (default: 0)")
     parser.add_argument("--video", type=str, default=None, help="Optional video file path to run stream on")
-    parser.add_argument("--box_conf", type=float, default=0.25, help="Detection threshold for cardboard boxes")
+    parser.add_argument("--max_frames", type=int, default=None, help="Optional max frames to process")
+    parser.add_argument("--box_conf", type=float, default=0.15, help="Detection threshold for cardboard boxes")
     parser.add_argument("--output_dir", type=str, default="outputs_live", help="Output directory for deliverables")
     args = parser.parse_args()
 
-    src = args.video if args.video else args.camera
-    run_live_pipeline(source=src, output_dir=args.output_dir, box_conf=args.box_conf)
+    video_source = args.video or args.positional_video
+    src = video_source if video_source is not None else (args.camera if args.camera is not None else 0)
+    run_live_pipeline(source=src, output_dir=args.output_dir, box_conf=args.box_conf, max_frames=args.max_frames)

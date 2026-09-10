@@ -10,8 +10,9 @@
         183
       ],
       "location_id": "Loading Bay Area",
-      "behaviour_type": "Carton / KD Floor Dragging",
-      "behaviour_code": "DRAG_NO_EQUIPMENT",
+      "category": "Unsafe Movement of Material",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
       "confidence_stage": "Potential Risk",
       "is_near_miss": false,
@@ -62,8 +63,8 @@
       "reason": "Operator #919 observed in sustained floor-dragging / pulling posture without handling equipment.",
       "recommended_action": "Provide handling trolley/equipment. Ensure warehouse floor is dry and free of slip hazards.",
       "evidence": {
-        "snapshot_url": "/evidence/snapshots/Rolling and dragging on wet floor_3.jpg",
-        "clip_url": "/evidence/clips/Rolling and dragging on wet floor_3_183.mp4"
+        "snapshot_url": "evidence/snapshots/Rolling and dragging on wet floor_3.jpg",
+        "clip_url": "evidence/clips/Rolling and dragging on wet floor_3_183.mp4"
       }
     }
   ],
@@ -72,6 +73,6 @@
     "near_misses_prevented": 0,
     "high_critical_risks": 1,
     "estimated_damage_avoided_inr": 0,
-    "most_frequent_risk": "Carton / KD Floor Dragging"
+    "most_frequent_risk": "[Unsafe Movement of Material] Floor Dragging (No Equipment)"
   }
 }
