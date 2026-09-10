@@ -39,8 +39,5 @@ Thumbs.db
 # IDE configuration
 .vscode/
 .idea/
-# Weights & Temporary
-*.pt
-!weights/*.pt
-~$*
-evidence/
+yolov8n.pt
+.backup_internal/
