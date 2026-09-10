@@ -35,6 +35,8 @@ SKELETON_PAIRS = [
 ]
 
 from run_live_end_to_end import draw_hud_banner, get_two_word_issue, SHORT_ISSUE_NAMES
+from pipeline_person_a import PersonAPipeline
+from pipeline_person_b import RiskEngine
 
 _SEV_RANK = {"Critical": 4, "High": 3, "Medium": 2, "Low": 1}
 _TYPE_PRIORITY = {
@@ -614,126 +616,15 @@ def generate_mjpeg_stream(video_name: Optional[str] = None, speed: float = 1.0, 
                 yield (b'--frame\r\nContent-Type: image/jpeg\r\n\r\n' + buf.tobytes() + b'\r\n')
                 time.sleep(1.0)
 
-        box_model, pose_model = get_detection_models()
-        last_auto_event_time = 0.0
-        strain_start_time = None
-        lifting_start_time = None
-
         try:
             while True:
-                t0 = time.time()
                 ret, frame = cap.read()
                 if not ret or frame is None:
                     time.sleep(0.04)
                     continue
 
-                if mask and box_model and pose_model:
-                    b_res = box_model(frame, conf=0.25, imgsz=480, verbose=False)
-                    p_res = pose_model(frame, conf=0.35, imgsz=480, verbose=False)
-
-                    if b_res and len(b_res) > 0 and b_res[0].boxes:
-                        for b in b_res[0].boxes:
-                            bx1, by1, bx2, by2 = [int(v) for v in b.xyxy[0].tolist()]
-                            conf = float(b.conf[0])
-                            cv2.rectangle(frame, (bx1, by1), (bx2, by2), (95, 185, 255), 2)
-                            cv2.rectangle(frame, (bx1, max(0, by1 - 22)), (bx1 + 180, max(22, by1)), (95, 185, 255), -1)
-                            cv2.putText(frame, f"BOX [{int(conf*100)}%] // YOLO11", (bx1 + 4, max(16, by1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
-
-                    if p_res and len(p_res) > 0 and p_res[0].boxes:
-                        r = p_res[0]
-                        kps_data = r.keypoints.data.cpu().numpy() if r.keypoints else None
-                        for i, p_box in enumerate(r.boxes):
-                            px1, py1, px2, py2 = [int(v) for v in p_box.xyxy[0].tolist()]
-                            posture_strain = False
-                            if kps_data is not None and i < len(kps_data):
-                                kps = kps_data[i]
-                                if kps[0][2] > 0.3 and (kps[11][2] > 0.3 or kps[12][2] > 0.3):
-                                    hx = (kps[11][0] + kps[12][0]) / 2.0 if (kps[11][2] > 0.3 and kps[12][2] > 0.3) else (kps[11][0] if kps[11][2] > 0.3 else kps[12][0])
-                                    hy = (kps[11][1] + kps[12][1]) / 2.0 if (kps[11][2] > 0.3 and kps[12][2] > 0.3) else (kps[11][1] if kps[11][2] > 0.3 else kps[12][1])
-                                    dx = abs(kps[0][0] - hx)
-                                    dy = abs(kps[0][1] - hy)
-                                    if dy > 0 and (dx / dy) > 0.55:
-                                        posture_strain = True
-
-                                for p1, p2 in SKELETON_PAIRS:
-                                    if kps[p1][2] > 0.25 and kps[p2][2] > 0.25:
-                                        pt1 = (int(kps[p1][0]), int(kps[p1][1]))
-                                        pt2 = (int(kps[p2][0]), int(kps[p2][1]))
-                                        bone_col = (0, 165, 255) if posture_strain else (0, 255, 128)
-                                        cv2.line(frame, pt1, pt2, bone_col, 2)
-                                for k_idx in range(17):
-                                    if kps[k_idx][2] > 0.30:
-                                        k_name = KEYPOINT_NAMES[k_idx]
-                                        if "wrist" in k_name:
-                                            cv2.circle(frame, (int(kps[k_idx][0]), int(kps[k_idx][1])), 6, (0, 0, 255), -1)
-                                        elif "ankle" in k_name:
-                                            cv2.circle(frame, (int(kps[k_idx][0]), int(kps[k_idx][1])), 6, (255, 0, 255), -1)
-                                        else:
-                                            cv2.circle(frame, (int(kps[k_idx][0]), int(kps[k_idx][1])), 3, (0, 255, 0), -1)
-
-                            worker_col = (255, 200, 0)
-                            cv2.rectangle(frame, (px1, py1), (px2, py2), worker_col, 2)
-                            badge_sz = cv2.getTextSize("WORKER", cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
-                            cv2.rectangle(frame, (px1, max(0, py1 - 18)), (px1 + badge_sz[0] + 4, max(18, py1)), worker_col, -1)
-                            cv2.putText(frame, "WORKER", (px1 + 2, max(14, py1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
-
-                h, w = frame.shape[:2]
-                cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
-                dt_ms = round((time.time() - t0) * 1000, 1)
-                
-                # Automatic Event Persistence with Debouncing
-                if mask and box_model and pose_model:
-                    if posture_strain:
-                        if strain_start_time is None:
-                            strain_start_time = time.time()
-                        elif (time.time() - strain_start_time) >= 0.7 and (time.time() - last_auto_event_time) > 6.0:
-                            b_cnt = len(b_res[0].boxes) if (b_res and len(b_res) > 0 and b_res[0].boxes) else 0
-                            record_webcam_event(
-                                behaviour_type="Awkward Posture // Bending Strain",
-                                behaviour_code="POSTURE_STRAIN",
-                                risk_level="High",
-                                reason="Operator observed in sustained forward bend (>30°) without ergonomic support.",
-                                recommended_action="Dock supervisor alert: instruct operator to lower carry height and bend knees.",
-                                is_near_miss=True,
-                                near_miss_probability=0.82,
-                                boxes_count=b_cnt,
-                                persons_count=1
-                            )
-                            last_auto_event_time = time.time()
-                            strain_start_time = None
-                    else:
-                        strain_start_time = None
-
-                    boxes_cnt = len(b_res[0].boxes) if (b_res and len(b_res) > 0 and b_res[0].boxes) else 0
-                    if boxes_cnt > 0 and not posture_strain:
-                        if lifting_start_time is None:
-                            lifting_start_time = time.time()
-                        elif (time.time() - lifting_start_time) >= 1.0 and (time.time() - last_auto_event_time) > 6.0:
-                            record_webcam_event(
-                                behaviour_type="Carton / Package Manual Lifting",
-                                behaviour_code="MANUAL_LIFTING",
-                                risk_level="Medium",
-                                reason=f"Operator active in manual package handling ({boxes_cnt} package(s) tracked).",
-                                recommended_action="Verify product weight complies with two-person lift SOP if over 20kg.",
-                                is_near_miss=False,
-                                near_miss_probability=0.35,
-                                boxes_count=boxes_cnt,
-                                persons_count=1
-                            )
-                            last_auto_event_time = time.time()
-                            lifting_start_time = None
-                    elif boxes_cnt == 0:
-                        lifting_start_time = None
-
-                # Visual HUD with recent event banner
-                if (time.time() - _LAST_RECORDED_TIME) < 2.5:
-                    hud_text = f"FIELD INTELLIGENCE LIVE // {_LAST_RECORDED_MSG} // {dt_ms}ms"
-                    cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.44, (95, 185, 255), 1, cv2.LINE_AA)
-                else:
-                    hud_text = f"FIELD INTELLIGENCE LIVE // DEVICE WEBCAM // YOLO11 + POSE // {dt_ms}ms"
-                    cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
-
-                success, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])
+                vis_frame, _ = live_webcam_processor.process(frame, mask=mask)
+                success, buffer = cv2.imencode('.jpg', vis_frame, [cv2.IMWRITE_JPEG_QUALITY, 80])
                 if not success:
                     continue
 
@@ -932,24 +823,8 @@ def get_video_frame(video: Optional[str] = None, frame_idx: int = 1, mask: bool 
         if not ret or frame is None:
             frame = np.zeros((720, 1280, 3), dtype=np.uint8)
             cv2.putText(frame, "WEBCAM FRAME NOT AVAILABLE", (100, 360), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 255), 2)
-        elif mask:
-            box_model, pose_model = get_detection_models()
-            if box_model and pose_model:
-                b_res = box_model(frame, conf=0.25, imgsz=480, verbose=False)
-                p_res = pose_model(frame, conf=0.35, imgsz=480, verbose=False)
-                if b_res and len(b_res) > 0 and b_res[0].boxes:
-                    for b in b_res[0].boxes:
-                        bx1, by1, bx2, by2 = [int(v) for v in b.xyxy[0].tolist()]
-                        conf = float(b.conf[0])
-                        cv2.rectangle(frame, (bx1, by1), (bx2, by2), (95, 185, 255), 2)
-                        cv2.rectangle(frame, (bx1, max(0, by1 - 22)), (bx1 + 180, max(22, by1)), (95, 185, 255), -1)
-                        cv2.putText(frame, f"BOX [{int(conf*100)}%] // YOLO11", (bx1 + 4, max(16, by1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
-                if p_res and len(p_res) > 0 and p_res[0].boxes:
-                    for i, p_box in enumerate(p_res[0].boxes):
-                        px1, py1, px2, py2 = [int(v) for v in p_box.xyxy[0].tolist()]
-                        cv2.rectangle(frame, (px1, py1), (px2, py2), (0, 229, 255), 2)
-                        cv2.rectangle(frame, (px1, max(0, py1 - 22)), (px1 + 170, max(22, py1)), (0, 229, 255), -1)
-                        cv2.putText(frame, f"WORKER #{i+1} [NOMINAL]", (px1 + 4, max(16, py1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+        else:
+            frame, _ = live_webcam_processor.process(frame, mask=mask)
         h, w = frame.shape[:2]
         cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
         cv2.putText(frame, "FIELD INTELLIGENCE [LIVE SNAPSHOT] // DEVICE WEBCAM", (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
@@ -1093,23 +968,306 @@ def get_video_frame(video: Optional[str] = None, frame_idx: int = 1, mask: bool 
 # -------------------------------------------------------------------------
 # Live Device Camera / Webcam Inference Pipeline
 # -------------------------------------------------------------------------
-_BOX_MODEL = None
-_POSE_MODEL = None
+class LiveWebcamProcessor:
+    """
+    Unified live webcam intelligence processor.
+    Runs Person A (YOLOv8-Pose + YOLO11 Box Detector with ByteTrack & HOI tracking)
+    coupled with Person B (WarehouseRiskEngine rolling 15-frame kinematics & near-miss USP).
+    """
+    def __init__(self):
+        self.pipeline_a: Optional[PersonAPipeline] = None
+        self.risk_engine: Optional[RiskEngine] = None
+        self.frame_idx: int = 0
+        self.last_frame_time: float = 0.0
+        self.last_fps_time: float = 0.0
+        self.fps_display: float = 30.0
+        self.active_alert: Optional[Dict[str, Any]] = None
+        self.last_recorded_event_id: Optional[str] = None
+        self.last_recorded_time: float = 0.0
+
+    def get_engines(self, width: int = 640, height: int = 480):
+        if self.pipeline_a is None:
+            self.pipeline_a = PersonAPipeline(box_conf=0.20, person_conf=0.35)
+        if self.risk_engine is None:
+            self.risk_engine = RiskEngine(video_id="webcam_live.mp4", fps=30.0, resolution=[width, height])
+        return self.pipeline_a, self.risk_engine
+
+    def reset_if_idle(self, width: int = 640, height: int = 480, max_idle_sec: float = 6.0):
+        now = time.time()
+        if self.last_frame_time > 0 and (now - self.last_frame_time) > max_idle_sec:
+            self.risk_engine = RiskEngine(video_id="webcam_live.mp4", fps=30.0, resolution=[width, height])
+            self.frame_idx = 0
+            self.active_alert = None
+            if self.pipeline_a and hasattr(self.pipeline_a, "interaction_tracker"):
+                self.pipeline_a.interaction_tracker.anchored_objects.clear()
+                self.pipeline_a.interaction_tracker.wrist_history.clear()
+                self.pipeline_a.interaction_tracker.box_history.clear()
+                self.pipeline_a.interaction_tracker.freefall_objects.clear()
+        self.last_frame_time = now
+
+    def process(self, frame: np.ndarray, mask: bool = True) -> Tuple[np.ndarray, Dict[str, Any]]:
+        h, w = frame.shape[:2]
+        self.reset_if_idle(width=w, height=h)
+        pipeline_a, risk_engine = self.get_engines(width=w, height=h)
+
+        self.frame_idx += 1
+        now = time.time()
+        timestamp_sec = round(self.frame_idx / 30.0, 3)
+
+        if self.last_fps_time == 0.0:
+            self.last_fps_time = now
+        elif self.frame_idx % 10 == 0:
+            elapsed = now - self.last_fps_time
+            if elapsed > 0:
+                self.fps_display = 10.0 / elapsed
+            self.last_fps_time = now
+
+        # 1. Person A - Worker Detection & Keypoint Extraction
+        pose_results = pipeline_a.pose_model.track(
+            source=frame,
+            persist=True,
+            tracker=pipeline_a.tracker_config,
+            conf=pipeline_a.person_conf,
+            verbose=False,
+            imgsz=480
+        )
+        person_tracks = []
+        if pose_results and len(pose_results) > 0:
+            r = pose_results[0]
+            if r.boxes is not None and len(r.boxes) > 0:
+                boxes = r.boxes
+                kps_data = r.keypoints.data.cpu().numpy() if r.keypoints is not None else None
+                for i, box in enumerate(boxes):
+                    conf = float(box.conf[0])
+                    track_id = int(box.id[0]) if box.id is not None else (i + 1)
+                    x1, y1, x2, y2 = [round(float(v), 1) for v in box.xyxy[0].tolist()]
+                    p_entry = {
+                        "track_id": track_id,
+                        "class": "person",
+                        "bbox": [x1, y1, x2, y2],
+                        "bbox_normalized": [round(x1 / w, 3), round(y1 / h, 3), round(x2 / w, 3), round(y2 / h, 3)],
+                        "confidence": round(conf, 3)
+                    }
+                    if kps_data is not None and i < len(kps_data):
+                        kp_dict = {}
+                        for k_idx, (kx, ky, kc) in enumerate(kps_data[i]):
+                            kp_dict[KEYPOINT_NAMES[k_idx]] = [
+                                round(float(kx), 1),
+                                round(float(ky), 1),
+                                round(float(kc), 3)
+                            ]
+                        p_entry["keypoints"] = kp_dict
+                    person_tracks.append(p_entry)
+
+        # 2. Person A - Package Detection & Floor-Clamped HOI Tracking
+        box_results = pipeline_a.box_model.track(
+            source=frame,
+            persist=True,
+            tracker=pipeline_a.tracker_config,
+            conf=pipeline_a.box_conf,
+            verbose=False,
+            imgsz=480
+        )
+        raw_box_tracks = []
+        used_box_ids = set()
+        if box_results and len(box_results) > 0:
+            br = box_results[0]
+            if br.boxes is not None and len(br.boxes) > 0:
+                for j, bbox_obj in enumerate(br.boxes):
+                    bx1, by1, bx2, by2 = [round(float(v), 1) for v in bbox_obj.xyxy[0].tolist()]
+                    bw, bh = bx2 - bx1, by2 - by1
+                    if bw > (w * 0.58) or bh > (h * 0.58) or (bw * bh) > (w * h * 0.30):
+                        continue
+                    if bbox_obj.id is not None:
+                        box_tid = int(bbox_obj.id[0]) + 1000
+                    else:
+                        box_tid = None
+                        best_distance = 180.0
+                        current_center = ((bx1 + bx2) / 2.0, (by1 + by2) / 2.0)
+                        for existing_tid, history in pipeline_a.interaction_tracker.box_history.items():
+                            if existing_tid in used_box_ids or not history:
+                                continue
+                            previous_center = history[-1][:2]
+                            center_distance = ((current_center[0] - previous_center[0]) ** 2 +
+                                               (current_center[1] - previous_center[1]) ** 2) ** 0.5
+                            if center_distance < best_distance:
+                                best_distance = center_distance
+                                box_tid = existing_tid
+                        if box_tid is None:
+                            box_tid = 1001 + j
+                    used_box_ids.add(box_tid)
+                    raw_box_tracks.append({
+                        "track_id": box_tid,
+                        "class": "cardboard box",
+                        "bbox": [bx1, by1, bx2, by2],
+                        "bbox_normalized": [round(bx1 / w, 3), round(by1 / h, 3), round(bx2 / w, 3), round(by2 / h, 3)],
+                        "confidence": round(float(bbox_obj.conf[0]), 3)
+                    })
+
+        final_box_tracks = pipeline_a.interaction_tracker.update(
+            raw_box_tracks, person_tracks, timestamp_sec
+        )
+        for fb in final_box_tracks:
+            if "bbox_normalized" not in fb:
+                fx1, fy1, fx2, fy2 = fb["bbox"]
+                fb["bbox_normalized"] = [round(fx1 / w, 3), round(fy1 / h, 3), round(fx2 / w, 3), round(fy2 / h, 3)]
+
+        all_tracks = person_tracks + final_box_tracks
+
+        # 3. Person B - Real-Time Risk Engine Processing
+        current_frame_dict = {
+            "frame_idx": self.frame_idx,
+            "frame_id": self.frame_idx,
+            "timestamp_sec": timestamp_sec,
+            "tracks": all_tracks
+        }
+        new_events = risk_engine.process_frame(current_frame_dict)
+
+        if new_events:
+            hazard_events = [
+                e for e in new_events
+                if e.get("behaviour_type") != "BENCHMARK_SAFE_HANDLING"
+                and e.get("behaviour_code") != "BENCHMARK_SAFE_HANDLING"
+            ]
+            if hazard_events:
+                cand_evt = max(hazard_events, key=lambda e: (
+                    _TYPE_PRIORITY.get(e.get("behaviour_code", ""), 0),
+                    _SEV_RANK.get(e.get("risk_level", "Low"), 0)
+                ))
+                cand_score = (
+                    _TYPE_PRIORITY.get(cand_evt.get("behaviour_code", ""), 0),
+                    _SEV_RANK.get(cand_evt.get("risk_level", "Low"), 0)
+                )
+                curr_score = (
+                    _TYPE_PRIORITY.get(self.active_alert.get("behaviour_code", ""), 0),
+                    _SEV_RANK.get(self.active_alert.get("risk_level", "Low"), 0)
+                ) if (self.active_alert and self.active_alert.get("frames_left", 0) > 0) else (0, 0)
+
+                is_new = (self.active_alert is None or self.active_alert.get("frames_left", 0) <= 0 or
+                          cand_evt.get("event_id") != self.active_alert.get("event_id"))
+
+                if is_new or cand_score > curr_score:
+                    hold_time = 2.5 if cand_evt.get("is_near_miss", False) or cand_score[1] >= 3 else 2.0
+                    self.active_alert = {
+                        "event_id": cand_evt.get("event_id"),
+                        "risk_level": cand_evt["risk_level"],
+                        "behaviour_type": cand_evt["behaviour_type"],
+                        "behaviour_code": cand_evt.get("behaviour_code", ""),
+                        "category": cand_evt.get("category", ""),
+                        "action": cand_evt.get("recommended_action", cand_evt.get("action", "")),
+                        "near_miss_prob": cand_evt.get("near_miss_probability", 0.0),
+                        "is_near_miss": cand_evt.get("is_near_miss", False),
+                        "frames_left": int(30.0 * hold_time)
+                    }
+
+                    # Auto-persist to warehouse store with debounce
+                    if (now - self.last_recorded_time) > 4.0:
+                        record_webcam_event(
+                            behaviour_type=cand_evt["behaviour_type"],
+                            behaviour_code=cand_evt.get("behaviour_code", ""),
+                            risk_level=cand_evt["risk_level"],
+                            reason=cand_evt.get("reason", cand_evt.get("action", "Hazard identified in active handling area.")),
+                            recommended_action=cand_evt.get("recommended_action", cand_evt.get("action", "Follow standard handling SOP.")),
+                            is_near_miss=cand_evt.get("is_near_miss", False),
+                            near_miss_probability=cand_evt.get("near_miss_probability", 0.0),
+                            boxes_count=len(final_box_tracks),
+                            persons_count=len(person_tracks),
+                            telemetry=cand_evt.get("telemetry", {})
+                        )
+                        self.last_recorded_time = now
+
+        if self.active_alert and self.active_alert.get("frames_left", 0) > 0:
+            self.active_alert["frames_left"] -= 1
+        elif self.active_alert and self.active_alert.get("frames_left", 0) <= 0:
+            self.active_alert = None
+
+        # 4. Render Annotations
+        vis_frame = frame.copy()
+        if mask:
+            for t in all_tracks:
+                x1, y1, x2, y2 = [int(v) for v in t["bbox"]]
+                cls_name = t["class"]
+                if cls_name == "person":
+                    color = (255, 200, 0)
+                    label = "WORKER"
+                else:
+                    state = t.get("state", "RESTING")
+                    held_by = t.get("held_by")
+                    if state == "ROLLING":
+                        color = (0, 215, 255)
+                        label = "ROLLING"
+                    elif state == "DROPPED":
+                        color = (0, 80, 255)
+                        label = "DROPPED"
+                    elif held_by:
+                        color = (0, 215, 255)
+                        label = "HELD"
+                    else:
+                        color = (0, 140, 255)
+                        label = "CARTON"
+
+                cv2.rectangle(vis_frame, (x1, y1), (x2, y2), color, 2)
+                badge_sz = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
+                cv2.rectangle(vis_frame, (x1, max(0, y1 - 18)), (x1 + badge_sz[0] + 4, max(18, y1)), color, -1)
+                cv2.putText(vis_frame, label, (x1 + 2, max(14, y1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
+
+                if "keypoints" in t:
+                    kps = t["keypoints"]
+                    for p1, p2 in SKELETON_PAIRS:
+                        n1, n2 = KEYPOINT_NAMES[p1], KEYPOINT_NAMES[p2]
+                        if n1 in kps and n2 in kps and kps[n1][2] > 0.25 and kps[n2][2] > 0.25:
+                            cv2.line(vis_frame, (int(kps[n1][0]), int(kps[n1][1])), (int(kps[n2][0]), int(kps[n2][1])), (0, 255, 128), 2)
+                    for k_name, (kx, ky, kc) in kps.items():
+                        if kc > 0.30:
+                            if "wrist" in k_name:
+                                cv2.circle(vis_frame, (int(kx), int(ky)), 6, (0, 0, 255), -1)
+                            elif "ankle" in k_name:
+                                cv2.circle(vis_frame, (int(kx), int(ky)), 6, (255, 0, 255), -1)
+                            else:
+                                cv2.circle(vis_frame, (int(kx), int(ky)), 3, (0, 255, 0), -1)
+
+            draw_hud_banner(vis_frame, self.active_alert, self.frame_idx, self.fps_display, len(person_tracks), len(final_box_tracks))
+        else:
+            cv2.rectangle(vis_frame, (0, 0), (w, 32), (16, 20, 26), -1)
+            hud_text = "DEVICE WEBCAM // RAW FEED (MASK OFF)"
+            cv2.putText(vis_frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
+
+        # 5. Metadata for HTTP headers
+        if self.active_alert and self.active_alert.get("frames_left", 0) > 0:
+            r_lvl = self.active_alert.get("risk_level", "Medium").upper()
+            r_beh = self.active_alert.get("behaviour_type", "Operational Hazard")
+            if self.active_alert.get("is_near_miss"):
+                r_score = int(self.active_alert.get("near_miss_prob", 0.85) * 100)
+            elif r_lvl == "CRITICAL":
+                r_score = 92
+            elif r_lvl == "HIGH":
+                r_score = 78
+            elif r_lvl == "MEDIUM":
+                r_score = 52
+            else:
+                r_score = 25
+        else:
+            r_lvl = "LOW"
+            r_beh = "MONITORING // NOMINAL"
+            r_score = 16
+
+        meta = {
+            "risk_score": r_score,
+            "risk_level": r_lvl,
+            "behaviour": r_beh,
+            "boxes_detected": len(final_box_tracks),
+            "persons_detected": len(person_tracks),
+            "active_alert": self.active_alert
+        }
+        return vis_frame, meta
+
+
+live_webcam_processor = LiveWebcamProcessor()
 
 def get_detection_models():
-    """Lazily loads and caches the trained box model and pose model."""
-    global _BOX_MODEL, _POSE_MODEL
-    if _BOX_MODEL is None or _POSE_MODEL is None:
-        try:
-            from ultralytics import YOLO
-            box_path = "weights/box_11s.pt" if os.path.exists("weights/box_11s.pt") else "yolov8n.pt"
-            pose_path = "yolov8n-pose.pt" if os.path.exists("yolov8n-pose.pt") else "yolov8n-pose.pt"
-            _BOX_MODEL = YOLO(box_path)
-            _POSE_MODEL = YOLO(pose_path)
-            print(f"[AI Models] Loaded Box Detector ({box_path}) and Pose Estimator ({pose_path})")
-        except Exception as e:
-            print(f"[AI Models] Failed to load YOLO models: {e}")
-    return _BOX_MODEL, _POSE_MODEL
+    """Lazily loads and returns the box model and pose model."""
+    p_a, _ = live_webcam_processor.get_engines(640, 480)
+    return p_a.box_model, p_a.pose_model
 
 @app.post("/api/detect_webcam_frame")
 async def detect_webcam_frame(
@@ -1119,8 +1277,8 @@ async def detect_webcam_frame(
     mask: bool = True
 ):
     """
-    Directly runs the trained YOLO11 package detector (weights/box_11s.pt) and 
-    YOLOv8-Pose (yolov8n-pose.pt) on a live video frame from the user's device camera.
+    Runs Person A Perception (YOLO11 Box Detector + YOLOv8-Pose + ByteTrack HOI) coupled with
+    Person B RiskEngine (10 scenarios + rolling kinematics + near-miss USP) on the live webcam frame.
     Returns the annotated frame along with real-time telemetry headers.
     """
     contents = await request.body()
@@ -1129,166 +1287,20 @@ async def detect_webcam_frame(
     if frame is None:
         raise HTTPException(status_code=400, detail="Invalid frame format")
 
-    box_model, pose_model = get_detection_models()
-    h, w = frame.shape[:2]
-
     t0 = time.time()
-    
-    # Run trained models with optimized resolution for speed
-    box_results = box_model(frame, conf=conf_box, imgsz=480, verbose=False) if box_model else None
-    pose_results = pose_model(frame, conf=conf_pose, imgsz=480, verbose=False) if pose_model else None
-    
+    vis_frame, meta = live_webcam_processor.process(frame, mask=mask)
     inference_ms = round((time.time() - t0) * 1000, 1)
 
-    boxes_detected = 0
-    persons_detected = 0
-    risk_score = 16  # baseline safe rating
-    risk_level = "LOW"
-    behaviour = "MONITORING // NOMINAL"
-    has_interaction = False
-    posture_strain = False
-
-    # 1. Collect Detected Cartons / Packages using weights/box_11s.pt
-    box_coords = []
-    held_box_indices = set()
-    if box_results and len(box_results) > 0 and box_results[0].boxes:
-        for b in box_results[0].boxes:
-            bx1, by1, bx2, by2 = [int(v) for v in b.xyxy[0].tolist()]
-            conf = float(b.conf[0])
-            box_coords.append((bx1, by1, bx2, by2, conf))
-            boxes_detected += 1
-
-    # 2. Annotate Worker Pose and Evaluate Ergonomics using yolov8n-pose.pt
-    if pose_results and len(pose_results) > 0 and pose_results[0].boxes:
-        r = pose_results[0]
-        kps_data = r.keypoints.data.cpu().numpy() if r.keypoints else None
-        
-        for i, p_box in enumerate(r.boxes):
-            px1, py1, px2, py2 = [int(v) for v in p_box.xyxy[0].tolist()]
-            persons_detected += 1
-
-            posture_strain = False
-            wrists = []
-
-            if kps_data is not None and i < len(kps_data):
-                kps = kps_data[i]  # 17 keypoints (x, y, conf)
-                
-                # Check wrists proximity to any box
-                for idx in [9, 10]:  # left_wrist, right_wrist
-                    if kps[idx][2] > 0.3:
-                        wx, wy = int(kps[idx][0]), int(kps[idx][1])
-                        wrists.append((wx, wy))
-                        for b_idx, (bx1, by1, bx2, by2, _) in enumerate(box_coords):
-                            if (bx1 - 50) <= wx <= (bx2 + 50) and (by1 - 50) <= wy <= (by2 + 50):
-                                has_interaction = True
-                                held_box_indices.add(b_idx)
-
-                # Check torso bend (angle between nose and hips)
-                if kps[0][2] > 0.3 and (kps[11][2] > 0.3 or kps[12][2] > 0.3):
-                    hx = (kps[11][0] + kps[12][0]) / 2.0 if (kps[11][2] > 0.3 and kps[12][2] > 0.3) else (kps[11][0] if kps[11][2] > 0.3 else kps[12][0])
-                    hy = (kps[11][1] + kps[12][1]) / 2.0 if (kps[11][2] > 0.3 and kps[12][2] > 0.3) else (kps[11][1] if kps[11][2] > 0.3 else kps[12][1])
-                    nx, ny = kps[0][0], kps[0][1]
-                    dx = abs(nx - hx)
-                    dy = abs(ny - hy)
-                    if dy > 0 and (dx / dy) > 0.55:  # leaning forward > 30 deg
-                        posture_strain = True
-
-                # Draw skeleton bones and colored joints
-                if mask:
-                    for p1, p2 in SKELETON_PAIRS:
-                        if kps[p1][2] > 0.25 and kps[p2][2] > 0.25:
-                            pt1 = (int(kps[p1][0]), int(kps[p1][1]))
-                            pt2 = (int(kps[p2][0]), int(kps[p2][1]))
-                            bone_color = (0, 165, 255) if posture_strain else (0, 255, 128)
-                            cv2.line(frame, pt1, pt2, bone_color, 2)
-
-                    # Hand dots (red) and Leg/ankle dots (pink/magenta)
-                    for k_idx in range(17):
-                        if kps[k_idx][2] > 0.30:
-                            k_name = KEYPOINT_NAMES[k_idx]
-                            kx, ky = int(kps[k_idx][0]), int(kps[k_idx][1])
-                            if "wrist" in k_name:
-                                cv2.circle(frame, (kx, ky), 6, (0, 0, 255), -1)      # Red for hands / wrists
-                            elif "ankle" in k_name:
-                                cv2.circle(frame, (kx, ky), 6, (255, 0, 255), -1)    # Pink / magenta for ankles / feet
-                            else:
-                                cv2.circle(frame, (kx, ky), 3, (0, 255, 0), -1)      # Green for other joints
-
-            if mask:
-                worker_col = (255, 200, 0)
-                cv2.rectangle(frame, (px1, py1), (px2, py2), worker_col, 2)
-                badge_title = "WORKER [STRAIN]" if posture_strain else "WORKER"
-                badge_sz = cv2.getTextSize(badge_title, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
-                cv2.rectangle(frame, (px1, max(0, py1 - 18)), (px1 + badge_sz[0] + 4, max(18, py1)), worker_col, -1)
-                cv2.putText(frame, badge_title, (px1 + 2, max(14, py1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
-
-            if posture_strain:
-                risk_score = max(risk_score, 76)
-                risk_level = "HIGH"
-                behaviour = "AWKWARD POSTURE // BENDING"
-            elif has_interaction:
-                risk_score = max(risk_score, 45)
-                risk_level = "MEDIUM"
-                behaviour = "ACTIVE MATERIAL HANDLING"
-
-    # Draw detected packages with interaction status (HELD vs CARTON)
-    if mask and box_coords:
-        for b_idx, (bx1, by1, bx2, by2, conf) in enumerate(box_coords):
-            is_held = b_idx in held_box_indices
-            box_col = (0, 215, 255) if is_held else (0, 140, 255)
-            box_label = "HELD" if is_held else "CARTON"
-            cv2.rectangle(frame, (bx1, by1), (bx2, by2), box_col, 2)
-            badge_sz = cv2.getTextSize(box_label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
-            cv2.rectangle(frame, (bx1, max(0, by1 - 18)), (bx1 + badge_sz[0] + 4, max(18, by1)), box_col, -1)
-            cv2.putText(frame, box_label, (bx1 + 2, max(14, by1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
-
-    if has_interaction and risk_level == "LOW":
-        risk_score = 42
-        risk_level = "MEDIUM"
-        behaviour = "BOX LIFTING / CARRYING"
-
-    if mask:
-        if posture_strain:
-            active_alert = {
-                "event_id": f"CAM-DEV-{int(time.time())%10000:04d}",
-                "risk_level": "High",
-                "behaviour_type": "Awkward Posture // Bending Strain",
-                "behaviour_code": "OPERATOR_STEPPING_CARTON",
-                "action": "Maintain upright posture, bend at knees, and avoid twisting while carrying.",
-                "near_miss_prob": 0.82,
-                "is_near_miss": True,
-                "frames_left": 10
-            }
-        elif has_interaction:
-            active_alert = {
-                "event_id": f"CAM-DEV-{int(time.time())%10000:04d}",
-                "risk_level": "Medium",
-                "behaviour_type": "Manual Package Handling",
-                "behaviour_code": "UNSAFE_FLOOR_DRAG",
-                "action": "Keep load centered close to torso; verify weight complies with SOP.",
-                "near_miss_prob": 0.35,
-                "is_near_miss": False,
-                "frames_left": 10
-            }
-        else:
-            active_alert = None
-
-        draw_hud_banner(frame, active_alert, 1, 30.0, persons_detected, boxes_detected)
-    else:
-        cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
-        hud_text = f"DEVICE WEBCAM // RAW FEED (MASK OFF) // {inference_ms}ms"
-        cv2.putText(frame, hud_text, (14, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
-
-    _, buf = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
+    _, buf = cv2.imencode('.jpg', vis_frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
     return Response(
         content=buf.tobytes(),
         media_type="image/jpeg",
         headers={
-            "X-Risk-Score": str(risk_score),
-            "X-Risk-Level": str(risk_level),
-            "X-Boxes-Count": str(boxes_detected),
-            "X-Persons-Count": str(persons_detected),
-            "X-Behaviour": str(behaviour),
+            "X-Risk-Score": str(meta["risk_score"]),
+            "X-Risk-Level": str(meta["risk_level"]),
+            "X-Boxes-Count": str(meta["boxes_detected"]),
+            "X-Persons-Count": str(meta["persons_detected"]),
+            "X-Behaviour": str(meta["behaviour"]),
             "X-Inference-Ms": str(inference_ms),
             "Cache-Control": "no-cache"
         }

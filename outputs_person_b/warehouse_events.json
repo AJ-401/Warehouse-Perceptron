@@ -1,6 +1,480 @@
 {
   "events": [
     {
+      "event_id": "EVT-20260910-0319",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:41:51",
+      "timestamp_end": "17:41:51",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.2539,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1045 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042311",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0318",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:41:33",
+      "timestamp_end": "17:41:33",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.14,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1046 dragged across warehouse floor (0.14m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042293",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0317",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:41:29",
+      "timestamp_end": "17:41:29",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "right_ankle",
+        "ankle_confidence": 0.59,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Operator #22's foot detected stepping or standing on top surface of carton #1046.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042289",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0316",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:41:25",
+      "timestamp_end": "17:41:25",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "right_ankle",
+        "ankle_confidence": 0.98,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Operator #22's foot detected stepping or standing on top surface of carton #1046.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042285",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0315",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:41:20",
+      "timestamp_end": "17:41:20",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.62,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1045 propelled horizontally across floor/surface at excessive speed (0.62 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042280",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0314",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:41:16",
+      "timestamp_end": "17:41:16",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.68,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 192.0,
+        "carry_height_m": 1.11,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": false,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1045 carried by operator #22 at elevated height (1.11m) and excessive speed (192.0 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042276",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0313",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:41:06",
+      "timestamp_end": "17:41:06",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0608,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1004 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042266",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0312",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:41:01",
+      "timestamp_end": "17:41:01",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0226,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1004 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042261",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0311",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:40:54",
+      "timestamp_end": "17:40:54",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.12,
+        "floor_contact_duration_sec": 1.03,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1004 dragged across warehouse floor (0.12m over 1.03s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042254",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0310",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:40:46",
+      "timestamp_end": "17:40:46",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.15,
+        "floor_contact_duration_sec": 0.47,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1010 dragged across warehouse floor (0.15m over 0.47s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042246",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0309",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:40:42",
+      "timestamp_end": "17:40:42",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102,
+          103
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.12,
+        "floor_contact_duration_sec": 0.43,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 3,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1010 dragged across warehouse floor (0.12m over 0.43s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042242",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0308",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:40:37",
+      "timestamp_end": "17:40:37",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.15,
+        "floor_contact_duration_sec": 1.07,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1004 dragged across warehouse floor (0.15m over 1.07s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042237",
+        "clip_url": null
+      }
+    },
+    {
       "event_id": "EVT-20260908-0001",
       "video_id": "Dock level, dragging cupboard.mp4",
       "timestamp_start": "00:00:00.367",
@@ -10,7 +484,6 @@
         284
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -69,7 +542,6 @@
         297
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -106,7 +578,6 @@
         302
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -142,7 +613,6 @@
         823
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -185,7 +655,6 @@
         337
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -226,7 +695,6 @@
         306
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -269,7 +737,6 @@
         301
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -308,7 +775,6 @@
         318
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -344,7 +810,6 @@
         322
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -384,7 +849,6 @@
         358
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -425,7 +889,6 @@
         330
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -464,7 +927,6 @@
         327
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -502,7 +964,6 @@
         823
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -538,7 +999,6 @@
         568
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -580,7 +1040,6 @@
         568
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -616,7 +1075,6 @@
         380
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -657,7 +1115,6 @@
         426
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -695,7 +1152,6 @@
         465
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -733,7 +1189,6 @@
         514
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -774,7 +1229,6 @@
         566
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -816,7 +1270,6 @@
         696
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -856,7 +1309,6 @@
         697
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -896,7 +1348,6 @@
         584
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -934,7 +1385,6 @@
         623
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -972,7 +1422,6 @@
         646
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -1010,7 +1459,6 @@
         750
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -1052,7 +1500,6 @@
         686
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -1089,7 +1536,6 @@
         686
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -1125,7 +1571,6 @@
         690
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -1166,7 +1611,6 @@
         691
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -1204,7 +1648,6 @@
         692
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
@@ -1241,7 +1684,6 @@
         739
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -1277,7 +1719,6 @@
         691
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -1316,7 +1757,6 @@
         723
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -1352,7 +1792,6 @@
         756
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -1394,7 +1833,6 @@
         722
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -1430,7 +1868,6 @@
         715
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -1468,7 +1905,6 @@
         756
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -1504,7 +1940,6 @@
         732
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -1542,7 +1977,6 @@
         732
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -1581,7 +2015,6 @@
         889
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -1632,7 +2065,6 @@
         928
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -1674,7 +2106,6 @@
         17
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -1714,7 +2145,6 @@
         34
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -1753,7 +2183,6 @@
         50
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -1792,7 +2221,6 @@
         43
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
@@ -1829,7 +2257,6 @@
         42
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -1865,7 +2292,6 @@
         53
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "High",
@@ -1901,7 +2327,6 @@
         72
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -1937,7 +2362,6 @@
         73
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -1973,7 +2397,6 @@
         213
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -2011,7 +2434,6 @@
         221
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -2052,7 +2474,6 @@
         58
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -2090,7 +2511,6 @@
         166
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -2128,7 +2548,6 @@
         158
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -2166,7 +2585,6 @@
         166
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -2205,7 +2623,6 @@
         186
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
@@ -2242,7 +2659,6 @@
         195
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "High",
@@ -2279,7 +2695,6 @@
         206
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -2315,7 +2730,6 @@
         206
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -2351,7 +2765,6 @@
         187
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -2391,7 +2804,6 @@
         199
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -2428,7 +2840,6 @@
         193
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -2467,7 +2878,6 @@
         198
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -2507,7 +2917,6 @@
         213
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -2546,7 +2955,6 @@
         222
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
@@ -2583,7 +2991,6 @@
         219
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -2620,7 +3027,6 @@
         240
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -2656,7 +3062,6 @@
         251
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -2697,7 +3102,6 @@
         232
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -2737,7 +3141,6 @@
         236
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -2773,7 +3176,6 @@
         236
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -2809,7 +3211,6 @@
         233
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -2845,7 +3246,6 @@
         233
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -2881,7 +3281,6 @@
         231
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -2918,7 +3317,6 @@
         628
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -2958,7 +3356,6 @@
         628
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -2996,7 +3393,6 @@
         220
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -3036,7 +3432,6 @@
         631
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -3075,7 +3470,6 @@
         319
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -3111,7 +3505,6 @@
         640
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -3147,7 +3540,6 @@
         239
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -3183,7 +3575,6 @@
         230
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -3222,7 +3613,6 @@
         251
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "High",
@@ -3259,7 +3649,6 @@
         301
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -3295,7 +3684,6 @@
         250
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -3337,7 +3725,6 @@
         252
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -3378,7 +3765,6 @@
         246
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -3418,7 +3804,6 @@
         243
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -3458,7 +3843,6 @@
         243
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -3497,7 +3881,6 @@
         248
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -3536,7 +3919,6 @@
         276
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -3575,7 +3957,6 @@
         311
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -3611,7 +3992,6 @@
         316
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -3651,7 +4031,6 @@
         317
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -3689,7 +4068,6 @@
         348
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -3725,7 +4103,6 @@
         301
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -3761,7 +4138,6 @@
         301
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -3803,7 +4179,6 @@
         306
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -3842,7 +4217,6 @@
         304
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -3881,7 +4255,6 @@
         318
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -3920,7 +4293,6 @@
         324
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "High",
@@ -3960,7 +4332,6 @@
         324
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -3999,7 +4370,6 @@
         418
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -4035,7 +4405,6 @@
         366
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -4071,7 +4440,6 @@
         343
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -4110,7 +4478,6 @@
         346
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -4149,7 +4516,6 @@
         356
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -4189,7 +4555,6 @@
         370
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "High",
@@ -4225,7 +4590,6 @@
         360
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "High",
@@ -4264,7 +4628,6 @@
         386
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -4301,7 +4664,6 @@
         386
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -4337,7 +4699,6 @@
         386
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -4377,7 +4738,6 @@
         399
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -4417,7 +4777,6 @@
         397
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -4456,7 +4815,6 @@
         412
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -4496,7 +4854,6 @@
         417
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -4534,7 +4891,6 @@
         434
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -4573,7 +4929,6 @@
         443
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "High",
@@ -4610,7 +4965,6 @@
         469
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -4652,7 +5006,6 @@
         490
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -4693,7 +5046,6 @@
         464
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -4730,7 +5082,6 @@
         469
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -4766,7 +5117,6 @@
         469
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -4802,7 +5152,6 @@
         461
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -4845,7 +5194,6 @@
         469
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -4883,7 +5231,6 @@
         467
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -4922,7 +5269,6 @@
         479
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -4960,7 +5306,6 @@
         503
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -4996,7 +5341,6 @@
         594
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -5043,7 +5387,6 @@
         578
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -5085,7 +5428,6 @@
         574
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -5126,7 +5468,6 @@
         654
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -5162,7 +5503,6 @@
         628
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -5201,7 +5541,6 @@
         734
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -5247,7 +5586,6 @@
         733
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -5291,7 +5629,6 @@
         809
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -5331,7 +5668,6 @@
         1001
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -5374,7 +5710,6 @@
         970
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -5410,7 +5745,6 @@
         944
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -5449,7 +5783,6 @@
         887
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -5495,7 +5828,6 @@
         892
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -5534,7 +5866,6 @@
         912
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "High",
@@ -5570,7 +5901,6 @@
         913
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -5610,7 +5940,6 @@
         968
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -5646,7 +5975,6 @@
         898
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -5686,7 +6014,6 @@
         970
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -5726,7 +6053,6 @@
         899
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -5765,7 +6091,6 @@
         901
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -5804,7 +6129,6 @@
         933
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -5843,7 +6167,6 @@
         942
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -5885,7 +6208,6 @@
         949
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -5923,7 +6245,6 @@
         949
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -5962,7 +6283,6 @@
         963
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -5998,7 +6318,6 @@
         964
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -6039,7 +6358,6 @@
         963
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -6075,7 +6393,6 @@
         965
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Critical",
@@ -6113,7 +6430,6 @@
         996
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -6151,7 +6467,6 @@
         996
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -6189,7 +6504,6 @@
         1010
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -6228,7 +6542,6 @@
         183
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -6295,7 +6608,6 @@
         33
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -6334,7 +6646,6 @@
         18
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -6372,7 +6683,6 @@
         26
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
@@ -6409,7 +6719,6 @@
         64
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -6454,7 +6763,6 @@
         45
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -6491,7 +6799,6 @@
         39
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -6527,7 +6834,6 @@
         79
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -6567,7 +6873,6 @@
         63
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
@@ -6604,7 +6909,6 @@
         58
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -6640,7 +6944,6 @@
         103
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "High",
@@ -6676,7 +6979,6 @@
         122
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -6717,7 +7019,6 @@
         81
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -6755,7 +7056,6 @@
         112
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "High",
@@ -6792,7 +7092,6 @@
         97
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -6833,7 +7132,6 @@
         108
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Handling",
       "behaviour_type": "Vertical Product Kept Horizontally",
       "behaviour_code": "IMPROPER_MISORIENTATION",
       "risk_level": "Medium",
@@ -6869,7 +7167,6 @@
         105
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -6908,7 +7205,6 @@
         205
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "High",
@@ -6944,7 +7240,6 @@
         161
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -6983,7 +7278,6 @@
         148
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Handling",
       "behaviour_type": "Vertical Product Kept Horizontally",
       "behaviour_code": "IMPROPER_MISORIENTATION",
       "risk_level": "Medium",
@@ -7019,7 +7313,6 @@
         161
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -7059,7 +7352,6 @@
         139
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -7098,7 +7390,6 @@
         141
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -7136,7 +7427,6 @@
         147
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -7175,7 +7465,6 @@
         148
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "High",
@@ -7214,7 +7503,6 @@
         150
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -7252,7 +7540,6 @@
         154
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -7288,7 +7575,6 @@
         149
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -7327,7 +7613,6 @@
         238
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -7366,7 +7651,6 @@
         153
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -7405,7 +7689,6 @@
         167
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -7443,7 +7726,6 @@
         211
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -7480,7 +7762,6 @@
         225
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -7516,7 +7797,6 @@
         201
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -7555,7 +7835,6 @@
         260
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -7592,7 +7871,6 @@
         273
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -7631,7 +7909,6 @@
         275
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -7668,7 +7945,6 @@
         275
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Handling",
       "behaviour_type": "Vertical Product Kept Horizontally",
       "behaviour_code": "IMPROPER_MISORIENTATION",
       "risk_level": "Medium",
@@ -7704,7 +7980,6 @@
         282
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -7741,7 +8016,6 @@
         282
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -7780,7 +8054,6 @@
         56
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -7816,7 +8089,6 @@
         71
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -7852,7 +8124,6 @@
         104
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -7888,7 +8159,6 @@
         169
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -7924,7 +8194,6 @@
         277
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -7960,7 +8229,6 @@
         555
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -7996,7 +8264,6 @@
         606
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -8032,7 +8299,6 @@
         991
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -8068,7 +8334,6 @@
         1030
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -8104,7 +8369,6 @@
         13
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -8141,7 +8405,6 @@
         53
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8180,7 +8443,6 @@
         136
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8218,7 +8480,6 @@
         287
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8255,7 +8516,6 @@
         685
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8293,7 +8553,6 @@
         742
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8330,7 +8589,6 @@
         758
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8367,7 +8625,6 @@
         776
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8404,7 +8661,6 @@
         870
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8441,7 +8697,6 @@
         1020
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8478,7 +8733,6 @@
         1066
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8515,7 +8769,6 @@
         1147
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8552,7 +8805,6 @@
         1199
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -8589,7 +8841,6 @@
         1249
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -8627,7 +8878,6 @@
         84
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -8668,7 +8918,6 @@
         328
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -8710,7 +8959,6 @@
         12
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
@@ -8747,7 +8995,6 @@
         85
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -8789,7 +9036,6 @@
         181
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -8830,7 +9076,6 @@
         86
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -8872,7 +9117,6 @@
         208
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -8912,7 +9156,6 @@
         11
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -8951,7 +9194,6 @@
         132
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -8989,7 +9231,6 @@
         77
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -9028,7 +9269,6 @@
         65
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
@@ -9065,7 +9305,6 @@
         178
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -9103,7 +9342,6 @@
         80
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -9142,7 +9380,6 @@
         87
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -9181,7 +9418,6 @@
         332
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -9226,7 +9462,6 @@
         163
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -9267,7 +9502,6 @@
         183
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -9308,7 +9542,6 @@
         151
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -9349,7 +9582,6 @@
         214
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -9388,7 +9620,6 @@
         138
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -9426,7 +9657,6 @@
         151
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -9464,7 +9694,6 @@
         132
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -9503,7 +9732,6 @@
         133
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -9542,7 +9770,6 @@
         154
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -9581,7 +9808,6 @@
         181
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -9620,7 +9846,6 @@
         158
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -9659,7 +9884,6 @@
         207
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -9697,7 +9921,6 @@
         188
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -9736,7 +9959,6 @@
         171
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -9774,7 +9996,6 @@
         169
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "Medium",
@@ -9811,7 +10032,6 @@
         170
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -9850,7 +10070,6 @@
         171
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -9889,7 +10108,6 @@
         217
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -9930,7 +10148,6 @@
         189
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -9969,7 +10186,6 @@
         194
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -10008,7 +10224,6 @@
         246
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -10047,7 +10262,6 @@
         201
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -10086,7 +10300,6 @@
         248
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -10125,7 +10338,6 @@
         331
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -10166,7 +10378,6 @@
         328
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -10207,7 +10418,6 @@
         298
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -10245,7 +10455,6 @@
         450
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -10281,7 +10490,6 @@
         312
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -10319,7 +10527,6 @@
         313
       ],
       "location_id": "Loading Bay Area",
-      "category": "Operator Risk Behaviour",
       "behaviour_type": "Stepping / Standing on Products",
       "behaviour_code": "OPERATOR_STEPPING_CARTON",
       "risk_level": "Critical",
@@ -10358,7 +10565,6 @@
         328
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -10397,7 +10603,6 @@
         345
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -10437,7 +10642,6 @@
         356
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -10477,7 +10681,6 @@
         355
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -10518,7 +10721,6 @@
         352
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
       "behaviour_code": "DROP_LOW_SLIP",
       "risk_level": "High",
@@ -10555,7 +10757,6 @@
         392
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -10595,7 +10796,6 @@
         405
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "High",
@@ -10633,7 +10833,6 @@
         358
       ],
       "location_id": "Loading Bay Area",
-      "category": "Safe Operating Standard",
       "behaviour_type": "Safe Handling Benchmark",
       "behaviour_code": "BENCHMARK_SAFE_HANDLING",
       "risk_level": "Low",
@@ -10672,7 +10871,6 @@
         347
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -10711,7 +10909,6 @@
         360
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "High",
@@ -10751,7 +10948,6 @@
         354
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -10788,7 +10984,6 @@
         357
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "High",
@@ -10828,7 +11023,6 @@
         356
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -10866,7 +11060,6 @@
         356
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -10904,7 +11097,6 @@
         356
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -10943,7 +11135,6 @@
         361
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "High",
@@ -10979,7 +11170,6 @@
         348
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -11019,7 +11209,6 @@
         361
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -11058,7 +11247,6 @@
         359
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "High",
@@ -11097,7 +11285,6 @@
         360
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -11137,7 +11324,6 @@
         360
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "High",
@@ -11176,7 +11362,6 @@
         370
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -11212,7 +11397,6 @@
         375
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -11248,7 +11432,6 @@
         373
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -11284,7 +11467,6 @@
         365
       ],
       "location_id": "Loading Bay Area",
-      "category": "Improper Use of Equipment",
       "behaviour_type": "Strap Lifting / Pulling",
       "behaviour_code": "EQUIPMENT_STRAP_LIFT",
       "risk_level": "Medium",
@@ -11325,7 +11507,6 @@
         366
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -11367,7 +11548,6 @@
         376
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -11407,7 +11587,6 @@
         385
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
       "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
       "risk_level": "Critical",
@@ -11448,7 +11627,6 @@
         387
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -11484,7 +11662,6 @@
         399
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -11521,7 +11698,6 @@
         392
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Inverted Pyramid Stacking",
       "behaviour_code": "STACK_INVERTED_PYRAMID",
       "risk_level": "Critical",
@@ -11560,7 +11736,6 @@
         444
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -11596,7 +11771,6 @@
         431
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -11635,7 +11809,6 @@
         443
       ],
       "location_id": "Loading Bay Area",
-      "category": "Dropping or Impact",
       "behaviour_type": "High-Impact Carton Drop (>0.8m)",
       "behaviour_code": "DROP_HIGH_IMPACT",
       "risk_level": "Critical",
@@ -11672,7 +11845,6 @@
         444
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -11708,7 +11880,6 @@
         439
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "Critical",
@@ -11744,7 +11915,6 @@
         200
       ],
       "location_id": "Loading Bay Area",
-      "category": "Unsafe Movement of Material",
       "behaviour_type": "Floor Dragging (No Equipment)",
       "behaviour_code": "UNSAFE_FLOOR_DRAG",
       "risk_level": "Medium",
@@ -11785,7 +11955,6 @@
         122
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Rolling Cartons",
       "behaviour_code": "ROUGH_CARTON_ROLLING",
       "risk_level": "Medium",
@@ -11823,7 +11992,6 @@
         200
       ],
       "location_id": "Loading Bay Area",
-      "category": "Incorrect Stacking & Loading",
       "behaviour_type": "Unstable Multi-Tier Stack Wobble",
       "behaviour_code": "STACK_UNSTABLE_WOBBLE",
       "risk_level": "Critical",
@@ -11859,7 +12027,6 @@
         200
       ],
       "location_id": "Loading Bay Area",
-      "category": "Rough Handling",
       "behaviour_type": "Carton Throwing / Sliding",
       "behaviour_code": "ROUGH_THROW_SLIDE",
       "risk_level": "High",
@@ -11887,10 +12054,10 @@
     }
   ],
   "shift_summary": {
-    "total_events": 307,
-    "near_misses_prevented": 15,
-    "high_critical_risks": 224,
-    "estimated_damage_avoided_inr": 67500,
+    "total_events": 319,
+    "near_misses_prevented": 16,
+    "high_critical_risks": 235,
+    "estimated_damage_avoided_inr": 67500.0,
     "most_frequent_risk": "Floor Dragging (No Equipment)"
   }
 }

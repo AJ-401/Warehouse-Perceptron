@@ -566,212 +566,41 @@ void main() {
           </div>
         </div>
       </section>
-      <!-- RIGHT COLUMN: INTELLIGENCE MODULE & RISK ENGINE (~32% / col-span-4) -->
-      <section class="lg:col-span-4 flex flex-col gap-3">
-        <!-- DOMINANT PREDICTIVE RISK PANEL -->
-        <div
-          class="bg-surface-container-low border border-outline-variant/40 rounded p-4 relative overflow-hidden group">
-          <!-- Subtle Glow Accent Top Border -->
-          <div
-            class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary-container via-secondary to-primary-container opacity-80">
-          </div>
-
-          <!-- Header & Cycle Info -->
-          <div class="flex items-center justify-between mb-3">
+      <!-- RIGHT COLUMN: LIVE AI INCIDENT LOGS & ACTIVITY STREAM (~32% / col-span-4) -->
+      <section class="lg:col-span-4 flex flex-col gap-3 h-full">
+        <!-- LIVE AI ACTIVITY STREAM (Elevated Incident Log) -->
+        <div class="bg-surface-container-low border border-outline-variant/40 rounded p-4 flex-1 flex flex-col min-h-[480px] max-h-[calc(100vh-210px)]">
+          <div class="flex items-center justify-between pb-3 border-b border-outline-variant/30 mb-3">
             <div class="flex items-center gap-2">
-              <span class="font-headline-sm text-sm font-semibold tracking-wider text-on-surface">LIVE RISK</span>
-              <span
-                class="font-label-caps text-[9px] text-primary-container bg-primary-container/10 border border-primary-container/30 px-1.5 py-0.2 rounded">
-                CALCULATED // 14ms REFRESH
+              <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+              <span class="font-headline-sm text-sm font-semibold tracking-wider text-on-surface">INCIDENT LOG STREAM</span>
+              <span id="eventsCountBadge"
+                class="font-mono-data-sm text-[10px] text-primary-container bg-primary-container/10 border border-primary-container/30 px-2 py-0.5 rounded">
+                LIVE LOGS
               </span>
             </div>
-            <span class="material-symbols-outlined text-outline text-[16px]">analytics</span>
-          </div>
-
-          <!-- Dominant Centerpiece: SVG Radial Arc Gauge + 72% Authority Display -->
-          <div
-            class="relative bg-surface-container-lowest p-4 rounded border border-outline-variant/30 flex flex-col items-center justify-center overflow-hidden mb-3.5">
-            <!-- Ambient Breathing Amber Halo Glow Behind Arc -->
-            <div class="absolute w-44 h-44 rounded-full bg-secondary/10 blur-xl pointer-events-none animate-pulse">
-            </div>
-
-            <!-- Precision Calibrated Dial / Arc SVG -->
-            <div class="relative w-48 h-48 flex items-center justify-center select-none">
-              <svg class="w-full h-full -rotate-90 transform" viewBox="0 0 160 160">
-                <defs>
-                  <linearGradient id="risk-arc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ee9800"></stop>
-                    <stop offset="65%" stop-color="#ffb95f"></stop>
-                    <stop offset="100%" stop-color="#ffddb8"></stop>
-                  </linearGradient>
-                  <filter id="glow-amber" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="3.5" result="blur"></feGaussianBlur>
-                    <feMerge>
-                      <feMergeNode in="blur"></feMergeNode>
-                      <feMergeNode in="SourceGraphic"></feMergeNode>
-                    </feMerge>
-                  </filter>
-                </defs>
-
-                <!-- Background Track Circle (Subtle Dashed Calibration) -->
-                <circle cx="80" cy="80" r="66" fill="none" stroke="#262a31" stroke-width="4.5" stroke-dasharray="2 4"
-                  opacity="0.6"></circle>
-                <circle cx="80" cy="80" r="66" fill="none" stroke="#1c2026" stroke-width="7"></circle>
-
-                <!-- 65% Threshold Reference Tick -->
-                <!-- Circumference = 2 * PI * 66 ~= 414.69. 65% is approx 269.5 px -->
-                <circle cx="80" cy="80" r="66" fill="none" stroke="#dfe2eb" stroke-width="8" stroke-dasharray="2 412.69"
-                  stroke-dashoffset="-269.5" opacity="0.85"></circle>
-
-                <!-- Active 72% Gauge Arc (Circumference: 414.7; 72% fill: ~298.58; offset: 414.7 - 298.6 = 116.1) -->
-                <circle cx="80" cy="80" r="66" fill="none" stroke="url(#risk-arc-grad)" stroke-width="7"
-                  stroke-linecap="round" stroke-dasharray="414.7" stroke-dashoffset="116.1" filter="url(#glow-amber)"
-                  class="transition-all duration-700 ease-out"></circle>
-
-                <!-- Glowing Endpoint Indicator Needle Point at 72% (~259.2 deg from -90) -->
-                <circle cx="59.6" cy="142.8" r="3.5" fill="#ffffff" stroke="#ffb95f" stroke-width="2"
-                  filter="url(#glow-amber)" class="animate-pulse"></circle>
-              </svg>
-
-              <!-- Center Numerical Display Inside Dial -->
-              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <div class="flex items-baseline justify-center tracking-tighter">
-                  <span id="liveRiskValue"
-                    class="font-display-xl text-6xl text-secondary font-bold drop-shadow-[0_0_16px_rgba(255,185,95,0.35)] leading-none">72</span>
-                  <span class="font-headline-sm text-2xl text-secondary font-semibold ml-0.5">%</span>
-                </div>
-                <span
-                  class="font-label-caps text-[9px] text-outline uppercase tracking-widest mt-1 font-semibold">PREDICTIVE
-                  RISK</span>
-              </div>
-            </div>
-
-            <!-- Integrated Status Badging & Telemetry -->
-            <div class="flex flex-col items-center gap-1.5 mt-1 z-10 w-full">
-              <div
-                class="inline-flex items-center gap-1.5 px-3 py-0.5 bg-secondary/15 border border-secondary/50 rounded-full shadow-[0_0_12px_rgba(255,185,95,0.18)]">
-                <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
-                <span class="font-label-caps text-[10px] text-secondary font-bold tracking-wider">HIGH RISK
-                  (AMBER)</span>
-              </div>
-              <div
-                class="font-mono-data-sm text-[11px] text-secondary-fixed flex items-center gap-1 font-semibold tracking-wide">
-                <span class="">↑ 18% IN LAST 4 SECONDS</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Contributing Risk Telemetry Micro-meters -->
-          <div class="space-y-2 border-t border-outline-variant/30 pt-3">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-label-caps text-[10px] text-outline tracking-wider">CONTRIBUTING SIGNALS:</span>
-              <span class="font-mono-data-sm text-[10px] text-outline/70">CONFIDENCE: 94.2%</span>
-            </div>
-            <!-- Signal 1: Fast Movement -->
-            <div>
-              <div class="flex justify-between font-mono-data-sm text-[11px] mb-0.5">
-                <span class="text-on-surface">FAST MOVEMENT</span>
-                <span class="text-secondary font-bold font-mono">88% (HIGH)</span>
-              </div>
-              <div class="w-full h-1 bg-surface-container-lowest rounded overflow-hidden">
-                <div class="h-full bg-secondary w-[88%]"></div>
-              </div>
-            </div>
-            <!-- Signal 2: Handling Height -->
-            <div>
-              <div class="flex justify-between font-mono-data-sm text-[11px] mb-0.5">
-                <span class="text-on-surface">HIGH HANDLING HEIGHT</span>
-                <span class="text-secondary font-bold font-mono">74% (ELEVATED)</span>
-              </div>
-              <div class="w-full h-1 bg-surface-container-lowest rounded overflow-hidden">
-                <div class="h-full bg-secondary/80 w-[74%]"></div>
-              </div>
-            </div>
-            <!-- Signal 3: No Equipment Detected -->
-            <div>
-              <div class="flex justify-between font-mono-data-sm text-[11px] mb-0.5">
-                <span class="text-on-surface">NO EQUIPMENT DETECTED</span>
-                <span class="text-on-surface-variant font-mono">62% (MODERATE)</span>
-              </div>
-              <div class="w-full h-1 bg-surface-container-lowest rounded overflow-hidden">
-                <div class="h-full bg-primary-container/70 w-[62%]"></div>
-              </div>
-            </div>
-            <!-- Signal 4: Stack Proximity -->
-            <div>
-              <div class="flex justify-between font-mono-data-sm text-[11px] mb-0.5">
-                <span class="text-on-surface">STACK PROXIMITY</span>
-                <span class="text-on-surface-variant font-mono">45% (MONITORED)</span>
-              </div>
-              <div class="w-full h-1 bg-surface-container-lowest rounded overflow-hidden">
-                <div class="h-full bg-outline w-[45%]"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- PREDICTIVE NEAR-MISS WARNING ACTION BOX -->
-        <div
-          class="bg-surface-container-low border border-secondary rounded p-4 shadow-[0_0_20px_rgba(245,158,11,0.12)] relative overflow-hidden">
-          <!-- Expanding Radar Pulse Ring in Top-Right Corner -->
-          <div class="absolute -top-3 -right-3 w-16 h-16 pointer-events-none">
-            <span class="absolute inset-0 rounded-full border border-secondary/40 animate-ping"></span>
-            <span class="absolute inset-2 rounded-full border border-secondary/60"></span>
-          </div>
-          <div class="flex items-start gap-3 mb-3">
-            <div class="p-2 bg-secondary/20 text-secondary rounded border border-secondary/40">
-              <span class="material-symbols-outlined text-[20px]">warning</span>
-            </div>
-            <div>
-              <span class="font-headline-sm text-sm text-secondary font-bold tracking-wider block">PREDICTIVE
-                WARNING</span>
-              <p class="font-body-md text-xs text-on-surface font-semibold mt-0.5">Potential damage risk detected.</p>
-              <p class="font-mono-data-sm text-[11px] text-outline mt-0.5">Intervention recommended before impact.</p>
-            </div>
-          </div>
-          <!-- Real-Time Immediate Action Button -->
-          <div class="mt-3 pt-2 border-t border-outline-variant/30">
-            <button id="btnDispatchAudio"
-              class="w-full flex items-center justify-center gap-1.5 px-3 py-2 bg-secondary/15 hover:bg-secondary/25 text-secondary border border-secondary/60 rounded font-label-caps text-[10px] tracking-wider transition-colors font-bold cursor-pointer"
-              title="Broadcast Warning Audio to Bay 01 Speaker">
-              <span class="material-symbols-outlined text-[14px]">campaign</span>
-              DISPATCH SUPERVISOR AUDIO
-            </button>
-          </div>
-        </div>
-        <!-- LIVE AI ACTIVITY STREAM -->
-        <div class="bg-surface-container-low border border-outline-variant/40 rounded p-3 flex-1 flex flex-col">
-          <div class="flex items-center justify-between mb-2">
-            <span class="font-label-caps text-[10px] text-outline tracking-wider flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
-              LIVE AI ACTIVITY STREAM
+            <span class="font-mono-data-sm text-[10px] text-outline flex items-center gap-1">
+              <span class="material-symbols-outlined text-[13px] text-primary-container">sync</span>
+              AUTO-SYNC
             </span>
-            <span class="font-mono-data-sm text-[10px] text-outline">AUTO-SCROLL ON</span>
           </div>
+
           <!-- Chronological Telemetry Feed -->
-          <div class="space-y-1.5 font-mono-data-sm text-[11px] overflow-hidden" id="liveActivityStream">
-            <div
-              class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/70 border-l-2 border-outline-variant/40">
-              <span class="text-outline shrink-0">00:00:09</span>
-              <span class="text-on-surface-variant">EVT-0002 <span class="text-secondary font-semibold">[High-Impact
-                  Carton Drop]</span></span>
+          <div class="space-y-2 font-mono-data-sm text-[11px] overflow-y-auto pr-1 flex-1 custom-scrollbar" id="liveActivityStream">
+            <div class="flex items-center justify-center p-8 text-outline font-mono-data-sm text-xs">
+              Loading incident feed...
             </div>
-            <div
-              class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/70 border-l-2 border-primary-container">
-              <span class="text-outline shrink-0">00:00:10</span>
-              <span class="text-on-surface-variant">EVT-0006 <span class="text-primary font-mono">[Rapid Unsafe
-                  Carry]</span></span>
-            </div>
-            <div
-              class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/90 border-l-2 border-secondary">
-              <span class="text-secondary shrink-0 font-semibold">00:00:11</span>
-              <span class="text-on-surface">EVT-0012 <span class="text-secondary font-semibold">[Stack
-                  Wobble]</span></span>
-            </div>
-            <div
-              class="flex items-start gap-2 p-1.5 rounded bg-secondary/10 border-l-2 border-secondary text-secondary">
-              <span class="shrink-0 font-bold">00:00:14</span>
-              <span class="font-semibold">EVT-0017 [Carton / KD Floor Dragging]</span>
-            </div>
+          </div>
+
+          <!-- Footer summary strip -->
+          <div class="pt-3 mt-3 border-t border-outline-variant/30 flex items-center justify-between text-xs font-mono-data-sm text-outline">
+            <span class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              PERSON B RISK ENGINE
+            </span>
+            <span class="text-[10px] text-primary-container font-medium tracking-wide">
+              GROUNDED INCIDENTS
+            </span>
           </div>
         </div>
       </section>
@@ -1243,7 +1072,7 @@ void main() {
       const videoFeed = document.getElementById('liveVideoFeed');
       const cameraSelect = document.getElementById('cameraFeedSelect');
       const camTitle = document.getElementById('camTitle');
-
+      
       if (videoFeed) {
         videoFeed.src = API_BASE + '/api/video_feed';
       }
@@ -1294,20 +1123,25 @@ void main() {
       try {
         const [mRes, eRes] = await Promise.all([
           fetch(API_BASE + '/api/metrics'),
-          fetch(API_BASE + '/api/events?limit=6')
+          fetch(API_BASE + '/api/events?limit=30')
         ]);
 
         if (eRes.ok) {
           const events = await eRes.json();
           const streamEl = document.getElementById('liveActivityStream');
+          const badgeEl = document.getElementById('eventsCountBadge');
+          if (badgeEl && events.length) {
+            badgeEl.textContent = `${events.length} EVENTS`;
+          }
           if (streamEl && events.length > 0) {
             streamEl.innerHTML = events.map(e => {
               const borderCol = e.risk_level === 'Critical' ? 'border-error' : (e.risk_level === 'High' ? 'border-secondary' : 'border-primary-container');
               const textCol = e.risk_level === 'Critical' ? 'text-error' : (e.risk_level === 'High' ? 'text-secondary' : 'text-primary-container');
               return `
-                <div class="flex items-start gap-2 p-1.5 rounded bg-surface-container-lowest/70 border-l-2 ${borderCol}">
-                  <span class="text-outline shrink-0">${e.timestamp_start || '00:00'}</span>
-                  <span class="text-on-surface-variant">${e.event_id} <span class="${textCol} font-semibold">[${e.behaviour_type}]</span></span>
+                <div class="flex items-start gap-2 p-2 rounded bg-surface-container-lowest/80 border-l-2 ${borderCol} hover:bg-surface-container-lowest transition-colors">
+                  <span class="text-outline shrink-0 font-mono text-[10px]">${e.timestamp_start || '00:00'}</span>
+                  <span class="text-on-surface-variant flex-1">${e.event_id} <span class="${textCol} font-semibold">[${e.behaviour_type}]</span></span>
+                  <span class="text-[9px] px-1.5 py-0.2 rounded font-mono ${textCol} bg-surface-container-high">${(e.risk_level || 'MED').toUpperCase()}</span>
                 </div>
               `;
             }).join('');

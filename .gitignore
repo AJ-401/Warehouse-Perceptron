@@ -39,3 +39,4 @@ Thumbs.db
 # IDE configuration
 .vscode/
 .idea/
+yolov8n.pt
