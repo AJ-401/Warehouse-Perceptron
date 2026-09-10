@@ -39,22 +39,23 @@ except ImportError:  # pragma: no cover
     genai = None
     types = None
 
-DEFAULT_GROQ_MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
-DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite")
+DEFAULT_GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
+DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 
 # Primary Gemini models with instant failover on high demand/limits:
 GEMINI_MODEL_CHAIN = [
-    os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite"),
-    "gemini-3-flash-preview",
-    "gemini-3.7-flash",
+    os.environ.get("GEMINI_MODEL", "gemini-2.5-flash"),
+    "gemini-2.0-flash",
+    "gemini-1.5-flash",
 ]
 
 # Fallback Groq models with separate independent quotas:
 GROQ_MODEL_CHAIN = [
-    os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b"),
-    "qwen/qwen3.6-27b",
-    "openai/gpt-oss-120b",
+    os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile"),
+    "llama-3.1-8b-instant",
+    "mixtral-8x7b-32768",
 ]
+
 
 
 class LLMClientError(Exception):
@@ -392,7 +393,8 @@ class GeminiModelChainClient:
                 is_transient = any(k in err_lower for k in (
                     "limit exceeded", "429", "resource_exhausted", "quota",
                     "503", "unavailable", "high demand", "spikes in demand", "overloaded",
-                    "500", "internal", "ssl", "certificate", "verify failed", "connection", "timeout"
+                    "500", "internal", "ssl", "certificate", "verify failed", "connection", "timeout",
+                    "not found", "404", "model_not_found"
                 ))
                 if is_transient:
                     next_index = (self._index + 1) % len(self._models)
@@ -447,7 +449,11 @@ class GroqModelChainClient:
                 return getattr(client, method)(*args, **kwargs)
             except Exception as e:
                 err_lower = str(e).lower()
-                if any(x in err_lower for x in ("rate_limit", "429", "resource_exhausted", "quota", "limit exceeded")):
+                if any(x in err_lower for x in (
+                    "rate_limit", "429", "resource_exhausted", "quota", "limit exceeded",
+                    "503", "unavailable", "overloaded", "500", "timeout", "connection",
+                    "not found", "404", "model_decommissioned", "model_not_found"
+                )):
                     next_index = (self._index + 1) % len(self._models)
                     if next_index == start_index:
                         print(f"\n[!] Limit exceeded: All available Groq models reached their request limits.")
@@ -492,7 +498,8 @@ class HierarchicalFailoverClient:
                 err_lower = str(e).lower()
                 is_transient = any(x in err_lower for x in (
                     "rate", "429", "resource_exhausted", "quota", "limit exceeded",
-                    "503", "unavailable", "high demand", "overloaded", "500", "ssl", "certificate"
+                    "503", "unavailable", "high demand", "overloaded", "500", "ssl", "certificate",
+                    "not found", "404", "model_not_found"
                 ))
                 if is_transient:
                     print(f"\n[Failover Tier Triggered] Gemini tier unavailable ({e}). Switching instantly to Groq tier ({self.groq_chain.model})...")

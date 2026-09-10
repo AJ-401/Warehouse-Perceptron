@@ -39,10 +39,10 @@ def test_all_ten_scenarios_present():
     store = _store()
     codes = {e.behaviour_code for e in store.events}
     expected = {
-        "DRAG_NO_EQUIPMENT", "UNCONTROLLED_DROP_HIGH", "CARTON_SLIP_LOW",
-        "NEAR_MISS_UNSAFE_CARRY", "CARTON_THROW_SLIDE",
-        "STEPPING_ON_CARTON", "STRAP_LIFT_PULL", "UNSTABLE_STACK_WOBBLE",
-        "SAFE_HANDLING_BENCHMARK",
+        "UNSAFE_FLOOR_DRAG", "DROP_HIGH_IMPACT", "DROP_LOW_SLIP",
+        "NEAR_MISS_UNSAFE_CARRY", "ROUGH_THROW_SLIDE",
+        "OPERATOR_STEPPING_CARTON", "EQUIPMENT_STRAP_LIFT", "STACK_UNSTABLE_WOBBLE",
+        "STACK_INVERTED_PYRAMID", "BENCHMARK_SAFE_HANDLING",
     }
     assert expected.issubset(codes)
 

@@ -1,6 +1,1752 @@
 {
   "events": [
     {
+      "event_id": "EVT-20260910-0363",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "19:05:59",
+      "timestamp_end": "19:05:59",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 52.8,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1007 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789047359",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0362",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "19:00:59",
+      "timestamp_end": "19:00:59",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Manual Dock Safety Tag",
+      "behaviour_code": "MANUAL_TAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.82,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Supervisor manual capture: Safety deviation flagged from live stream",
+      "recommended_action": "Review handling posture and area safety clearance.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789047059",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0361",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "19:00:49",
+      "timestamp_end": "19:00:49",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Manual Dock Safety Tag",
+      "behaviour_code": "MANUAL_TAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.82,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Supervisor manual capture: Safety deviation flagged from live stream",
+      "recommended_action": "Review handling posture and area safety clearance.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789047049",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0360",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:59:25",
+      "timestamp_end": "18:59:25",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.3,
+        "floor_contact_duration_sec": 1.0,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 dragged across warehouse floor (0.3m over 1.0s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789046965",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0359",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:59:21",
+      "timestamp_end": "18:59:21",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 717.6,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789046961",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0358",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:35:04",
+      "timestamp_end": "18:35:04",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 677.6,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045504",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0357",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:32:58",
+      "timestamp_end": "18:32:58",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.43,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1155 propelled horizontally across floor/surface at excessive speed (0.43 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045378",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0356",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:32:54",
+      "timestamp_end": "18:32:54",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2,
+          3
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.43,
+        "vertical_speed_m_per_sec": 0.77,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1155 underwent uncontrolled downward drop of approximately 0.43m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045374",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0355",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:32:47",
+      "timestamp_end": "18:32:47",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2,
+          3
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.45,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1045 propelled horizontally across floor/surface at excessive speed (0.45 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045367",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0354",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:32:42",
+      "timestamp_end": "18:32:42",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.13,
+        "floor_contact_duration_sec": 0.33,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1155 dragged across warehouse floor (0.13m over 0.33s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045362",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0353",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:32:34",
+      "timestamp_end": "18:32:34",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 12.3,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1071 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045354",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0352",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:32:29",
+      "timestamp_end": "18:32:29",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.97,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Operator #133's foot detected stepping or standing on top surface of carton #1071.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045349",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0351",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:32:18",
+      "timestamp_end": "18:32:18",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0792,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1071 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045338",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0350",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:32:13",
+      "timestamp_end": "18:32:13",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 12.4,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1071 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045333",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0349",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:31:51",
+      "timestamp_end": "18:31:51",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 11.6,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1071 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045311",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0348",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:31:44",
+      "timestamp_end": "18:31:44",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.38,
+        "floor_contact_duration_sec": 4.3,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 dragged across warehouse floor (0.38m over 4.3s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045304",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0347",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:31:34",
+      "timestamp_end": "18:31:34",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "High-Impact Carton Drop (>0.8m)",
+      "behaviour_code": "DROP_HIGH_IMPACT",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101,
+          102,
+          103
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 1.12,
+        "vertical_speed_m_per_sec": 2.79,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 3,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1047 underwent uncontrolled downward drop of approximately 1.12m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045294",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0346",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:31:30",
+      "timestamp_end": "18:31:30",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101,
+          102,
+          103
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.46,
+        "vertical_speed_m_per_sec": 1.09,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 3,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1030 underwent uncontrolled downward drop of approximately 0.46m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045290",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0345",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:31:26",
+      "timestamp_end": "18:31:26",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.28,
+        "vertical_speed_m_per_sec": 4.25,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1030 underwent uncontrolled downward drop of approximately 0.28m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045286",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0344",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:31:21",
+      "timestamp_end": "18:31:21",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.34,
+        "vertical_speed_m_per_sec": 0.87,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 underwent uncontrolled downward drop of approximately 0.34m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045281",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0343",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:31:17",
+      "timestamp_end": "18:31:17",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1,
+          2
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 1.05,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 propelled horizontally across floor/surface at excessive speed (1.05 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045277",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0342",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "18:30:45",
+      "timestamp_end": "18:30:45",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Manual Dock Safety Tag",
+      "behaviour_code": "MANUAL_TAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.82,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Supervisor manual capture: Safety deviation flagged from live stream",
+      "recommended_action": "Review handling posture and area safety clearance.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789045245",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0341",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:54:52",
+      "timestamp_end": "17:54:52",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.181,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1004 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043092",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0340",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:54:46",
+      "timestamp_end": "17:54:46",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.99,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Operator #102's foot detected stepping or standing on top surface of carton #1367.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043086",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0339",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:54:42",
+      "timestamp_end": "17:54:42",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.9,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Operator #102's foot detected stepping or standing on top surface of carton #1344.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043082",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0338",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:54:38",
+      "timestamp_end": "17:54:38",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Stepping / Standing on Products",
+      "behaviour_code": "OPERATOR_STEPPING_CARTON",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "ankle_joint": "left_ankle",
+        "ankle_confidence": 0.97,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Operator #102's foot detected stepping or standing on top surface of carton #1029.",
+      "recommended_action": "Immediate safety call-out. Strictly enforce no-standing-on-product warehouse policy.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043078",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0337",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:54:34",
+      "timestamp_end": "17:54:34",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Unstable Multi-Tier Stack Wobble",
+      "behaviour_code": "STACK_UNSTABLE_WOBBLE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "center_jitter_norm": 0.0221,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1029 exhibiting significant tilt/jitter while at rest, indicating stack instability.",
+      "recommended_action": "Physically inspect stack for lean or overhang beyond pallet boundary. Re-stack if unstable.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043074",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0336",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:54:27",
+      "timestamp_end": "17:54:27",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "Critical",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.98,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 256.8,
+        "carry_height_m": 1.24,
+        "proximity_to_hazard": "High (Dock Edge)",
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1077 carried by operator #102 at elevated height (1.24m) and excessive speed (256.8 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043067",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0335",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:54:23",
+      "timestamp_end": "17:54:23",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102,
+          103,
+          104
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.57,
+        "floor_contact_duration_sec": 8.1,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 4,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1097 dragged across warehouse floor (0.57m over 8.1s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043063",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0334",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:54:19",
+      "timestamp_end": "17:54:19",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.56,
+        "vertical_speed_m_per_sec": 1.21,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1175 underwent uncontrolled downward drop of approximately 0.56m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043059",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0333",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:54:03",
+      "timestamp_end": "17:54:03",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.66,
+        "vertical_speed_m_per_sec": 2.45,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1112 underwent uncontrolled downward drop of approximately 0.66m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043043",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0332",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:59",
+      "timestamp_end": "17:53:59",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.59,
+        "floor_contact_duration_sec": 3.67,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1097 dragged across warehouse floor (0.59m over 3.67s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043039",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0331",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:53",
+      "timestamp_end": "17:53:53",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102,
+          103
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.61,
+        "vertical_speed_m_per_sec": 1.54,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 3,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1077 underwent uncontrolled downward drop of approximately 0.61m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043033",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0330",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:49",
+      "timestamp_end": "17:53:49",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "EQUIPMENT_STRAP_LIFT",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102,
+          103
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.471,
+        "box_top_norm": 0.549,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 3,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Operator #102 lifting carton #1077 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043029",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0329",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:44",
+      "timestamp_end": "17:53:44",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Strap Lifting / Pulling",
+      "behaviour_code": "EQUIPMENT_STRAP_LIFT",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102,
+          103
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "wrist_elevation_norm": 0.396,
+        "box_top_norm": 0.399,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 3,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Operator #102 lifting carton #1048 by packaging straps/top rim rather than using bottom lifting support.",
+      "recommended_action": "Safety alert: avoid lifting cartons by packaging straps. High risk of strap tear and product impact.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043024",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0328",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:39",
+      "timestamp_end": "17:53:39",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.37,
+        "vertical_speed_m_per_sec": 3.53,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1094 underwent uncontrolled downward drop of approximately 0.37m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043019",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0327",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:34",
+      "timestamp_end": "17:53:34",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Rolling Cartons",
+      "behaviour_code": "ROUGH_CARTON_ROLLING",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 8.7,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1048 rolled or tumbled along warehouse floor instead of being carried or moved on a trolley.",
+      "recommended_action": "Use appropriate material handling trolley. Do not roll cartons unless packaging explicitly permits.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043014",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0326",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:28",
+      "timestamp_end": "17:53:28",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.41,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1070 propelled horizontally across floor/surface at excessive speed (0.41 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043008",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0325",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:24",
+      "timestamp_end": "17:53:24",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.64,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1070 propelled horizontally across floor/surface at excessive speed (0.64 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043004",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0324",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:20",
+      "timestamp_end": "17:53:20",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.26,
+        "vertical_speed_m_per_sec": 0.73,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1004 underwent uncontrolled downward drop of approximately 0.26m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789043000",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0323",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:15",
+      "timestamp_end": "17:53:15",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.53,
+        "vertical_speed_m_per_sec": 0.9,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1048 underwent uncontrolled downward drop of approximately 0.53m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042995",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0322",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:11",
+      "timestamp_end": "17:53:11",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 0.17,
+        "floor_contact_duration_sec": 0.93,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1063 dragged across warehouse floor (0.17m over 0.93s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042991",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0321",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:53:00",
+      "timestamp_end": "17:53:00",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Low-Height Drop / Slip (<0.5m)",
+      "behaviour_code": "DROP_LOW_SLIP",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "estimated_drop_height_m": 0.6,
+        "vertical_speed_m_per_sec": 1.25,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1029 underwent uncontrolled downward drop of approximately 0.60m onto floor surface.",
+      "recommended_action": "Flag for immediate damage inspection. Review unloading practice with operator.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042980",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0320",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "17:52:52",
+      "timestamp_end": "17:52:52",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Predictive Near-Miss: Rapid Unsafe Carry",
+      "behaviour_code": "NEAR_MISS_UNSAFE_CARRY",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.56,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101,
+          102
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "speed_px_per_sec": 49.4,
+        "carry_height_m": 1.44,
+        "proximity_to_hazard": "Moderate (Aisle Transit)",
+        "is_repeated_behaviour": false,
+        "boxes_detected": 2,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 carried by operator #28 at elevated height (1.44m) and excessive speed (49.4 px/s). Live alert raised before drop occurred.",
+      "recommended_action": "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789042972",
+        "clip_url": null
+      }
+    },
+    {
       "event_id": "EVT-20260910-0319",
       "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
       "timestamp_start": "17:41:51",
@@ -12054,9 +13800,9 @@
     }
   ],
   "shift_summary": {
-    "total_events": 319,
-    "near_misses_prevented": 16,
-    "high_critical_risks": 235,
+    "total_events": 363,
+    "near_misses_prevented": 21,
+    "high_critical_risks": 260,
     "estimated_damage_avoided_inr": 67500.0,
     "most_frequent_risk": "Floor Dragging (No Equipment)"
   }

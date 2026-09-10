@@ -832,14 +832,21 @@ void main() {
           const vw = webcamVideo.videoWidth || 640;
           const vh = webcamVideo.videoHeight || 480;
 
+          // Standardize offscreen processing resolution to max 640px width to eliminate JPEG upload lag
+          const scale = Math.min(1.0, 640 / vw);
+          const targetW = Math.round(vw * scale);
+          const targetH = Math.round(vh * scale);
+
           if (webcamCanvas.width !== vw || webcamCanvas.height !== vh) {
             webcamCanvas.width = vw;
             webcamCanvas.height = vh;
-            offscreenCanvas.width = vw;
-            offscreenCanvas.height = vh;
+          }
+          if (offscreenCanvas.width !== targetW || offscreenCanvas.height !== targetH) {
+            offscreenCanvas.width = targetW;
+            offscreenCanvas.height = targetH;
           }
 
-          offscreenCtx.drawImage(webcamVideo, 0, 0, vw, vh);
+          offscreenCtx.drawImage(webcamVideo, 0, 0, targetW, targetH);
 
           offscreenCanvas.toBlob(async (blob) => {
             if (!blob || !webcamLoopActive) {
@@ -869,15 +876,23 @@ void main() {
                 }
 
                 const frameBlob = await res.blob();
-                const imgUrl = URL.createObjectURL(frameBlob);
-                const img = new Image();
-                img.onload = () => {
+                if (typeof createImageBitmap === 'function') {
+                  const bitmap = await createImageBitmap(frameBlob);
                   if (webcamLoopActive) {
-                    displayCtx.drawImage(img, 0, 0, webcamCanvas.width, webcamCanvas.height);
+                    displayCtx.drawImage(bitmap, 0, 0, webcamCanvas.width, webcamCanvas.height);
                   }
-                  URL.revokeObjectURL(imgUrl);
-                };
-                img.src = imgUrl;
+                  bitmap.close();
+                } else {
+                  const imgUrl = URL.createObjectURL(frameBlob);
+                  const img = new Image();
+                  img.onload = () => {
+                    if (webcamLoopActive) {
+                      displayCtx.drawImage(img, 0, 0, webcamCanvas.width, webcamCanvas.height);
+                    }
+                    URL.revokeObjectURL(imgUrl);
+                  };
+                  img.src = imgUrl;
+                }
               } else {
                 displayCtx.drawImage(webcamVideo, 0, 0, webcamCanvas.width, webcamCanvas.height);
               }
@@ -888,12 +903,10 @@ void main() {
             } finally {
               isProcessing = false;
               if (webcamLoopActive) {
-                setTimeout(() => {
-                  requestAnimationFrame(processFrame);
-                }, 50);
+                requestAnimationFrame(processFrame);
               }
             }
-          }, 'image/jpeg', 0.80);
+          }, 'image/jpeg', 0.72);
         } else {
           if (webcamLoopActive) {
             requestAnimationFrame(processFrame);

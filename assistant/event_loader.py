@@ -47,7 +47,15 @@ class EventStore:
     def load(cls, path: str | Path = DEFAULT_DATA_PATH) -> "EventStore":
         path = Path(path)
         if not path.exists():
-            raise EventLoadError(f"No event log found at {path}")
+            alt_path = Path(__file__).resolve().parent.parent / "data" / "warehouse_events.json"
+            if alt_path.exists():
+                path = alt_path
+            else:
+                alt2 = Path(__file__).resolve().parent.parent / "outputs_person_b" / "warehouse_events.json"
+                if alt2.exists():
+                    path = alt2
+                else:
+                    raise EventLoadError(f"No event log found at {path} or {alt_path}")
 
         try:
             raw = json.loads(path.read_text())

@@ -107,7 +107,7 @@ VIDEO_CATALOG = {
 from datetime import datetime
 from assistant.event_loader import EventStore, EventLoadError
 from assistant.schemas import WarehouseEvent, EntitiesInvolved, Evidence
-from assistant.llm_client import get_llm_client, LLMClientError
+from assistant.llm_client import get_llm_client, LLMClientError, MockLLMClient
 from assistant import queries as q
 
 app = FastAPI(title="Warehouse AI Assistant & Field Intelligence API", version="1.0")
@@ -261,6 +261,9 @@ async def chat_endpoint(req: ChatRequest):
     # Try calling multi-tier LLM (Gemini -> Groq)
     try:
         llm = get_llm_client(memory_file=memory_file)
+        if isinstance(llm, MockLLMClient) and not os.environ.get("USE_MOCK_LLM"):
+            fallback_result = q.local_fallback_answer(store, req.question)
+            return ChatResponse(answer=fallback_result.answer, event_ids=fallback_result.event_ids)
         result = q.ask(store, llm, req.question)
         return ChatResponse(answer=result.answer, event_ids=result.event_ids)
     except Exception as e:
@@ -413,21 +416,23 @@ async def get_incidents(filter_type: Optional[str] = "all"):
     for e in store.events:
         risk = getattr(e, "risk_level", "").upper()
         is_nm = getattr(e, "is_near_miss", False)
+        is_wc = "webcam" in getattr(e, "video_id", "").lower()
+
+        if filter_type == "webcam" and not is_wc:
+            continue
+        if filter_type == "cctv" and is_wc:
+            continue
         if filter_type == "near_miss" and not is_nm:
             continue
         if filter_type == "high_risk" and risk not in ("HIGH", "CRITICAL"):
             continue
-        if is_nm or risk in ("HIGH", "CRITICAL") or filter_type == "all":
-            flagged_events.append(e)
+        flagged_events.append(e)
 
-    # Sort so near misses and critical/high risk events appear first
-    flagged_events.sort(key=lambda x: (
-        1 if getattr(x, "is_near_miss", False) else 0,
-        1 if getattr(x, "risk_level", "").upper() in ("HIGH", "CRITICAL") else 0
-    ), reverse=True)
+    # Chronological sort: latest recorded events (including live webcam captures) appear at the top
+    flagged_events.sort(key=lambda x: getattr(x, "event_id", ""), reverse=True)
 
     result = []
-    for idx, e in enumerate(flagged_events[:80]):
+    for idx, e in enumerate(flagged_events[:300]):
         d = e.model_dump() if hasattr(e, "model_dump") else (e.to_dict() if hasattr(e, "to_dict") else vars(e))
         vid = d.get("video_id", "Dock level, dragging cupboard.mp4")
         fr = d.get("frame_range") or [1, 30]
@@ -445,7 +450,9 @@ async def get_incidents(filter_type: Optional[str] = "all"):
         d["incident_id"] = d.get("event_id", f"NM-{idx+1:04d}")
         d["video"] = vid
         d["video_url"] = None if is_webcam else f"/official_videos/{vid_encoded}"
-        d["ai_frame_url"] = f"/api/video_frame?video={vid_encoded}&frame_idx={fr_start}&mask=true"
+        ev = d.get("evidence") or {}
+        snap = ev.get("snapshot_url") if isinstance(ev, dict) else getattr(ev, "snapshot_url", None)
+        d["ai_frame_url"] = snap or f"/api/video_frame?video={vid_encoded}&frame_idx={fr_start}&mask=true"
         d["ai_feed_url"] = f"/api/video_feed?video={vid_encoded}&start_frame={fr_start}&mask=true"
         d["start_time"] = d.get("timestamp_start", "00:00:00")
         d["end_time"] = d.get("timestamp_end", "00:00:05")
@@ -1291,7 +1298,7 @@ async def detect_webcam_frame(
     vis_frame, meta = live_webcam_processor.process(frame, mask=mask)
     inference_ms = round((time.time() - t0) * 1000, 1)
 
-    _, buf = cv2.imencode('.jpg', vis_frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
+    _, buf = cv2.imencode('.jpg', vis_frame, [cv2.IMWRITE_JPEG_QUALITY, 75])
     return Response(
         content=buf.tobytes(),
         media_type="image/jpeg",

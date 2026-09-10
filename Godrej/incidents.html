@@ -404,6 +404,7 @@ void main() {
         <!-- Filter Tabs -->
         <div class="flex items-center bg-surface-container border border-outline-variant/30 p-0.5 text-xs font-mono-data-sm">
           <button id="btnFilterAll" onclick="setFilter('all')" class="px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer">ALL</button>
+          <button id="btnFilterWebcam" onclick="setFilter('webcam')" class="px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer">WEBCAM LIVE</button>
           <button id="btnFilterNM" onclick="setFilter('near_miss')" class="px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer">NEAR-MISS</button>
           <button id="btnFilterHigh" onclick="setFilter('high_risk')" class="px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer">HIGH RISK</button>
         </div>
@@ -527,79 +528,62 @@ void main() {
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: FORENSIC INVESTIGATION — "WHY WAS THIS FLAGGED?" (5 cols ~42%) -->
+      <!-- RIGHT COLUMN: UNIFIED FORENSIC INVESTIGATION & ACTION PLAN (5 cols ~42%) -->
       <div class="xl:col-span-5 flex flex-col gap-4">
 
-        <!-- 1. "WHY WAS THIS EVENT FLAGGED?" Callout Card -->
         <div class="bg-surface-container-low border-l-4 border-l-secondary border-t border-r border-b border-outline-variant/30 p-5 space-y-4 shadow-lg">
+          
+          <!-- Header -->
           <div class="flex items-center justify-between border-b border-outline-variant/20 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-secondary text-base">emergency</span>
               <h2 class="font-headline-sm text-headline-sm text-white font-semibold tracking-wide">WHY WAS THIS FLAGGED?</h2>
             </div>
-            <span class="font-mono-data-sm text-xs px-2 py-0.5 bg-surface-container border border-outline-variant/30 text-primary-container font-bold" id="riskScorePill">
-              98% RISK
-            </span>
-          </div>
-
-          <!-- Root Cause Narrative Box -->
-          <div class="p-3.5 bg-surface-container-lowest border border-outline-variant/40 space-y-1.5">
-            <div class="font-label-caps text-[10px] text-outline uppercase tracking-wider">AI PERCEPTION REASONING:</div>
-            <p class="font-body-md text-sm text-on-surface font-medium leading-relaxed" id="flaggedReasonText">
-              "Carton #1001 carried by operator #164 at elevated height (1.21m) and excessive speed (529.1 px/s). Live alert raised before drop occurred."
-            </p>
-          </div>
-
-          <!-- Observed Behaviour & Contributing Kinematics Grid -->
-          <div class="grid grid-cols-2 gap-2.5 pt-1 font-mono-data-sm text-xs">
-            <div class="p-2.5 bg-surface-container border border-outline-variant/30 space-y-1">
-              <div class="text-outline text-[10px] uppercase">FLAGGED BEHAVIOUR</div>
-              <div class="text-white font-semibold truncate" id="flaggedBehaviourName">Rapid Unsafe Carry</div>
-            </div>
-            <div class="p-2.5 bg-surface-container border border-outline-variant/30 space-y-1">
-              <div class="text-outline text-[10px] uppercase">LOCATION // ZONE</div>
-              <div class="text-white font-semibold truncate" id="flaggedLocationName">Loading Bay Area</div>
-            </div>
-            <div class="p-2.5 bg-surface-container border border-outline-variant/30 space-y-1">
-              <div class="text-outline text-[10px] uppercase">TRACKED ENTITIES</div>
-              <div class="text-primary-container font-semibold truncate" id="flaggedEntities">Operator #164, Carton #1001</div>
-            </div>
-            <div class="p-2.5 bg-surface-container border border-outline-variant/30 space-y-1">
-              <div class="text-outline text-[10px] uppercase">FRAME DURATION</div>
-              <div class="text-secondary font-semibold" id="flaggedDuration">10 Frames (~0.3s)</div>
+            <div class="flex items-center gap-1.5 font-mono-data-sm text-xs text-outline">
+              <span>LOCATION:</span>
+              <strong class="text-white font-semibold" id="flaggedLocationName">Loading Bay Area</strong>
             </div>
           </div>
-        </div>
 
-        <!-- 2. RECOMMENDED SUPERVISOR ACTION & SOP MITIGATION -->
-        <div class="bg-surface-container-low border border-outline-variant/30 p-5 space-y-4 shadow-sm">
-          <div class="flex items-center justify-between border-b border-outline-variant/20 pb-2.5">
+          <!-- Combined Flagged Behaviour & AI Perception Reasoning -->
+          <div class="p-4 bg-surface-container-lowest border border-outline-variant/40 space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-label-caps text-[10px] text-outline uppercase tracking-wider">FLAGGED BEHAVIOUR</span>
+              <span class="font-mono-data-sm text-xs font-bold text-secondary tracking-wide uppercase" id="flaggedBehaviourName">Rapid Unsafe Carry</span>
+            </div>
+            <div class="pt-1.5 border-t border-outline-variant/20">
+              <div class="font-label-caps text-[10px] text-outline uppercase tracking-wider mb-1">AI PERCEPTION REASONING:</div>
+              <p class="font-body-md text-sm text-on-surface font-medium leading-relaxed" id="flaggedReasonText">
+                "Carton #1001 carried by operator #164 at elevated height (1.21m) and excessive speed (529.1 px/s). Live alert raised before drop occurred."
+              </p>
+            </div>
+          </div>
+
+          <!-- Recommended Supervisor Action -->
+          <div class="space-y-2 pt-1">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary-container text-base">assignment_turned_in</span>
-              <h3 class="font-headline-sm text-headline-sm text-white font-semibold">RECOMMENDED SUPERVISOR ACTION</h3>
+              <h3 class="font-headline-sm text-xs text-white font-semibold uppercase tracking-wider">RECOMMENDED SUPERVISOR ACTION</h3>
             </div>
-            <span class="font-label-caps text-xs text-primary-container font-mono-data-sm uppercase tracking-wider">ACTIONABLE</span>
+            <div class="p-3.5 bg-surface-container border-l-2 border-primary-container text-on-surface font-body-md text-sm leading-relaxed" id="recommendedActionText">
+              "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation."
+            </div>
           </div>
 
-          <div class="p-3 bg-surface-container border-l-2 border-primary-container text-on-surface font-body-md text-sm leading-relaxed" id="recommendedActionText">
-            "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation."
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-center gap-2 pt-1">
-            <a href="prevention.html" class="w-full sm:w-1/2 py-2.5 px-3 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest font-label-caps text-xs font-bold tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+          <!-- Single Direct Action Button -->
+          <div class="pt-2">
+            <a href="prevention.html" class="w-full py-2.5 px-4 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest font-label-caps text-xs font-bold tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer">
               <span>OPEN PREVENTION PLAN</span>
               <span class="material-symbols-outlined text-xs">arrow_forward</span>
             </a>
-            <button onclick="markIncidentResolved()" id="btnMarkResolved" class="w-full sm:w-1/2 py-2.5 px-3 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 text-on-surface hover:text-primary-container font-label-caps text-xs tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer">
-              <span class="material-symbols-outlined text-xs">check_circle</span>
-              <span>MARK AS RESOLVED</span>
-            </button>
           </div>
 
+          <!-- Ethical AI Footer -->
           <div class="pt-2 border-t border-outline-variant/20 flex items-start gap-2 text-[11px] font-mono-data-sm text-outline">
             <span class="material-symbols-outlined text-xs text-primary-container mt-0.5">verified_user</span>
             <span>Responsible AI: Operational analysis is strictly grounded in facility and ergonomic events. Zero worker scorekeeping.</span>
           </div>
+
         </div>
 
       </div>
@@ -614,7 +598,7 @@ void main() {
         </div>
         <span class="font-mono-data-sm text-xs text-outline" id="incidentsTotalBadge">Loading incidents...</span>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 overflow-x-auto pb-1" id="incidentCardsGrid">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 max-h-80 overflow-y-auto pr-1 pb-1" id="incidentCardsGrid">
         <!-- Injected dynamically -->
       </div>
     </section>
@@ -683,19 +667,25 @@ void main() {
     // Render Quick Cards
     function renderIncidentCards() {
       const grid = document.getElementById('incidentCardsGrid');
+      if (!grid) return;
       grid.innerHTML = '';
-      incidentsData.slice(0, 12).forEach((inc, idx) => {
+      incidentsData.forEach((inc, idx) => {
         const card = document.createElement('div');
         const isActive = idx === currentIndex;
-        card.className = `p-2.5 bg-surface-container border ${isActive ? 'border-primary-container shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'border-outline-variant/30 hover:border-primary-container/60'} rounded cursor-pointer transition-all flex flex-col justify-between gap-2`;
+        card.className = `p-2.5 bg-surface-container border ${isActive ? 'border-primary-container shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'border-outline-variant/30 hover:border-primary-container/60'} rounded cursor-pointer transition-all flex flex-col justify-between gap-1.5`;
         card.onclick = () => loadIncident(idx);
 
-        const riskColor = inc.risk_level.toUpperCase() === 'CRITICAL' ? 'text-red-400' : (inc.risk_level.toUpperCase() === 'HIGH' ? 'text-secondary' : 'text-primary-container');
+        const rk = (inc.risk_level || 'HIGH').toUpperCase();
+        const riskColor = rk === 'CRITICAL' ? 'text-red-400' : (rk === 'HIGH' ? 'text-amber-400' : 'text-cyan-400');
+        const nmPill = inc.is_near_miss ? '<span class="px-1.5 py-0.2 bg-amber-950/80 border border-amber-500/60 text-amber-300 text-[9px] font-bold">NEAR-MISS</span>' : '';
         
         card.innerHTML = `
           <div class="flex items-center justify-between font-mono-data-sm text-[10px]">
-            <span class="font-bold ${riskColor}">${inc.risk_level.toUpperCase()}</span>
-            <span class="text-outline">${inc.start_time || '00:00'}</span>
+            <span class="font-bold ${riskColor}">${rk}</span>
+            <div class="flex items-center gap-1">
+              ${nmPill}
+              <span class="text-outline">${inc.start_time || '00:00'}</span>
+            </div>
           </div>
           <div class="font-headline-sm text-xs font-semibold text-white leading-snug line-clamp-2">
             ${inc.behaviour}
@@ -715,62 +705,86 @@ void main() {
       currentIncident = incidentsData[index];
       incidentDropdown.value = index;
 
+      const frStart = currentIncident.frame_start || 1;
+      const frEnd = currentIncident.frame_end || (frStart + 30);
+      const frCount = Math.max(1, frEnd - frStart);
+
       // Update Header
-      document.getElementById('headerIncidentId').textContent = `INCIDENT #${currentIncident.incident_id}`;
-      document.getElementById('headerLocation').textContent = currentIncident.location.toUpperCase();
+      const headId = document.getElementById('headerIncidentId');
+      if (headId) headId.textContent = `INCIDENT #${currentIncident.incident_id}`;
+      
+      const headLoc = document.getElementById('headerLocation');
+      if (headLoc) headLoc.textContent = (currentIncident.location || 'LOADING BAY AREA').toUpperCase();
 
       const riskBadge = document.getElementById('headerRiskBadge');
-      riskBadge.textContent = `${(currentIncident.risk_level || 'HIGH').toUpperCase()} RISK`;
-      if (currentIncident.risk_level.toUpperCase() === 'CRITICAL') {
-        riskBadge.className = 'px-2.5 py-0.5 bg-red-950/60 border border-red-500/60 text-red-300 font-label-caps text-label-caps font-bold tracking-widest uppercase';
-      } else {
-        riskBadge.className = 'px-2.5 py-0.5 bg-secondary/15 border border-secondary/60 text-secondary font-label-caps text-label-caps font-bold tracking-widest uppercase';
+      if (riskBadge) {
+        const rk = (currentIncident.risk_level || 'HIGH').toUpperCase();
+        riskBadge.textContent = `${rk} RISK`;
+        if (rk === 'CRITICAL') {
+          riskBadge.className = 'px-2.5 py-0.5 bg-red-950/80 border border-red-500/80 text-red-300 font-label-caps text-label-caps font-bold tracking-widest uppercase';
+        } else if (rk === 'HIGH') {
+          riskBadge.className = 'px-2.5 py-0.5 bg-amber-950/80 border border-amber-500/80 text-amber-300 font-label-caps text-label-caps font-bold tracking-widest uppercase';
+        } else {
+          riskBadge.className = 'px-2.5 py-0.5 bg-cyan-950/80 border border-cyan-500/80 text-cyan-300 font-label-caps text-label-caps font-bold tracking-widest uppercase';
+        }
       }
 
       const nmBadge = document.getElementById('headerNearMissBadge');
-      if (currentIncident.is_near_miss) {
-        nmBadge.classList.remove('hidden');
-      } else {
-        nmBadge.classList.add('hidden');
+      if (nmBadge) {
+        if (currentIncident.is_near_miss) {
+          nmBadge.classList.remove('hidden');
+          nmBadge.style.display = 'inline-block';
+        } else {
+          nmBadge.classList.add('hidden');
+          nmBadge.style.display = 'none';
+        }
       }
 
       // Update Forensics Right Panel
-      document.getElementById('flaggedReasonText').textContent = `"${currentIncident.reason || 'Safety deviation flagged by AI kinematics tracking.'}"`;
-      document.getElementById('flaggedBehaviourName').textContent = currentIncident.behaviour || 'Handling Deviation';
-      document.getElementById('flaggedLocationName').textContent = currentIncident.location || 'Loading Bay Area';
+      const reasonEl = document.getElementById('flaggedReasonText');
+      if (reasonEl) reasonEl.textContent = `"${currentIncident.reason || 'Safety deviation flagged by AI kinematics tracking.'}"`;
       
-      const ents = currentIncident.entities_involved || {};
-      const personStr = (ents.person_track_ids && ents.person_track_ids.length) ? `Operator #${ents.person_track_ids[0]}` : 'Operator';
-      const pkgStr = (ents.package_track_ids && ents.package_track_ids.length) ? `Carton #${ents.package_track_ids[0]}` : 'Carton';
-      document.getElementById('flaggedEntities').textContent = `${personStr}, ${pkgStr}`;
-
-      const frCount = Math.max(1, (currentIncident.frame_end || 30) - (currentIncident.frame_start || 1));
-      document.getElementById('flaggedDuration').textContent = `${frCount} Frames (~${currentIncident.duration_seconds || 1}s)`;
-      document.getElementById('riskScorePill').textContent = `${currentIncident.risk_score || 85}% RISK`;
-      document.getElementById('recommendedActionText').textContent = `"${currentIncident.recommendation || 'Review handling posture and area safety clearance.'}"`;
+      const behEl = document.getElementById('flaggedBehaviourName');
+      if (behEl) behEl.textContent = currentIncident.behaviour || 'Handling Deviation';
+      
+      const locEl = document.getElementById('flaggedLocationName');
+      if (locEl) locEl.textContent = currentIncident.location || 'Loading Bay Area';
+      
+      const recEl = document.getElementById('recommendedActionText');
+      if (recEl) recEl.textContent = `"${currentIncident.recommendation || 'Review handling posture and area safety clearance.'}"`;
 
       // Update Video Player & Overlays
-      document.getElementById('camSourceLabel').textContent = `CAMERA FEED // ${currentIncident.location.toUpperCase()}`;
-      document.getElementById('videoSourceFile').textContent = currentIncident.video || 'Live Stream';
-      document.getElementById('overlayFrameWindow').textContent = `FRAMES: ${currentIncident.frame_start} - ${currentIncident.frame_end}`;
-      document.getElementById('spanStartTime').textContent = currentIncident.start_time;
-      document.getElementById('spanEndTime').textContent = currentIncident.end_time;
-      document.getElementById('timelineSpanText').textContent = `${frCount} FRAMES (${currentIncident.duration_seconds} SECONDS)`;
+      const camLabel = document.getElementById('camSourceLabel');
+      if (camLabel) camLabel.textContent = `CAMERA FEED // ${(currentIncident.location || 'LOADING BAY AREA').toUpperCase()}`;
+
+      const vidSource = document.getElementById('videoSourceFile');
+      if (vidSource) vidSource.textContent = currentIncident.video || 'Live Stream';
+
+      const ovlWindow = document.getElementById('overlayFrameWindow');
+      if (ovlWindow) ovlWindow.textContent = `FRAMES: ${frStart} - ${frEnd}`;
+
+      const spanStart = document.getElementById('spanStartTime');
+      if (spanStart) spanStart.textContent = currentIncident.start_time || '00:00:00';
+
+      const spanEnd = document.getElementById('spanEndTime');
+      if (spanEnd) spanEnd.textContent = currentIncident.end_time || '00:00:05';
+
+      const tlSpan = document.getElementById('timelineSpanText');
+      if (tlSpan) tlSpan.textContent = `${frCount} FRAMES (${currentIncident.duration_seconds || 1} SECONDS)`;
 
       // Set video src
       if (currentIncident.video_url) {
         video.src = currentIncident.video_url;
         video.currentTime = currentIncident.start_seconds || 0;
+        setViewMode('video');
       } else {
         // Fallback for webcam or live stream
         video.src = '';
+        setViewMode('frame');
       }
 
       // Set AI frame img
-      frameImg.src = currentIncident.ai_frame_url || '';
-
-      // Reset to video mode
-      setViewMode('video');
+      if (frameImg) frameImg.src = currentIncident.ai_frame_url || '';
 
       // Update cards highlighting
       renderIncidentCards();
@@ -881,19 +895,16 @@ void main() {
 
     function setFilter(type) {
       currentFilter = type;
-      document.getElementById('btnFilterAll').className = type === 'all' ? 'px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer' : 'px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer';
-      document.getElementById('btnFilterNM').className = type === 'near_miss' ? 'px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer' : 'px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer';
-      document.getElementById('btnFilterHigh').className = type === 'high_risk' ? 'px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer' : 'px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer';
+      const activeClass = 'px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer';
+      const inactiveClass = 'px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer';
+
+      if (document.getElementById('btnFilterAll')) document.getElementById('btnFilterAll').className = type === 'all' ? activeClass : inactiveClass;
+      if (document.getElementById('btnFilterWebcam')) document.getElementById('btnFilterWebcam').className = type === 'webcam' ? activeClass : inactiveClass;
+      if (document.getElementById('btnFilterNM')) document.getElementById('btnFilterNM').className = type === 'near_miss' ? activeClass : inactiveClass;
+      if (document.getElementById('btnFilterHigh')) document.getElementById('btnFilterHigh').className = type === 'high_risk' ? activeClass : inactiveClass;
       fetchIncidents();
     }
 
-    function markIncidentResolved() {
-      const btn = document.getElementById('btnMarkResolved');
-      btn.innerHTML = '<span class="material-symbols-outlined text-xs text-emerald-400">check</span><span class="text-emerald-400 font-bold">RESOLVED ✓</span>';
-      setTimeout(() => {
-        btn.innerHTML = '<span class="material-symbols-outlined text-xs">check_circle</span><span>MARK AS RESOLVED</span>';
-      }, 2500);
-    }
 
     // Init
     document.addEventListener('DOMContentLoaded', () => {
