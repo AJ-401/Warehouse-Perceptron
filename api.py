@@ -150,6 +150,32 @@ async def chat_endpoint(req: ChatRequest):
             raise HTTPException(status_code=429, detail="API rate limit exceeded. Please wait a minute and try again.")
         raise HTTPException(status_code=500, detail=f"LLM request failed: {error_str}")
 
+@app.get("/api/chat_history")
+async def get_chat_history_endpoint(username: str = "supervisor"):
+    """Returns persistent multi-turn chat history for a given user."""
+    safe_user = username.strip().lower()
+    memory_file = f"data/memory/memory_{safe_user}.json"
+    if os.path.exists(memory_file):
+        try:
+            with open(memory_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return {"username": safe_user, "history": data}
+        except Exception:
+            return {"username": safe_user, "history": []}
+    return {"username": safe_user, "history": []}
+
+@app.delete("/api/chat_history")
+async def clear_chat_history_endpoint(username: str = "supervisor"):
+    """Clears persistent multi-turn chat history for a given user."""
+    safe_user = username.strip().lower()
+    memory_file = f"data/memory/memory_{safe_user}.json"
+    if os.path.exists(memory_file):
+        try:
+            os.remove(memory_file)
+        except Exception:
+            pass
+    return {"status": "cleared", "username": safe_user}
+
 @app.get("/api/metrics")
 async def get_metrics():
     """Returns aggregated intelligence metrics across all detected warehouse events."""

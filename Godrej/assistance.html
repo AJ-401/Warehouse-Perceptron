@@ -8,13 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+
+</script>
 <!-- Marked.js Markdown Parser (Local with CDN fallback) -->
-<script src="marked.min.js"></script>
+<script src="marked.min.js">
+
+</script>
 <script>
   if (typeof marked === 'undefined') {
     document.write('<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"><\/script>');
   }
+
 </script>
 <script id="tailwind-config">
     tailwind.config = {
@@ -119,7 +124,8 @@
         },
       },
     }
-  </script>
+
+</script>
 <style>
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
@@ -338,14 +344,14 @@
 <span class="text-on-surface-variant font-mono-data-sm text-mono-data-sm">07 SEP 2026 / 14:56</span>
 </div>
 <div class="flex items-center gap-1">
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container cursor-pointer transition-colors" title="Grid View">
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container cursor-pointer transition-colors" title="Grid View" onclick="showNavGridModal()">
 <span class="material-symbols-outlined">grid_view</span>
 </button>
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container cursor-pointer transition-colors" title="Configuration">
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container cursor-pointer transition-colors" title="Configuration" onclick="showNavTuneModal()">
 <span class="material-symbols-outlined">tune</span>
 </button>
 </div>
-<button class="h-8 px-3.5 bg-primary-container text-background font-headline-sm text-headline-sm font-semibold hover:bg-primary-fixed-dim active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer">
+<button onclick="window.location.href=\'intelligence.html\'" class="h-8 px-3.5 bg-primary-container text-background font-headline-sm text-headline-sm font-semibold hover:bg-primary-fixed-dim active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer">
 <span class="font-mono-data-sm text-mono-data-sm">LAUNCH INTELLIGENCE</span>
 <span class="material-symbols-outlined" style="font-size: 15px;">arrow_forward</span>
 </button>
@@ -457,7 +463,19 @@
 </button>
 </div>
 </div>
-<div class="h-px bg-outline-variant/20 my-3"></div>
+<!-- Conversation Status Bar & Persistence Actions -->
+<div class="flex items-center justify-between px-1 py-1.5 border-b border-outline-variant/20 mb-3 text-xs font-mono-data-sm text-outline">
+  <div class="flex items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span class="uppercase tracking-wider text-on-surface font-semibold">STORED CONVERSATION THREAD</span>
+    <span class="text-outline-variant/60">/</span>
+    <span id="chatCountBadge" class="px-2 py-0.5 bg-surface-container border border-outline-variant/30 text-primary-container text-[11px] font-semibold">1 EXCHANGE STORED</span>
+  </div>
+  <button id="btnClearChatHistory" onclick="clearChatHistory()" class="flex items-center gap-1 px-2.5 py-1 bg-surface-container-lowest hover:bg-red-950/40 hover:border-red-500/50 hover:text-red-300 border border-outline-variant/30 text-outline transition-colors cursor-pointer text-[11px] font-mono-data-sm rounded-DEFAULT" title="Clear chat history from local storage and backend memory">
+    <span class="material-symbols-outlined" style="font-size: 15px;">delete_sweep</span>
+    <span>CLEAR CHAT HISTORY</span>
+  </button>
+</div>
 <!-- ================================================================= -->
 <!-- DYNAMIC REASONING & RESPONSE STREAM CONTAINER                     -->
 <!-- ================================================================= -->
@@ -526,7 +544,7 @@
 <span class="font-mono-data-sm text-mono-data-sm text-primary-container"><span id="evidenceCountBadge">4</span> Grounded Events</span>
 </div>
 <div class="flex flex-wrap gap-2.5" id="evidenceGroundingBadges">
-<button class="px-3 py-1.5 bg-surface-container-lowest hover:bg-surface-container-high border border-outline-variant/40 hover:border-primary-container text-on-surface-variant hover:text-primary font-mono-data-sm text-mono-data-sm flex items-center gap-2 transition-all cursor-pointer group">
+<button onclick="triggerInquiry('What happened during EVENT-018 at 08:14?')" class="px-3 py-1.5 bg-surface-container-lowest hover:bg-surface-container-high border border-outline-variant/40 hover:border-primary-container text-on-surface-variant hover:text-primary font-mono-data-sm text-mono-data-sm flex items-center gap-2 transition-all cursor-pointer group" title="Ask Assistant about EVENT-018">
 <span class="w-1.5 h-1.5 bg-secondary-container group-hover:scale-125 transition-transform"></span>
 <span class="font-semibold text-on-surface group-hover:text-primary">EVENT-018</span>
 <span class="text-outline text-[10px]">08:14</span>
@@ -545,7 +563,7 @@
                     Review trolley and material-handling practices during unloading operations in Bay 01.
                   </div>
 </div>
-<button class="px-3.5 py-2 bg-surface-container-lowest hover:bg-surface-bright border border-secondary-container/50 hover:border-secondary-container text-secondary font-mono-data-sm text-mono-data-sm font-semibold flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer active:scale-95" onclick="alert('Opening Prevention Plan SOP-LOG-108: Material Handling Equipment Guidelines')">
+<button class="px-3.5 py-2 bg-surface-container-lowest hover:bg-surface-bright border border-secondary-container/50 hover:border-secondary-container text-secondary font-mono-data-sm text-mono-data-sm font-semibold flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer active:scale-95" onclick="window.location.href='prevention.html'">
 <span class="">VIEW PREVENTION PLAN</span>
 <span class="material-symbols-outlined" style="font-size: 15px;">arrow_forward</span>
 </button>
@@ -652,7 +670,7 @@
 <div class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
                 Trolley Refresher &amp; Pallet Stacking Clearance
               </div>
-<button class="w-full mt-1.5 py-2 bg-surface-container-lowest hover:bg-surface-bright border border-outline-variant/40 hover:border-primary-container text-on-surface hover:text-primary-container font-mono-data-sm text-mono-data-sm text-center transition-all cursor-pointer font-medium" onclick="alert('Viewing Action Card: SOP-LOG-108 Trolley Refresher &amp; Pallet Stacking Clearance')">
+<button class="w-full mt-1.5 py-2 bg-surface-container-lowest hover:bg-surface-bright border border-outline-variant/40 hover:border-primary-container text-on-surface hover:text-primary-container font-mono-data-sm text-mono-data-sm text-center transition-all cursor-pointer font-medium" onclick="window.location.href='prevention.html'">
                 View Action Card
               </button>
 </div>
@@ -695,6 +713,8 @@
 </footer>
 <!-- Interactive Script: Live AI Processing & Backend Integration -->
 <script>
+  const STORAGE_KEY = 'godrej_supervisor_chat_history_v2';
+
   function escapeHtml(str) {
     if (!str) return '';
     return str
@@ -705,15 +725,41 @@
       .replace(/'/g, "&#039;");
   }
 
-  function scrollChatToBottom() {
+  function scrollChatToBottom(smooth = true) {
     const canvas = document.getElementById('chatCanvas');
     if (canvas) {
       setTimeout(() => {
         canvas.scrollTo({
           top: canvas.scrollHeight,
-          behavior: 'smooth'
+          behavior: smooth ? 'smooth' : 'auto'
         });
       }, 60);
+    }
+  }
+
+  function getStoredChats() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      console.warn('Failed to parse chat history from localStorage', e);
+      return null;
+    }
+  }
+
+  function saveStoredChats(chats) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(chats));
+      updateChatCountBadge(chats.length);
+    } catch (e) {
+      console.warn('Failed to save chat history to localStorage', e);
+    }
+  }
+
+  function updateChatCountBadge(count) {
+    const badge = document.getElementById('chatCountBadge');
+    if (badge) {
+      badge.textContent = `${count} ${count === 1 ? 'EXCHANGE' : 'EXCHANGES'} STORED`;
     }
   }
 
@@ -729,10 +775,109 @@
     runProcessingSequence(query);
   }
 
+  function renderUserBubble(turn, animate = false) {
+    const userWrap = document.createElement('div');
+    userWrap.className = `flex justify-end ${animate ? 'fade-enter' : ''}`;
+    userWrap.innerHTML = `
+      <div class="max-w-2xl bg-surface-container border border-outline-variant/40 p-3.5 text-right shadow-sm">
+        <div class="font-label-caps text-label-caps text-outline mb-1">SUPERVISOR QUERY // ${turn.timestamp || 'LOGGED'}</div>
+        <p class="font-body-md text-body-md text-on-surface font-medium">${escapeHtml(turn.query)}</p>
+      </div>
+    `;
+    return userWrap;
+  }
+
+  function renderAssistantCard(turn, animate = false) {
+    let renderedHtml = "";
+    if (typeof marked !== 'undefined' && marked.parse) {
+      renderedHtml = marked.parse(turn.answer || "", { gfm: true, breaks: true });
+    } else {
+      renderedHtml = escapeHtml(turn.answer || "").replace(/\n/g, '<br>');
+    }
+
+    let evidenceHtml = "";
+    if (turn.event_ids && turn.event_ids.length > 0) {
+      const pills = turn.event_ids.slice(0, 15).map(id => `
+        <button class="px-2.5 py-1 bg-surface-container-lowest hover:bg-surface-container-high border border-outline-variant/40 hover:border-primary-container text-on-surface-variant hover:text-primary font-mono-data-sm text-xs flex items-center gap-1.5 transition-all cursor-pointer group" onclick="alert('Evidence Details: ${id}')">
+          <span class="w-1.5 h-1.5 bg-primary-container group-hover:scale-125 transition-transform"></span>
+          <span class="font-semibold text-on-surface group-hover:text-primary">${id}</span>
+        </button>
+      `).join('');
+
+      evidenceHtml = `
+        <div class="p-3.5 bg-surface-container/50 border border-outline-variant/30 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-outline" style="font-size: 16px;">receipt_long</span>
+              <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">EVIDENCE // GROUNDED IN DETECTED EVENTS:</span>
+            </div>
+            <span class="font-mono-data-sm text-mono-data-sm text-primary-container">${turn.event_ids.length} Grounded Events</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            ${pills}
+          </div>
+        </div>
+      `;
+    }
+
+    const card = document.createElement('div');
+    card.className = `${animate ? 'fade-enter' : ''} max-w-4xl bg-surface-container-lowest border border-outline-variant/30 p-6 py-6 space-y-5 shadow-lg mb-6`;
+    card.innerHTML = `
+      <div class="flex items-center justify-between border-b border-outline-variant/20 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-primary-container shadow-[0_0_8px_#00e5ff]"></span>
+          <span class="font-label-caps text-label-caps text-primary-container uppercase tracking-widest font-semibold">INTELLIGENCE SYNTHESIS</span>
+          <span class="text-outline-variant/50">/</span>
+          <span class="font-mono-data-sm text-mono-data-sm text-outline">GROUNDED IN EVENT LEDGER</span>
+        </div>
+        <span class="font-mono-data-sm text-mono-data-sm text-outline">CONFIDENCE: <strong class="text-on-surface font-semibold">${turn.confidence || '98.4%'}</strong></span>
+      </div>
+
+      <div class="space-y-4">
+        <div class="prose-chat">
+          ${renderedHtml}
+        </div>
+      </div>
+
+      ${evidenceHtml}
+
+      <div class="pt-1 flex items-center gap-2 font-mono-data-sm text-mono-data-sm text-outline/80">
+        <span class="material-symbols-outlined text-outline/70" style="font-size: 15px;">verified_user</span>
+        <span>Responsible AI: Operational analysis is strictly grounded in facility and ergonomic events. Zero worker scorekeeping.</span>
+      </div>
+    `;
+    return card;
+  }
+
+  function getProcessingBannerEl() {
+    let banner = document.getElementById('processingBanner');
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'processingBanner';
+      banner.className = 'hidden p-3.5 bg-surface-container-lowest/90 border border-primary-container/40 flex items-center justify-between transition-all duration-300';
+      banner.innerHTML = `
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1 px-1 py-0.5">
+            <span class="w-2 h-2 rounded-full bg-primary-container dot-1"></span>
+            <span class="w-2 h-2 rounded-full bg-primary-container dot-2"></span>
+            <span class="w-2 h-2 rounded-full bg-primary-container dot-3"></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono-data-sm text-mono-data-sm text-primary-container tracking-wider font-semibold" id="processingStepText">ANALYZING EVENT LOG...</span>
+          </div>
+        </div>
+        <div class="font-mono-data-sm text-mono-data-sm text-outline flex items-center gap-2">
+          <span class="text-[10px] text-outline">GROUNDED RUNTIME</span>
+          <span class="px-1.5 py-0.5 bg-surface-container border border-outline-variant/30 text-primary-container text-[11px]">42ms</span>
+        </div>
+      `;
+    }
+    return banner;
+  }
+
   async function runProcessingSequence(queryText) {
     const aiBadge = document.getElementById('aiIndicatorBadge');
     const aiIcon = document.getElementById('aiIcon');
-    const processingBanner = document.getElementById('processingBanner');
     const stepText = document.getElementById('processingStepText');
     const threadContainer = document.getElementById('threadContainer');
     const input = document.getElementById('userQueryInput');
@@ -740,30 +885,31 @@
 
     if (!threadContainer) return;
 
-    // 1. Append User Message Bubble to Thread (Prevents old questions from disappearing)
     const now = new Date();
     const timeStr = now.toTimeString().split(' ')[0];
-    const userWrap = document.createElement('div');
-    userWrap.className = 'flex justify-end fade-enter';
-    userWrap.innerHTML = `
-      <div class="max-w-2xl bg-surface-container border border-outline-variant/40 p-3.5 text-right">
-        <div class="font-label-caps text-label-caps text-outline mb-1">SUPERVISOR QUERY // ${timeStr}</div>
-        <p class="font-body-md text-body-md text-on-surface font-medium">${escapeHtml(queryText)}</p>
-      </div>
-    `;
+
+    // 1. Append User Message Bubble
+    const turn = {
+      id: 'chat_' + Date.now(),
+      timestamp: timeStr,
+      query: queryText,
+      answer: '',
+      event_ids: [],
+      confidence: '98.4%'
+    };
+
+    const userWrap = renderUserBubble(turn, true);
     threadContainer.appendChild(userWrap);
 
-    // Clear input field
     if (input) input.value = '';
 
-    // 2. Move & Display Processing Banner at bottom of conversation thread
-    if (processingBanner) {
-      threadContainer.appendChild(processingBanner);
-      processingBanner.classList.remove('hidden');
-    }
-    scrollChatToBottom();
+    // 2. Display Processing Banner at bottom
+    const processingBanner = getProcessingBannerEl();
+    threadContainer.appendChild(processingBanner);
+    processingBanner.classList.remove('hidden');
+    scrollChatToBottom(true);
 
-    // 3. Activate Visual Indicators
+    // 3. Visual Indicators
     if (aiBadge) aiBadge.classList.add('ai-indicator-active', 'border-primary-container');
     if (aiIcon) aiIcon.classList.add('text-primary-container', 'animate-pulse');
     if (askBtn) askBtn.classList.add('opacity-70', 'pointer-events-none');
@@ -796,89 +942,143 @@
       }
 
       const data = await resp.json();
-      appendAssistantResponseCard(data.answer, data.event_ids || []);
+      turn.answer = data.answer;
+      turn.event_ids = data.event_ids || [];
+
+      // Append assistant card
+      const card = renderAssistantCard(turn, true);
+      threadContainer.appendChild(card);
+
+      // Save to persistent storage
+      const chats = getStoredChats() || [];
+      chats.push(turn);
+      saveStoredChats(chats);
+
     } catch (err) {
       clearInterval(stepInterval);
-      appendAssistantResponseCard(
-        `**⚠️ Service Notice:** ${err.message}\n\nPlease check server logs or verify backend at \`http://localhost:8000\`.`,
-        []
-      );
+      turn.answer = `**⚠️ Service Notice:** ${err.message}\n\nPlease verify that the backend is running at \`http://localhost:8000\`.`;
+      turn.event_ids = [];
+      const card = renderAssistantCard(turn, true);
+      threadContainer.appendChild(card);
+
+      const chats = getStoredChats() || [];
+      chats.push(turn);
+      saveStoredChats(chats);
+
     } finally {
       if (processingBanner) processingBanner.classList.add('hidden');
       if (aiBadge) aiBadge.classList.remove('ai-indicator-active', 'border-primary-container');
       if (aiIcon) aiIcon.classList.remove('animate-pulse');
       if (askBtn) askBtn.classList.remove('opacity-70', 'pointer-events-none');
-      scrollChatToBottom();
+      scrollChatToBottom(true);
     }
   }
 
-  function appendAssistantResponseCard(answer, eventIds) {
+  // Seed default demonstration conversation if fresh installation
+  function getDefaultSeedChat() {
+    return [
+      {
+        id: 'seed_01',
+        timestamp: '14:48:12',
+        query: 'What was the most common risky behaviour during the morning shift?',
+        answer: `### Grounded Shift Synthesis: Morning Operations\n\nBased on 250 logged events in Bay 01 and Dock Leveler between 06:00 and 14:00, the primary risk category observed was **Product Dragging and Improper Material Handling** (42.0% share of total risk observations).\n\n- **Primary Hotspot:** Loading Bay 01 / Unloading Gate A\n- **Near-Miss Frequency:** 15 classified near-miss sequences\n- **High Risk Incidents:** 38 events exceeded 70% tilt/velocity risk threshold\n\n#### Immediate Operational Recommendation:\nExecute **SOP-LOG-108** (Trolley handling and pallet clearance refresher) before the evening dispatch cycle.`,
+        event_ids: ['EVT-20260908-0012', 'EVT-20260908-0018', 'EVT-20260908-0027', 'EVT-20260908-0042'],
+        confidence: '98.2%'
+      }
+    ];
+  }
+
+  // Initialize and load chat history from LocalStorage or server
+  async function initChatHistory() {
     const threadContainer = document.getElementById('threadContainer');
     if (!threadContainer) return;
 
-    // Render markdown to clean, structured HTML using marked.js
-    let renderedHtml = "";
-    if (typeof marked !== 'undefined' && marked.parse) {
-      renderedHtml = marked.parse(answer, { gfm: true, breaks: true });
-    } else {
-      renderedHtml = escapeHtml(answer).replace(/\n/g, '<br>');
+    let chats = getStoredChats();
+
+    if (!chats || chats.length === 0) {
+      // Try to recover from server /api/chat_history
+      try {
+        const resp = await fetch('/api/chat_history?username=supervisor');
+        if (resp.ok) {
+          const resData = await resp.json();
+          const serverHistory = resData.history || [];
+          if (serverHistory.length > 0) {
+            chats = [];
+            let currentQ = null;
+            for (const item of serverHistory) {
+              if (item.role === 'user') {
+                currentQ = item.content;
+              } else if (item.role === 'assistant') {
+                if (currentQ) {
+                  chats.push({
+                    id: 'srv_' + chats.length,
+                    timestamp: 'SAVED SESSION',
+                    query: currentQ,
+                    answer: item.content || '*(Answer recorded in ledger)*',
+                    event_ids: [],
+                    confidence: '98.4%'
+                  });
+                  currentQ = null;
+                }
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Could not fetch server chat history', e);
+      }
     }
 
-    // Evidence badges
-    let evidenceHtml = "";
-    if (eventIds && eventIds.length > 0) {
-      const pills = eventIds.slice(0, 15).map(id => `
-        <button class="px-2.5 py-1 bg-surface-container-lowest hover:bg-surface-container-high border border-outline-variant/40 hover:border-primary-container text-on-surface-variant hover:text-primary font-mono-data-sm text-xs flex items-center gap-1.5 transition-all cursor-pointer group" onclick="alert('Evidence Details: ${id}')">
-          <span class="w-1.5 h-1.5 bg-primary-container group-hover:scale-125 transition-transform"></span>
-          <span class="font-semibold text-on-surface group-hover:text-primary">${id}</span>
-        </button>
-      `).join('');
-
-      evidenceHtml = `
-        <div class="p-3.5 bg-surface-container/50 border border-outline-variant/30 space-y-2.5">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-outline" style="font-size: 16px;">receipt_long</span>
-              <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">EVIDENCE // GROUNDED IN DETECTED EVENTS:</span>
-            </div>
-            <span class="font-mono-data-sm text-mono-data-sm text-primary-container">${eventIds.length} Grounded Events</span>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            ${pills}
-          </div>
-        </div>
-      `;
+    if (!chats || chats.length === 0) {
+      chats = getDefaultSeedChat();
     }
 
-    const card = document.createElement('div');
-    card.className = 'fade-enter max-w-4xl bg-surface-container-lowest border border-outline-variant/30 p-6 py-6 space-y-5 shadow-lg mb-6';
-    card.innerHTML = `
-      <div class="flex items-center justify-between border-b border-outline-variant/20 pb-3">
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-primary-container shadow-[0_0_8px_#00e5ff]"></span>
-          <span class="font-label-caps text-label-caps text-primary-container uppercase tracking-widest font-semibold">INTELLIGENCE SYNTHESIS</span>
-          <span class="text-outline-variant/50">/</span>
-          <span class="font-mono-data-sm text-mono-data-sm text-outline">GROUNDED IN EVENT LEDGER</span>
-        </div>
-        <span class="font-mono-data-sm text-mono-data-sm text-outline">CONFIDENCE: <strong class="text-on-surface font-semibold">98.4%</strong></span>
-      </div>
+    // Save back to ensure localStorage is in sync
+    saveStoredChats(chats);
 
-      <div class="space-y-4">
-        <div class="prose-chat">
-          ${renderedHtml}
-        </div>
-      </div>
+    // Render all conversation turns into threadContainer
+    threadContainer.innerHTML = '';
+    chats.forEach(turn => {
+      threadContainer.appendChild(renderUserBubble(turn, false));
+      threadContainer.appendChild(renderAssistantCard(turn, false));
+    });
 
-      ${evidenceHtml}
+    // Make sure processing banner element exists in threadContainer (hidden)
+    const banner = getProcessingBannerEl();
+    threadContainer.appendChild(banner);
 
-      <div class="pt-1 flex items-center gap-2 font-mono-data-sm text-mono-data-sm text-outline/80">
-        <span class="material-symbols-outlined text-outline/70" style="font-size: 15px;">verified_user</span>
-        <span>Responsible AI: Operational analysis is strictly grounded in facility and ergonomic events. Zero worker scorekeeping.</span>
-      </div>
-    `;
+    updateChatCountBadge(chats.length);
+    scrollChatToBottom(false);
+  }
 
-    threadContainer.appendChild(card);
-    scrollChatToBottom();
+  async function clearChatHistory() {
+    if (!confirm('Are you sure you want to clear your conversation history and reset the session?')) {
+      return;
+    }
+
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      await fetch('/api/chat_history?username=supervisor', { method: 'DELETE' });
+    } catch (e) {
+      console.warn('Error clearing history', e);
+    }
+
+    const threadContainer = document.getElementById('threadContainer');
+    if (threadContainer) {
+      const seed = getDefaultSeedChat();
+      saveStoredChats(seed);
+
+      threadContainer.innerHTML = '';
+      seed.forEach(turn => {
+        threadContainer.appendChild(renderUserBubble(turn, false));
+        threadContainer.appendChild(renderAssistantCard(turn, false));
+      });
+      const banner = getProcessingBannerEl();
+      threadContainer.appendChild(banner);
+      updateChatCountBadge(seed.length);
+    }
+
+    alert('✓ Conversation history has been cleared and reset.');
   }
 
   // Load live telemetry metrics from backend
@@ -915,7 +1115,130 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', loadLiveMetrics);
+  document.addEventListener('DOMContentLoaded', () => {
+    loadLiveMetrics();
+    initChatHistory();
+  });
+
+</script>
+
+
+<script>
+function showNavGridModal() {
+  const modalId = 'soc-nav-grid-modal';
+  let modal = document.getElementById(modalId);
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = modalId;
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4';
+    modal.innerHTML = `
+      <div class="bg-surface-container-low border border-outline-variant/40 max-w-xl w-full p-6 shadow-2xl relative font-body-md text-on-surface">
+        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">grid_view</span>
+            <h3 class="font-headline-sm font-semibold tracking-wide">WAREHOUSE CAMERA MATRIX</h3>
+          </div>
+          <button onclick="document.getElementById('${modalId}').remove()" class="text-outline hover:text-white text-xl p-1 cursor-pointer">&times;</button>
+        </div>
+        <p class="text-on-surface-variant font-body-sm mb-4">Select active CCTV edge sensor node to view live perception stream:</p>
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-primary-container/40 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-primary-container font-bold">CAM_01</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Loading Bay 01</div>
+            <div class="text-[11px] text-outline">Unloading Gate A (LIVE)</div>
+          </a>
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-outline font-bold">CAM_02</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Aisle 04 Storage</div>
+            <div class="text-[11px] text-outline">High-Bay Racks (STANDBY)</div>
+          </a>
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-outline font-bold">CAM_03</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Sorting Hub Central</div>
+            <div class="text-[11px] text-outline">Pallet Staging (ACTIVE)</div>
+          </a>
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-outline font-bold">CAM_04</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Staging Dock West</div>
+            <div class="text-[11px] text-outline">Dispatch Buffer (HIGH DENSITY)</div>
+          </a>
+        </div>
+        <div class="flex justify-end">
+          <button onclick="document.getElementById('${modalId}').remove()" class="px-4 py-1.5 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/40 text-on-surface font-mono-data-sm cursor-pointer">CLOSE</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+}
+
+function showNavTuneModal() {
+  const modalId = 'soc-nav-tune-modal';
+  let modal = document.getElementById(modalId);
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = modalId;
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4';
+    modal.innerHTML = `
+      <div class="bg-surface-container-low border border-outline-variant/40 max-w-lg w-full p-6 shadow-2xl relative font-body-md text-on-surface">
+        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">tune</span>
+            <h3 class="font-headline-sm font-semibold tracking-wide">EDGE SENSOR &amp; CV TUNING</h3>
+          </div>
+          <button onclick="document.getElementById('${modalId}').remove()" class="text-outline hover:text-white text-xl p-1 cursor-pointer">&times;</button>
+        </div>
+        <div class="space-y-4 mb-6">
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">YOLOv8-Pose Confidence Threshold</span>
+              <span class="text-primary-container font-bold" id="tune-conf-val">0.65</span>
+            </div>
+            <input type="range" min="0.4" max="0.9" step="0.05" value="0.65" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-conf-val').textContent = this.value">
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">ByteTrack IoU Association Threshold</span>
+              <span class="text-primary-container font-bold" id="tune-iou-val">0.60</span>
+            </div>
+            <input type="range" min="0.3" max="0.8" step="0.05" value="0.60" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-iou-val').textContent = this.value">
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">Near-Miss Predictive Alarm Trigger</span>
+              <span class="text-secondary font-bold" id="tune-risk-val">70%</span>
+            </div>
+            <input type="range" min="50" max="90" step="5" value="70" class="w-full accent-secondary cursor-pointer" oninput="document.getElementById('tune-risk-val').textContent = this.value + '%'">
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">Supervisor Audio Chime Volume</span>
+              <span class="text-primary-container font-bold" id="tune-vol-val">85%</span>
+            </div>
+            <input type="range" min="0" max="100" step="5" value="85" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-vol-val').textContent = this.value + '%'">
+          </div>
+        </div>
+        <div class="flex justify-end gap-3">
+          <button onclick="document.getElementById('${modalId}').remove()" class="px-3.5 py-1.5 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/40 text-on-surface font-mono-data-sm cursor-pointer">CANCEL</button>
+          <button onclick="alert('✓ Edge Sensor Node Parameters synchronized across 4 CCTV cameras.'); document.getElementById('${modalId}').remove();" class="px-4 py-1.5 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest font-mono-data-sm font-semibold cursor-pointer">APPLY &amp; SYNC</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+}
 </script>
 
 </body></html>

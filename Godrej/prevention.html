@@ -10,7 +10,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS with Forms & Container Queries -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+    function openSOPModal(sopCode) {
+      const sops = {
+        'SOP-LOG-108': {
+          title: 'SOP-LOG-108: Material Handling Equipment Guidelines (Trolleys & Carts)',
+          target: 'Unloading Operations & Gate A',
+          text: '1. Operators must not drag cartons or KD packets along dock floors.\n2. Two-wheel or four-wheel platform trolleys must be staged within 5 meters of unloading bays.\n3. Maximum manual lift height is 1.2 meters. For cargo exceeding 20kg, use mechanical assistance.'
+        },
+        'SOP-LOG-112': {
+          title: 'SOP-LOG-112: Vertical Stacking Limit & Pallet Alignment Standard',
+          target: 'Aisle 04 & High-Bay Racking',
+          text: '1. Maximum stack height is 1.8 meters or 4 tier levels.\n2. Heavy cartons must always be positioned at the base level.\n3. Pallet overhang cannot exceed 2 inches on any side.'
+        },
+        'SOP-LOG-115': {
+          title: 'SOP-LOG-115: Controlled Package Placement & Sorting Standards',
+          target: 'Sorting Table 02 & Inflow Ramp',
+          text: '1. Packages must be set down gently with zero drop velocity.\n2. Throwing, tossing or sliding products across sorting surfaces is strictly prohibited.\n3. Straps must never be used as handles unless certified for lifting.'
+        }
+      };
+      const sop = sops[sopCode] || sops['SOP-LOG-108'];
+      alert(`📋 ${sop.title}\n\nTarget: ${sop.target}\n\nProtocol:\n${sop.text}`);
+    }
+
+    function createTrainingNote() {
+      const note = prompt(
+        '📝 DISPATCH TRAINING NOTE TO SHIFT LEAD\n\nEnter briefing note for Shift 2 Unloading Operations regarding Trolley Practices:',
+        'Shift Lead Briefing: Reinforce trolley usage during 14:00 unloading. Ensure staging rack near Gate A is clear.'
+      );
+      if (note) {
+        alert('✓ TRAINING NOTE DISPATCHED\n\nNote logged to Shift 2 Dashboard and sent to floor lead tablet.');
+      }
+    }
+
+</script>
 <!-- Tailwind Configuration verbatim from tokens -->
 <script id="tailwind-config">
     tailwind.config = {
@@ -115,7 +148,40 @@
         }
       }
     }
-  </script>
+  
+    function openSOPModal(sopCode) {
+      const sops = {
+        'SOP-LOG-108': {
+          title: 'SOP-LOG-108: Material Handling Equipment Guidelines (Trolleys & Carts)',
+          target: 'Unloading Operations & Gate A',
+          text: '1. Operators must not drag cartons or KD packets along dock floors.\n2. Two-wheel or four-wheel platform trolleys must be staged within 5 meters of unloading bays.\n3. Maximum manual lift height is 1.2 meters. For cargo exceeding 20kg, use mechanical assistance.'
+        },
+        'SOP-LOG-112': {
+          title: 'SOP-LOG-112: Vertical Stacking Limit & Pallet Alignment Standard',
+          target: 'Aisle 04 & High-Bay Racking',
+          text: '1. Maximum stack height is 1.8 meters or 4 tier levels.\n2. Heavy cartons must always be positioned at the base level.\n3. Pallet overhang cannot exceed 2 inches on any side.'
+        },
+        'SOP-LOG-115': {
+          title: 'SOP-LOG-115: Controlled Package Placement & Sorting Standards',
+          target: 'Sorting Table 02 & Inflow Ramp',
+          text: '1. Packages must be set down gently with zero drop velocity.\n2. Throwing, tossing or sliding products across sorting surfaces is strictly prohibited.\n3. Straps must never be used as handles unless certified for lifting.'
+        }
+      };
+      const sop = sops[sopCode] || sops['SOP-LOG-108'];
+      alert(`📋 ${sop.title}\n\nTarget: ${sop.target}\n\nProtocol:\n${sop.text}`);
+    }
+
+    function createTrainingNote() {
+      const note = prompt(
+        '📝 DISPATCH TRAINING NOTE TO SHIFT LEAD\n\nEnter briefing note for Shift 2 Unloading Operations regarding Trolley Practices:',
+        'Shift Lead Briefing: Reinforce trolley usage during 14:00 unloading. Ensure staging rack near Gate A is clear.'
+      );
+      if (note) {
+        alert('✓ TRAINING NOTE DISPATCHED\n\nNote logged to Shift 2 Dashboard and sent to floor lead tablet.');
+      }
+    }
+
+</script>
 <style>
     .material-symbols-outlined {
       font-family: 'Material Symbols Outlined';
@@ -211,14 +277,14 @@
         <span class="text-outline/80 ml-2">07 SEP 2026 / 14:52</span>
 </div>
 <div class="flex items-center gap-1">
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors duration-150 cursor-pointer active:scale-95" title="Grid View">
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors duration-150 cursor-pointer active:scale-95" title="Grid View" onclick="showNavGridModal()">
 <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
 </button>
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors duration-150 cursor-pointer active:scale-95" title="Tuning Settings">
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors duration-150 cursor-pointer active:scale-95" title="Tuning Settings" onclick="showNavTuneModal()">
 <span class="material-symbols-outlined" data-icon="tune">tune</span>
 </button>
 </div>
-<button class="bg-primary-container hover:bg-[#00D2EE] active:bg-[#00B8D4] text-surface-container-lowest font-body-md text-body-sm font-semibold px-3 py-1.5 rounded-DEFAULT transition-colors duration-150 cursor-pointer active:scale-95 flex items-center gap-1.5">
+<button onclick="window.location.href=\'intelligence.html\'" class="bg-primary-container hover:bg-[#00D2EE] active:bg-[#00B8D4] cursor-pointer">
 <span class="material-symbols-outlined" data-icon="bolt">bolt</span>
 <span class="">LAUNCH INTELLIGENCE</span>
 </button>
@@ -366,11 +432,11 @@
 </div>
 <!-- Primary Call-to-Actions -->
 <div class="flex flex-wrap items-center gap-3 pt-2 border-t border-outline-variant/30 pl-1">
-<button class="bg-primary-container hover:bg-[#00D2EE] active:bg-[#00B8D4] text-surface-container-lowest font-body-md text-body-sm font-semibold px-4 py-2 rounded-DEFAULT transition-all duration-150 cursor-pointer active:scale-95 flex items-center gap-2">
+<button onclick="window.location.href='incidents.html'" class="bg-primary-container hover:bg-[#00D2EE] active:bg-[#00B8D4] text-surface-container-lowest font-body-md text-body-sm font-semibold px-4 py-2 rounded-DEFAULT transition-all duration-150 cursor-pointer active:scale-95 flex items-center gap-2">
 <span class="">REVIEW RELATED EVENTS</span>
 <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
-<button class="bg-surface-container-high/60 hover:bg-surface-container-highest border border-outline-variant/50 text-on-surface font-body-md text-body-sm font-medium px-4 py-2 rounded-DEFAULT transition-colors duration-150 cursor-pointer active:scale-95 flex items-center gap-1.5">
+<button onclick="openSOPModal('SOP-LOG-108')" class="bg-surface-container-high/60 hover:bg-surface-container-highest border border-outline-variant/50 text-on-surface font-body-md text-body-sm font-medium px-4 py-2 rounded-DEFAULT transition-colors duration-150 cursor-pointer active:scale-95 flex items-center gap-1.5">
 <span class="material-symbols-outlined text-outline text-[16px]" data-icon="visibility">visibility</span>
 <span class="">VIEW RECOMMENDATION</span>
 </button>
@@ -455,7 +521,7 @@
 </div>
 <!-- Dispatch Note Button & Responsible Tooltip -->
 <div class="mt-4 pt-3 border-t border-outline-variant/20 flex flex-col gap-1.5">
-<button class="w-full bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/60 hover:border-primary-container/40 text-on-surface font-body-md text-body-sm font-semibold py-2 px-3 rounded-DEFAULT transition-colors duration-150 cursor-pointer active:scale-95 flex items-center justify-center gap-2">
+<button onclick="createTrainingNote()" class="w-full bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/60 hover:border-primary-container/40 text-on-surface font-body-md text-body-sm font-semibold py-2 px-3 rounded-DEFAULT transition-colors duration-150 cursor-pointer active:scale-95 flex items-center justify-center gap-2">
 <span class="material-symbols-outlined text-primary-container text-[16px]" data-icon="edit_note">edit_note</span>
 <span class="">CREATE TRAINING NOTE</span>
 <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
@@ -483,7 +549,7 @@
 </div>
 <div class="font-label-caps text-[10px] text-outline">AISLE 04 • OVERHEIGHT RISK</div>
 </div>
-<a class="text-primary-container font-label-caps text-label-caps flex items-center gap-1 hover:underline" href="#stacking">
+<a class="text-primary-container font-label-caps text-label-caps flex items-center gap-1 hover:underline" onclick="openSOPModal('SOP-LOG-112')" href="javascript:void(0)">
 <span class="">PRACTICE REFRESHER</span>
 <span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
 </a>
@@ -499,7 +565,7 @@
 </div>
 <div class="font-label-caps text-[10px] text-outline">SORTING TABLE 02 • DROP VELOCITY</div>
 </div>
-<a class="text-primary-container font-label-caps text-label-caps flex items-center gap-1 hover:underline" href="#handling">
+<a class="text-primary-container font-label-caps text-label-caps flex items-center gap-1 hover:underline" onclick="openSOPModal('SOP-LOG-115')" href="javascript:void(0)">
 <span class="">CONTROLLED REVIEW</span>
 <span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
 </a>
@@ -608,5 +674,157 @@
         console.warn('Could not load /api/metrics:', err);
       }
     });
-  </script>
+  
+    function openSOPModal(sopCode) {
+      const sops = {
+        'SOP-LOG-108': {
+          title: 'SOP-LOG-108: Material Handling Equipment Guidelines (Trolleys & Carts)',
+          target: 'Unloading Operations & Gate A',
+          text: '1. Operators must not drag cartons or KD packets along dock floors.\n2. Two-wheel or four-wheel platform trolleys must be staged within 5 meters of unloading bays.\n3. Maximum manual lift height is 1.2 meters. For cargo exceeding 20kg, use mechanical assistance.'
+        },
+        'SOP-LOG-112': {
+          title: 'SOP-LOG-112: Vertical Stacking Limit & Pallet Alignment Standard',
+          target: 'Aisle 04 & High-Bay Racking',
+          text: '1. Maximum stack height is 1.8 meters or 4 tier levels.\n2. Heavy cartons must always be positioned at the base level.\n3. Pallet overhang cannot exceed 2 inches on any side.'
+        },
+        'SOP-LOG-115': {
+          title: 'SOP-LOG-115: Controlled Package Placement & Sorting Standards',
+          target: 'Sorting Table 02 & Inflow Ramp',
+          text: '1. Packages must be set down gently with zero drop velocity.\n2. Throwing, tossing or sliding products across sorting surfaces is strictly prohibited.\n3. Straps must never be used as handles unless certified for lifting.'
+        }
+      };
+      const sop = sops[sopCode] || sops['SOP-LOG-108'];
+      alert(`📋 ${sop.title}\n\nTarget: ${sop.target}\n\nProtocol:\n${sop.text}`);
+    }
+
+    function createTrainingNote() {
+      const note = prompt(
+        '📝 DISPATCH TRAINING NOTE TO SHIFT LEAD\n\nEnter briefing note for Shift 2 Unloading Operations regarding Trolley Practices:',
+        'Shift Lead Briefing: Reinforce trolley usage during 14:00 unloading. Ensure staging rack near Gate A is clear.'
+      );
+      if (note) {
+        alert('✓ TRAINING NOTE DISPATCHED\n\nNote logged to Shift 2 Dashboard and sent to floor lead tablet.');
+      }
+    }
+
+</script>
+
+<script>
+function showNavGridModal() {
+  const modalId = 'soc-nav-grid-modal';
+  let modal = document.getElementById(modalId);
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = modalId;
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4';
+    modal.innerHTML = `
+      <div class="bg-surface-container-low border border-outline-variant/40 max-w-xl w-full p-6 shadow-2xl relative font-body-md text-on-surface">
+        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">grid_view</span>
+            <h3 class="font-headline-sm font-semibold tracking-wide">WAREHOUSE CAMERA MATRIX</h3>
+          </div>
+          <button onclick="document.getElementById('${modalId}').remove()" class="text-outline hover:text-white text-xl p-1 cursor-pointer">&times;</button>
+        </div>
+        <p class="text-on-surface-variant font-body-sm mb-4">Select active CCTV edge sensor node to view live perception stream:</p>
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-primary-container/40 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-primary-container font-bold">CAM_01</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Loading Bay 01</div>
+            <div class="text-[11px] text-outline">Unloading Gate A (LIVE)</div>
+          </a>
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-outline font-bold">CAM_02</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Aisle 04 Storage</div>
+            <div class="text-[11px] text-outline">High-Bay Racks (STANDBY)</div>
+          </a>
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-outline font-bold">CAM_03</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Sorting Hub Central</div>
+            <div class="text-[11px] text-outline">Pallet Staging (ACTIVE)</div>
+          </a>
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-outline font-bold">CAM_04</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Staging Dock West</div>
+            <div class="text-[11px] text-outline">Dispatch Buffer (HIGH DENSITY)</div>
+          </a>
+        </div>
+        <div class="flex justify-end">
+          <button onclick="document.getElementById('${modalId}').remove()" class="px-4 py-1.5 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/40 text-on-surface font-mono-data-sm cursor-pointer">CLOSE</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+}
+
+function showNavTuneModal() {
+  const modalId = 'soc-nav-tune-modal';
+  let modal = document.getElementById(modalId);
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = modalId;
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4';
+    modal.innerHTML = `
+      <div class="bg-surface-container-low border border-outline-variant/40 max-w-lg w-full p-6 shadow-2xl relative font-body-md text-on-surface">
+        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">tune</span>
+            <h3 class="font-headline-sm font-semibold tracking-wide">EDGE SENSOR &amp; CV TUNING</h3>
+          </div>
+          <button onclick="document.getElementById('${modalId}').remove()" class="text-outline hover:text-white text-xl p-1 cursor-pointer">&times;</button>
+        </div>
+        <div class="space-y-4 mb-6">
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">YOLOv8-Pose Confidence Threshold</span>
+              <span class="text-primary-container font-bold" id="tune-conf-val">0.65</span>
+            </div>
+            <input type="range" min="0.4" max="0.9" step="0.05" value="0.65" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-conf-val').textContent = this.value">
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">ByteTrack IoU Association Threshold</span>
+              <span class="text-primary-container font-bold" id="tune-iou-val">0.60</span>
+            </div>
+            <input type="range" min="0.3" max="0.8" step="0.05" value="0.60" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-iou-val').textContent = this.value">
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">Near-Miss Predictive Alarm Trigger</span>
+              <span class="text-secondary font-bold" id="tune-risk-val">70%</span>
+            </div>
+            <input type="range" min="50" max="90" step="5" value="70" class="w-full accent-secondary cursor-pointer" oninput="document.getElementById('tune-risk-val').textContent = this.value + '%'">
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">Supervisor Audio Chime Volume</span>
+              <span class="text-primary-container font-bold" id="tune-vol-val">85%</span>
+            </div>
+            <input type="range" min="0" max="100" step="5" value="85" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-vol-val').textContent = this.value + '%'">
+          </div>
+        </div>
+        <div class="flex justify-end gap-3">
+          <button onclick="document.getElementById('${modalId}').remove()" class="px-3.5 py-1.5 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/40 text-on-surface font-mono-data-sm cursor-pointer">CANCEL</button>
+          <button onclick="alert('✓ Edge Sensor Node Parameters synchronized across 4 CCTV cameras.'); document.getElementById('${modalId}').remove();" class="px-4 py-1.5 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest font-mono-data-sm font-semibold cursor-pointer">APPLY &amp; SYNC</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+}
+</script>
+
 </body></html>

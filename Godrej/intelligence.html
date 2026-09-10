@@ -381,14 +381,14 @@ void main() {
         07 SEP 2026 / <span class="text-on-surface font-semibold" id="clock">23:27:59</span>
 </div>
 <div class="flex items-center gap-1 border-l border-outline-variant/30 pl-3">
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors" title="Grid Layout">
+<button id="btnNavGrid" class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer" title="Toggle Multi-Cam / Wide View">
 <span class="material-symbols-outlined text-[18px]">grid_view</span>
 </button>
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors" title="System Settings">
+<button id="btnNavTune" class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer" title="System Settings & Calibration">
 <span class="material-symbols-outlined text-[18px]">tune</span>
 </button>
 </div>
-<button class="hidden sm:flex items-center gap-1.5 bg-primary-container text-surface-container-lowest font-headline-sm text-xs font-semibold px-3 py-1.5 rounded hover:bg-primary-fixed-dim transition-colors">
+<button id="btnNavLaunch" class="hidden sm:flex items-center gap-1.5 bg-primary-container text-surface-container-lowest font-headline-sm text-xs font-semibold px-3 py-1.5 rounded hover:bg-primary-fixed-dim transition-colors cursor-pointer" title="Refresh Live Stream">
 <span class="">LAUNCH INTELLIGENCE</span>
 <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
 </button>
@@ -646,11 +646,11 @@ void main() {
 </div>
 <!-- Real-Time Immediate Action Buttons -->
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 pt-2 border-t border-outline-variant/30">
-<button class="flex items-center justify-center gap-1.5 px-3 py-2 bg-secondary/15 hover:bg-secondary/25 text-secondary border border-secondary/60 rounded font-label-caps text-[10px] tracking-wider transition-colors font-bold">
+<button id="btnDispatchAudio" class="flex items-center justify-center gap-1.5 px-3 py-2 bg-secondary/15 hover:bg-secondary/25 text-secondary border border-secondary/60 rounded font-label-caps text-[10px] tracking-wider transition-colors font-bold cursor-pointer" title="Broadcast Warning Audio to Bay 01 Speaker">
 <span class="material-symbols-outlined text-[14px]">campaign</span>
               DISPATCH SUPERVISOR AUDIO
             </button>
-<button class="flex items-center justify-center gap-1 px-3 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant/40 rounded font-label-caps text-[10px] tracking-wider transition-colors">
+<button id="btnTagEvent" class="flex items-center justify-center gap-1 px-3 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant/40 rounded font-label-caps text-[10px] tracking-wider transition-colors cursor-pointer" title="Tag Incident for Supervisor Review">
 <span class="material-symbols-outlined text-[14px]">bookmark</span>
               TAG EVENT
             </button>
@@ -1005,6 +1005,90 @@ void main() {
         console.log("Telemetry offline, using fallback buffer:", err);
       }
     }
+    
+    // --- Additional Interactive Button Handlers ---
+    const btnNavGrid = document.getElementById('btnNavGrid');
+    if (btnNavGrid) {
+      btnNavGrid.addEventListener('click', () => {
+        const feedImg = document.getElementById('liveVideoFeed');
+        if (feedImg) {
+          const isWide = feedImg.classList.toggle('object-cover');
+          alert(isWide ? 'Switched to Wide Field-of-View (FOV: 140° Expansion)' : 'Switched to Calibrated Sensor View (FOV: 118° Standard)');
+        }
+      });
+    }
+
+    const btnNavTune = document.getElementById('btnNavTune');
+    if (btnNavTune) {
+      btnNavTune.addEventListener('click', () => {
+        alert('⚙️ FIELD INTELLIGENCE CALIBRATION\n\n• YOLOv8-Pose Model: Active (17 Keypoints)\n• ByteTrack IoU Threshold: 0.65\n• Risk Alarm Sensitivity: 70%\n• Audio Alarm Volume: 85%\n• Frame Rate: 30.0 FPS Sync\n\nAll CV edge nodes operating nominally.');
+      });
+    }
+
+    const btnNavLaunch = document.getElementById('btnNavLaunch');
+    if (btnNavLaunch) {
+      btnNavLaunch.addEventListener('click', () => {
+        applyStreamSource();
+        alert('🔄 Live Intelligence Stream Re-synchronized with Edge Inference Node.');
+      });
+    }
+
+    const btnDispatchAudio = document.getElementById('btnDispatchAudio');
+    if (btnDispatchAudio) {
+      btnDispatchAudio.addEventListener('click', () => {
+        // Play dual-tone audio beep via Web Audio API
+        try {
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc1 = ctx.createOscillator();
+          const osc2 = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(880, ctx.currentTime);
+          osc1.frequency.setValueAtTime(1200, ctx.currentTime + 0.15);
+          osc2.type = 'triangle';
+          osc2.frequency.setValueAtTime(440, ctx.currentTime);
+          gain.gain.setValueAtTime(0.3, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(ctx.destination);
+          osc1.start();
+          osc2.start();
+          osc1.stop(ctx.currentTime + 0.45);
+          osc2.stop(ctx.currentTime + 0.45);
+        } catch(e) { console.warn('AudioContext not supported'); }
+
+        const origHtml = btnDispatchAudio.innerHTML;
+        btnDispatchAudio.innerHTML = '<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span> DISPATCHING AUDIO...';
+        btnDispatchAudio.classList.add('bg-secondary', 'text-surface-container-lowest');
+
+        setTimeout(() => {
+          btnDispatchAudio.innerHTML = origHtml;
+          btnDispatchAudio.classList.remove('bg-secondary', 'text-surface-container-lowest');
+          alert('📢 AUDIO DISPATCH BROADCASTED:\n\n"Attention Bay 01 Operator: High handling velocity detected without equipment. Please slow movement and use transport trolley."');
+        }, 600);
+      });
+    }
+
+    const btnTagEvent = document.getElementById('btnTagEvent');
+    if (btnTagEvent) {
+      btnTagEvent.addEventListener('click', () => {
+        const streamEl = document.getElementById('liveActivityStream');
+        const tagId = 'TAG-' + Math.floor(Math.random() * 9000 + 1000);
+        if (streamEl) {
+          const item = document.createElement('div');
+          item.className = 'flex items-start gap-2 p-1.5 rounded bg-secondary/15 border-l-2 border-secondary animate-pulse';
+          item.innerHTML = `
+            <span class="text-secondary font-bold font-mono">NOW</span>
+            <span class="text-on-surface">SUPERVISOR BOOKMARK [${tagId}]: Flagged for shift lead review</span>
+          `;
+          streamEl.insertBefore(item, streamEl.firstChild);
+        }
+        alert(`🔖 EVENT BOOKMARKED (#${tagId})\n\nSaved to supervisor audit trail for shift review.`);
+      });
+    }
+    // --- End Additional Handlers ---
+
     document.addEventListener('DOMContentLoaded', loadLiveIntelligence);
   </script>
 

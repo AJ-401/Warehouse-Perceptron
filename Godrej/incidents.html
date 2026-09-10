@@ -345,14 +345,14 @@ void main() {
 <span class="material-symbols-outlined text-lg" data-icon="dark_mode">dark_mode</span>
 </button>
 <!-- Trailing Action Icons -->
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors" title="Notifications">
+<button onclick="alert('🔔 RECENT SYSTEM NOTICES\n\n• 15 Near-Miss events detected across 24h cycle.\n• 38 High-Risk handling deviations flagged.\n• SOP-LOG-108 active recommendation pending supervisor review.')" class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer" title="Notifications">
 <span class="material-symbols-outlined text-lg" data-icon="notifications">notifications</span>
 </button>
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors" title="Settings">
+<button onclick="alert('⚙️ INCIDENT INVESTIGATION SETTINGS\n\n• Timeline Keyframe Resolution: 100ms\n• Interpolation Mode: Cubic Hermite Spline\n• Telemetry Multi-Factor Calibration: Standard v4.2\n• Video Stream Encoding: Motion JPEG / H.264')" class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer" title="Settings">
 <span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
 </button>
 <!-- Primary Action CTA -->
-<button class="bg-primary-container hover:opacity-90 text-surface-container-lowest px-unit-md py-1.5 font-label-caps text-label-caps tracking-widest font-bold transition-all flex items-center gap-1 shadow-[0_0_12px_rgba(0,229,255,0.3)] active:scale-95">
+<button onclick="window.location.href='intelligence.html'" class="bg-primary-container hover:opacity-90 text-surface-container-lowest px-unit-md py-1.5 font-label-caps text-label-caps tracking-widest font-bold transition-all flex items-center gap-1 shadow-[0_0_12px_rgba(0,229,255,0.3)] active:scale-95 cursor-pointer">
 <span>LAUNCH INTELLIGENCE</span>
 <span class="material-symbols-outlined text-sm font-bold" data-icon="arrow_forward">arrow_forward</span>
 </button>
@@ -431,102 +431,44 @@ void main() {
 </div>
 <!-- Video Canvas Viewport -->
 <div class="relative w-full aspect-[16/10] bg-canvas-deep flex items-center justify-center overflow-hidden group">
-<!-- Real industrial warehouse loading dock backdrop -->
-<img class="absolute inset-0 w-full h-full object-cover opacity-60 filter contrast-125 brightness-90 scanline" data-alt="An industrial automated warehouse loading dock perspective in Bay 01 with steel roller doors, ambient fluorescent security lighting casting cool blue highlights, pallets stacked neatly, and high-density industrial cargo racks. Monochromatic dark graphite and high-tech cyan HUD aesthetic with tactical precision." id="cv-video-frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCaf2Kmf3KVgvggPEv0F9FSwFPKCK2Z1gay2O0YH5K2s7j4xPFiJmS98FijqXX47oOzPcIZmPItFKT_NFjxlmy2GmMZzposS8K1YeXRgTKch0M-CdIiP0a_PHhnoaAaT9IFq3CYqzUV8lMDIV7UNL7MchsmJCYNOPD0aQb224UcJ8voAjv2vwjYnIHjK0FtCbgwDXtQDbIF9wdZ4-O3R3AP9IEfO2gmd5VsfHDUWLWVcngRVzbcZ8Z"/>
-<!-- Visual Reticle / Bounding Box 1: Worker / Operator -->
-<div class="absolute left-[34%] top-[28%] w-[130px] h-[240px] hud-bracket border border-primary-container/40 bg-primary-container/5 pointer-events-none transition-all duration-300">
-<div class="absolute -top-5 left-0 px-1 py-0.2 bg-surface-container-lowest border border-primary-container/50 font-mono-data-sm text-[10px] text-primary-container flex items-center gap-1 whitespace-nowrap">
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container inline-block"></span>
-<span>PERSON [OP-418 // NOMINAL]</span>
-</div>
-<div class="absolute bottom-1 right-1 text-[9px] font-mono-data-sm text-primary-container/70">
-                VEL: 1.4 m/s
+          <!-- Real Industrial Warehouse AI Video Frame (YOLOv8-Pose + ByteTrack from /api/video_frame) -->
+          <img id="cv-video-frame" class="absolute inset-0 w-full h-full object-contain z-0" alt="Incident Keyframe Replay" />
+
+          <!-- Laser Scan Line FX -->
+          <div class="anim-scan absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-secondary to-transparent shadow-[0_0_12px_#ffb95f] pointer-events-none z-10"></div>
+
+          <!-- Synchronized Visual Callout Box at Key Incident Frame -->
+          <div class="absolute top-4 right-4 max-w-sm bg-surface-container-lowest/90 border border-secondary p-3 shadow-[0_0_24px_rgba(245,158,11,0.35)] backdrop-blur-md z-20 transition-all" id="predictive-callout">
+            <div class="flex items-center gap-2 text-secondary font-label-caps text-[10px] tracking-widest pb-1 border-b border-secondary/30">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+              <span id="callout-title">PREDICTIVE WARNING TRIGGERED</span>
+            </div>
+            <div class="mt-2 font-mono-data-sm text-[11px] space-y-1">
+              <div class="text-on-surface flex justify-between">
+                <span class="text-outline">SIGNAL:</span>
+                <span class="font-bold text-secondary" id="callout-signal">HIGH CARRY ELEVATION</span>
               </div>
-<!-- Skeleton Joint overlay simulation -->
-<svg class="absolute inset-0 w-full h-full pointer-events-none stroke-primary-container/60 fill-none" stroke-width="1.5">
-<circle class="stroke-primary-container" cx="65" cy="30" r="10" stroke-width="1"></circle>
-<line stroke-dasharray="2 2" x1="65" x2="65" y1="40" y2="120"></line>
-<line x1="65" x2="30" y1="60" y2="90"></line>
-<line x1="65" x2="95" y1="60" y2="85"></line>
-<line x1="65" x2="45" y1="120" y2="210"></line>
-<line x1="65" x2="85" y1="120" y2="215"></line>
-</svg>
-</div>
-<!-- Visual Reticle / Bounding Box 2: PRODUCT #024 (In Near-Miss Deviation) -->
-<div class="absolute left-[47%] top-[34%] w-[160px] h-[140px] hud-bracket-amber border-2 border-secondary bg-secondary/10 shadow-[0_0_20px_rgba(245,158,11,0.25)] transition-all duration-300" id="product-bbox">
-<div class="absolute -top-6 left-0 px-1.5 py-0.5 bg-surface-container-lowest border border-secondary font-mono-data-sm text-[10px] text-secondary font-bold flex items-center gap-1 whitespace-nowrap shadow-[0_0_8px_rgba(245,158,11,0.4)]">
-<span class="material-symbols-outlined text-xs" data-icon="warning">warning</span>
-<span>PRODUCT #024 [+8.4° TILT DEVIATION]</span>
-</div>
-<!-- Crosshair Center Reticle -->
-<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-<div class="w-8 h-8 border border-secondary/60 rounded-full flex items-center justify-center">
-<div class="w-1.5 h-1.5 bg-secondary rounded-full"></div>
-</div>
-</div>
-<div class="absolute bottom-1 left-1 font-mono-data-sm text-[9px] text-secondary">
-                H: 1.82m (ABOVE SAFE)
+              <div class="text-on-surface flex justify-between">
+                <span class="text-outline">PREDICTED IMPACT:</span>
+                <span class="font-bold text-secondary" id="callout-impact">T - 1.8 SECONDS</span>
               </div>
-<div class="absolute bottom-1 right-1 font-mono-data-sm text-[9px] text-secondary font-bold">
-                RISK: 72%
+              <div class="text-on-surface flex justify-between pt-1 border-t border-outline-variant/30 text-[10px]">
+                <span class="text-outline">DISPATCH:</span>
+                <span class="text-primary tracking-wide" id="callout-dispatch">SUPERVISOR AUDIO ALARM</span>
               </div>
-</div>
-<!-- Visual Reticle 3: Pallet Base Locked -->
-<div class="absolute left-[44%] top-[72%] w-[220px] h-[70px] hud-bracket border border-primary-container/30 bg-primary-container/5 pointer-events-none">
-<div class="absolute -top-5 left-0 px-1 bg-surface-container-lowest border border-primary-container/40 font-mono-data-sm text-[10px] text-primary-container">
-                PALLET #02 [BASE LOCKED]
-              </div>
-</div>
-<!-- Dynamic Trajectory Path (Curved Arc Behind Product #024) -->
-<svg class="absolute inset-0 w-full h-full pointer-events-none z-10" preserveaspectratio="none" viewbox="0 0 1000 600">
-<defs>
-<lineargradient id="traj-grad" x1="0%" x2="100%" y1="100%" y2="0%">
-<stop offset="0%" stop-color="#00e5ff" stop-opacity="0.3"></stop>
-<stop offset="60%" stop-color="#00e5ff" stop-opacity="0.8"></stop>
-<stop offset="85%" stop-color="#ffb95f" stop-opacity="1"></stop>
-<stop offset="100%" stop-color="#f59e0b" stop-opacity="1"></stop>
-</lineargradient>
-<filter height="140%" id="glow-traj" width="140%" x="-20%" y="-20%">
-<fegaussianblur result="glow" stddeviation="3"></fegaussianblur>
-<femerge>
-<femergenode in="glow"></femergenode>
-<femergenode in="SourceGraphic"></femergenode>
-</femerge>
-</filter>
-</defs>
-<!-- Motion Path from pallet up through deviation -->
-<path d="M 460 480 Q 480 340 550 250 T 630 190" fill="none" filter="url(#glow-traj)" stroke="url(#traj-grad)" stroke-dasharray="6 4" stroke-width="3"></path>
-<!-- Historical Motion Breadcrumb Points -->
-<circle cx="460" cy="480" fill="#00e5ff" r="3"></circle>
-<circle cx="475" cy="400" fill="#00e5ff" r="3.5"></circle>
-<circle cx="510" cy="310" fill="#00daf3" r="4"></circle>
-<circle class="animate-ping" cx="550" cy="250" fill="#ffb95f" r="5"></circle>
-<circle cx="550" cy="250" fill="#ffb95f" r="5"></circle>
-</svg>
-<!-- Synchronized Visual Callout Box at 14:32:12 -->
-<div class="absolute top-6 right-6 max-w-sm bg-surface-container-lowest/90 border-2 border-secondary p-unit-md shadow-[0_0_24px_rgba(245,158,11,0.35)] backdrop-blur-md z-20 transition-all" id="predictive-callout">
-<div class="flex items-center gap-2 text-secondary font-label-caps text-label-caps tracking-widest pb-1 border-b border-secondary/30">
-<span class="material-symbols-outlined text-sm" data-icon="emergency_home">emergency_home</span>
-<span>PREDICTIVE WARNING TRIGGERED</span>
-</div>
-<div class="mt-2 font-mono-data-sm text-mono-data-sm space-y-1">
-<div class="text-primary-container flex justify-between">
-<span>TILT DEVIATION:</span>
-<span class="font-bold text-secondary">+8.4° (CRITICAL)</span>
-</div>
-<div class="text-on-surface-variant flex justify-between">
-<span>PREDICTED IMPACT:</span>
-<span class="font-bold text-secondary">T - 1.8 SECONDS</span>
-</div>
-<div class="text-on-surface flex justify-between pt-1 border-t border-outline-variant/30 text-[10px]">
-<span>DISPATCH:</span>
-<span class="text-primary tracking-wide">SUPERVISOR AUDIO ALARM</span>
-</div>
-</div>
-</div>
-<!-- Spatial Calibration Grid Overlay Lines -->
-<div class="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(#00e5ff_1px,transparent_1px)] [background-size:24px_24px]"></div>
-</div>
+            </div>
+          </div>
+
+          <!-- Bottom Telemetry HUD Inside Viewport -->
+          <div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-outline font-label-caps text-[9px] pointer-events-none z-20">
+            <div class="flex items-center gap-3 bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm border border-outline-variant/30">
+              <span id="hud-cam-res">RES: 1280x720 30FPS</span>
+              <span id="hud-frame-counter">FRAME: 324</span>
+            </div>
+            <div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm border border-secondary/40 text-secondary font-mono" id="hud-risk-badge">
+              RISK: 78% (HIGH HAZARD)
+            </div>
+          </div></div>
 <!-- Video Scrubber & Playback Controls Bar -->
 <div class="p-unit-md bg-surface-container-low border-t border-outline-variant/30 flex flex-col gap-2">
 <!-- Scrubber Track with keyframe markers -->
@@ -599,7 +541,7 @@ void main() {
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-5 gap-unit-sm" id="timeline-stages-container">
 <!-- Stage 01 -->
-<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group" data-risk="32" data-sec="4" data-timestamp="14:32:04">
+<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(0)" data-risk="32" data-sec="4" data-timestamp="14:32:04">
 <div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
 <span class="text-on-surface-variant group-hover:text-primary-container">01 PICKUP</span>
 <span class="text-outline">14:32:04</span>
@@ -613,7 +555,7 @@ void main() {
 </div>
 </button>
 <!-- Stage 02 -->
-<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group" data-risk="48" data-sec="8" data-timestamp="14:32:08">
+<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(1)" data-risk="48" data-sec="8" data-timestamp="14:32:08">
 <div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
 <span class="text-on-surface-variant group-hover:text-primary-container">02 VELOCITY</span>
 <span class="text-outline">14:32:08</span>
@@ -627,7 +569,7 @@ void main() {
 </div>
 </button>
 <!-- Stage 03 -->
-<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group" data-risk="61" data-sec="11" data-timestamp="14:32:11">
+<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(2)" data-risk="61" data-sec="11" data-timestamp="14:32:11">
 <div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
 <span class="text-on-surface-variant group-hover:text-secondary">03 SIGNAL</span>
 <span class="text-outline">14:32:11</span>
@@ -641,7 +583,7 @@ void main() {
 </div>
 </button>
 <!-- Stage 04 (HIGHLIGHTED / CRITICAL) -->
-<button class="stage-card p-unit-sm text-left bg-surface-container-high border-2 border-secondary text-secondary shadow-[0_0_14px_rgba(245,158,11,0.25)] flex flex-col justify-between h-24 relative group" data-risk="72" data-sec="12" data-timestamp="14:32:12">
+<button class="stage-card p-unit-sm text-left bg-surface-container-high border-2 border-secondary text-secondary shadow-[0_0_14px_rgba(245,158,11,0.25)] flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(3)" data-risk="72" data-sec="12" data-timestamp="14:32:12">
 <div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
 <span class="font-bold flex items-center gap-1">
 <span class="w-1.5 h-1.5 bg-secondary rounded-full animate-ping"></span>
@@ -658,7 +600,7 @@ void main() {
 </div>
 </button>
 <!-- Stage 05 -->
-<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group" data-risk="78" data-sec="14" data-timestamp="14:32:14">
+<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(4)" data-risk="78" data-sec="14" data-timestamp="14:32:14">
 <div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
 <span class="text-on-surface-variant group-hover:text-primary-container">05 ACTION</span>
 <span class="text-outline">14:32:14</span>
@@ -742,41 +684,41 @@ void main() {
 <!-- Factor 1 -->
 <div>
 <div class="flex justify-between font-mono-data-sm text-mono-data-sm mb-1">
-<span class="text-on-surface">FAST MOVEMENT VELOCITY</span>
-<span class="text-secondary font-bold">HIGH (88%)</span>
+<span class="text-on-surface" id="factor-speed-title">FAST MOVEMENT VELOCITY</span>
+<span class="text-secondary font-bold" id="factor-speed-val">HIGH (88%)</span>
 </div>
 <div class="w-full h-1.5 bg-surface-container-lowest">
-<div class="h-full bg-secondary w-[88%] shadow-[0_0_8px_rgba(255,185,95,0.4)]"></div>
+<div class="h-full bg-secondary w-[88%] shadow-[0_0_8px_rgba(255,185,95,0.4)]" id="factor-speed-bar"></div>
 </div>
 </div>
 <!-- Factor 2 -->
 <div>
 <div class="flex justify-between font-mono-data-sm text-mono-data-sm mb-1">
-<span class="text-on-surface">HANDLING HEIGHT DEVIATION</span>
-<span class="text-secondary font-bold">HIGH (74%)</span>
+<span class="text-on-surface" id="factor-height-title">HANDLING HEIGHT DEVIATION</span>
+<span class="text-secondary font-bold" id="factor-height-val">HIGH (74%)</span>
 </div>
 <div class="w-full h-1.5 bg-surface-container-lowest">
-<div class="h-full bg-secondary w-[74%]"></div>
+<div class="h-full bg-secondary w-[74%]" id="factor-height-bar"></div>
 </div>
 </div>
 <!-- Factor 3 -->
 <div>
 <div class="flex justify-between font-mono-data-sm text-mono-data-sm mb-1">
-<span class="text-on-surface">EQUIPMENT DETECTED: NONE (Trolley absent)</span>
-<span class="text-primary-container font-semibold">MODERATE (62%)</span>
+<span class="text-on-surface" id="factor-equip-title">EQUIPMENT DETECTED: NONE (Trolley absent)</span>
+<span class="text-primary-container font-semibold" id="factor-equip-val">MODERATE (62%)</span>
 </div>
 <div class="w-full h-1.5 bg-surface-container-lowest">
-<div class="h-full bg-primary-container w-[62%]"></div>
+<div class="h-full bg-primary-container w-[62%]" id="factor-equip-bar"></div>
 </div>
 </div>
 <!-- Factor 4 -->
 <div>
 <div class="flex justify-between font-mono-data-sm text-mono-data-sm mb-1">
-<span class="text-on-surface">STACK PROXIMITY CLEARANCE</span>
-<span class="text-on-surface-variant">MEDIUM (45%)</span>
+<span class="text-on-surface" id="factor-hazard-title">STACK PROXIMITY CLEARANCE</span>
+<span class="text-on-surface-variant" id="factor-hazard-val">MEDIUM (45%)</span>
 </div>
 <div class="w-full h-1.5 bg-surface-container-lowest">
-<div class="h-full bg-outline w-[45%]"></div>
+<div class="h-full bg-outline w-[45%]" id="factor-hazard-bar"></div>
 </div>
 </div>
 </div>
@@ -830,7 +772,7 @@ void main() {
 <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-mono-data-sm text-on-surface-variant">
 <span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40">CLIP: 00:08</span>
 <span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40" id="incident-log-frame">FRAME: 14:32:12</span>
-<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40">TRACKED: PRODUCT #024</span>
+<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40" id="incident-log-tracked">TRACKED: PRODUCT #024</span>
 <span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40" id="incident-log-loc">LOCATION: UNLOADING BAY 01</span>
 <span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40 text-primary" id="incident-log-id">ID: NM-0042</span>
 </div>
@@ -848,16 +790,16 @@ void main() {
           </div>
 <!-- CTAs -->
 <div class="grid grid-cols-2 gap-unit-sm pt-1">
-<button class="bg-primary-container hover:opacity-90 text-surface-container-lowest font-label-caps text-label-caps font-bold py-2.5 px-unit-sm tracking-wider flex items-center justify-center gap-1 shadow-[0_0_12px_rgba(0,229,255,0.25)] transition-all">
+<button id="btnReviewPrevention" onclick="window.location.href='prevention.html'" class="bg-primary-container hover:opacity-90 text-surface-container-lowest font-label-caps text-label-caps font-bold py-2.5 px-unit-sm tracking-wider flex items-center justify-center gap-1 shadow-[0_0_12px_rgba(0,229,255,0.25)] transition-all cursor-pointer">
 <span>REVIEW PREVENTION</span>
 <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
 </button>
-<button class="bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-caps text-label-caps tracking-wider py-2.5 px-unit-sm transition-all text-center">
+<button id="btnMarkReviewed" onclick="markIncidentReviewed()" class="bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-caps text-label-caps tracking-wider py-2.5 px-unit-sm transition-all text-center cursor-pointer">
               MARK AS REVIEWED
             </button>
 </div>
 <div class="flex justify-between items-center pt-1">
-<a class="font-mono-data-sm text-mono-data-sm text-primary-container hover:underline flex items-center gap-1" href="#">
+<a class="font-mono-data-sm text-mono-data-sm text-primary-container hover:underline flex items-center gap-1" href="behaviour.html">
 <span>VIEW RELATED BEHAVIOUR</span>
 <span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
 </a>
@@ -1059,8 +1001,72 @@ void main() {
       const incidentLogFrame = document.getElementById('incident-log-frame');
       const incidentLogLoc = document.getElementById('incident-log-loc');
       const incidentLogId = document.getElementById('incident-log-id');
+      const incidentLogTracked = document.getElementById('incident-log-tracked');
+      const videoFrameEl = document.getElementById('cv-video-frame');
 
       let liveIncidents = [];
+      let currentVideo = "";
+      let baseFrame = 324;
+      let currentFrame = 324;
+
+      function loadFrame(frameNum) {
+        if (!videoFrameEl || !currentVideo) return;
+        videoFrameEl.src = `${API_BASE}/api/video_frame?video=${encodeURIComponent(currentVideo)}&frame_idx=${frameNum}&mask=true`;
+        const hudFrame = document.getElementById('hud-frame-counter');
+        if (hudFrame) hudFrame.textContent = `FRAME: ${frameNum}`;
+      }
+
+      window.jumpToStage = function(stageIdx, frameNum) {
+        stopPlayback();
+        currentFrame = frameNum;
+        loadFrame(currentFrame);
+        if (slider) slider.value = stageIdx * 3;
+      };
+
+      // Override slider input to scrub through real video frames
+      if (slider) {
+        slider.addEventListener('input', (e) => {
+          const val = parseInt(e.target.value);
+          // offset frame around baseFrame: from -20 to +25 frames
+          const computed = Math.max(1, baseFrame - 15 + (val * 2));
+          currentFrame = computed;
+          loadFrame(currentFrame);
+        });
+      }
+
+      // Override playback tick to step real video frames
+      let playInterval = null;
+      function startRealPlayback() {
+        isPlaying = true;
+        playPauseIcon.textContent = 'pause';
+        playPauseText.textContent = 'PAUSE';
+        let step = 0;
+        clearInterval(playInterval);
+        playInterval = setInterval(() => {
+          step = (step + 1) % 15;
+          if (slider) slider.value = step;
+          currentFrame = Math.max(1, baseFrame - 15 + (step * 2));
+          loadFrame(currentFrame);
+        }, 600);
+      }
+
+      function stopRealPlayback() {
+        isPlaying = false;
+        playPauseIcon.textContent = 'play_arrow';
+        playPauseText.textContent = 'PLAY';
+        clearInterval(playInterval);
+      }
+
+      if (playPauseBtn) {
+        playPauseBtn.onclick = (e) => {
+          e.stopPropagation();
+          if (isPlaying) {
+            stopRealPlayback();
+          } else {
+            startRealPlayback();
+          }
+        };
+      }
 
       async function loadLiveIncidents() {
         try {
@@ -1085,6 +1091,11 @@ void main() {
 
       function populateIncident(inc) {
         if (!inc) return;
+        currentVideo = inc.video || inc.video_id || "KD packets dragged, heavy box kept on other packets.mp4";
+        baseFrame = (inc.frame_range && inc.frame_range[0]) ? inc.frame_range[0] : 324;
+        currentFrame = baseFrame;
+        loadFrame(currentFrame);
+
         if (incidentTitle) incidentTitle.textContent = `INCIDENT #${inc.event_id}`;
         if (incidentRiskBadge) {
           incidentRiskBadge.textContent = `${inc.risk_level.toUpperCase()} RISK`;
@@ -1094,11 +1105,11 @@ void main() {
             incidentRiskBadge.className = 'px-2 py-0.5 bg-secondary-container/20 border border-secondary-container text-secondary font-label-caps text-label-caps tracking-widest';
           }
         }
-        if (incidentTimestamp) incidentTimestamp.textContent = inc.timestamp ? `${inc.timestamp} UTC` : '14:32:12 UTC';
+        if (incidentTimestamp) incidentTimestamp.textContent = inc.timestamp_start ? `${inc.timestamp_start} UTC` : '14:32:12 UTC';
         
-        const camLabel = inc.video ? inc.video.replace('.mp4', '').slice(0, 32) : 'CAM-01 // UNLOADING DOCK';
+        const camLabel = currentVideo.replace('.mp4', '').slice(0, 35);
         if (incidentLocation) incidentLocation.textContent = `BAY 01 // ${camLabel.toUpperCase()}`;
-        if (incidentCamLabel) incidentCamLabel.textContent = `INCIDENT REPLAY // ${camLabel.toUpperCase()} [SOURCE: ${inc.video || 'CAM-01'}]`;
+        if (incidentCamLabel) incidentCamLabel.textContent = `INCIDENT REPLAY // ${camLabel.toUpperCase()} [SOURCE: ${currentVideo}]`;
 
         if (incidentReason && inc.reason) incidentReason.textContent = `"${inc.reason}"`;
         if (incidentAction && inc.recommended_action) incidentAction.textContent = `"${inc.recommended_action}"`;
@@ -1106,12 +1117,79 @@ void main() {
           incidentBehaviourTag.innerHTML = `<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> VERIFIED [${inc.behaviour.toUpperCase()}]`;
         }
         if (incidentRiskScore) {
-          const score = (inc.risk_level && inc.risk_level.toLowerCase() === 'critical') ? '88%' : '72%';
-          incidentRiskScore.innerHTML = `<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span> FLAGGED ${score}`;
+          const score = inc.risk_score || (inc.risk_level && inc.risk_level.toLowerCase() === 'critical' ? 88 : 72);
+          incidentRiskScore.innerHTML = `<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span> FLAGGED ${score}%`;
         }
         if (incidentLogId) incidentLogId.textContent = `ID: ${inc.event_id}`;
-        if (incidentLogFrame) incidentLogFrame.textContent = `FRAME: ${inc.timestamp || '14:32:12'}`;
-        if (incidentLogLoc) incidentLogLoc.textContent = `SOURCE: ${inc.video || 'BAY 01'}`;
+        if (incidentLogFrame) incidentLogFrame.textContent = `FRAME: ${baseFrame}`;
+        if (incidentLogLoc) incidentLogLoc.textContent = `SOURCE: ${currentVideo.slice(0, 20)}`;
+
+        if (incidentLogTracked) {
+          const objs = inc.detected_objects && inc.detected_objects.length > 0 
+            ? inc.detected_objects.join(' • ') 
+            : `PRODUCT #${inc.entities_involved?.package_track_ids?.[0] || '1001'} • WORKER #${inc.entities_involved?.person_track_ids?.[0] || '2'}`;
+          incidentLogTracked.textContent = `TRACKED: ${objs.toUpperCase()}`;
+        }
+
+        // Multi-Factor Contributors Dynamic Binding
+        const spd = (inc.telemetry && inc.telemetry.speed_px_per_sec) ? inc.telemetry.speed_px_per_sec : 113.7;
+        const spdPct = Math.min(95, Math.max(30, Math.round((spd / 200) * 100)));
+        const fSpeedVal = document.getElementById('factor-speed-val');
+        const fSpeedBar = document.getElementById('factor-speed-bar');
+        if (fSpeedVal) fSpeedVal.textContent = (spd > 150 ? 'CRITICAL' : (spd > 100 ? 'HIGH' : 'NORMAL')) + ` (${spdPct}%)`;
+        if (fSpeedBar) fSpeedBar.style.width = `${spdPct}%`;
+
+        const h = (inc.telemetry && inc.telemetry.carry_height_m) ? inc.telemetry.carry_height_m : 1.36;
+        const hPct = Math.min(95, Math.max(35, Math.round((h / 1.6) * 100)));
+        const fHeightVal = document.getElementById('factor-height-val');
+        const fHeightBar = document.getElementById('factor-height-bar');
+        if (fHeightVal) fHeightVal.textContent = (h > 1.2 ? 'HIGH' : 'NORMAL') + ` (${hPct}%)`;
+        if (fHeightBar) fHeightBar.style.width = `${hPct}%`;
+
+        const fEquipVal = document.getElementById('factor-equip-val');
+        if (fEquipVal) fEquipVal.textContent = (inc.entities_involved && inc.entities_involved.equipment_detected) ? 'DETECTED (20%)' : 'ABSENT (62%)';
+
+        const fHazardVal = document.getElementById('factor-hazard-val');
+        if (fHazardVal) fHazardVal.textContent = (inc.telemetry && inc.telemetry.proximity_to_hazard) ? `${inc.telemetry.proximity_to_hazard.slice(0, 14)} (48%)` : 'MONITOR (48%)';
+
+        // Synchronized Callout Box
+        const calloutSignal = document.getElementById('callout-signal');
+        const calloutImpact = document.getElementById('callout-impact');
+        if (calloutSignal) calloutSignal.textContent = `H: ${h}m // VEL: ${spd} px/s`;
+        if (calloutImpact) calloutImpact.textContent = `T - 1.8 SECONDS [${inc.risk_level.toUpperCase()}]`;
+
+        // HUD Viewport elements
+        const hudRisk = document.getElementById('hud-risk-badge');
+        if (hudRisk) hudRisk.textContent = `RISK: ${inc.risk_score || 78}% (${inc.risk_level.toUpperCase()})`;
+
+        // Dynamic Chronological Stages
+        const stagesContainer = document.getElementById('timeline-stages-container');
+        if (stagesContainer && inc.timeline_stages && inc.timeline_stages.length > 0) {
+          stagesContainer.innerHTML = inc.timeline_stages.map((stg, sIdx) => {
+            const isAlert = sIdx === 3;
+            const borderCol = isAlert ? 'border-2 border-secondary text-secondary shadow-[0_0_14px_rgba(245,158,11,0.25)]' : 'border border-outline-variant/40 hover:border-primary-container/70';
+            const barBg = isAlert ? 'bg-secondary' : 'bg-primary-container';
+            const frameTarget = Math.max(1, baseFrame - 20 + (sIdx * 10));
+            return `
+              <button class="stage-card p-unit-sm text-left bg-surface-container ${borderCol} transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(${sIdx}, ${frameTarget})">
+                <div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
+                  <span class="${isAlert ? 'font-bold flex items-center gap-1' : 'text-on-surface-variant group-hover:text-primary-container'}">
+                    ${isAlert ? '<span class="w-1.5 h-1.5 bg-secondary rounded-full animate-ping"></span>' : ''}
+                    ${stg.stage}
+                  </span>
+                  <span class="text-outline font-mono">${stg.time}</span>
+                </div>
+                <div>
+                  <div class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">${stg.title.toUpperCase()}</div>
+                  <div class="font-mono-data-sm text-[10px] text-on-surface-variant truncate">${stg.desc}</div>
+                </div>
+                <div class="w-full h-0.5 bg-surface-variant">
+                  <div class="h-full ${barBg}" style="width: ${stg.risk || 50}%;"></div>
+                </div>
+              </button>
+            `;
+          }).join('');
+        }
       }
 
       if (incidentSelect) {
@@ -1124,6 +1202,18 @@ void main() {
       }
 
       loadLiveIncidents();
+
+    function markIncidentReviewed() {
+      const btn = document.getElementById('btnMarkReviewed');
+      const incSel = document.getElementById('incident-select');
+      const incName = incSel ? incSel.options[incSel.selectedIndex].text : 'Incident';
+      if (btn) {
+        btn.innerHTML = '<span class="text-primary-container font-bold">✓ MARKED AS REVIEWED</span>';
+        btn.classList.add('border-primary-container', 'bg-primary-container/10');
+      }
+      alert('✓ REVIEW RECORDED\n\n' + incName + '\nStatus: Acknowledged by Supervisor. Logged into audit trail.');
+    }
+
     });
   </script>
 </body></html>

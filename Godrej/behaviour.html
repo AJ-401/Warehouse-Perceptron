@@ -9,7 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+  let currentShiftIdx = 0;
+  const shiftList = ['SHIFT: TODAY', 'SHIFT: 1 (MORNING)', 'SHIFT: 2 (AFTERNOON)', 'SHIFT: 3 (NIGHT)'];
+  function toggleShiftFilter() {
+    currentShiftIdx = (currentShiftIdx + 1) % shiftList.length;
+    const btn = document.getElementById('btnShiftFilter');
+    if (btn) btn.innerHTML = shiftList[currentShiftIdx] + ' <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>';
+    alert('Filtered telemetry to: ' + shiftList[currentShiftIdx]);
+  }
+
+</script>
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -113,7 +123,17 @@
         }
       }
     }
-  </script>
+  
+  let currentShiftIdx = 0;
+  const shiftList = ['SHIFT: TODAY', 'SHIFT: 1 (MORNING)', 'SHIFT: 2 (AFTERNOON)', 'SHIFT: 3 (NIGHT)'];
+  function toggleShiftFilter() {
+    currentShiftIdx = (currentShiftIdx + 1) % shiftList.length;
+    const btn = document.getElementById('btnShiftFilter');
+    if (btn) btn.innerHTML = shiftList[currentShiftIdx] + ' <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>';
+    alert('Filtered telemetry to: ' + shiftList[currentShiftIdx]);
+  }
+
+</script>
 <style>
     .material-symbols-outlined {
       font-family: 'Material Symbols Outlined';
@@ -210,14 +230,14 @@
 <span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant tracking-wider">● SYSTEM ONLINE &nbsp;07 SEP 2026 / 14:48</span>
 </div>
 <div class="flex items-center gap-1">
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors duration-150 rounded-DEFAULT" title="Grid View">
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors duration-150 rounded-DEFAULT" title="Grid View" onclick="showNavGridModal()" class="cursor-pointer">
 <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
 </button>
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors duration-150 rounded-DEFAULT" title="Calibrate">
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors duration-150 rounded-DEFAULT" title="Calibrate" onclick="showNavTuneModal()" class="cursor-pointer">
 <span class="material-symbols-outlined" data-icon="tune">tune</span>
 </button>
 </div>
-<button class="hidden md:inline-flex items-center justify-center px-3.5 py-1.5 bg-primary-container text-surface-container-lowest font-headline-sm text-headline-sm font-semibold tracking-wide hover:bg-primary-fixed-dim active:scale-95 transition-all duration-100 rounded-DEFAULT">
+<button onclick="window.location.href='intelligence.html'" class="hidden md:inline-flex items-center justify-center px-3.5 py-1.5 bg-primary-container text-surface-container-lowest font-headline-sm text-headline-sm font-semibold tracking-wide hover:bg-primary-fixed-dim active:scale-95 transition-all duration-100 rounded-DEFAULT cursor-pointer">
         LAUNCH INTELLIGENCE
       </button>
 </div>
@@ -235,7 +255,7 @@
 </div>
 <!-- Minimal Shift Selector -->
 <div class="flex items-center gap-3">
-<button class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-outline-variant/40 hover:border-primary-container/60 text-on-surface font-mono-data-sm text-mono-data-sm tracking-wider rounded-DEFAULT transition-colors duration-150">
+<button id="btnShiftFilter" onclick="toggleShiftFilter()" class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-outline-variant/40 hover:border-primary-container/60 text-on-surface font-mono-data-sm text-mono-data-sm tracking-wider rounded-DEFAULT transition-colors duration-150 cursor-pointer">
 <span class="text-outline">SHIFT:</span>
 <span class="font-semibold text-primary">TODAY</span>
 <span class="material-symbols-outlined text-outline" data-icon="arrow_drop_down">arrow_drop_down</span>
@@ -402,7 +422,7 @@
 <!-- MODULE E: AI INSIGHT (Forensic Assessment) -->
 <div class="bg-surface-container-low border-2 border-primary-container/40 rounded-DEFAULT p-5 relative bg-gradient-to-br from-surface-container-low via-surface-container-low to-primary-container/10 shadow-lg"><div class="flex items-center justify-between pb-3 border-b border-outline-variant/20 mb-3"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="psychology">psychology</span><h2 class="font-label-caps text-label-caps text-primary-container font-bold tracking-wider">AI INSIGHT // UNDERSTANDING</h2></div><span class="px-2 py-0.5 bg-primary-container/15 border border-primary-container/40 text-primary-container font-label-caps text-[10px] font-semibold rounded-DEFAULT">18 DETECTED EVENTS</span></div><div class="space-y-4"><blockquote class="text-body-lg text-on-surface leading-relaxed border-l-2 border-primary-container pl-3.5 py-0.5 italic font-medium">“Dragging is the most frequent risky behaviour in the current shift, with the highest concentration occurring in <span class="text-secondary font-bold not-italic">Loading Bay 01</span>.”</blockquote><div class="p-3 bg-surface-container-lowest/90 border border-outline-variant/30 rounded-DEFAULT space-y-1"><span class="font-label-caps text-[10px] text-primary-container uppercase tracking-wider block font-semibold">Strategic Directive</span><p class="font-body-md text-body-md text-on-surface-variant">Suggested focus: Review trolley and material-handling practices during unloading. Correlate with forklift transit cycles.</p></div></div></div>
 <!-- MODULE F: PREVENTION OPPORTUNITY (Process & Coaching Focus) -->
-<div class="bg-surface-container-low border border-outline-variant/40 rounded-DEFAULT p-5 space-y-4"><div class="flex items-center justify-between pb-3 border-b border-outline-variant/20"><div class="flex items-center gap-2"><span class="w-1.5 h-3 bg-secondary"></span><h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider uppercase">PREVENTION OPPORTUNITY // ACTION</h2></div><span class="font-mono-data-sm text-mono-data-sm text-outline">COACHING INITIATIVE</span></div><div class="space-y-2.5"><div class="flex flex-wrap items-center gap-2"><span class="px-2 py-0.5 bg-secondary/20 border border-secondary/50 text-secondary font-label-caps text-label-caps font-bold rounded-DEFAULT">PRIORITY: HIGH</span><span class="px-2 py-0.5 bg-surface-container border border-outline-variant/60 text-on-surface font-label-caps text-label-caps rounded-DEFAULT font-medium">TARGET: UNLOADING OPERATIONS</span></div><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface pt-1">TROLLEY HANDLING REFRESHER</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Repeated floor-level dragging suggests an opportunity to reinforce the use of suitable material-handling equipment. Ergonomic tooling check indicates cart staging at Gate A is currently obstructed.</p></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"><button class="w-full py-2.5 px-3 bg-surface-container-high border border-outline-variant hover:border-primary-container/80 text-on-surface font-label-caps text-label-caps uppercase tracking-wider text-center transition-all duration-150 rounded-DEFAULT active:scale-95 font-semibold">[ REVIEW EVENTS ]</button><button class="w-full py-2.5 px-3 bg-primary-container text-surface-container-lowest font-label-caps text-label-caps font-bold uppercase tracking-wider text-center hover:bg-primary-fixed-dim transition-all duration-150 rounded-DEFAULT active:scale-95">[ VIEW RECOMMENDATION ]</button></div></div>
+<div class="bg-surface-container-low border border-outline-variant/40 rounded-DEFAULT p-5 space-y-4"><div class="flex items-center justify-between pb-3 border-b border-outline-variant/20"><div class="flex items-center gap-2"><span class="w-1.5 h-3 bg-secondary"></span><h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider uppercase">PREVENTION OPPORTUNITY // ACTION</h2></div><span class="font-mono-data-sm text-mono-data-sm text-outline">COACHING INITIATIVE</span></div><div class="space-y-2.5"><div class="flex flex-wrap items-center gap-2"><span class="px-2 py-0.5 bg-secondary/20 border border-secondary/50 text-secondary font-label-caps text-label-caps font-bold rounded-DEFAULT">PRIORITY: HIGH</span><span class="px-2 py-0.5 bg-surface-container border border-outline-variant/60 text-on-surface font-label-caps text-label-caps rounded-DEFAULT font-medium">TARGET: UNLOADING OPERATIONS</span></div><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface pt-1">TROLLEY HANDLING REFRESHER</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Repeated floor-level dragging suggests an opportunity to reinforce the use of suitable material-handling equipment. Ergonomic tooling check indicates cart staging at Gate A is currently obstructed.</p></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"><button onclick="window.location.href='incidents.html'" class="w-full py-2.5 px-3 bg-surface-container-high border border-outline-variant hover:border-primary-container/80 text-on-surface font-label-caps text-label-caps uppercase tracking-wider text-center transition-all duration-150 rounded-DEFAULT active:scale-95 font-semibold cursor-pointer">[ REVIEW EVENTS ]</button><button onclick="window.location.href='prevention.html'" class="w-full py-2.5 px-3 bg-primary-container text-surface-container-lowest font-label-caps text-label-caps font-bold uppercase tracking-wider text-center hover:bg-primary-fixed-dim transition-all duration-150 rounded-DEFAULT active:scale-95 cursor-pointer">[ VIEW RECOMMENDATION ]</button></div></div>
 </section>
 </div>
 <!-- ============================================================= -->
@@ -527,5 +547,134 @@
       console.warn('Could not load /api/metrics:', err);
     }
   });
+
+  let currentShiftIdx = 0;
+  const shiftList = ['SHIFT: TODAY', 'SHIFT: 1 (MORNING)', 'SHIFT: 2 (AFTERNOON)', 'SHIFT: 3 (NIGHT)'];
+  function toggleShiftFilter() {
+    currentShiftIdx = (currentShiftIdx + 1) % shiftList.length;
+    const btn = document.getElementById('btnShiftFilter');
+    if (btn) btn.innerHTML = shiftList[currentShiftIdx] + ' <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>';
+    alert('Filtered telemetry to: ' + shiftList[currentShiftIdx]);
+  }
+
 </script>
+
+<script>
+function showNavGridModal() {
+  const modalId = 'soc-nav-grid-modal';
+  let modal = document.getElementById(modalId);
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = modalId;
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4';
+    modal.innerHTML = `
+      <div class="bg-surface-container-low border border-outline-variant/40 max-w-xl w-full p-6 shadow-2xl relative font-body-md text-on-surface">
+        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">grid_view</span>
+            <h3 class="font-headline-sm font-semibold tracking-wide">WAREHOUSE CAMERA MATRIX</h3>
+          </div>
+          <button onclick="document.getElementById('${modalId}').remove()" class="text-outline hover:text-white text-xl p-1 cursor-pointer">&times;</button>
+        </div>
+        <p class="text-on-surface-variant font-body-sm mb-4">Select active CCTV edge sensor node to view live perception stream:</p>
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-primary-container/40 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-primary-container font-bold">CAM_01</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Loading Bay 01</div>
+            <div class="text-[11px] text-outline">Unloading Gate A (LIVE)</div>
+          </a>
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-outline font-bold">CAM_02</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Aisle 04 Storage</div>
+            <div class="text-[11px] text-outline">High-Bay Racks (STANDBY)</div>
+          </a>
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-outline font-bold">CAM_03</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Sorting Hub Central</div>
+            <div class="text-[11px] text-outline">Pallet Staging (ACTIVE)</div>
+          </a>
+          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data-sm text-outline font-bold">CAM_04</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </div>
+            <div class="font-semibold text-white group-hover:text-primary-container">Staging Dock West</div>
+            <div class="text-[11px] text-outline">Dispatch Buffer (HIGH DENSITY)</div>
+          </a>
+        </div>
+        <div class="flex justify-end">
+          <button onclick="document.getElementById('${modalId}').remove()" class="px-4 py-1.5 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/40 text-on-surface font-mono-data-sm cursor-pointer">CLOSE</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+}
+
+function showNavTuneModal() {
+  const modalId = 'soc-nav-tune-modal';
+  let modal = document.getElementById(modalId);
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = modalId;
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4';
+    modal.innerHTML = `
+      <div class="bg-surface-container-low border border-outline-variant/40 max-w-lg w-full p-6 shadow-2xl relative font-body-md text-on-surface">
+        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">tune</span>
+            <h3 class="font-headline-sm font-semibold tracking-wide">EDGE SENSOR &amp; CV TUNING</h3>
+          </div>
+          <button onclick="document.getElementById('${modalId}').remove()" class="text-outline hover:text-white text-xl p-1 cursor-pointer">&times;</button>
+        </div>
+        <div class="space-y-4 mb-6">
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">YOLOv8-Pose Confidence Threshold</span>
+              <span class="text-primary-container font-bold" id="tune-conf-val">0.65</span>
+            </div>
+            <input type="range" min="0.4" max="0.9" step="0.05" value="0.65" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-conf-val').textContent = this.value">
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">ByteTrack IoU Association Threshold</span>
+              <span class="text-primary-container font-bold" id="tune-iou-val">0.60</span>
+            </div>
+            <input type="range" min="0.3" max="0.8" step="0.05" value="0.60" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-iou-val').textContent = this.value">
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">Near-Miss Predictive Alarm Trigger</span>
+              <span class="text-secondary font-bold" id="tune-risk-val">70%</span>
+            </div>
+            <input type="range" min="50" max="90" step="5" value="70" class="w-full accent-secondary cursor-pointer" oninput="document.getElementById('tune-risk-val').textContent = this.value + '%'">
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-mono-data-sm">
+              <span class="text-on-surface-variant">Supervisor Audio Chime Volume</span>
+              <span class="text-primary-container font-bold" id="tune-vol-val">85%</span>
+            </div>
+            <input type="range" min="0" max="100" step="5" value="85" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-vol-val').textContent = this.value + '%'">
+          </div>
+        </div>
+        <div class="flex justify-end gap-3">
+          <button onclick="document.getElementById('${modalId}').remove()" class="px-3.5 py-1.5 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/40 text-on-surface font-mono-data-sm cursor-pointer">CANCEL</button>
+          <button onclick="alert('✓ Edge Sensor Node Parameters synchronized across 4 CCTV cameras.'); document.getElementById('${modalId}').remove();" class="px-4 py-1.5 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest font-mono-data-sm font-semibold cursor-pointer">APPLY &amp; SYNC</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+}
+</script>
+
 </body></html>
