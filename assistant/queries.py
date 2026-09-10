@@ -394,8 +394,8 @@ def local_fallback_answer(store: EventStore, question: str) -> QueryResult:
             ans += f"- **{e.behaviour_type}:** {e.recommended_action} (ref `{e.event_id}`)\n"
         return QueryResult(ans, [e.event_id for e in top_recs])
 
-    # 12. Global Stats & Summaries
-    if any(k in q_lower for k in ("total", "summary", "how many", "count", "stats", "overview")):
+    # 12. Global Stats, Most Common Behaviours & Summaries
+    if any(k in q_lower for k in ("total", "summary", "how many", "count", "stats", "overview", "common", "risky", "behaviour", "behavior", "frequent", "trend")):
         data = shift_summary_data(store)
         nm_count = data.get("near_misses_count", total_near_misses)
         top_beh = Counter(getattr(e, "behaviour_type", "Unknown") for e in store.events).most_common(3)
@@ -411,16 +411,14 @@ def local_fallback_answer(store: EventStore, question: str) -> QueryResult:
         ans += f"\n- **Estimated Damage Cost Avoidance:** ₹94,500+"
         return QueryResult(ans, [e.event_id for e in store.events[:5]])
 
-    # 13. General Facility Telemetry Response
-    top_events = sorted(store.events, key=lambda x: (getattr(x, "risk_level", "").upper() == "CRITICAL", getattr(x, "is_near_miss", False)), reverse=True)[:3]
+    # 13. General / Out-of-Scope Fallback Handling
     ans = (
-        f"**ImpactZero Operational Synthesis**\n\n"
-        f"Grounded across our **{total_events} logged facility events** and **8 CCTV feeds**:\n\n"
+        f"I am the **ImpactZero AI Safety Assistant**, strictly focused on Godrej warehouse operations, "
+        f"material handling safety, ergonomic telemetry, and predictive damage prevention.\n\n"
+        f"I do not have specific warehouse records or telemetry regarding **\"{question.strip()}\"**.\n\n"
+        f"Across our facility, we are actively monitoring **{total_events} events** and **{total_near_misses} near-miss alerts** across 8 camera feeds. "
+        f"You can ask me about shift summaries, high-risk behaviours (e.g. *dragging*, *improper stacking*), "
+        f"or specific incident IDs (e.g. *'EVT-20260908-0001'*)."
     )
-    for e in top_events:
-        ans += f"- **{e.event_id}** [{e.risk_level.upper()}]: {e.behaviour_type} at {e.location_id} — *{e.recommended_action}*\n"
-    ans += (
-        f"\nFeel free to ask for specific incident details (*'EVT-20260908-0001'*), "
-        f"near-miss analysis, or bay risk comparisons."
-    )
-    return QueryResult(ans, [e.event_id for e in top_events])
+    return QueryResult(ans, [])
+

@@ -39,21 +39,21 @@ except ImportError:  # pragma: no cover
     genai = None
     types = None
 
-DEFAULT_GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
-DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+DEFAULT_GROQ_MODEL = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b")
+DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
 
 # Primary Gemini models with instant failover on high demand/limits:
 GEMINI_MODEL_CHAIN = [
-    os.environ.get("GEMINI_MODEL", "gemini-2.5-flash"),
-    "gemini-2.0-flash",
-    "gemini-1.5-flash",
+    os.environ.get("GEMINI_MODEL", "gemini-3.6-flash"),
+    "gemini-3.6-flash",
 ]
 
 # Fallback Groq models with separate independent quotas:
 GROQ_MODEL_CHAIN = [
-    os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile"),
-    "llama-3.1-8b-instant",
-    "mixtral-8x7b-32768",
+    os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b"),
+    "openai/gpt-oss-20b",
+    "qwen/qwen3.8-27b",
+    "qwen/qwen3.6-27b",
 ]
 
 
@@ -275,6 +275,21 @@ class GroqLLMClient:
         messages.append({"role": "user", "content": user_message})
 
         try:
+            # Prepare tools with nullable types for Groq compatibility to avoid 400 schema validation errors
+            groq_tools = []
+            for t in tools:
+                t_copy = json.loads(json.dumps(t))
+                fn = t_copy.get("function", {})
+                params = fn.get("parameters", {})
+                props = params.get("properties", {})
+                for k, v in props.items():
+                    ptype = v.get("type")
+                    if isinstance(ptype, str) and ptype in ("string", "boolean", "integer", "number"):
+                        v["type"] = [ptype, "null"]
+                    if "enum" in v and isinstance(v["enum"], list) and None not in v["enum"]:
+                        v["enum"].append(None)
+                groq_tools.append(t_copy)
+
             # First pass: let the LLM decide which tools to call
             # We copy the messages array so we don't pollute the persistent history with tool outputs
             api_messages = list(messages)
@@ -283,7 +298,7 @@ class GroqLLMClient:
                 model=self.model,
                 max_tokens=self.max_tokens,
                 messages=api_messages,
-                tools=tools,
+                tools=groq_tools,
                 tool_choice="auto",
             )
             

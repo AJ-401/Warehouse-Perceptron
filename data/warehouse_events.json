@@ -1,6 +1,117 @@
 {
   "events": [
     {
+      "event_id": "EVT-20260910-0371",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "22:44:18",
+      "timestamp_end": "22:44:18",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Manual Dock Safety Tag",
+      "behaviour_code": "MANUAL_TAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.82,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Supervisor manual capture: Safety deviation flagged from live stream",
+      "recommended_action": "Review handling posture and area safety clearance.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789060458",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0370",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "21:44:12",
+      "timestamp_end": "21:44:12",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Manual Dock Safety Tag",
+      "behaviour_code": "MANUAL_TAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.82,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Supervisor manual capture: Safety deviation flagged from live stream",
+      "recommended_action": "Review handling posture and area safety clearance.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789056852",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0369",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "21:42:08",
+      "timestamp_end": "21:42:08",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Manual Dock Safety Tag",
+      "behaviour_code": "MANUAL_TAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.82,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Supervisor manual capture: Safety deviation flagged from live stream",
+      "recommended_action": "Review handling posture and area safety clearance.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789056728",
+        "clip_url": null
+      }
+    },
+    {
       "event_id": "EVT-20260910-0368",
       "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
       "timestamp_start": "20:54:22",
@@ -13998,9 +14109,9 @@
     }
   ],
   "shift_summary": {
-    "total_events": 368,
-    "near_misses_prevented": 21,
-    "high_critical_risks": 264,
+    "total_events": 371,
+    "near_misses_prevented": 24,
+    "high_critical_risks": 267,
     "estimated_damage_avoided_inr": 67500.0,
     "most_frequent_risk": "Floor Dragging (No Equipment)"
   }
