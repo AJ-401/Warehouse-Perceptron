@@ -649,20 +649,26 @@ def generate_mjpeg_stream(video_name: Optional[str] = None, speed: float = 1.0, 
                                         posture_strain = True
 
                                 for p1, p2 in SKELETON_PAIRS:
-                                    if kps[p1][2] > 0.3 and kps[p2][2] > 0.3:
+                                    if kps[p1][2] > 0.25 and kps[p2][2] > 0.25:
                                         pt1 = (int(kps[p1][0]), int(kps[p1][1]))
                                         pt2 = (int(kps[p2][0]), int(kps[p2][1]))
                                         bone_col = (0, 165, 255) if posture_strain else (0, 255, 128)
                                         cv2.line(frame, pt1, pt2, bone_col, 2)
                                 for k_idx in range(17):
-                                    if kps[k_idx][2] > 0.3:
-                                        cv2.circle(frame, (int(kps[k_idx][0]), int(kps[k_idx][1])), 3, (0, 255, 0), -1)
+                                    if kps[k_idx][2] > 0.30:
+                                        k_name = KEYPOINT_NAMES[k_idx]
+                                        if "wrist" in k_name:
+                                            cv2.circle(frame, (int(kps[k_idx][0]), int(kps[k_idx][1])), 6, (0, 0, 255), -1)
+                                        elif "ankle" in k_name:
+                                            cv2.circle(frame, (int(kps[k_idx][0]), int(kps[k_idx][1])), 6, (255, 0, 255), -1)
+                                        else:
+                                            cv2.circle(frame, (int(kps[k_idx][0]), int(kps[k_idx][1])), 3, (0, 255, 0), -1)
 
-                            box_color = (0, 165, 255) if posture_strain else (0, 229, 255)
-                            cv2.rectangle(frame, (px1, py1), (px2, py2), box_color, 2)
-                            badge_title = "WORKER [BENDING STRAIN]" if posture_strain else f"WORKER #{i+1} [NOMINAL]"
-                            cv2.rectangle(frame, (px1, max(0, py1 - 22)), (px1 + 190, max(22, py1)), box_color, -1)
-                            cv2.putText(frame, badge_title, (px1 + 4, max(16, py1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.40, (0, 0, 0), 1, cv2.LINE_AA)
+                            worker_col = (255, 200, 0)
+                            cv2.rectangle(frame, (px1, py1), (px2, py2), worker_col, 2)
+                            badge_sz = cv2.getTextSize("WORKER", cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
+                            cv2.rectangle(frame, (px1, max(0, py1 - 18)), (px1 + badge_sz[0] + 4, max(18, py1)), worker_col, -1)
+                            cv2.putText(frame, "WORKER", (px1 + 2, max(14, py1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
 
                 h, w = frame.shape[:2]
                 cv2.rectangle(frame, (0, 0), (w, 32), (16, 20, 26), -1)
@@ -1133,20 +1139,17 @@ async def detect_webcam_frame(
     risk_level = "LOW"
     behaviour = "MONITORING // NOMINAL"
     has_interaction = False
+    posture_strain = False
 
-    # 1. Annotate Detected Cartons / Packages using weights/box_11s.pt
+    # 1. Collect Detected Cartons / Packages using weights/box_11s.pt
     box_coords = []
+    held_box_indices = set()
     if box_results and len(box_results) > 0 and box_results[0].boxes:
         for b in box_results[0].boxes:
             bx1, by1, bx2, by2 = [int(v) for v in b.xyxy[0].tolist()]
             conf = float(b.conf[0])
             box_coords.append((bx1, by1, bx2, by2, conf))
             boxes_detected += 1
-            if mask:
-                cv2.rectangle(frame, (bx1, by1), (bx2, by2), (95, 185, 255), 2)
-                badge_text = f"BOX [{int(conf * 100)}%] // YOLO11"
-                cv2.rectangle(frame, (bx1, max(0, by1 - 22)), (bx1 + 180, max(22, by1)), (95, 185, 255), -1)
-                cv2.putText(frame, badge_text, (bx1 + 4, max(16, by1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
 
     # 2. Annotate Worker Pose and Evaluate Ergonomics using yolov8n-pose.pt
     if pose_results and len(pose_results) > 0 and pose_results[0].boxes:
@@ -1168,9 +1171,10 @@ async def detect_webcam_frame(
                     if kps[idx][2] > 0.3:
                         wx, wy = int(kps[idx][0]), int(kps[idx][1])
                         wrists.append((wx, wy))
-                        for (bx1, by1, bx2, by2, _) in box_coords:
-                            if (bx1 - 40) <= wx <= (bx2 + 40) and (by1 - 40) <= wy <= (by2 + 40):
+                        for b_idx, (bx1, by1, bx2, by2, _) in enumerate(box_coords):
+                            if (bx1 - 50) <= wx <= (bx2 + 50) and (by1 - 50) <= wy <= (by2 + 50):
                                 has_interaction = True
+                                held_box_indices.add(b_idx)
 
                 # Check torso bend (angle between nose and hips)
                 if kps[0][2] > 0.3 and (kps[11][2] > 0.3 or kps[12][2] > 0.3):
@@ -1182,24 +1186,34 @@ async def detect_webcam_frame(
                     if dy > 0 and (dx / dy) > 0.55:  # leaning forward > 30 deg
                         posture_strain = True
 
-                # Draw skeleton
+                # Draw skeleton bones and colored joints
                 if mask:
                     for p1, p2 in SKELETON_PAIRS:
-                        if kps[p1][2] > 0.3 and kps[p2][2] > 0.3:
+                        if kps[p1][2] > 0.25 and kps[p2][2] > 0.25:
                             pt1 = (int(kps[p1][0]), int(kps[p1][1]))
                             pt2 = (int(kps[p2][0]), int(kps[p2][1]))
                             bone_color = (0, 165, 255) if posture_strain else (0, 255, 128)
                             cv2.line(frame, pt1, pt2, bone_color, 2)
+
+                    # Hand dots (red) and Leg/ankle dots (pink/magenta)
                     for k_idx in range(17):
-                        if kps[k_idx][2] > 0.3:
-                            cv2.circle(frame, (int(kps[k_idx][0]), int(kps[k_idx][1])), 4, (0, 255, 0), -1)
+                        if kps[k_idx][2] > 0.30:
+                            k_name = KEYPOINT_NAMES[k_idx]
+                            kx, ky = int(kps[k_idx][0]), int(kps[k_idx][1])
+                            if "wrist" in k_name:
+                                cv2.circle(frame, (kx, ky), 6, (0, 0, 255), -1)      # Red for hands / wrists
+                            elif "ankle" in k_name:
+                                cv2.circle(frame, (kx, ky), 6, (255, 0, 255), -1)    # Pink / magenta for ankles / feet
+                            else:
+                                cv2.circle(frame, (kx, ky), 3, (0, 255, 0), -1)      # Green for other joints
 
             if mask:
-                box_color = (0, 165, 255) if posture_strain else (0, 229, 255)
-                cv2.rectangle(frame, (px1, py1), (px2, py2), box_color, 2)
-                badge_title = "WORKER [BENDING STRAIN]" if posture_strain else f"WORKER #{i+1} [NOMINAL]"
-                cv2.rectangle(frame, (px1, max(0, py1 - 22)), (px1 + 190, max(22, py1)), box_color, -1)
-                cv2.putText(frame, badge_title, (px1 + 4, max(16, py1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.40, (0, 0, 0), 1, cv2.LINE_AA)
+                worker_col = (255, 200, 0)
+                cv2.rectangle(frame, (px1, py1), (px2, py2), worker_col, 2)
+                badge_title = "WORKER [STRAIN]" if posture_strain else "WORKER"
+                badge_sz = cv2.getTextSize(badge_title, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
+                cv2.rectangle(frame, (px1, max(0, py1 - 18)), (px1 + badge_sz[0] + 4, max(18, py1)), worker_col, -1)
+                cv2.putText(frame, badge_title, (px1 + 2, max(14, py1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
 
             if posture_strain:
                 risk_score = max(risk_score, 76)
@@ -1209,6 +1223,17 @@ async def detect_webcam_frame(
                 risk_score = max(risk_score, 45)
                 risk_level = "MEDIUM"
                 behaviour = "ACTIVE MATERIAL HANDLING"
+
+    # Draw detected packages with interaction status (HELD vs CARTON)
+    if mask and box_coords:
+        for b_idx, (bx1, by1, bx2, by2, conf) in enumerate(box_coords):
+            is_held = b_idx in held_box_indices
+            box_col = (0, 215, 255) if is_held else (0, 140, 255)
+            box_label = "HELD" if is_held else "CARTON"
+            cv2.rectangle(frame, (bx1, by1), (bx2, by2), box_col, 2)
+            badge_sz = cv2.getTextSize(box_label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)[0]
+            cv2.rectangle(frame, (bx1, max(0, by1 - 18)), (bx1 + badge_sz[0] + 4, max(18, by1)), box_col, -1)
+            cv2.putText(frame, box_label, (bx1 + 2, max(14, by1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1, cv2.LINE_AA)
 
     if has_interaction and risk_level == "LOW":
         risk_score = 42
