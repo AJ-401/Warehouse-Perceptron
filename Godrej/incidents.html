@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Field Intelligence — Incident Investigation &amp; Near-Miss Replay (#NM-0042)</title>
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Fonts: Space Grotesk & JetBrains Mono -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Field Intelligence — Incident Investigation &amp; Near-Miss Replay (#NM-0042)</title>
+  <!-- Material Symbols Outlined -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Fonts: Space Grotesk & JetBrains Mono -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
@@ -118,16 +126,18 @@
       }
     }
   </script>
-<style>
+  <style>
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       display: inline-block;
       vertical-align: middle;
       line-height: 1;
     }
+
     .hud-bracket {
       position: relative;
     }
+
     .hud-bracket::before {
       content: '';
       position: absolute;
@@ -138,6 +148,7 @@
       border-top: 2px solid #00e5ff;
       border-left: 2px solid #00e5ff;
     }
+
     .hud-bracket::after {
       content: '';
       position: absolute;
@@ -148,6 +159,7 @@
       border-bottom: 2px solid #00e5ff;
       border-right: 2px solid #00e5ff;
     }
+
     .hud-bracket-amber::before {
       content: '';
       position: absolute;
@@ -158,6 +170,7 @@
       border-top: 2px solid #ffb95f;
       border-left: 2px solid #ffb95f;
     }
+
     .hud-bracket-amber::after {
       content: '';
       position: absolute;
@@ -168,10 +181,12 @@
       border-bottom: 2px solid #ffb95f;
       border-right: 2px solid #ffb95f;
     }
+
     .scanline {
       background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 229, 255, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
       background-size: 100% 3px, 6px 100%;
     }
+
     /* Custom Scrubber Track */
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -184,39 +199,41 @@
     }
   </style>
 </head>
-<body class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-surface-container-lowest min-h-screen flex flex-col font-body-md overflow-x-hidden">
-<!-- Background Shader Injection -->
-<!-- STITCH_SHADER_START:ANIMATION_25 class="fixed inset-0 w-full h-full pointer-events-none -z-10" -->
-<div class="fixed inset-0 w-full h-full pointer-events-none -z-10" style="display:block;">
-<canvas id="shader-canvas-ANIMATION_25" style="display:block;width:100%;height:100%"></canvas>
-<script>
-(function() {
-  const canvas = document.getElementById('shader-canvas-ANIMATION_25');
 
-  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
-  // This fires on initial layout and whenever the element is resized.
-  function syncSize() {
-    const w = canvas.clientWidth  || 1280;
-    const h = canvas.clientHeight || 720;
-    if (canvas.width !== w || canvas.height !== h) {
-      canvas.width  = w;
-      canvas.height = h;
-    }
-  }
-  if (typeof ResizeObserver !== 'undefined') {
-    new ResizeObserver(syncSize).observe(canvas);
-  }
-  syncSize();
+<body
+  class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-surface-container-lowest min-h-screen flex flex-col font-body-md overflow-x-hidden">
+  <!-- Background Shader Injection -->
+  <!-- STITCH_SHADER_START:ANIMATION_25 class="fixed inset-0 w-full h-full pointer-events-none -z-10" -->
+  <div class="fixed inset-0 w-full h-full pointer-events-none -z-10" style="display:block;">
+    <canvas id="shader-canvas-ANIMATION_25" style="display:block;width:100%;height:100%"></canvas>
+    <script>
+        (function () {
+          const canvas = document.getElementById('shader-canvas-ANIMATION_25');
 
-  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if (!gl) return;
-  const vs = `attribute vec2 a_position;
+          // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+          // This fires on initial layout and whenever the element is resized.
+          function syncSize() {
+            const w = canvas.clientWidth || 1280;
+            const h = canvas.clientHeight || 720;
+            if (canvas.width !== w || canvas.height !== h) {
+              canvas.width = w;
+              canvas.height = h;
+            }
+          }
+          if (typeof ResizeObserver !== 'undefined') {
+            new ResizeObserver(syncSize).observe(canvas);
+          }
+          syncSize();
+
+          const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+          if (!gl) return;
+          const vs = `attribute vec2 a_position;
 varying vec2 v_texCoord;
 void main() {
   v_texCoord = a_position * 0.5 + 0.5;
   gl_Position = vec4(a_position, 0.0, 1.0);
 }`;
-  const fs = `precision highp float;
+          const fs = `precision highp float;
 uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
@@ -265,955 +282,624 @@ void main() {
     
     gl_FragColor = vec4(finalColor, 1.0);
 }`;
-  function cs(type, src) {
-    const s = gl.createShader(type);
-    gl.shaderSource(s, src);
-    gl.compileShader(s);
-    return s;
-  }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
-  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
-  gl.linkProgram(prog);
-  gl.useProgram(prog);
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-  const pos = gl.getAttribLocation(prog, 'a_position');
-  gl.enableVertexAttribArray(pos);
-  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-  const uTime = gl.getUniformLocation(prog, 'u_time');
-  const uRes = gl.getUniformLocation(prog, 'u_resolution');
-  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+          function cs(type, src) {
+            const s = gl.createShader(type);
+            gl.shaderSource(s, src);
+            gl.compileShader(s);
+            return s;
+          }
+          const prog = gl.createProgram();
+          gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+          gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+          gl.linkProgram(prog);
+          gl.useProgram(prog);
+          const buf = gl.createBuffer();
+          gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+          const pos = gl.getAttribLocation(prog, 'a_position');
+          gl.enableVertexAttribArray(pos);
+          gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+          const uTime = gl.getUniformLocation(prog, 'u_time');
+          const uRes = gl.getUniformLocation(prog, 'u_resolution');
+          const uMouse = gl.getUniformLocation(prog, 'u_mouse');
 
-  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
-  // Shaders that need normalized coords should use: u_mouse / u_resolution.
-  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
-  window.addEventListener('mousemove', (event) => {
-    const rect = canvas.getBoundingClientRect();
-    if (rect.width && rect.height) {
-      const nx = (event.clientX - rect.left) / rect.width;
-      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
-      mouse.x = nx * canvas.width;
-      mouse.y = ny * canvas.height;
-    }
-  });
+          // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+          // Shaders that need normalized coords should use: u_mouse / u_resolution.
+          let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+          window.addEventListener('mousemove', (event) => {
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width && rect.height) {
+              const nx = (event.clientX - rect.left) / rect.width;
+              const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+              mouse.x = nx * canvas.width;
+              mouse.y = ny * canvas.height;
+            }
+          });
 
-  function render(t) {
-    if (typeof ResizeObserver === 'undefined') syncSize();
-    gl.viewport(0, 0, canvas.width, canvas.height);
-    if (uTime) gl.uniform1f(uTime, t * 0.001);
-    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
-    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(render);
-  }
-  render(0);
-})();
-</script>
-</div>
-<!-- STITCH_SHADER_END:ANIMATION_25 -->
-<!-- 1. TOP NAVIGATION (Shared Components Spec Exact Alignment) -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-unit-lg h-14 bg-surface/90 backdrop-blur-md border-b border-outline-variant/30">
-<div class="flex items-center gap-unit-md">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary-container text-xl" data-icon="warehouse">warehouse</span>
-<span class="text-headline-sm font-headline-sm font-bold tracking-wider text-primary">FIELD INTELLIGENCE</span>
-</div>
-<span class="hidden sm:inline-block text-outline-variant">|</span>
-<span class="hidden sm:inline-block font-mono-data-sm text-mono-data-sm text-on-surface-variant tracking-wider">COCKPIT // NM-REPLAY</span>
-</div>
-<!-- Centered Navigation Links -->
-<nav class="hidden md:flex items-center gap-6">
-<a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-widest transition-colors" href="overview.html">OVERVIEW</a>
-<a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-widest transition-colors" href="intelligence.html">INTELLIGENCE</a>
-<a class="text-primary-container border-b-2 border-primary-container pb-1 font-label-caps text-label-caps tracking-widest" href="incidents.html">INCIDENTS</a>
-<a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-widest transition-colors" href="behaviour.html">BEHAVIOUR</a>
-<a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-widest transition-colors" href="prevention.html">PREVENTION</a>
-<a class="text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps tracking-widest transition-colors" href="assistance.html">ASSISTANT</a>
-</nav>
-<!-- Right Actions Cluster -->
-<div class="flex items-center gap-unit-md">
-<div class="hidden lg:flex items-center gap-unit-sm font-mono-data-sm text-mono-data-sm text-on-surface-variant">
-<span class="inline-block w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_#00e5ff] animate-pulse"></span>
-<span class="text-primary font-medium tracking-wide">SYSTEM ONLINE</span>
-<span class="text-outline-variant/60">•</span>
-<span>07 SEP 2026 / 14:42</span>
-</div>
-<!-- Theme Mode Toggle -->
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container border border-outline-variant/40 bg-surface-container-low transition-colors" id="theme-toggle" title="Toggle Light/Dark Workspace">
-<span class="material-symbols-outlined text-lg" data-icon="dark_mode">dark_mode</span>
-</button>
-<!-- Trailing Action Icons -->
-<button onclick="alert('🔔 RECENT SYSTEM NOTICES\n\n• 15 Near-Miss events detected across 24h cycle.\n• 38 High-Risk handling deviations flagged.\n• SOP-LOG-108 active recommendation pending supervisor review.')" class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer" title="Notifications">
-<span class="material-symbols-outlined text-lg" data-icon="notifications">notifications</span>
-</button>
-<button onclick="alert('⚙️ INCIDENT INVESTIGATION SETTINGS\n\n• Timeline Keyframe Resolution: 100ms\n• Interpolation Mode: Cubic Hermite Spline\n• Telemetry Multi-Factor Calibration: Standard v4.2\n• Video Stream Encoding: Motion JPEG / H.264')" class="p-1.5 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer" title="Settings">
-<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
-</button>
-<!-- Primary Action CTA -->
-<button onclick="window.location.href='intelligence.html'" class="bg-primary-container hover:opacity-90 text-surface-container-lowest px-unit-md py-1.5 font-label-caps text-label-caps tracking-widest font-bold transition-all flex items-center gap-1 shadow-[0_0_12px_rgba(0,229,255,0.3)] active:scale-95 cursor-pointer">
-<span>LAUNCH INTELLIGENCE</span>
-<span class="material-symbols-outlined text-sm font-bold" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</div>
-</header>
-<!-- WORKSPACE BODY CONTAINER -->
-<main class="flex-1 mt-14 mb-9 px-unit-lg py-unit-md max-w-[1920px] w-full mx-auto flex flex-col gap-unit-md">
-<!-- 2. INCIDENT HEADER & BREADCRUMB STRIP -->
-<section class="bg-surface-container-low/80 backdrop-blur-sm border border-outline-variant/30 p-unit-md flex flex-col lg:flex-row lg:items-center justify-between gap-unit-md">
-<div class="flex flex-col gap-1">
-<div class="flex items-center gap-2 font-mono-data-sm text-mono-data-sm text-on-surface-variant">
-<span class="text-primary-container">FIELD TELEMETRY</span>
-<span class="text-outline-variant">/</span>
-<span>INCIDENT INVESTIGATION</span>
-<span class="text-outline-variant">/</span>
-<span class="text-secondary font-semibold">PREDICTIVE NEAR-MISS</span>
-<span class="text-outline-variant">/</span>
-<span>UNLOADING BAY 01</span>
-</div>
-<div class="flex items-center gap-3">
-<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight" id="incident-title">INCIDENT #NM-0042</h1>
-<span class="px-2 py-0.5 bg-secondary/15 border border-secondary/60 text-secondary font-label-caps text-label-caps tracking-widest rounded-none shadow-[0_0_10px_rgba(245,158,11,0.2)]">
-            POTENTIAL DAMAGE RISK
+          function render(t) {
+            if (typeof ResizeObserver === 'undefined') syncSize();
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            if (uTime) gl.uniform1f(uTime, t * 0.001);
+            if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+            if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+            requestAnimationFrame(render);
+          }
+          render(0);
+        })();
+    </script>
+  </div>
+  <!-- STITCH_SHADER_END:ANIMATION_25 -->
+  <!-- 1. TOP NAVIGATION (Standard Clean Format) -->
+  <header
+    class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-14 bg-surface/90 backdrop-blur-md border-b border-outline-variant/30">
+    <div class="flex items-center gap-3">
+      <div
+        class="w-5 h-5 border border-primary-container flex items-center justify-center rotate-45 transition-transform hover:rotate-90 duration-300">
+        <div class="w-2 h-2 bg-primary-container"></div>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface leading-tight">WAREHOUSE PERCEPTRON</span>
+        <span class="font-label-caps text-label-caps text-outline tracking-widest text-[9px] -mt-0.5">PREDICTIVE DAMAGE PREVENTION</span>
+      </div>
+    </div>
+    <!-- Centered Navigation Links -->
+    <nav class="hidden md:flex items-center space-x-7 h-full">
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="overview.html">OVERVIEW</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="intelligence.html">INTELLIGENCE</a>
+      <a class="text-primary-container border-b-2 border-primary-container font-medium py-4 flex items-center gap-1"
+        href="incidents.html">
+        <span class="font-label-caps text-label-caps uppercase tracking-widest">INCIDENTS</span>
+      </a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="behaviour.html">BEHAVIOUR</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="prevention.html">PREVENTION</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="assistance.html">ASSISTANT</a>
+    </nav>
+    <!-- Right Telemetry -->
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest border border-outline-variant/30 rounded">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+        <span class="font-label-caps text-label-caps text-primary-container tracking-wider">● SYSTEM ONLINE</span>
+      </div>
+      <div class="hidden lg:block font-mono-data-sm text-mono-data-sm text-on-surface-variant/80 border-l border-outline-variant/30 pl-3">
+        10 SEP 2026 / <span class="text-on-surface font-semibold" id="clockIncidents">14:42:00</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="flex-1 mt-14 mb-8 px-4 md:px-6 py-4 max-w-[1760px] w-full mx-auto flex flex-col gap-4">
+
+    <!-- 2. INCIDENT SELECTOR & INVESTIGATION STRIP -->
+    <section class="bg-surface-container-low border border-outline-variant/30 p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-sm">
+      <div class="flex flex-col gap-1.5">
+        <div class="flex items-center gap-2 font-mono-data-sm text-mono-data-sm text-on-surface-variant">
+          <span class="text-primary-container">FIELD FORENSICS</span>
+          <span class="text-outline-variant/60">/</span>
+          <span>INCIDENT VIDEO INVESTIGATION</span>
+          <span class="text-outline-variant/60">/</span>
+          <span class="text-secondary font-semibold" id="headerLocation">LOADING BAY AREA</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <h1 class="font-headline-lg text-headline-lg font-bold text-white tracking-tight" id="headerIncidentId">INCIDENT #EVT-20260908-0006</h1>
+          <span id="headerRiskBadge" class="px-2.5 py-0.5 bg-red-950/60 border border-red-500/60 text-red-300 font-label-caps text-label-caps font-bold tracking-widest uppercase">
+            CRITICAL RISK
           </span>
-<span class="px-2 py-0.5 bg-secondary-container/20 border border-secondary-container text-secondary font-label-caps text-label-caps tracking-widest" id="incident-risk-badge">
-            HIGH RISK
+          <span id="headerNearMissBadge" class="px-2.5 py-0.5 bg-amber-950/60 border border-secondary/60 text-secondary font-label-caps text-label-caps font-bold tracking-widest uppercase">
+            NEAR-MISS
           </span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2 mt-0.5">
-<span class="material-symbols-outlined text-secondary text-sm" data-icon="verified_user">verified_user</span>
-<span>Predictive warning issued prior to impact. <strong class="text-on-surface">No confirmed damage recorded</strong> due to autonomous supervisor dispatch.</span>
-</p>
-</div>
-<!-- Quick Telemetry Chips & Incident Selector -->
-<div class="flex flex-wrap items-center gap-unit-sm font-mono-data-sm text-mono-data-sm">
-<div class="bg-surface-container px-unit-md py-1.5 border border-outline-variant/40 flex items-center gap-2">
-<span class="text-secondary font-semibold">SELECT INCIDENT:</span>
-<select id="incident-select" class="bg-surface-container-lowest text-primary font-mono-data-sm border border-outline-variant/50 px-2 py-0.5 rounded-none focus:outline-none focus:border-primary-container cursor-pointer">
-<option value="">Fetching live incidents...</option>
-</select>
-</div>
-<div class="bg-surface-container px-unit-md py-1.5 border border-outline-variant/40 flex items-center gap-2">
-<span class="text-on-surface-variant">LOCATION:</span>
-<span class="text-primary font-medium" id="incident-location">BAY 01 // SOUTH RAMPS</span>
-</div>
-<div class="bg-surface-container px-unit-md py-1.5 border border-outline-variant/40 flex items-center gap-2">
-<span class="text-on-surface-variant">TIMESTAMP:</span>
-<span class="text-secondary font-medium tracking-wide" id="incident-timestamp">14:32:12 UTC</span>
-</div>
-<div class="bg-surface-container px-unit-md py-1.5 border border-outline-variant/40 flex items-center gap-2">
-<span class="text-on-surface-variant">DURATION:</span>
-<span class="text-primary-container font-medium" id="incident-duration">15s PRE-IMPACT CAPTURE</span>
-</div>
-</div>
-</section>
-<!-- 12-COLUMN MAIN WORKSPACE SPLIT -->
-<div class="grid grid-cols-1 xl:grid-cols-12 gap-unit-md flex-1">
-<!-- LEFT PRIMARY WORKSPACE (8 COLS ~66%) -->
-<div class="xl:col-span-8 flex flex-col gap-unit-md">
-<!-- 3. MAIN CV VIDEO REPLAY PANEL -->
-<div class="bg-surface-container-low border border-outline-variant/30 flex flex-col relative overflow-hidden shadow-2xl">
-<!-- Viewport Header HUD Strip -->
-<div class="px-unit-md py-2 bg-surface-container-lowest/90 border-b border-outline-variant/30 flex items-center justify-between z-20">
-<div class="flex items-center gap-3">
-<span class="flex h-2 w-2 relative">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
-</span>
-<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider" id="incident-cam-label">INCIDENT REPLAY // CAM-LB01-SOUTH [4K 60FPS SYNCHRONIZED]</span>
-</div>
-<div class="flex items-center gap-3 font-mono-data-sm text-mono-data-sm">
-<span class="text-primary-container bg-primary-container/10 px-1.5 py-0.5 border border-primary-container/30">AI TRACKING: ON</span>
-<span class="text-secondary bg-secondary/10 px-1.5 py-0.5 border border-secondary/30">TRAJECTORY: ON</span>
-<span class="text-on-surface-variant">ISO 800 // TILT LENS 24mm</span>
-</div>
-</div>
-<!-- Video Canvas Viewport -->
-<div class="relative w-full aspect-[16/10] bg-canvas-deep flex items-center justify-center overflow-hidden group">
-          <!-- Real Industrial Warehouse AI Video Frame (YOLOv8-Pose + ByteTrack from /api/video_frame) -->
-          <img id="cv-video-frame" class="absolute inset-0 w-full h-full object-contain z-0" alt="Incident Keyframe Replay" />
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl" id="headerSubtitle">
+          Inspect the recorded video clip and frames where the unsafe event was detected to understand the root cause.
+        </p>
+      </div>
 
-          <!-- Laser Scan Line FX -->
-          <div class="anim-scan absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-secondary to-transparent shadow-[0_0_12px_#ffb95f] pointer-events-none z-10"></div>
+      <!-- Quick Selector Controls -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+        <!-- Filter Tabs -->
+        <div class="flex items-center bg-surface-container border border-outline-variant/30 p-0.5 text-xs font-mono-data-sm">
+          <button id="btnFilterAll" onclick="setFilter('all')" class="px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer">ALL</button>
+          <button id="btnFilterNM" onclick="setFilter('near_miss')" class="px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer">NEAR-MISS</button>
+          <button id="btnFilterHigh" onclick="setFilter('high_risk')" class="px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer">HIGH RISK</button>
+        </div>
 
-          <!-- Synchronized Visual Callout Box at Key Incident Frame -->
-          <div class="absolute top-4 right-4 max-w-sm bg-surface-container-lowest/90 border border-secondary p-3 shadow-[0_0_24px_rgba(245,158,11,0.35)] backdrop-blur-md z-20 transition-all" id="predictive-callout">
-            <div class="flex items-center gap-2 text-secondary font-label-caps text-[10px] tracking-widest pb-1 border-b border-secondary/30">
-              <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-              <span id="callout-title">PREDICTIVE WARNING TRIGGERED</span>
-            </div>
-            <div class="mt-2 font-mono-data-sm text-[11px] space-y-1">
-              <div class="text-on-surface flex justify-between">
-                <span class="text-outline">SIGNAL:</span>
-                <span class="font-bold text-secondary" id="callout-signal">HIGH CARRY ELEVATION</span>
-              </div>
-              <div class="text-on-surface flex justify-between">
-                <span class="text-outline">PREDICTED IMPACT:</span>
-                <span class="font-bold text-secondary" id="callout-impact">T - 1.8 SECONDS</span>
-              </div>
-              <div class="text-on-surface flex justify-between pt-1 border-t border-outline-variant/30 text-[10px]">
-                <span class="text-outline">DISPATCH:</span>
-                <span class="text-primary tracking-wide" id="callout-dispatch">SUPERVISOR AUDIO ALARM</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Telemetry HUD Inside Viewport -->
-          <div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-outline font-label-caps text-[9px] pointer-events-none z-20">
-            <div class="flex items-center gap-3 bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm border border-outline-variant/30">
-              <span id="hud-cam-res">RES: 1280x720 30FPS</span>
-              <span id="hud-frame-counter">FRAME: 324</span>
-            </div>
-            <div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm border border-secondary/40 text-secondary font-mono" id="hud-risk-badge">
-              RISK: 78% (HIGH HAZARD)
-            </div>
-          </div></div>
-<!-- Video Scrubber & Playback Controls Bar -->
-<div class="p-unit-md bg-surface-container-low border-t border-outline-variant/30 flex flex-col gap-2">
-<!-- Scrubber Track with keyframe markers -->
-<div class="relative w-full flex items-center">
-<input class="w-full h-1.5 bg-surface-container-lowest appearance-none cursor-pointer focus:outline-none z-10" id="replay-slider" max="15" min="0" step="1" type="range" value="8"/>
-<!-- Keyframe indicator ticks overlay on track -->
-<div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none px-1 text-[9px] font-mono-data-sm text-on-surface-variant/40">
-<div class="flex flex-col items-center">
-<div class="w-1 h-3 bg-outline-variant"></div>
-<span class="mt-2 text-[9px]">14:32:04</span>
-</div>
-<div class="flex flex-col items-center">
-<div class="w-1 h-3 bg-outline-variant"></div>
-<span class="mt-2 text-[9px]">14:32:08</span>
-</div>
-<div class="flex flex-col items-center">
-<div class="w-1 h-3 bg-primary-container"></div>
-<span class="mt-2 text-[9px] text-primary-container">14:32:11</span>
-</div>
-<div class="flex flex-col items-center">
-<div class="w-1 h-4 bg-secondary shadow-[0_0_8px_#ffb95f]"></div>
-<span class="mt-2 text-[9px] text-secondary font-bold">14:32:12</span>
-</div>
-<div class="flex flex-col items-center">
-<div class="w-1 h-3 bg-outline-variant"></div>
-<span class="mt-2 text-[9px]">14:32:14</span>
-</div>
-</div>
-</div>
-<!-- Button Controls Row -->
-<div class="flex items-center justify-between pt-4 mt-1">
-<div class="flex items-center gap-unit-sm">
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container border border-outline-variant/40 bg-surface-container transition-colors" id="btn-rewind" title="Rewind to start">
-<span class="material-symbols-outlined text-lg" data-icon="fast_rewind">fast_rewind</span>
-</button>
-<button class="px-3 py-1.5 bg-primary-container text-surface-container-lowest font-bold flex items-center gap-1 hover:opacity-90 transition-all text-sm shadow-[0_0_10px_rgba(0,229,255,0.4)]" id="btn-play-pause">
-<span class="material-symbols-outlined text-lg" data-icon="pause" id="play-pause-icon">pause</span>
-<span class="font-label-caps text-label-caps" id="play-pause-text">PAUSE</span>
-</button>
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container border border-outline-variant/40 bg-surface-container transition-colors" id="btn-forward" title="Step Frame Forward">
-<span class="material-symbols-outlined text-lg" data-icon="fast_forward">fast_forward</span>
-</button>
-<span class="font-mono-data-md text-mono-data-md text-primary font-medium ml-2" id="timecode-display">
-                  00:08 <span class="text-outline-variant">/</span> 00:15s
-                </span>
-</div>
-<div class="flex items-center gap-unit-md text-on-surface-variant font-mono-data-sm text-mono-data-sm">
-<label class="flex items-center gap-2 cursor-pointer select-none">
-<input checked="" class="w-3.5 h-3.5 accent-primary-container rounded-none bg-surface-container-lowest" type="checkbox"/>
-<span class="text-primary-container">BOUNDING RETICLES</span>
-</label>
-<label class="flex items-center gap-2 cursor-pointer select-none">
-<input checked="" class="w-3.5 h-3.5 accent-secondary rounded-none bg-surface-container-lowest" type="checkbox"/>
-<span class="text-secondary">ACCELERATION VECTORS</span>
-</label>
-<span class="text-outline-variant">|</span>
-<span class="text-primary font-bold">1X SPEED</span>
-</div>
-</div>
-</div>
-</div>
-<!-- 4. EVENT SEQUENCE TIMELINE (BELOW VIDEO) -->
-<div class="bg-surface-container-low border border-outline-variant/30 p-unit-md">
-<div class="flex items-center justify-between pb-unit-sm mb-unit-sm border-b border-outline-variant/30">
-<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider flex items-center gap-1.5">
-<span class="material-symbols-outlined text-primary-container text-sm" data-icon="timeline">timeline</span>
-              INCIDENT EVENT SEQUENCE CHRONOLOGY
-            </span>
-<span class="font-mono-data-sm text-mono-data-sm text-primary">SELECT STAGE TO SCRUB REPLAY</span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-5 gap-unit-sm" id="timeline-stages-container">
-<!-- Stage 01 -->
-<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(0)" data-risk="32" data-sec="4" data-timestamp="14:32:04">
-<div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
-<span class="text-on-surface-variant group-hover:text-primary-container">01 PICKUP</span>
-<span class="text-outline">14:32:04</span>
-</div>
-<div>
-<div class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">PRODUCT PICKED UP</div>
-<div class="font-mono-data-sm text-[10px] text-on-surface-variant">Nominal handling</div>
-</div>
-<div class="w-full h-0.5 bg-surface-variant">
-<div class="h-full bg-primary-container w-[32%]"></div>
-</div>
-</button>
-<!-- Stage 02 -->
-<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(1)" data-risk="48" data-sec="8" data-timestamp="14:32:08">
-<div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
-<span class="text-on-surface-variant group-hover:text-primary-container">02 VELOCITY</span>
-<span class="text-outline">14:32:08</span>
-</div>
-<div>
-<div class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">MOVEMENT INCREASED</div>
-<div class="font-mono-data-sm text-[10px] text-primary-container">+1.4 m/s acceleration</div>
-</div>
-<div class="w-full h-0.5 bg-surface-variant">
-<div class="h-full bg-primary-container w-[48%]"></div>
-</div>
-</button>
-<!-- Stage 03 -->
-<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(2)" data-risk="61" data-sec="11" data-timestamp="14:32:11">
-<div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
-<span class="text-on-surface-variant group-hover:text-secondary">03 SIGNAL</span>
-<span class="text-outline">14:32:11</span>
-</div>
-<div>
-<div class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">RISK DETECTED</div>
-<div class="font-mono-data-sm text-[10px] text-secondary">Tilt +8.4° detected</div>
-</div>
-<div class="w-full h-0.5 bg-surface-variant">
-<div class="h-full bg-secondary w-[61%]"></div>
-</div>
-</button>
-<!-- Stage 04 (HIGHLIGHTED / CRITICAL) -->
-<button class="stage-card p-unit-sm text-left bg-surface-container-high border-2 border-secondary text-secondary shadow-[0_0_14px_rgba(245,158,11,0.25)] flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(3)" data-risk="72" data-sec="12" data-timestamp="14:32:12">
-<div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
-<span class="font-bold flex items-center gap-1">
-<span class="w-1.5 h-1.5 bg-secondary rounded-full animate-ping"></span>
-                  04 WARNING
-                </span>
-<span class="font-bold">14:32:12</span>
-</div>
-<div>
-<div class="font-body-sm text-body-sm font-bold text-secondary leading-tight">PREDICTIVE WARNING</div>
-<div class="font-mono-data-sm text-[10px] text-secondary-fixed">72% PREDICTIVE RISK</div>
-</div>
-<div class="w-full h-1 bg-surface-container-lowest">
-<div class="h-full bg-secondary w-[72%]"></div>
-</div>
-</button>
-<!-- Stage 05 -->
-<button class="stage-card p-unit-sm text-left bg-surface-container border border-outline-variant/40 hover:border-primary-container/70 transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(4)" data-risk="78" data-sec="14" data-timestamp="14:32:14">
-<div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
-<span class="text-on-surface-variant group-hover:text-primary-container">05 ACTION</span>
-<span class="text-outline">14:32:14</span>
-</div>
-<div>
-<div class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">INTERVENTION</div>
-<div class="font-mono-data-sm text-[10px] text-primary-container">Supervisor audio alert</div>
-</div>
-<div class="w-full h-0.5 bg-surface-variant">
-<div class="h-full bg-primary-container w-[78%]"></div>
-</div>
-</button>
-</div>
-</div>
-</div>
-<!-- RIGHT SIDEBAR (ANALYSIS & INTERVENTION, 4 COLS ~34%) -->
-<div class="xl:col-span-4 flex flex-col gap-unit-md">
-<!-- 5.A RISK DEVELOPMENT (PROGRESSIVE CURVE) -->
-<div class="bg-surface-container-low border border-outline-variant/30 p-unit-md flex flex-col gap-unit-sm">
-<div class="flex items-center justify-between border-b border-outline-variant/30 pb-unit-sm">
-<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider flex items-center gap-1.5">
-<span class="material-symbols-outlined text-secondary text-sm" data-icon="show_chart">show_chart</span>
-              RISK DEVELOPMENT // PREDICTIVE TIMELINE
-            </span>
-<span class="font-mono-data-sm text-mono-data-sm px-1.5 py-0.5 bg-secondary/15 border border-secondary text-secondary font-bold" id="current-risk-badge">
-              PEAK: 78%
-            </span>
-</div>
-<!-- SVG Risk Step Curve Graph -->
-<div class="relative w-full h-36 bg-surface-container-lowest/60 border border-outline-variant/30 p-2 overflow-hidden">
-<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 320 100">
-<defs>
-<lineargradient id="risk-area" x1="0" x2="0" y1="0" y2="1">
-<stop offset="0%" stop-color="#ffb95f" stop-opacity="0.35"></stop>
-<stop offset="100%" stop-color="#ffb95f" stop-opacity="0"></stop>
-</lineargradient>
-</defs>
-<!-- Threshold Line (65%) -->
-<line opacity="0.8" stroke="#ee9800" stroke-dasharray="4 3" stroke-width="1.5" x1="0" x2="320" y1="35" y2="35"></line>
-<text class="font-mono-data-sm text-[9px] tracking-wider" fill="#ee9800" x="5" y="31">RISK THRESHOLD (65%)</text>
-<!-- Area Fill under curve -->
-<path d="M 0 68 L 70 52 L 145 39 L 210 28 L 275 22 L 320 30 L 320 100 L 0 100 Z" fill="url(#risk-area)"></path>
-<!-- Main Trajectory Line -->
-<path d="M 0 68 L 70 52 L 145 39 L 210 28 L 275 22 L 320 30" fill="none" stroke="#00e5ff" stroke-width="2"></path>
-<path d="M 180 32 L 210 28 L 275 22 L 320 30" fill="none" stroke="#ffb95f" stroke-width="2.5"></path>
-<!-- Point Nodes -->
-<circle cx="0" cy="68" fill="#00e5ff" r="3"></circle>
-<circle cx="70" cy="52" fill="#00e5ff" r="3"></circle>
-<circle cx="145" cy="39" fill="#00e5ff" r="3.5"></circle>
-<!-- Point 14:32:12 Critical Callout -->
-<circle class="animate-pulse shadow-[0_0_8px_#ffb95f]" cx="210" cy="28" fill="#ffb95f" r="5"></circle>
-<circle cx="275" cy="22" fill="#ffb95f" r="4"></circle>
-</svg>
-<!-- Amber Indicator Badge Callout Floating in Graph -->
-<div class="absolute top-2 right-4 bg-surface-container-lowest border border-secondary px-2 py-0.5 font-mono-data-sm text-[10px] text-secondary flex items-center gap-1 shadow-md">
-<span class="material-symbols-outlined text-xs" data-icon="notifications_active">notifications_active</span>
-<span>14:32:12 WARNING ISSUED BEFORE IMPACT</span>
-</div>
-</div>
-<div class="flex items-center justify-between text-[11px] font-mono-data-sm text-on-surface-variant">
-<span>T: 14:32:04 (32%)</span>
-<span>14:32:08 (48%)</span>
-<span>14:32:11 (61%)</span>
-<span class="text-secondary font-bold">14:32:12 (72%)</span>
-<span class="text-secondary">Peak 78%</span>
-</div>
-<div class="p-2 bg-surface-container border-l-2 border-secondary text-body-sm text-[12px] text-on-surface-variant">
-            Predictive model alerted <strong class="text-secondary font-semibold">1.8 seconds prior</strong> to physical impact threshold, allowing autonomous worker warning before slip occurred.
-          </div>
-</div>
-<!-- 5.B WHY WAS THIS FLAGGED? (MULTI-FACTOR CONTRIBUTORS) -->
-<div class="bg-surface-container-low border border-outline-variant/30 p-unit-md flex flex-col gap-unit-sm">
-<div class="flex items-center justify-between border-b border-outline-variant/30 pb-unit-sm">
-<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider flex items-center gap-1.5">
-<span class="material-symbols-outlined text-primary-container text-sm" data-icon="tune">tune</span>
-              WHY WAS THIS FLAGGED? // MULTI-FACTOR CONTRIBUTORS
-            </span>
-<span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant">WEIGHTED</span>
-</div>
-<div class="space-y-3 pt-1">
-<!-- Factor 1 -->
-<div>
-<div class="flex justify-between font-mono-data-sm text-mono-data-sm mb-1">
-<span class="text-on-surface" id="factor-speed-title">FAST MOVEMENT VELOCITY</span>
-<span class="text-secondary font-bold" id="factor-speed-val">HIGH (88%)</span>
-</div>
-<div class="w-full h-1.5 bg-surface-container-lowest">
-<div class="h-full bg-secondary w-[88%] shadow-[0_0_8px_rgba(255,185,95,0.4)]" id="factor-speed-bar"></div>
-</div>
-</div>
-<!-- Factor 2 -->
-<div>
-<div class="flex justify-between font-mono-data-sm text-mono-data-sm mb-1">
-<span class="text-on-surface" id="factor-height-title">HANDLING HEIGHT DEVIATION</span>
-<span class="text-secondary font-bold" id="factor-height-val">HIGH (74%)</span>
-</div>
-<div class="w-full h-1.5 bg-surface-container-lowest">
-<div class="h-full bg-secondary w-[74%]" id="factor-height-bar"></div>
-</div>
-</div>
-<!-- Factor 3 -->
-<div>
-<div class="flex justify-between font-mono-data-sm text-mono-data-sm mb-1">
-<span class="text-on-surface" id="factor-equip-title">EQUIPMENT DETECTED: NONE (Trolley absent)</span>
-<span class="text-primary-container font-semibold" id="factor-equip-val">MODERATE (62%)</span>
-</div>
-<div class="w-full h-1.5 bg-surface-container-lowest">
-<div class="h-full bg-primary-container w-[62%]" id="factor-equip-bar"></div>
-</div>
-</div>
-<!-- Factor 4 -->
-<div>
-<div class="flex justify-between font-mono-data-sm text-mono-data-sm mb-1">
-<span class="text-on-surface" id="factor-hazard-title">STACK PROXIMITY CLEARANCE</span>
-<span class="text-on-surface-variant" id="factor-hazard-val">MEDIUM (45%)</span>
-</div>
-<div class="w-full h-1.5 bg-surface-container-lowest">
-<div class="h-full bg-outline w-[45%]" id="factor-hazard-bar"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- 5.C AI ASSESSMENT & EVIDENCE LADDER -->
-<div class="bg-surface-container-low border border-outline-variant/30 p-unit-md flex flex-col gap-unit-sm">
-<div class="flex items-center justify-between border-b border-outline-variant/30 pb-unit-sm">
-<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider flex items-center gap-1.5">
-<span class="material-symbols-outlined text-primary-container text-sm" data-icon="psychology">psychology</span>
-              AI REASONING &amp; EVIDENCE LADDER
-            </span>
-<span class="font-mono-data-sm text-mono-data-sm text-primary-container">MODEL V4.2</span>
-</div>
-<!-- AI Assessment paragraph -->
-<p class="font-body-sm text-body-sm text-on-surface leading-relaxed" id="incident-reason">
-            "The product's movement velocity increased while it was being handled above the normal working height. No suitable handling equipment was detected nearby. The combined signals crossed the predictive-risk threshold."
-          </p>
-<div class="flex flex-wrap gap-2 pt-1">
-<span class="px-2 py-0.5 bg-secondary/15 border border-secondary text-secondary font-label-caps text-label-caps" id="incident-pill-risk">
-              POTENTIAL DAMAGE RISK
-            </span>
-<span class="px-2 py-0.5 bg-primary-container/15 border border-primary-container text-primary-container font-label-caps text-label-caps">
-              INTERVENTION RECOMMENDED BEFORE IMPACT
-            </span>
-</div>
-<!-- Evidence Ladder Strip -->
-<div class="mt-2 pt-2 border-t border-outline-variant/30 space-y-1.5 font-mono-data-sm text-mono-data-sm">
-<div class="flex items-center justify-between p-1.5 bg-surface-container">
-<span class="text-on-surface-variant">OBSERVED BEHAVIOUR</span>
-<span class="text-primary font-semibold flex items-center gap-1" id="incident-behaviour-tag">
-<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
-                VERIFIED [FAST MOTION / ELEVATED]
-              </span>
-</div>
-<div class="flex items-center justify-between p-1.5 bg-surface-container">
-<span class="text-on-surface-variant">POTENTIAL RISK</span>
-<span class="text-secondary font-semibold flex items-center gap-1" id="incident-risk-score">
-<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
-                FLAGGED 72%
-              </span>
-</div>
-<div class="flex items-center justify-between p-1.5 bg-surface-container">
-<span class="text-on-surface-variant">CONFIRMED DAMAGE</span>
-<span class="text-primary-container font-semibold flex items-center gap-1">
-<span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
-                NONE [INTERVENTION SUCCESSFUL]
-              </span>
-</div>
-</div>
-<!-- Evidence Log Chips -->
-<div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-mono-data-sm text-on-surface-variant">
-<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40">CLIP: 00:08</span>
-<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40" id="incident-log-frame">FRAME: 14:32:12</span>
-<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40" id="incident-log-tracked">TRACKED: PRODUCT #024</span>
-<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40" id="incident-log-loc">LOCATION: UNLOADING BAY 01</span>
-<span class="bg-surface-container-lowest px-1.5 py-0.5 border border-outline-variant/40 text-primary" id="incident-log-id">ID: NM-0042</span>
-</div>
-</div>
-<!-- 5.F RECOMMENDED ACTION & SUPERVISOR DECISION -->
-<div class="bg-surface-container-low border border-outline-variant/30 p-unit-md flex flex-col gap-unit-sm">
-<div class="flex items-center justify-between border-b border-outline-variant/30 pb-unit-sm">
-<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider flex items-center gap-1.5">
-<span class="material-symbols-outlined text-secondary text-sm" data-icon="assignment_turned_in">assignment_turned_in</span>
-              RECOMMENDED ACTION &amp; SUPERVISOR DECISION
-            </span>
-</div>
-<div class="p-2.5 bg-surface-container border-l-2 border-primary-container font-body-sm text-body-sm text-on-surface" id="incident-action">
-            "Slow the unloading movement and use suitable handling equipment for the product."
-          </div>
-<!-- CTAs -->
-<div class="grid grid-cols-2 gap-unit-sm pt-1">
-<button id="btnReviewPrevention" onclick="window.location.href='prevention.html'" class="bg-primary-container hover:opacity-90 text-surface-container-lowest font-label-caps text-label-caps font-bold py-2.5 px-unit-sm tracking-wider flex items-center justify-center gap-1 shadow-[0_0_12px_rgba(0,229,255,0.25)] transition-all cursor-pointer">
-<span>REVIEW PREVENTION</span>
-<span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
-</button>
-<button id="btnMarkReviewed" onclick="markIncidentReviewed()" class="bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-caps text-label-caps tracking-wider py-2.5 px-unit-sm transition-all text-center cursor-pointer">
-              MARK AS REVIEWED
+        <!-- Dropdown Selector -->
+        <div class="flex items-center gap-2">
+          <select id="incidentDropdown" onchange="onSelectIncident(this.value)" class="bg-surface-container-lowest border border-outline-variant/40 text-on-surface text-xs font-mono-data-sm py-2 px-3 focus:border-primary-container focus:ring-0 max-w-xs md:max-w-md cursor-pointer">
+            <!-- Dynamically populated from /api/incidents -->
+            <option value="">Loading flagged incidents...</option>
+          </select>
+          <div class="flex items-center gap-1">
+            <button onclick="navigateIncident(-1)" class="p-2 bg-surface-container border border-outline-variant/40 text-on-surface hover:text-primary-container transition-colors cursor-pointer" title="Previous Incident">
+              <span class="material-symbols-outlined text-sm">chevron_left</span>
             </button>
-</div>
-<div class="flex justify-between items-center pt-1">
-<a class="font-mono-data-sm text-mono-data-sm text-primary-container hover:underline flex items-center gap-1" href="behaviour.html">
-<span>VIEW RELATED BEHAVIOUR</span>
-<span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
-</a>
-<span class="font-mono-data-sm text-[10px] text-outline">BAY 01 TREND: -14% NM</span>
-</div>
-<!-- Responsible AI Statement -->
-<div class="pt-2 border-t border-outline-variant/20 flex items-start gap-2 text-[11px] font-mono-data-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-xs text-primary-container mt-0.5" data-icon="policy">policy</span>
-<span>The system recommends. The supervisor decides. Zero employee disciplinary scorekeeping.</span>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- 6. OPERATIONAL DOCK FOOTER (Shared Components Spec Exact Alignment) -->
-<footer class="fixed bottom-0 left-0 w-full z-40 flex items-center justify-between px-unit-lg h-9 border-t border-outline-variant/40 bg-surface-container-lowest/95 backdrop-blur-md">
-<div class="flex items-center gap-2">
-<span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant">
-        FIELD INTELLIGENCE COCKPIT v4.2 // AUTONOMOUS MITIGATION ONLINE
-      </span>
-</div>
-<!-- Dock Status Indicators -->
-<div class="hidden md:flex items-center gap-unit-lg font-mono-data-sm text-mono-data-sm">
-<div class="flex items-center gap-1.5 text-primary-container">
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_6px_#00e5ff]"></span>
-<span>VIDEO INPUT ACTIVE</span>
-</div>
-<div class="flex items-center gap-1.5 text-primary-container">
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_6px_#00e5ff]"></span>
-<span>OBJECT TRACKING ACTIVE</span>
-</div>
-<div class="flex items-center gap-1.5 text-primary-container">
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_6px_#00e5ff]"></span>
-<span>RISK ENGINE ACTIVE</span>
-</div>
-<div class="flex items-center gap-1.5 text-primary-container">
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_6px_#00e5ff]"></span>
-<span>AI ASSISTANT READY</span>
-</div>
-<div class="flex items-center gap-1.5 text-secondary">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_6px_#ffb95f]"></span>
-<span>PREVENTION MODE</span>
-</div>
-</div>
-</footer>
-<!-- 7. INTERACTIVE SCRIPTS (Playback sync, Scrubber, Keyframes & Theme Switcher) -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Elements
-      const themeToggle = document.getElementById('theme-toggle');
-      const htmlEl = document.documentElement;
-      const slider = document.getElementById('replay-slider');
-      const timecodeDisplay = document.getElementById('timecode-display');
-      const playPauseBtn = document.getElementById('btn-play-pause');
-      const playPauseIcon = document.getElementById('play-pause-icon');
-      const playPauseText = document.getElementById('play-pause-text');
-      const rewindBtn = document.getElementById('btn-rewind');
-      const forwardBtn = document.getElementById('btn-forward');
-      const stageCards = document.querySelectorAll('.stage-card');
-      const currentRiskBadge = document.getElementById('current-risk-badge');
-      const predictiveCallout = document.getElementById('predictive-callout');
-      const productBbox = document.getElementById('product-bbox');
+            <button onclick="navigateIncident(1)" class="p-2 bg-surface-container border border-outline-variant/40 text-on-surface hover:text-primary-container transition-colors cursor-pointer" title="Next Incident">
+              <span class="material-symbols-outlined text-sm">chevron_right</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      // Keyframe Data Mapping
-      const timelineData = {
-        0: { time: "14:32:00", risk: 20, deviation: "+0.0°", callout: false, stageIdx: -1 },
-        4: { time: "14:32:04", risk: 32, deviation: "+1.2°", callout: false, stageIdx: 0 },
-        8: { time: "14:32:08", risk: 48, deviation: "+3.8°", callout: false, stageIdx: 1 },
-        11: { time: "14:32:11", risk: 61, deviation: "+6.1°", callout: false, stageIdx: 2 },
-        12: { time: "14:32:12", risk: 72, deviation: "+8.4°", callout: true, stageIdx: 3 },
-        14: { time: "14:32:14", risk: 78, deviation: "+8.9°", callout: true, stageIdx: 4 },
-        15: { time: "14:32:15", risk: 68, deviation: "+4.1°", callout: false, stageIdx: 4 }
-      };
+    <!-- 3. MAIN INVESTIGATION WORKSPACE (2 Columns: Video & Controls 60% | Why Flagged Forensics 40%) -->
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
 
-      let isPlaying = true;
-      let playbackInterval = null;
+      <!-- LEFT COLUMN: VIDEO CLIP & FRAME INSPECTION (7 cols ~58%) -->
+      <div class="xl:col-span-7 flex flex-col gap-3">
+        <div class="bg-surface-container-low border border-outline-variant/30 flex flex-col relative overflow-hidden shadow-xl">
 
-      // Theme toggle support
-      themeToggle.addEventListener('click', () => {
-        if (htmlEl.classList.contains('dark')) {
-          htmlEl.classList.remove('dark');
-          themeToggle.querySelector('.material-symbols-outlined').textContent = 'light_mode';
-        } else {
-          htmlEl.classList.add('dark');
-          themeToggle.querySelector('.material-symbols-outlined').textContent = 'dark_mode';
-        }
-      });
-
-      // Update state per second
-      function updatePlayback(seconds) {
-        slider.value = seconds;
-        const formattedSec = seconds < 10 ? `0${seconds}` : seconds;
-        timecodeDisplay.innerHTML = `00:${formattedSec} <span class="text-outline-variant">/</span> 00:15s`;
-
-        // Find nearest keyframe data
-        let closestSec = 12;
-        let minDiff = 999;
-        Object.keys(timelineData).forEach(sec => {
-          const diff = Math.abs(seconds - parseInt(sec));
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestSec = parseInt(sec);
-          }
-        });
-
-        const data = timelineData[closestSec];
-        currentRiskBadge.textContent = `RISK: ${data.risk}%`;
-
-        // Update callout appearance
-        if (seconds >= 11 && seconds <= 14) {
-          predictiveCallout.style.opacity = '1';
-          predictiveCallout.style.transform = 'translateY(0)';
-          productBbox.classList.add('hud-bracket-amber', 'border-secondary');
-          productBbox.classList.remove('border-primary-container');
-        } else {
-          predictiveCallout.style.opacity = '0.4';
-          predictiveCallout.style.transform = 'translateY(-2px)';
-        }
-
-        // Highlight timeline stage card
-        stageCards.forEach((card, idx) => {
-          if (idx === data.stageIdx) {
-            card.classList.add('ring-2', 'ring-primary-container');
-          } else {
-            card.classList.remove('ring-2', 'ring-primary-container');
-          }
-        });
-      }
-
-      // Playback loop simulation
-      function startPlayback() {
-        isPlaying = true;
-        playPauseIcon.textContent = 'pause';
-        playPauseText.textContent = 'PAUSE';
-        playbackInterval = setInterval(() => {
-          let cur = parseInt(slider.value);
-          if (cur >= 15) {
-            cur = 0;
-          } else {
-            cur++;
-          }
-          updatePlayback(cur);
-        }, 1000);
-      }
-
-      function stopPlayback() {
-        isPlaying = false;
-        playPauseIcon.textContent = 'play_arrow';
-        playPauseText.textContent = 'PLAY';
-        clearInterval(playbackInterval);
-      }
-
-      // Controls
-      playPauseBtn.addEventListener('click', () => {
-        if (isPlaying) {
-          stopPlayback();
-        } else {
-          startPlayback();
-        }
-      });
-
-      rewindBtn.addEventListener('click', () => {
-        updatePlayback(0);
-      });
-
-      forwardBtn.addEventListener('click', () => {
-        let cur = parseInt(slider.value);
-        if (cur < 15) updatePlayback(cur + 1);
-      });
-
-      slider.addEventListener('input', (e) => {
-        updatePlayback(parseInt(e.target.value));
-      });
-
-      // Clickable Stages
-      stageCards.forEach(card => {
-        card.addEventListener('click', () => {
-          const sec = parseInt(card.dataset.sec);
-          updatePlayback(sec);
-        });
-      });
-
-      // Initial auto-sync start
-      updatePlayback(8);
-      startPlayback();
-
-      // Real API Integration for Incidents & Near-Misses
-      const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
-      const incidentSelect = document.getElementById('incident-select');
-      const incidentTitle = document.getElementById('incident-title');
-      const incidentRiskBadge = document.getElementById('incident-risk-badge');
-      const incidentLocation = document.getElementById('incident-location');
-      const incidentTimestamp = document.getElementById('incident-timestamp');
-      const incidentCamLabel = document.getElementById('incident-cam-label');
-      const incidentReason = document.getElementById('incident-reason');
-      const incidentAction = document.getElementById('incident-action');
-      const incidentBehaviourTag = document.getElementById('incident-behaviour-tag');
-      const incidentRiskScore = document.getElementById('incident-risk-score');
-      const incidentLogFrame = document.getElementById('incident-log-frame');
-      const incidentLogLoc = document.getElementById('incident-log-loc');
-      const incidentLogId = document.getElementById('incident-log-id');
-      const incidentLogTracked = document.getElementById('incident-log-tracked');
-      const videoFrameEl = document.getElementById('cv-video-frame');
-
-      let liveIncidents = [];
-      let currentVideo = "";
-      let baseFrame = 324;
-      let currentFrame = 324;
-
-      function loadFrame(frameNum) {
-        if (!videoFrameEl || !currentVideo) return;
-        videoFrameEl.src = `${API_BASE}/api/video_frame?video=${encodeURIComponent(currentVideo)}&frame_idx=${frameNum}&mask=true`;
-        const hudFrame = document.getElementById('hud-frame-counter');
-        if (hudFrame) hudFrame.textContent = `FRAME: ${frameNum}`;
-      }
-
-      window.jumpToStage = function(stageIdx, frameNum) {
-        stopPlayback();
-        currentFrame = frameNum;
-        loadFrame(currentFrame);
-        if (slider) slider.value = stageIdx * 3;
-      };
-
-      // Override slider input to scrub through real video frames
-      if (slider) {
-        slider.addEventListener('input', (e) => {
-          const val = parseInt(e.target.value);
-          // offset frame around baseFrame: from -20 to +25 frames
-          const computed = Math.max(1, baseFrame - 15 + (val * 2));
-          currentFrame = computed;
-          loadFrame(currentFrame);
-        });
-      }
-
-      // Override playback tick to step real video frames
-      let playInterval = null;
-      function startRealPlayback() {
-        isPlaying = true;
-        playPauseIcon.textContent = 'pause';
-        playPauseText.textContent = 'PAUSE';
-        let step = 0;
-        clearInterval(playInterval);
-        playInterval = setInterval(() => {
-          step = (step + 1) % 15;
-          if (slider) slider.value = step;
-          currentFrame = Math.max(1, baseFrame - 15 + (step * 2));
-          loadFrame(currentFrame);
-        }, 600);
-      }
-
-      function stopRealPlayback() {
-        isPlaying = false;
-        playPauseIcon.textContent = 'play_arrow';
-        playPauseText.textContent = 'PLAY';
-        clearInterval(playInterval);
-      }
-
-      if (playPauseBtn) {
-        playPauseBtn.onclick = (e) => {
-          e.stopPropagation();
-          if (isPlaying) {
-            stopRealPlayback();
-          } else {
-            startRealPlayback();
-          }
-        };
-      }
-
-      async function loadLiveIncidents() {
-        try {
-          const res = await fetch(`${API_BASE}/api/incidents`);
-          if (!res.ok) throw new Error('Network response not ok');
-          liveIncidents = await res.json();
-          if (liveIncidents && liveIncidents.length > 0) {
-            incidentSelect.innerHTML = liveIncidents.map((inc, i) => 
-              `<option value="${i}">#${inc.event_id} • [${inc.risk_level.toUpperCase()}] ${inc.behaviour.slice(0, 24)}...</option>`
-            ).join('');
-            populateIncident(liveIncidents[0]);
-          } else {
-            incidentSelect.innerHTML = '<option value="">No near-miss incidents</option>';
-          }
-        } catch (err) {
-          console.warn('Could not fetch /api/incidents:', err);
-          if (incidentSelect) {
-            incidentSelect.innerHTML = '<option value="default">#EVT-0042 • [HIGH] Near-Miss Demonstration</option>';
-          }
-        }
-      }
-
-      function populateIncident(inc) {
-        if (!inc) return;
-        currentVideo = inc.video || inc.video_id || "KD packets dragged, heavy box kept on other packets.mp4";
-        baseFrame = (inc.frame_range && inc.frame_range[0]) ? inc.frame_range[0] : 324;
-        currentFrame = baseFrame;
-        loadFrame(currentFrame);
-
-        if (incidentTitle) incidentTitle.textContent = `INCIDENT #${inc.event_id}`;
-        if (incidentRiskBadge) {
-          incidentRiskBadge.textContent = `${inc.risk_level.toUpperCase()} RISK`;
-          if (inc.risk_level && inc.risk_level.toLowerCase() === 'critical') {
-            incidentRiskBadge.className = 'px-2 py-0.5 bg-error-container/40 border border-error text-error font-label-caps text-label-caps tracking-widest';
-          } else {
-            incidentRiskBadge.className = 'px-2 py-0.5 bg-secondary-container/20 border border-secondary-container text-secondary font-label-caps text-label-caps tracking-widest';
-          }
-        }
-        if (incidentTimestamp) incidentTimestamp.textContent = inc.timestamp_start ? `${inc.timestamp_start} UTC` : '14:32:12 UTC';
-        
-        const camLabel = currentVideo.replace('.mp4', '').slice(0, 35);
-        if (incidentLocation) incidentLocation.textContent = `BAY 01 // ${camLabel.toUpperCase()}`;
-        if (incidentCamLabel) incidentCamLabel.textContent = `INCIDENT REPLAY // ${camLabel.toUpperCase()} [SOURCE: ${currentVideo}]`;
-
-        if (incidentReason && inc.reason) incidentReason.textContent = `"${inc.reason}"`;
-        if (incidentAction && inc.recommended_action) incidentAction.textContent = `"${inc.recommended_action}"`;
-        if (incidentBehaviourTag && inc.behaviour) {
-          incidentBehaviourTag.innerHTML = `<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> VERIFIED [${inc.behaviour.toUpperCase()}]`;
-        }
-        if (incidentRiskScore) {
-          const score = inc.risk_score || (inc.risk_level && inc.risk_level.toLowerCase() === 'critical' ? 88 : 72);
-          incidentRiskScore.innerHTML = `<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span> FLAGGED ${score}%`;
-        }
-        if (incidentLogId) incidentLogId.textContent = `ID: ${inc.event_id}`;
-        if (incidentLogFrame) incidentLogFrame.textContent = `FRAME: ${baseFrame}`;
-        if (incidentLogLoc) incidentLogLoc.textContent = `SOURCE: ${currentVideo.slice(0, 20)}`;
-
-        if (incidentLogTracked) {
-          const objs = inc.detected_objects && inc.detected_objects.length > 0 
-            ? inc.detected_objects.join(' • ') 
-            : `PRODUCT #${inc.entities_involved?.package_track_ids?.[0] || '1001'} • WORKER #${inc.entities_involved?.person_track_ids?.[0] || '2'}`;
-          incidentLogTracked.textContent = `TRACKED: ${objs.toUpperCase()}`;
-        }
-
-        // Multi-Factor Contributors Dynamic Binding
-        const spd = (inc.telemetry && inc.telemetry.speed_px_per_sec) ? inc.telemetry.speed_px_per_sec : 113.7;
-        const spdPct = Math.min(95, Math.max(30, Math.round((spd / 200) * 100)));
-        const fSpeedVal = document.getElementById('factor-speed-val');
-        const fSpeedBar = document.getElementById('factor-speed-bar');
-        if (fSpeedVal) fSpeedVal.textContent = (spd > 150 ? 'CRITICAL' : (spd > 100 ? 'HIGH' : 'NORMAL')) + ` (${spdPct}%)`;
-        if (fSpeedBar) fSpeedBar.style.width = `${spdPct}%`;
-
-        const h = (inc.telemetry && inc.telemetry.carry_height_m) ? inc.telemetry.carry_height_m : 1.36;
-        const hPct = Math.min(95, Math.max(35, Math.round((h / 1.6) * 100)));
-        const fHeightVal = document.getElementById('factor-height-val');
-        const fHeightBar = document.getElementById('factor-height-bar');
-        if (fHeightVal) fHeightVal.textContent = (h > 1.2 ? 'HIGH' : 'NORMAL') + ` (${hPct}%)`;
-        if (fHeightBar) fHeightBar.style.width = `${hPct}%`;
-
-        const fEquipVal = document.getElementById('factor-equip-val');
-        if (fEquipVal) fEquipVal.textContent = (inc.entities_involved && inc.entities_involved.equipment_detected) ? 'DETECTED (20%)' : 'ABSENT (62%)';
-
-        const fHazardVal = document.getElementById('factor-hazard-val');
-        if (fHazardVal) fHazardVal.textContent = (inc.telemetry && inc.telemetry.proximity_to_hazard) ? `${inc.telemetry.proximity_to_hazard.slice(0, 14)} (48%)` : 'MONITOR (48%)';
-
-        // Synchronized Callout Box
-        const calloutSignal = document.getElementById('callout-signal');
-        const calloutImpact = document.getElementById('callout-impact');
-        if (calloutSignal) calloutSignal.textContent = `H: ${h}m // VEL: ${spd} px/s`;
-        if (calloutImpact) calloutImpact.textContent = `T - 1.8 SECONDS [${inc.risk_level.toUpperCase()}]`;
-
-        // HUD Viewport elements
-        const hudRisk = document.getElementById('hud-risk-badge');
-        if (hudRisk) hudRisk.textContent = `RISK: ${inc.risk_score || 78}% (${inc.risk_level.toUpperCase()})`;
-
-        // Dynamic Chronological Stages
-        const stagesContainer = document.getElementById('timeline-stages-container');
-        if (stagesContainer && inc.timeline_stages && inc.timeline_stages.length > 0) {
-          stagesContainer.innerHTML = inc.timeline_stages.map((stg, sIdx) => {
-            const isAlert = sIdx === 3;
-            const borderCol = isAlert ? 'border-2 border-secondary text-secondary shadow-[0_0_14px_rgba(245,158,11,0.25)]' : 'border border-outline-variant/40 hover:border-primary-container/70';
-            const barBg = isAlert ? 'bg-secondary' : 'bg-primary-container';
-            const frameTarget = Math.max(1, baseFrame - 20 + (sIdx * 10));
-            return `
-              <button class="stage-card p-unit-sm text-left bg-surface-container ${borderCol} transition-all flex flex-col justify-between h-24 relative group cursor-pointer" onclick="jumpToStage(${sIdx}, ${frameTarget})">
-                <div class="flex items-center justify-between font-mono-data-sm text-mono-data-sm">
-                  <span class="${isAlert ? 'font-bold flex items-center gap-1' : 'text-on-surface-variant group-hover:text-primary-container'}">
-                    ${isAlert ? '<span class="w-1.5 h-1.5 bg-secondary rounded-full animate-ping"></span>' : ''}
-                    ${stg.stage}
-                  </span>
-                  <span class="text-outline font-mono">${stg.time}</span>
-                </div>
-                <div>
-                  <div class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">${stg.title.toUpperCase()}</div>
-                  <div class="font-mono-data-sm text-[10px] text-on-surface-variant truncate">${stg.desc}</div>
-                </div>
-                <div class="w-full h-0.5 bg-surface-variant">
-                  <div class="h-full ${barBg}" style="width: ${stg.risk || 50}%;"></div>
-                </div>
+          <!-- Viewport Header HUD Strip -->
+          <div class="px-4 py-2.5 bg-surface-container-lowest border-b border-outline-variant/30 flex flex-wrap items-center justify-between gap-2 z-20">
+            <div class="flex items-center gap-2.5 font-mono-data-sm text-xs">
+              <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+              <span class="text-on-surface font-semibold" id="camSourceLabel">CAMERA FEED // DOCK GATE A</span>
+              <span class="text-outline-variant/60">|</span>
+              <span class="text-outline truncate max-w-xs" id="videoSourceFile">Loading video...</span>
+            </div>
+            <!-- View Mode Switcher: Video vs AI Frame -->
+            <div class="flex items-center gap-1 font-mono-data-sm text-xs">
+              <button id="btnModeVideo" onclick="setViewMode('video')" class="px-2.5 py-1 bg-primary-container text-surface-container-lowest font-bold flex items-center gap-1 cursor-pointer transition-all">
+                <span class="material-symbols-outlined text-xs">videocam</span>
+                <span>VIDEO REPLAY</span>
               </button>
-            `;
-          }).join('');
+              <button id="btnModeFrame" onclick="setViewMode('frame')" class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary-container border border-outline-variant/40 flex items-center gap-1 cursor-pointer transition-all">
+                <span class="material-symbols-outlined text-xs">center_focus_strong</span>
+                <span>AI DETECTION FRAME</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Video Display Canvas -->
+          <div class="relative w-full aspect-video bg-black flex items-center justify-center overflow-hidden">
+            <!-- Real HTML5 Video Player for MP4 Footage -->
+            <video id="incidentVideo" class="w-full h-full object-contain" playsinline preload="auto" controls>
+              Your browser does not support HTML5 video playback.
+            </video>
+
+            <!-- AI Annotated Single Keyframe Image (Overlay Mode) -->
+            <img id="incidentFrameImg" class="w-full h-full object-contain absolute inset-0 hidden bg-black" alt="AI Annotated Keyframe" />
+
+            <!-- Incident Window Highlight Overlay Badge -->
+            <div id="eventOverlayBadge" class="absolute top-3 left-3 bg-surface-container-lowest/90 border border-secondary/80 px-3 py-1 text-xs font-mono-data-sm text-secondary flex items-center gap-2 backdrop-blur-sm pointer-events-none">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+              <span class="font-bold tracking-wider">EVENT FRAME WINDOW</span>
+              <span class="text-white" id="overlayFrameWindow">FRAMES: 296 - 306</span>
+            </div>
+          </div>
+
+          <!-- Video Playback & Frame Scrubber Control Bar -->
+          <div class="p-3.5 bg-surface-container-lowest border-t border-outline-variant/30 flex flex-col gap-2.5">
+            <!-- Timeline Track -->
+            <div class="flex items-center gap-3">
+              <span class="font-mono-data-sm text-xs text-outline w-12 text-right" id="lblCurrentTime">00:00</span>
+              <input type="range" id="videoTimelineSlider" min="0" max="100" step="0.05" value="0" class="flex-1 h-1.5 bg-surface-container appearance-none cursor-pointer focus:outline-none" oninput="onSliderScrub(this.value)">
+              <span class="font-mono-data-sm text-xs text-outline w-12" id="lblTotalDuration">00:00</span>
+            </div>
+
+            <!-- Operational Control Buttons -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="jumpToEventStart()" class="px-2.5 py-1.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 text-on-surface hover:text-primary-container text-xs font-mono-data-sm flex items-center gap-1 transition-all cursor-pointer" title="Seek to the exact beginning of the flagged event">
+                  <span class="material-symbols-outlined text-sm">first_page</span>
+                  <span>JUMP TO EVENT START</span>
+                </button>
+                <button id="btnPlayPause" onclick="togglePlayPause()" class="px-3.5 py-1.5 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest text-xs font-bold font-mono-data-sm flex items-center gap-1 transition-all cursor-pointer">
+                  <span class="material-symbols-outlined text-sm" id="iconPlayPause">play_arrow</span>
+                  <span id="textPlayPause">PLAY</span>
+                </button>
+                <button onclick="jumpToEventEnd()" class="px-2.5 py-1.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 text-on-surface hover:text-primary-container text-xs font-mono-data-sm flex items-center gap-1 transition-all cursor-pointer" title="Seek to the end of the flagged event">
+                  <span>EVENT END</span>
+                  <span class="material-symbols-outlined text-sm">last_page</span>
+                </button>
+              </div>
+
+              <!-- Loop Event Segment Toggle -->
+              <div class="flex items-center gap-3">
+                <label class="flex items-center gap-1.5 text-xs font-mono-data-sm text-on-surface-variant cursor-pointer select-none">
+                  <input type="checkbox" id="chkLoopSegment" checked class="rounded bg-surface-container border-outline-variant text-primary-container focus:ring-0">
+                  <span>LOOP EVENT WINDOW</span>
+                </label>
+                <div class="font-mono-data-sm text-xs px-2 py-1 bg-surface-container border border-outline-variant/30 text-primary-container font-semibold" id="frameCounterDisplay">
+                  FRAME: 296 // OFFSET: 09.86s
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frame Timeline Sequence Bar -->
+        <div class="bg-surface-container-low border border-outline-variant/30 p-3 flex items-center justify-between gap-3 text-xs font-mono-data-sm">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container text-sm">view_timeline</span>
+            <span class="text-outline uppercase tracking-wider">EVENT SPAN:</span>
+            <span class="text-white font-semibold" id="timelineSpanText">10 FRAMES (0.33 SECONDS)</span>
+          </div>
+          <div class="flex items-center gap-2 text-outline">
+            <span>START: <strong class="text-primary" id="spanStartTime">00:00:09.86</strong></span>
+            <span>→</span>
+            <span>END: <strong class="text-secondary" id="spanEndTime">00:00:10.20</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: FORENSIC INVESTIGATION — "WHY WAS THIS FLAGGED?" (5 cols ~42%) -->
+      <div class="xl:col-span-5 flex flex-col gap-4">
+
+        <!-- 1. "WHY WAS THIS EVENT FLAGGED?" Callout Card -->
+        <div class="bg-surface-container-low border-l-4 border-l-secondary border-t border-r border-b border-outline-variant/30 p-5 space-y-4 shadow-lg">
+          <div class="flex items-center justify-between border-b border-outline-variant/20 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-base">emergency</span>
+              <h2 class="font-headline-sm text-headline-sm text-white font-semibold tracking-wide">WHY WAS THIS FLAGGED?</h2>
+            </div>
+            <span class="font-mono-data-sm text-xs px-2 py-0.5 bg-surface-container border border-outline-variant/30 text-primary-container font-bold" id="riskScorePill">
+              98% RISK
+            </span>
+          </div>
+
+          <!-- Root Cause Narrative Box -->
+          <div class="p-3.5 bg-surface-container-lowest border border-outline-variant/40 space-y-1.5">
+            <div class="font-label-caps text-[10px] text-outline uppercase tracking-wider">AI PERCEPTION REASONING:</div>
+            <p class="font-body-md text-sm text-on-surface font-medium leading-relaxed" id="flaggedReasonText">
+              "Carton #1001 carried by operator #164 at elevated height (1.21m) and excessive speed (529.1 px/s). Live alert raised before drop occurred."
+            </p>
+          </div>
+
+          <!-- Observed Behaviour & Contributing Kinematics Grid -->
+          <div class="grid grid-cols-2 gap-2.5 pt-1 font-mono-data-sm text-xs">
+            <div class="p-2.5 bg-surface-container border border-outline-variant/30 space-y-1">
+              <div class="text-outline text-[10px] uppercase">FLAGGED BEHAVIOUR</div>
+              <div class="text-white font-semibold truncate" id="flaggedBehaviourName">Rapid Unsafe Carry</div>
+            </div>
+            <div class="p-2.5 bg-surface-container border border-outline-variant/30 space-y-1">
+              <div class="text-outline text-[10px] uppercase">LOCATION // ZONE</div>
+              <div class="text-white font-semibold truncate" id="flaggedLocationName">Loading Bay Area</div>
+            </div>
+            <div class="p-2.5 bg-surface-container border border-outline-variant/30 space-y-1">
+              <div class="text-outline text-[10px] uppercase">TRACKED ENTITIES</div>
+              <div class="text-primary-container font-semibold truncate" id="flaggedEntities">Operator #164, Carton #1001</div>
+            </div>
+            <div class="p-2.5 bg-surface-container border border-outline-variant/30 space-y-1">
+              <div class="text-outline text-[10px] uppercase">FRAME DURATION</div>
+              <div class="text-secondary font-semibold" id="flaggedDuration">10 Frames (~0.3s)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. RECOMMENDED SUPERVISOR ACTION & SOP MITIGATION -->
+        <div class="bg-surface-container-low border border-outline-variant/30 p-5 space-y-4 shadow-sm">
+          <div class="flex items-center justify-between border-b border-outline-variant/20 pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary-container text-base">assignment_turned_in</span>
+              <h3 class="font-headline-sm text-headline-sm text-white font-semibold">RECOMMENDED SUPERVISOR ACTION</h3>
+            </div>
+            <span class="font-label-caps text-xs text-primary-container font-mono-data-sm uppercase tracking-wider">ACTIONABLE</span>
+          </div>
+
+          <div class="p-3 bg-surface-container border-l-2 border-primary-container text-on-surface font-body-md text-sm leading-relaxed" id="recommendedActionText">
+            "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation."
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-2 pt-1">
+            <a href="prevention.html" class="w-full sm:w-1/2 py-2.5 px-3 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest font-label-caps text-xs font-bold tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+              <span>OPEN PREVENTION PLAN</span>
+              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            </a>
+            <button onclick="markIncidentResolved()" id="btnMarkResolved" class="w-full sm:w-1/2 py-2.5 px-3 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 text-on-surface hover:text-primary-container font-label-caps text-xs tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-xs">check_circle</span>
+              <span>MARK AS RESOLVED</span>
+            </button>
+          </div>
+
+          <div class="pt-2 border-t border-outline-variant/20 flex items-start gap-2 text-[11px] font-mono-data-sm text-outline">
+            <span class="material-symbols-outlined text-xs text-primary-container mt-0.5">verified_user</span>
+            <span>Responsible AI: Operational analysis is strictly grounded in facility and ergonomic events. Zero worker scorekeeping.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4. RECENT FLAGGED INCIDENTS CAROUSEL / QUICK BROWSER -->
+    <section class="bg-surface-container-low border border-outline-variant/30 p-4 space-y-3">
+      <div class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-container text-sm">view_carousel</span>
+          <span class="font-label-caps text-label-caps text-white font-semibold uppercase tracking-wider">ALL FLAGGED WAREHOUSE INCIDENTS</span>
+        </div>
+        <span class="font-mono-data-sm text-xs text-outline" id="incidentsTotalBadge">Loading incidents...</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 overflow-x-auto pb-1" id="incidentCardsGrid">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JAVASCRIPT: REAL INCIDENT REPLAY & FORENSICS CONTROLLER -->
+  <script>
+    let incidentsData = [];
+    let currentIncident = null;
+    let currentIndex = 0;
+    let currentFilter = 'all';
+    let isPlaying = false;
+    let loopCheckInterval = null;
+
+    // Elements
+    const video = document.getElementById('incidentVideo');
+    const frameImg = document.getElementById('incidentFrameImg');
+    const slider = document.getElementById('videoTimelineSlider');
+    const incidentDropdown = document.getElementById('incidentDropdown');
+    const chkLoop = document.getElementById('chkLoopSegment');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const iconPlayPause = document.getElementById('iconPlayPause');
+    const textPlayPause = document.getElementById('textPlayPause');
+
+    // Live Clock
+    function updateClock() {
+      const el = document.getElementById('clockIncidents');
+      if (el) el.textContent = new Date().toTimeString().split(' ')[0];
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Fetch Incidents from Backend
+    async function fetchIncidents() {
+      try {
+        const res = await fetch(`/api/incidents?filter_type=${currentFilter}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        incidentsData = await res.json();
+        
+        document.getElementById('incidentsTotalBadge').textContent = `${incidentsData.length} FLAGGED INCIDENTS`;
+        populateDropdown();
+        renderIncidentCards();
+
+        if (incidentsData.length > 0) {
+          loadIncident(0);
         }
+      } catch (err) {
+        console.error('Failed to load incidents', err);
+        document.getElementById('headerSubtitle').textContent = '⚠️ Could not load incidents from backend. Ensure server is running on http://localhost:8000';
       }
-
-      if (incidentSelect) {
-        incidentSelect.addEventListener('change', (e) => {
-          const idx = parseInt(e.target.value);
-          if (!isNaN(idx) && liveIncidents[idx]) {
-            populateIncident(liveIncidents[idx]);
-          }
-        });
-      }
-
-      loadLiveIncidents();
-
-    function markIncidentReviewed() {
-      const btn = document.getElementById('btnMarkReviewed');
-      const incSel = document.getElementById('incident-select');
-      const incName = incSel ? incSel.options[incSel.selectedIndex].text : 'Incident';
-      if (btn) {
-        btn.innerHTML = '<span class="text-primary-container font-bold">✓ MARKED AS REVIEWED</span>';
-        btn.classList.add('border-primary-container', 'bg-primary-container/10');
-      }
-      alert('✓ REVIEW RECORDED\n\n' + incName + '\nStatus: Acknowledged by Supervisor. Logged into audit trail.');
     }
 
+    // Populate Dropdown
+    function populateDropdown() {
+      incidentDropdown.innerHTML = '';
+      incidentsData.forEach((inc, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        const tag = inc.is_near_miss ? '[NEAR-MISS]' : `[${inc.risk_level.toUpperCase()}]`;
+        opt.textContent = `${tag} #${inc.incident_id} — ${inc.behaviour} (${inc.location})`;
+        incidentDropdown.appendChild(opt);
+      });
+    }
+
+    // Render Quick Cards
+    function renderIncidentCards() {
+      const grid = document.getElementById('incidentCardsGrid');
+      grid.innerHTML = '';
+      incidentsData.slice(0, 12).forEach((inc, idx) => {
+        const card = document.createElement('div');
+        const isActive = idx === currentIndex;
+        card.className = `p-2.5 bg-surface-container border ${isActive ? 'border-primary-container shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'border-outline-variant/30 hover:border-primary-container/60'} rounded cursor-pointer transition-all flex flex-col justify-between gap-2`;
+        card.onclick = () => loadIncident(idx);
+
+        const riskColor = inc.risk_level.toUpperCase() === 'CRITICAL' ? 'text-red-400' : (inc.risk_level.toUpperCase() === 'HIGH' ? 'text-secondary' : 'text-primary-container');
+        
+        card.innerHTML = `
+          <div class="flex items-center justify-between font-mono-data-sm text-[10px]">
+            <span class="font-bold ${riskColor}">${inc.risk_level.toUpperCase()}</span>
+            <span class="text-outline">${inc.start_time || '00:00'}</span>
+          </div>
+          <div class="font-headline-sm text-xs font-semibold text-white leading-snug line-clamp-2">
+            ${inc.behaviour}
+          </div>
+          <div class="font-mono-data-sm text-[10px] text-on-surface-variant/80 truncate">
+            #${inc.incident_id} // ${inc.location}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Load Specific Incident
+    function loadIncident(index) {
+      if (index < 0 || index >= incidentsData.length) return;
+      currentIndex = index;
+      currentIncident = incidentsData[index];
+      incidentDropdown.value = index;
+
+      // Update Header
+      document.getElementById('headerIncidentId').textContent = `INCIDENT #${currentIncident.incident_id}`;
+      document.getElementById('headerLocation').textContent = currentIncident.location.toUpperCase();
+
+      const riskBadge = document.getElementById('headerRiskBadge');
+      riskBadge.textContent = `${(currentIncident.risk_level || 'HIGH').toUpperCase()} RISK`;
+      if (currentIncident.risk_level.toUpperCase() === 'CRITICAL') {
+        riskBadge.className = 'px-2.5 py-0.5 bg-red-950/60 border border-red-500/60 text-red-300 font-label-caps text-label-caps font-bold tracking-widest uppercase';
+      } else {
+        riskBadge.className = 'px-2.5 py-0.5 bg-secondary/15 border border-secondary/60 text-secondary font-label-caps text-label-caps font-bold tracking-widest uppercase';
+      }
+
+      const nmBadge = document.getElementById('headerNearMissBadge');
+      if (currentIncident.is_near_miss) {
+        nmBadge.classList.remove('hidden');
+      } else {
+        nmBadge.classList.add('hidden');
+      }
+
+      // Update Forensics Right Panel
+      document.getElementById('flaggedReasonText').textContent = `"${currentIncident.reason || 'Safety deviation flagged by AI kinematics tracking.'}"`;
+      document.getElementById('flaggedBehaviourName').textContent = currentIncident.behaviour || 'Handling Deviation';
+      document.getElementById('flaggedLocationName').textContent = currentIncident.location || 'Loading Bay Area';
+      
+      const ents = currentIncident.entities_involved || {};
+      const personStr = (ents.person_track_ids && ents.person_track_ids.length) ? `Operator #${ents.person_track_ids[0]}` : 'Operator';
+      const pkgStr = (ents.package_track_ids && ents.package_track_ids.length) ? `Carton #${ents.package_track_ids[0]}` : 'Carton';
+      document.getElementById('flaggedEntities').textContent = `${personStr}, ${pkgStr}`;
+
+      const frCount = Math.max(1, (currentIncident.frame_end || 30) - (currentIncident.frame_start || 1));
+      document.getElementById('flaggedDuration').textContent = `${frCount} Frames (~${currentIncident.duration_seconds || 1}s)`;
+      document.getElementById('riskScorePill').textContent = `${currentIncident.risk_score || 85}% RISK`;
+      document.getElementById('recommendedActionText').textContent = `"${currentIncident.recommendation || 'Review handling posture and area safety clearance.'}"`;
+
+      // Update Video Player & Overlays
+      document.getElementById('camSourceLabel').textContent = `CAMERA FEED // ${currentIncident.location.toUpperCase()}`;
+      document.getElementById('videoSourceFile').textContent = currentIncident.video || 'Live Stream';
+      document.getElementById('overlayFrameWindow').textContent = `FRAMES: ${currentIncident.frame_start} - ${currentIncident.frame_end}`;
+      document.getElementById('spanStartTime').textContent = currentIncident.start_time;
+      document.getElementById('spanEndTime').textContent = currentIncident.end_time;
+      document.getElementById('timelineSpanText').textContent = `${frCount} FRAMES (${currentIncident.duration_seconds} SECONDS)`;
+
+      // Set video src
+      if (currentIncident.video_url) {
+        video.src = currentIncident.video_url;
+        video.currentTime = currentIncident.start_seconds || 0;
+      } else {
+        // Fallback for webcam or live stream
+        video.src = '';
+      }
+
+      // Set AI frame img
+      frameImg.src = currentIncident.ai_frame_url || '';
+
+      // Reset to video mode
+      setViewMode('video');
+
+      // Update cards highlighting
+      renderIncidentCards();
+    }
+
+    // View Mode Switcher
+    function setViewMode(mode) {
+      const btnVideo = document.getElementById('btnModeVideo');
+      const btnFrame = document.getElementById('btnModeFrame');
+
+      if (mode === 'frame') {
+        video.classList.add('hidden');
+        frameImg.classList.remove('hidden');
+        btnFrame.className = 'px-2.5 py-1 bg-primary-container text-surface-container-lowest font-bold flex items-center gap-1 cursor-pointer transition-all';
+        btnVideo.className = 'px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary-container border border-outline-variant/40 flex items-center gap-1 cursor-pointer transition-all';
+      } else {
+        frameImg.classList.add('hidden');
+        video.classList.remove('hidden');
+        btnVideo.className = 'px-2.5 py-1 bg-primary-container text-surface-container-lowest font-bold flex items-center gap-1 cursor-pointer transition-all';
+        btnFrame.className = 'px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary-container border border-outline-variant/40 flex items-center gap-1 cursor-pointer transition-all';
+      }
+    }
+
+    // Playback Controls
+    function togglePlayPause() {
+      if (video.paused) {
+        video.play();
+        iconPlayPause.textContent = 'pause';
+        textPlayPause.textContent = 'PAUSE';
+        isPlaying = true;
+      } else {
+        video.pause();
+        iconPlayPause.textContent = 'play_arrow';
+        textPlayPause.textContent = 'PLAY';
+        isPlaying = false;
+      }
+    }
+
+    function jumpToEventStart() {
+      if (!currentIncident) return;
+      video.currentTime = currentIncident.start_seconds || 0;
+      video.play();
+      iconPlayPause.textContent = 'pause';
+      textPlayPause.textContent = 'PAUSE';
+      isPlaying = true;
+    }
+
+    function jumpToEventEnd() {
+      if (!currentIncident) return;
+      video.currentTime = currentIncident.end_seconds || (video.duration || 10);
+    }
+
+    // Loop enforcement
+    video.addEventListener('timeupdate', () => {
+      if (!currentIncident) return;
+      const cur = video.currentTime;
+      const dur = video.duration || 1;
+
+      // Update scrubber slider
+      slider.max = dur;
+      slider.value = cur;
+
+      // Update label
+      const curMin = Math.floor(cur / 60);
+      const curSec = Math.floor(cur % 60);
+      document.getElementById('lblCurrentTime').textContent = `${curMin < 10 ? '0' : ''}${curMin}:${curSec < 10 ? '0' : ''}${curSec}`;
+
+      const durMin = Math.floor(dur / 60);
+      const durSec = Math.floor(dur % 60);
+      document.getElementById('lblTotalDuration').textContent = `${durMin < 10 ? '0' : ''}${durMin}:${durSec < 10 ? '0' : ''}${durSec}`;
+
+      const approxFrame = Math.floor(cur * 30);
+      document.getElementById('frameCounterDisplay').textContent = `FRAME: ${approxFrame} // ${cur.toFixed(2)}s`;
+
+      // Check loop boundary
+      if (chkLoop.checked && currentIncident.end_seconds) {
+        if (cur >= currentIncident.end_seconds) {
+          video.currentTime = currentIncident.start_seconds || 0;
+        }
+      }
+    });
+
+    video.addEventListener('ended', () => {
+      if (chkLoop.checked && currentIncident) {
+        video.currentTime = currentIncident.start_seconds || 0;
+        video.play();
+      } else {
+        iconPlayPause.textContent = 'play_arrow';
+        textPlayPause.textContent = 'PLAY';
+        isPlaying = false;
+      }
+    });
+
+    function onSliderScrub(val) {
+      video.currentTime = parseFloat(val);
+    }
+
+    function onSelectIncident(val) {
+      if (val !== '') loadIncident(parseInt(val));
+    }
+
+    function navigateIncident(delta) {
+      let nextIdx = currentIndex + delta;
+      if (nextIdx < 0) nextIdx = incidentsData.length - 1;
+      if (nextIdx >= incidentsData.length) nextIdx = 0;
+      loadIncident(nextIdx);
+    }
+
+    function setFilter(type) {
+      currentFilter = type;
+      document.getElementById('btnFilterAll').className = type === 'all' ? 'px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer' : 'px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer';
+      document.getElementById('btnFilterNM').className = type === 'near_miss' ? 'px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer' : 'px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer';
+      document.getElementById('btnFilterHigh').className = type === 'high_risk' ? 'px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer' : 'px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer';
+      fetchIncidents();
+    }
+
+    function markIncidentResolved() {
+      const btn = document.getElementById('btnMarkResolved');
+      btn.innerHTML = '<span class="material-symbols-outlined text-xs text-emerald-400">check</span><span class="text-emerald-400 font-bold">RESOLVED ✓</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined text-xs">check_circle</span><span>MARK AS RESOLVED</span>';
+      }, 2500);
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchIncidents();
     });
   </script>
-</body></html>
+</body>
+
+</html>

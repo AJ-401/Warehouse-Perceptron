@@ -1,6 +1,117 @@
 {
   "events": [
     {
+      "event_id": "EVT-20260910-0261",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "11:04:15",
+      "timestamp_end": "11:04:15",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton / Package Manual Lifting",
+      "behaviour_code": "MANUAL_LIFTING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.35,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Operator active in manual package handling (1 package(s) tracked).",
+      "recommended_action": "Verify product weight complies with two-person lift SOP if over 20kg.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789018455",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0260",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "11:04:08",
+      "timestamp_end": "11:04:08",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton / Package Manual Lifting",
+      "behaviour_code": "MANUAL_LIFTING",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.35,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Operator active in manual package handling (1 package(s) tracked).",
+      "recommended_action": "Verify product weight complies with two-person lift SOP if over 20kg.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789018448",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0259",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "11:02:13",
+      "timestamp_end": "11:02:13",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Manual Dock Safety Tag",
+      "behaviour_code": "MANUAL_TAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": true,
+      "near_miss_probability": 0.82,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE",
+        "is_repeated_behaviour": false
+      },
+      "reason": "Supervisor manual capture: Safety deviation flagged from live stream",
+      "recommended_action": "Review handling posture and area safety clearance.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789018333",
+        "clip_url": null
+      }
+    },
+    {
       "event_id": "EVT-20260910-0258",
       "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
       "timestamp_start": "08:51:21",
@@ -9743,9 +9854,9 @@
     }
   ],
   "shift_summary": {
-    "total_events": 258,
-    "near_misses_prevented": 16,
-    "high_critical_risks": 187,
+    "total_events": 261,
+    "near_misses_prevented": 17,
+    "high_critical_risks": 188,
     "estimated_damage_avoided_inr": 67500.0,
     "most_frequent_risk": "Carton / KD Floor Dragging"
   }

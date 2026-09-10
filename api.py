@@ -354,47 +354,79 @@ async def get_events(
     return [e.model_dump() if hasattr(e, "model_dump") else (e.to_dict() if hasattr(e, "to_dict") else vars(e)) for e in filtered[:limit]]
 
 @app.get("/api/incidents")
-async def get_incidents():
-    """Returns all near-miss incidents for the investigation replay view with full event chronology."""
-    if store is None:
+async def get_incidents(filter_type: Optional[str] = "all"):
+    """Returns flagged warehouse incidents for video investigation and replay with exact frame/timestamp offsets."""
+    if store is None or not store.events:
         return []
-    near_misses = [e for e in store.events if getattr(e, "is_near_miss", False)]
+    
+    import urllib.parse
+
+    def parse_time_to_sec(t_str: str, frame_idx: int) -> float:
+        try:
+            if t_str and ":" in t_str:
+                parts = t_str.split(":")
+                if len(parts) == 3:
+                    h, m, s = float(parts[0]), float(parts[1]), float(parts[2])
+                    if h < 2:  # relative offset e.g. 00:00:09.767
+                        return round(h * 3600 + m * 60 + s, 2)
+            if frame_idx and frame_idx > 0:
+                return round(frame_idx / 30.0, 2)
+        except Exception:
+            pass
+        return 0.0
+
+    flagged_events = []
+    for e in store.events:
+        risk = getattr(e, "risk_level", "").upper()
+        is_nm = getattr(e, "is_near_miss", False)
+        if filter_type == "near_miss" and not is_nm:
+            continue
+        if filter_type == "high_risk" and risk not in ("HIGH", "CRITICAL"):
+            continue
+        if is_nm or risk in ("HIGH", "CRITICAL") or filter_type == "all":
+            flagged_events.append(e)
+
+    # Sort so near misses and critical/high risk events appear first
+    flagged_events.sort(key=lambda x: (
+        1 if getattr(x, "is_near_miss", False) else 0,
+        1 if getattr(x, "risk_level", "").upper() in ("HIGH", "CRITICAL") else 0
+    ), reverse=True)
+
     result = []
-    for idx, e in enumerate(near_misses):
+    for idx, e in enumerate(flagged_events[:80]):
         d = e.model_dump() if hasattr(e, "model_dump") else (e.to_dict() if hasattr(e, "to_dict") else vars(e))
+        vid = d.get("video_id", "Dock level, dragging cupboard.mp4")
+        fr = d.get("frame_range") or [1, 30]
+        fr_start = fr[0] if len(fr) > 0 else 1
+        fr_end = fr[1] if len(fr) > 1 else fr_start + 30
+
+        start_sec = parse_time_to_sec(d.get("timestamp_start", ""), fr_start)
+        end_sec = parse_time_to_sec(d.get("timestamp_end", ""), fr_end)
+        if end_sec <= start_sec:
+            end_sec = round(start_sec + max(1.0, (fr_end - fr_start) / 30.0), 2)
+
+        is_webcam = "webcam" in vid.lower()
+        vid_encoded = urllib.parse.quote(vid)
+
         d["incident_id"] = d.get("event_id", f"NM-{idx+1:04d}")
-        d["video"] = d.get("video_id", "Dock level, dragging cupboard.mp4")
-        d["start_time"] = d.get("timestamp_start", "14:32:04")
-        d["end_time"] = d.get("timestamp_end", "14:32:14")
-        d["location"] = d.get("location_id", "Loading Bay 01")
-        d["risk_score"] = int((d.get("near_miss_probability") or 0.78) * 100)
-        d["behaviour"] = d.get("behaviour_type", "Potential Damage Risk")
-        
-        d["risk_factors"] = [
-            "Fast movement (>1.4 m/s)",
-            "High handling height (>1.2m)",
-            "No suitable equipment detected",
-            "Stack proximity"
-        ]
-        
-        ents = d.get("entities_involved", {})
-        persons = ents.get("person_track_ids", [164])
-        packages = ents.get("package_track_ids", [1001])
-        d["detected_objects"] = [
-            f"Worker #{persons[0]}" if persons else "Worker #164",
-            f"Product #{packages[0]}" if packages else "Product #1001",
-            "Pallet PL-02"
-        ]
-        
-        d["timeline_stages"] = [
-            {"time": "14:32:04", "stage": "01 PICKUP", "title": "Product picked up", "desc": "Product lifted manually by worker", "risk": 32},
-            {"time": "14:32:08", "stage": "02 VELOCITY", "title": "Movement increased", "desc": "Transit velocity exceeded 1.4 m/s", "risk": 48},
-            {"time": "14:32:11", "stage": "03 SIGNAL", "title": "Risk signal detected", "desc": "Excessive height without handling trolley", "risk": 61},
-            {"time": "14:32:12", "stage": "04 WARNING", "title": "Predictive warning", "desc": "Damage risk trajectory flagged by AI", "risk": d["risk_score"]},
-            {"time": "14:32:14", "stage": "05 ACTION", "title": "Intervention recommended", "desc": "Supervisor alert: lower carry height", "risk": 78}
-        ]
-        d["recommendation"] = d.get("recommended_action", "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation.")
+        d["video"] = vid
+        d["video_url"] = None if is_webcam else f"/official_videos/{vid_encoded}"
+        d["ai_frame_url"] = f"/api/video_frame?video={vid_encoded}&frame_idx={fr_start}&mask=true"
+        d["ai_feed_url"] = f"/api/video_feed?video={vid_encoded}&start_frame={fr_start}&mask=true"
+        d["start_time"] = d.get("timestamp_start", "00:00:00")
+        d["end_time"] = d.get("timestamp_end", "00:00:05")
+        d["start_seconds"] = start_sec
+        d["end_seconds"] = end_sec
+        d["duration_seconds"] = round(end_sec - start_sec, 2)
+        d["frame_start"] = fr_start
+        d["frame_end"] = fr_end
+        d["location"] = d.get("location_id", "Loading Bay Area")
+        d["risk_score"] = int((d.get("near_miss_probability") or 0.78) * 100) if d.get("is_near_miss") else (85 if d.get("risk_level", "").upper() in ("HIGH", "CRITICAL") else 45)
+        d["behaviour"] = d.get("behaviour_type", "Operational Anomaly")
+        d["reason"] = d.get("reason", "Action flagged by continuous ergonomic and kinematic tracking.")
+        d["recommendation"] = d.get("recommended_action", "Review material handling SOP and provide ergonomic support equipment.")
         result.append(d)
+
     return result
 
 @app.get("/behaviours")
@@ -1067,6 +1099,11 @@ def get_video_list():
         {"filename": "__DEVICE_WEBCAM__", "cam": "📷 MY DEVICE WEBCAM (LIVE AI INFERENCE)"}
     )
     return feeds
+
+# Mount official warehouse videos for playback in Incident Investigation
+videos_dir = os.path.join(os.path.dirname(__file__), "official_videos")
+if os.path.isdir(videos_dir):
+    app.mount("/official_videos", StaticFiles(directory=videos_dir), name="official_videos")
 
 # Mount the Godrej Stitch Dashboard directory at root
 dashboard_dir = os.path.join(os.path.dirname(__file__), "Godrej")

@@ -1,7 +1,7 @@
 <!DOCTYPE html><html class="dark" lang="en"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>FIELD INTELLIGENCE // WAREHOUSE VIDEO INTELLIGENCE</title>
+<title>WAREHOUSE PERCEPTRON // Predictive Damage Prevention</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
@@ -454,8 +454,8 @@ void main() {
 <div class="w-2.5 h-2.5 border border-cyan-accent rotate-45"></div>
 </div>
 <div class="flex flex-col">
-<span class="text-sm font-semibold tracking-wider text-white">FIELD INTELLIGENCE</span>
-<span class="font-mono text-[9px] tracking-[0.25em] text-slate-400 uppercase -mt-0.5">WAREHOUSE VIDEO INTELLIGENCE</span>
+<span class="text-sm font-semibold tracking-wider text-white">WAREHOUSE PERCEPTRON</span>
+<span class="font-mono text-[9px] tracking-[0.25em] text-slate-400 uppercase -mt-0.5">PREDICTIVE DAMAGE PREVENTION</span>
 </div>
 </div>
 <!-- Center Minimalist Navigation -->
@@ -467,16 +467,15 @@ void main() {
 <a class="text-slate-400 hover:text-cyan-accent transition-colors" href="prevention.html">Prevention</a>
 <a class="text-slate-400 hover:text-cyan-accent transition-colors" href="assistance.html">Assistant</a>
 </nav>
-<!-- Trailing Status & Single Polished CTA -->
-<div class="flex items-center gap-6">
-<div class="hidden sm:flex items-center gap-2 font-mono text-[11px] text-slate-400 tracking-wider">
-<span class="w-1.5 h-1.5 rounded-full bg-cyan-accent animate-serene-breathe"></span>
-<span id="overviewTelemetry">SYSTEM ONLINE // 250 EVENTS INGESTED</span>
+<!-- Trailing Status -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-2.5 py-1 bg-slate-950/80 border border-white/10 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-cyan-accent animate-pulse"></span>
+<span class="font-mono text-[11px] text-cyan-accent tracking-wider font-semibold">● SYSTEM ONLINE</span>
 </div>
-<button onclick="window.location.href='intelligence.html'" class="cursor-pointer group px-4 py-2 bg-cyan-accent hover:bg-cyan-dim text-slate-950 text-xs font-semibold tracking-wider transition-all duration-200 shadow-[0_0_20px_rgba(0,229,255,0.22)] hover:shadow-[0_0_28px_rgba(0,229,255,0.48)] flex items-center gap-1.5 active:scale-[0.98]">
-<span class="">LAUNCH INTELLIGENCE</span>
-<span class="font-mono text-sm leading-none transition-transform duration-200 group-hover:translate-x-1">→</span>
-</button>
+<div class="hidden lg:block font-mono text-[11px] text-slate-400 border-l border-white/10 pl-3">
+10 SEP 2026 / <span class="text-white font-semibold" id="overviewClock">14:50:00</span>
+</div>
 </div>
 </div>
 </header>
@@ -490,20 +489,20 @@ void main() {
 <!-- Understated Eyebrow -->
 <div class="inline-flex items-center gap-2.5 font-mono text-[11px] tracking-[0.18em] text-slate-400 uppercase">
 <span class="w-1.5 h-1.5 rounded-full bg-cyan-accent animate-serene-breathe"></span>
-<span class="">AI VIDEO INTELLIGENCE / WAREHOUSE OPERATIONS</span>
+<span class="">PREDICTIVE COMPUTER VISION // WAREHOUSE INTELLIGENCE</span>
 </div>
 <!-- Dominant Crisp Headline with Entrance Animation -->
 <div class="space-y-1">
 <h2 class="animate-headline-line1 text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-slate-400 leading-[1.08]">
-            UNDERSTAND THE MOVE
+            PREDICT THE RISK
           </h2>
 <h1 class="animate-headline-line2 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
-            BEFORE DAMAGE HAPPENS<span class="text-cyan-accent">.</span>
+            PREVENT THE DAMAGE<span class="text-cyan-accent">.</span>
 </h1>
 </div>
 <!-- Clean, Calm Supporting Copy -->
 <p class="text-base sm:text-lg text-slate-300 max-w-lg font-normal leading-relaxed">
-          Understand handling behaviour in real time. Identify risk early. Help teams prevent damage before it happens.
+          Real-time video intelligence that analyzes handling kinetics — identifying near-misses and alerting teams before product drops, drags, and damage occur.
         </p>
 <!-- Actions: Primary Cyan CTA + Subtle Secondary Link -->
 <div class="pt-2 flex flex-wrap items-center gap-6">
@@ -699,7 +698,7 @@ void main() {
 </div>
 <!-- Continuous Intelligence Tagline -->
 <div class="text-xs sm:text-sm text-slate-400 font-normal">
-          Continuous intelligence for safer, more disciplined material handling.
+          Autonomous perception &amp; near-miss warning for zero-damage warehouse operations.
         </div>
 </div>
 </div>
@@ -741,16 +740,15 @@ void main() {
           reqId = null;
         }
       }
-      // Fetch live shift metrics from backend single-source-of-truth
-      const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
-      fetch(API_BASE + '/api/metrics')
-        .then(r => r.json())
-        .then(m => {
-          const el = document.getElementById('overviewTelemetry');
-          if (el && m.total_events) {
-            el.textContent = `SYSTEM ONLINE // ${m.total_events} EVENTS INGESTED // ${m.near_miss_count} NEAR-MISSES`;
-          }
-        }).catch(() => {});
+      function updateOverviewClock() {
+        const el = document.getElementById('overviewClock');
+        if (el) {
+          const now = new Date();
+          el.textContent = now.toTimeString().split(' ')[0];
+        }
+      }
+      setInterval(updateOverviewClock, 1000);
+      updateOverviewClock();
     })();
   </script>
 

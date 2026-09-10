@@ -1,26 +1,22 @@
-<!DOCTYPE html><html class="dark" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>FIELD INTELLIGENCE // BEHAVIOUR INTELLIGENCE</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
-  let currentShiftIdx = 0;
-  const shiftList = ['SHIFT: TODAY', 'SHIFT: 1 (MORNING)', 'SHIFT: 2 (AFTERNOON)', 'SHIFT: 3 (NIGHT)'];
-  function toggleShiftFilter() {
-    currentShiftIdx = (currentShiftIdx + 1) % shiftList.length;
-    const btn = document.getElementById('btnShiftFilter');
-    if (btn) btn.innerHTML = shiftList[currentShiftIdx] + ' <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>';
-    alert('Filtered telemetry to: ' + shiftList[currentShiftIdx]);
-  }
+<!DOCTYPE html>
+<html class="dark" lang="en">
 
-</script>
-<script id="tailwind-config">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>FIELD INTELLIGENCE // BEHAVIOUR PATTERNS</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
@@ -80,20 +76,7 @@
             "xl": "0.5rem",
             "full": "0.75rem"
           },
-          "spacing": {
-            "gutter-dense": "8px",
-            "unit-2xs": "2px",
-            "margin-screen": "16px",
-            "unit-lg": "16px",
-            "unit-xs": "4px",
-            "unit-xl": "24px",
-            "unit-md": "12px",
-            "gutter-standard": "12px",
-            "unit-2xl": "32px",
-            "unit-sm": "8px"
-          },
           "fontFamily": {
-            "display-xl-mobile": ["Space Grotesk"],
             "display-xl": ["Space Grotesk"],
             "mono-data-md": ["JetBrains Mono"],
             "headline-md": ["Space Grotesk"],
@@ -107,8 +90,6 @@
             "headline-lg": ["Space Grotesk"]
           },
           "fontSize": {
-            "display-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-            "display-xl": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
             "mono-data-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
             "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
             "mono-data-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }],
@@ -122,19 +103,9 @@
           }
         }
       }
-    }
-  
-  let currentShiftIdx = 0;
-  const shiftList = ['SHIFT: TODAY', 'SHIFT: 1 (MORNING)', 'SHIFT: 2 (AFTERNOON)', 'SHIFT: 3 (NIGHT)'];
-  function toggleShiftFilter() {
-    currentShiftIdx = (currentShiftIdx + 1) % shiftList.length;
-    const btn = document.getElementById('btnShiftFilter');
-    if (btn) btn.innerHTML = shiftList[currentShiftIdx] + ' <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>';
-    alert('Filtered telemetry to: ' + shiftList[currentShiftIdx]);
-  }
-
-</script>
-<style>
+    };
+  </script>
+  <style>
     .material-symbols-outlined {
       font-family: 'Material Symbols Outlined';
       font-weight: normal;
@@ -150,365 +121,466 @@
       vertical-align: middle;
     }
 
-    /* Architectural CAD Grid & Micro Hatching */
-    .cad-grid {
-      background-size: 24px 24px;
-      background-image: 
-        linear-gradient(to right, rgba(59, 73, 76, 0.15) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(59, 73, 76, 0.15) 1px, transparent 1px);
-    }
-
-    .cad-crosshairs {
-      background-image: radial-gradient(circle, rgba(0, 229, 255, 0.25) 1px, transparent 1px);
-      background-size: 16px 16px;
-    }
-
-    /* Refined Pulse Effect */
-    @keyframes subtle-beacon {
-      0%, 100% {
-        opacity: 0.18;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.38;
-        transform: scale(1.03);
-      }
-    }
-
-    .hotspot-beacon {
-      animation: subtle-beacon 3.2s ease-in-out infinite;
-    }
-
-    /* Bar Animations */
     @keyframes bar-expand {
       from { width: 0%; }
     }
+
     .animate-bar {
       animation: bar-expand 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-
-    /* Stroke Draw Animation */
-    @keyframes line-draw {
-      from { stroke-dashoffset: 400; }
-      to { stroke-dashoffset: 0; }
-    }
-    .animate-trend {
-      stroke-dasharray: 400;
-      animation: line-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
   </style>
 </head>
-<body class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-surface-container-lowest">
-<!-- ================================================================= -->
-<!-- TOP APP BAR (Shared Component Execution)                           -->
-<!-- ================================================================= -->
-<header class="flex justify-between items-center h-14 w-full px-6 border-b border-outline-variant/30 bg-surface/90 backdrop-blur-md sticky top-0 z-50">
-<!-- Brand Identity & Hierarchy -->
-<div class="flex items-center gap-6">
-<div class="flex flex-col cursor-pointer">
-<div class="flex items-center gap-2">
-<span class="w-2 h-2 rounded-none bg-primary-container inline-block"></span>
-<span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface">FIELD INTELLIGENCE</span>
-</div>
-<span class="font-label-caps text-label-caps text-outline tracking-widest pl-4">WAREHOUSE VIDEO INTELLIGENCE</span>
-</div>
-<!-- Navigation Clusters -->
-<nav class="hidden lg:flex items-center gap-7 ml-4">
-<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="overview.html">OVERVIEW</a>
-<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="intelligence.html">INTELLIGENCE</a>
-<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="incidents.html">INCIDENTS</a>
-<!-- Active Target -->
-<a class="text-primary-container border-b-2 border-primary-container font-medium py-4 font-label-caps text-label-caps uppercase tracking-widest" href="behaviour.html">BEHAVIOUR</a>
-<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="prevention.html">PREVENTION</a>
-<a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150" href="assistance.html">ASSISTANT</a>
-</nav>
-</div>
-<!-- Trailing Actions & Diagnostic Telemetry -->
-<div class="flex items-center gap-5">
-<div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-surface-container-low border border-outline-variant/30 rounded-DEFAULT">
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
-<span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant tracking-wider">● SYSTEM ONLINE &nbsp;07 SEP 2026 / 14:48</span>
-</div>
-<div class="flex items-center gap-1">
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors duration-150 rounded-DEFAULT" title="Grid View" onclick="showNavGridModal()" class="cursor-pointer">
-<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
-</button>
-<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors duration-150 rounded-DEFAULT" title="Calibrate" onclick="showNavTuneModal()" class="cursor-pointer">
-<span class="material-symbols-outlined" data-icon="tune">tune</span>
-</button>
-</div>
-<button onclick="window.location.href='intelligence.html'" class="hidden md:inline-flex items-center justify-center px-3.5 py-1.5 bg-primary-container text-surface-container-lowest font-headline-sm text-headline-sm font-semibold tracking-wide hover:bg-primary-fixed-dim active:scale-95 transition-all duration-100 rounded-DEFAULT cursor-pointer">
-        LAUNCH INTELLIGENCE
-      </button>
-</div>
-</header>
-<!-- ================================================================= -->
-<!-- MAIN WORKSPACE                                                    -->
-<!-- ================================================================= -->
-<main class="flex-1 w-full max-w-[1760px] mx-auto p-4 md:p-6 space-y-5 pb-8">
-<!-- PAGE HEADER BAR -->
-<div class="flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b border-outline-variant/30 gap-4">
-<div>
-<div class="flex items-center gap-2 mb-1"><span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">DIAGNOSTIC ENGINE 04</span><span class="text-outline-variant font-mono-data-sm">/</span><span class="font-mono-data-sm text-mono-data-sm text-outline">TELEMETRY ACTIVE</span></div>
-<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">BEHAVIOUR INTELLIGENCE</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Turn detected handling events into recurring patterns, risk hotspots and practical improvement opportunities.</p>
-</div>
-<!-- Minimal Shift Selector -->
-<div class="flex items-center gap-3">
-<button id="btnShiftFilter" onclick="toggleShiftFilter()" class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-outline-variant/40 hover:border-primary-container/60 text-on-surface font-mono-data-sm text-mono-data-sm tracking-wider rounded-DEFAULT transition-colors duration-150 cursor-pointer">
-<span class="text-outline">SHIFT:</span>
-<span class="font-semibold text-primary">TODAY</span>
-<span class="material-symbols-outlined text-outline" data-icon="arrow_drop_down">arrow_drop_down</span>
-</button>
-</div>
-</div>
-<!-- CORE DUAL COLUMN GRID -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-<!-- ============================================================= -->
-<!-- LEFT COLUMN: Operational Patterns & Hotspots (7 Cols)         -->
-<!-- ============================================================= -->
-<section class="lg:col-span-7 space-y-5">
-<!-- MODULE A: BEHAVIOUR FREQUENCY // SHIFT SUMMARY -->
-<div class="bg-surface-container-low border border-outline-variant/30 rounded-DEFAULT p-5 relative overflow-hidden">
-<div class="flex items-center justify-between pb-3 border-b border-outline-variant/20 mb-4">
-<div class="flex items-center gap-2">
-<span class="w-1.5 h-3 bg-secondary"></span>
-<h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider">BEHAVIOUR FREQUENCY // SHIFT SUMMARY</h2>
-</div>
-<span class="font-mono-data-sm text-mono-data-sm text-outline" id="total-detections-label">250 TOTAL DETECTIONS</span>
-</div>
-<!-- Proportion Bars List -->
-<div class="space-y-3.5" id="behaviour-bars-container">
-<!-- 1. Dragging (Highest - Amber) -->
-<div class="space-y-1">
-<div class="flex justify-between items-baseline">
-<div class="flex items-center gap-2">
-<span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary">01. DRAGGING</span>
-<span class="px-1.5 py-0.2 bg-secondary/10 border border-secondary/30 text-secondary font-label-caps text-label-caps rounded-DEFAULT">ELEVATED</span>
-</div>
-<div class="flex items-baseline gap-2">
-<span class="font-mono-data-lg text-mono-data-lg font-bold text-secondary">105</span>
-<span class="font-mono-data-sm text-mono-data-sm text-outline">events (42.0%)</span>
-</div>
-</div>
-<div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded-DEFAULT overflow-hidden">
-<div class="h-full bg-secondary animate-bar rounded-DEFAULT" style="width: 84%;"></div>
-</div>
-</div>
-<!-- 2. Improper Stacking -->
-<div class="space-y-1">
-<div class="flex justify-between items-baseline">
-<span class="font-mono-data-sm text-mono-data-sm text-on-surface">02. IMPROPER STACKING</span>
-<div class="flex items-baseline gap-2">
-<span class="font-mono-data-lg text-mono-data-lg font-bold text-primary-container">62</span>
-<span class="font-mono-data-sm text-mono-data-sm text-outline">events (24.8%)</span>
-</div>
-</div>
-<div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded-DEFAULT overflow-hidden">
-<div class="h-full bg-primary-container/80 animate-bar rounded-DEFAULT" style="width: 50%;"></div>
-</div>
-</div>
-<!-- 3. Stepping / Standing -->
-<div class="space-y-1">
-<div class="flex justify-between items-baseline">
-<span class="font-mono-data-sm text-mono-data-sm text-on-surface">03. STEPPING / STANDING</span>
-<div class="flex items-baseline gap-2">
-<span class="font-mono-data-lg text-mono-data-lg font-bold text-primary-container">45</span>
-<span class="font-mono-data-sm text-mono-data-sm text-outline">events (18.0%)</span>
-</div>
-</div>
-<div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded-DEFAULT overflow-hidden">
-<div class="h-full bg-primary-container/60 animate-bar rounded-DEFAULT" style="width: 36%;"></div>
-</div>
-</div>
-<!-- 4. Throwing / Sliding -->
-<div class="space-y-1">
-<div class="flex justify-between items-baseline">
-<span class="font-mono-data-sm text-mono-data-sm text-on-surface">04. THROWING / SLIDING</span>
-<div class="flex items-baseline gap-2">
-<span class="font-mono-data-lg text-mono-data-lg font-bold text-primary-container">23</span>
-<span class="font-mono-data-sm text-mono-data-sm text-outline">events (9.2%)</span>
-</div>
-</div>
-<div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded-DEFAULT overflow-hidden">
-<div class="h-full bg-primary-container/40 animate-bar rounded-DEFAULT" style="width: 18%;"></div>
-</div>
-</div>
-<!-- 5. Near-Miss Precursor (USP) -->
-<div class="space-y-1">
-<div class="flex justify-between items-baseline">
-<span class="font-mono-data-sm text-mono-data-sm text-on-surface">05. PREDICTIVE NEAR-MISS (USP)</span>
-<div class="flex items-baseline gap-2">
-<span class="font-mono-data-lg text-mono-data-lg font-bold text-primary-container">15</span>
-<span class="font-mono-data-sm text-mono-data-sm text-outline">events (6.0%)</span>
-</div>
-</div>
-<div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded-DEFAULT overflow-hidden">
-<div class="h-full bg-primary-container/30 animate-bar rounded-DEFAULT" style="width: 12%;"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- MODULE B: RECURRING PATTERN DETECTED -->
-<div class="bg-surface-container-low border border-secondary/50 rounded-DEFAULT p-6 relative overflow-hidden bg-gradient-to-r from-surface-container-low via-surface-container-low to-secondary/10"><div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-outline-variant/20"><div class="inline-flex items-center gap-2 px-2.5 py-1 bg-secondary/15 border border-secondary/40 text-secondary font-label-caps text-label-caps tracking-widest rounded-DEFAULT"><span class="material-symbols-outlined text-[14px]" data-icon="warning">warning</span> RECURRING PATTERN DETECTED</div><span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant font-medium">CONFIDENCE: 94.2%</span></div><div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center"><div class="md:col-span-8 space-y-3"><div class="flex items-baseline gap-4 flex-wrap"><h3 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight text-[28px]" id="top-pattern-title">DRAGGING</h3><div class="flex items-baseline gap-2"><span class="font-headline-lg text-[32px] font-bold text-secondary leading-none" id="top-pattern-count">61</span><span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">EVENTS</span></div><span class="inline-flex items-center px-2 py-0.5 bg-secondary/15 border border-secondary/40 text-secondary font-label-caps text-label-caps rounded-DEFAULT font-semibold" id="top-pattern-share">24.4% OF FACILITY TOTAL</span></div><p class="font-body-lg text-body-md text-on-surface-variant leading-relaxed" id="top-pattern-desc">Repeated dragging behaviour is concentrated during unloading operations. In-feed units indicate frequent manual parcel relocation without trolley dock engagement.</p></div><div class="md:col-span-4 flex flex-col justify-center gap-3 bg-surface-container-lowest/80 border border-outline-variant/30 rounded-DEFAULT p-4"><div class="flex justify-between items-center"><span class="font-label-caps text-label-caps text-outline uppercase">PRIMARY HOTSPOT</span><span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary" id="top-pattern-hotspot">BAY 01 // DOCK GATE A</span></div><div class="flex justify-between items-center pt-2 border-t border-outline-variant/20"><span class="font-label-caps text-label-caps text-outline uppercase">SHARE OF SHIFT</span><span class="font-mono-data-sm text-mono-data-sm font-semibold text-on-surface" id="top-pattern-share-stat">24.4%</span></div><div class="flex justify-between items-center pt-2 border-t border-outline-variant/20"><span class="font-label-caps text-label-caps text-outline uppercase">EST. RISK RATING</span><span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary">ELEVATED</span></div></div></div></div>
-<!-- MODULE C: RISK HOTSPOT // FACILITY TOPOLOGY -->
-<div class="bg-surface-container-low border border-outline-variant/30 rounded-DEFAULT p-5 relative"><div class="flex items-center justify-between pb-3 border-b border-outline-variant/20 mb-4"><div class="flex items-center gap-2"><span class="w-1.5 h-3 bg-primary-container"></span><h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider uppercase">FACILITY TOPOLOGY // RISK HOTSPOT</h2></div><span class="font-mono-data-sm text-mono-data-sm text-outline">NORTH WAREHOUSE BAY</span></div><div class="relative w-full h-[240px] bg-surface-container-lowest border border-outline-variant/30 rounded-DEFAULT p-3 select-none flex flex-col justify-between"><div class="grid grid-cols-2 gap-3 h-[48%]"><div class="relative border border-secondary/80 bg-secondary/10 rounded-DEFAULT p-3 flex flex-col justify-between"><div class="flex justify-between items-start"><div class="flex items-center gap-2"><span class="w-2 h-2 bg-secondary rounded-full animate-ping"></span><span class="font-label-caps text-label-caps font-bold text-secondary tracking-wider">LOADING BAY 01</span></div><span class="px-1.5 py-0.5 bg-secondary/20 border border-secondary/60 text-secondary font-label-caps text-[9px] font-bold rounded-DEFAULT">HOTSPOT</span></div><div><div class="font-headline-sm text-headline-sm font-bold text-secondary">18 EVENTS</div><div class="font-mono-data-sm text-[11px] text-on-surface-variant">Elevated Dragging // Gate A</div></div></div><div class="border border-outline-variant/30 bg-surface-container/30 rounded-DEFAULT p-3 flex flex-col justify-between"><div class="flex justify-between items-start"><span class="font-label-caps text-label-caps text-on-surface-variant font-medium">LOADING BAY 02</span><span class="font-mono-data-sm text-[10px] text-outline">NOMINAL</span></div><div><div class="font-mono-data-lg text-mono-data-lg font-semibold text-on-surface">4 EVENTS</div><div class="font-mono-data-sm text-[11px] text-outline">Gate B In-Flow Calm</div></div></div></div><div class="grid grid-cols-3 gap-3 h-[46%]"><div class="col-span-2 border border-outline-variant/40 bg-surface-container/20 rounded-DEFAULT p-3 flex flex-col justify-between"><div class="flex justify-between items-start"><span class="font-label-caps text-label-caps text-on-surface-variant font-medium">STAGING AREA</span><span class="font-mono-data-sm text-[10px] text-outline">ZONE STG-04</span></div><div><div class="font-mono-data-lg text-mono-data-lg font-semibold text-on-surface">9 EVENTS</div><div class="font-mono-data-sm text-[11px] text-outline">Pallet Buffer Consolidation</div></div></div><div class="col-span-1 border border-outline-variant/30 bg-surface-container/20 rounded-DEFAULT p-3 flex flex-col justify-between"><div class="flex justify-between items-start"><span class="font-label-caps text-label-caps text-on-surface-variant">TRANSFER ZONE</span><span class="font-mono-data-sm text-[10px] text-outline">3 EVTS</span></div><div><div class="font-mono-data-sm text-[11px] text-outline">Inter-Aisle Lane</div></div></div></div></div></div>
-</section>
-<!-- ============================================================= -->
-<!-- RIGHT COLUMN: Correlation, AI Reasoning & Action (5 Cols)     -->
-<!-- ============================================================= -->
-<section class="lg:col-span-5 space-y-5">
-<!-- MODULE D: BEHAVIOUR → LOCATION RELATIONSHIP -->
-<div class="bg-surface-container-low border border-outline-variant/30 rounded-DEFAULT p-5">
-<div class="flex items-center justify-between pb-3 border-b border-outline-variant/20 mb-3">
-<div class="flex items-center gap-2">
-<span class="w-1.5 h-3 bg-primary-container"></span>
-<h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider">BEHAVIOUR → LOCATION MATRIX</h2>
-</div>
-<span class="font-mono-data-sm text-mono-data-sm text-outline">TOPOLOGICAL LINK</span>
-</div>
-<!-- Compact Structured Matrix -->
-<div class="space-y-3">
-<!-- Correlation 1: Loading Bay 01 -->
-<div class="p-3 bg-surface-container-lowest border border-outline-variant/40 rounded-DEFAULT space-y-2">
-<div class="flex items-center justify-between">
-<span class="font-mono-data-md text-mono-data-md font-semibold text-secondary">LOADING BAY 01</span>
-<span class="font-label-caps text-label-caps text-secondary bg-secondary/15 px-1.5 py-0.5 rounded-DEFAULT">18 INCIDENTS</span>
-</div>
-<div class="space-y-1.5 pt-1 text-on-surface-variant font-mono-data-sm text-mono-data-sm border-t border-outline-variant/20">
-<div class="flex justify-between items-center">
-<span class="text-on-surface flex items-center gap-1.5">
-<span class="w-1 h-1 bg-secondary inline-block"></span> Dragging
-                  </span>
-<span class="font-semibold text-secondary">12</span>
-</div>
-<div class="flex justify-between items-center">
-<span class="text-outline flex items-center gap-1.5">
-<span class="w-1 h-1 bg-outline inline-block"></span> Improper Stacking
-                  </span>
-<span class="text-on-surface">4</span>
-</div>
-<div class="flex justify-between items-center">
-<span class="text-outline flex items-center gap-1.5">
-<span class="w-1 h-1 bg-outline inline-block"></span> Rough Handling
-                  </span>
-<span class="text-on-surface">2</span>
-</div>
-</div>
-</div>
-<!-- Correlation 2: Staging Area -->
-<div class="p-3 bg-surface-container-lowest border border-outline-variant/40 rounded-DEFAULT space-y-2">
-<div class="flex items-center justify-between">
-<span class="font-mono-data-md text-mono-data-md font-semibold text-on-surface">STAGING AREA</span>
-<span class="font-label-caps text-label-caps text-outline bg-surface-container px-1.5 py-0.5 rounded-DEFAULT">9 INCIDENTS</span>
-</div>
-<div class="space-y-1.5 pt-1 text-on-surface-variant font-mono-data-sm text-mono-data-sm border-t border-outline-variant/20">
-<div class="flex justify-between items-center">
-<span class="text-on-surface flex items-center gap-1.5">
-<span class="w-1 h-1 bg-primary-container inline-block"></span> Improper Stacking
-                  </span>
-<span class="font-semibold text-primary-container">6</span>
-</div>
-<div class="flex justify-between items-center">
-<span class="text-outline flex items-center gap-1.5">
-<span class="w-1 h-1 bg-outline inline-block"></span> Dragging
-                  </span>
-<span class="text-on-surface">3</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- MODULE E: AI INSIGHT (Forensic Assessment) -->
-<div class="bg-surface-container-low border-2 border-primary-container/40 rounded-DEFAULT p-5 relative bg-gradient-to-br from-surface-container-low via-surface-container-low to-primary-container/10 shadow-lg"><div class="flex items-center justify-between pb-3 border-b border-outline-variant/20 mb-3"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="psychology">psychology</span><h2 class="font-label-caps text-label-caps text-primary-container font-bold tracking-wider">AI INSIGHT // UNDERSTANDING</h2></div><span class="px-2 py-0.5 bg-primary-container/15 border border-primary-container/40 text-primary-container font-label-caps text-[10px] font-semibold rounded-DEFAULT">18 DETECTED EVENTS</span></div><div class="space-y-4"><blockquote class="text-body-lg text-on-surface leading-relaxed border-l-2 border-primary-container pl-3.5 py-0.5 italic font-medium">“Dragging is the most frequent risky behaviour in the current shift, with the highest concentration occurring in <span class="text-secondary font-bold not-italic">Loading Bay 01</span>.”</blockquote><div class="p-3 bg-surface-container-lowest/90 border border-outline-variant/30 rounded-DEFAULT space-y-1"><span class="font-label-caps text-[10px] text-primary-container uppercase tracking-wider block font-semibold">Strategic Directive</span><p class="font-body-md text-body-md text-on-surface-variant">Suggested focus: Review trolley and material-handling practices during unloading. Correlate with forklift transit cycles.</p></div></div></div>
-<!-- MODULE F: PREVENTION OPPORTUNITY (Process & Coaching Focus) -->
-<div class="bg-surface-container-low border border-outline-variant/40 rounded-DEFAULT p-5 space-y-4"><div class="flex items-center justify-between pb-3 border-b border-outline-variant/20"><div class="flex items-center gap-2"><span class="w-1.5 h-3 bg-secondary"></span><h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider uppercase">PREVENTION OPPORTUNITY // ACTION</h2></div><span class="font-mono-data-sm text-mono-data-sm text-outline">COACHING INITIATIVE</span></div><div class="space-y-2.5"><div class="flex flex-wrap items-center gap-2"><span class="px-2 py-0.5 bg-secondary/20 border border-secondary/50 text-secondary font-label-caps text-label-caps font-bold rounded-DEFAULT">PRIORITY: HIGH</span><span class="px-2 py-0.5 bg-surface-container border border-outline-variant/60 text-on-surface font-label-caps text-label-caps rounded-DEFAULT font-medium">TARGET: UNLOADING OPERATIONS</span></div><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface pt-1">TROLLEY HANDLING REFRESHER</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Repeated floor-level dragging suggests an opportunity to reinforce the use of suitable material-handling equipment. Ergonomic tooling check indicates cart staging at Gate A is currently obstructed.</p></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"><button onclick="window.location.href='incidents.html'" class="w-full py-2.5 px-3 bg-surface-container-high border border-outline-variant hover:border-primary-container/80 text-on-surface font-label-caps text-label-caps uppercase tracking-wider text-center transition-all duration-150 rounded-DEFAULT active:scale-95 font-semibold cursor-pointer">[ REVIEW EVENTS ]</button><button onclick="window.location.href='prevention.html'" class="w-full py-2.5 px-3 bg-primary-container text-surface-container-lowest font-label-caps text-label-caps font-bold uppercase tracking-wider text-center hover:bg-primary-fixed-dim transition-all duration-150 rounded-DEFAULT active:scale-95 cursor-pointer">[ VIEW RECOMMENDATION ]</button></div></div>
-</section>
-</div>
-<!-- ============================================================= -->
-<!-- BOTTOM SECTION: BEHAVIOUR TREND & PREVENTION PROGRESS         -->
-<!-- ============================================================= -->
-<div class="pt-2 border-t border-outline-variant/30">
-<div class="flex items-center justify-between pb-3">
-<div class="flex items-center gap-2">
-<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">PREVENTION METRICS // SHIFT DELTA BENCHMARK</span>
-</div>
-<span class="font-mono-data-sm text-mono-data-sm text-outline">AGGREGATED 24H CYCLE</span>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<!-- Benchmark Card 1 -->
-<div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded-DEFAULT flex items-center justify-between">
-<div class="space-y-1">
-<span class="font-label-caps text-label-caps text-outline uppercase">DRAGGING FREQUENCY</span>
-<div class="flex items-center gap-3 font-mono-data-lg text-mono-data-lg font-bold">
-<span class="text-outline line-through text-body-md font-normal">PREV: 18</span>
-<span class="text-primary-container">CURR: 12</span>
-</div>
-<span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant">Standard shift average across Bay 01 &amp; Bay 02</span>
-</div>
-<div class="flex flex-col items-end">
-<div class="px-2 py-1 bg-primary-container/10 border border-primary-container/30 text-primary-container font-mono-data-md font-bold rounded-DEFAULT">
+
+<body
+  class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-surface-container-lowest">
+  <!-- TOP APP BAR -->
+  <header
+    class="flex justify-between items-center h-14 w-full px-6 border-b border-outline-variant/30 bg-surface/90 backdrop-blur-md sticky top-0 z-50">
+    <!-- Brand Identity -->
+    <div class="flex items-center gap-3">
+      <div
+        class="w-5 h-5 border border-primary-container flex items-center justify-center rotate-45 transition-transform hover:rotate-90 duration-300">
+        <div class="w-2 h-2 bg-primary-container"></div>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface">WAREHOUSE
+          PERCEPTRON</span>
+        <span class="font-label-caps text-label-caps text-outline tracking-widest text-[9px] -mt-1">PREDICTIVE DAMAGE
+          PREVENTION</span>
+      </div>
+    </div>
+    <!-- Clean Navigation -->
+    <nav class="hidden md:flex items-center space-x-7 h-full">
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="overview.html">OVERVIEW</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="intelligence.html">INTELLIGENCE</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="incidents.html">INCIDENTS</a>
+      <a class="text-primary-container border-b-2 border-primary-container font-medium py-4 flex items-center gap-1"
+        href="behaviour.html">
+        <span class="font-label-caps text-label-caps uppercase tracking-widest">BEHAVIOUR</span>
+      </a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="prevention.html">PREVENTION</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="assistance.html">ASSISTANT</a>
+    </nav>
+    <!-- Status & Clock -->
+    <div class="flex items-center gap-4">
+      <div
+        class="flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest border border-outline-variant/30 rounded">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+        <span class="font-label-caps text-label-caps text-primary-container tracking-wider">● SYSTEM ONLINE</span>
+      </div>
+      <div
+        class="hidden lg:block font-mono-data-sm text-mono-data-sm text-on-surface-variant/80 border-l border-outline-variant/30 pl-3">
+        10 SEP 2026 / <span class="text-on-surface font-semibold" id="behaviour-clock">14:48:00</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="flex-1 w-full max-w-[1760px] mx-auto p-4 md:p-6 space-y-6 pb-12">
+    <!-- PAGE HEADER BAR -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b border-outline-variant/30 gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">OPERATIONAL TELEMETRY</span>
+          <span class="text-outline-variant font-mono-data-sm">/</span>
+          <span class="font-mono-data-sm text-mono-data-sm text-outline">RECURRING PATTERN ANALYSIS</span>
+        </div>
+        <h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">BEHAVIOUR INTELLIGENCE</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-0.5 max-w-2xl">
+          Identify recurring handling behaviors across bays, evaluate risk hotspots, and recommend targeted operator coaching before damage occurs.
+        </p>
+      </div>
+      <!-- Shift Selector Pill (No Alerts) -->
+      <div class="flex items-center gap-3">
+        <button id="btnShiftFilter" onclick="cycleShiftFilter()"
+          class="flex items-center gap-2 px-3.5 py-2 bg-surface-container border border-outline-variant/40 hover:border-primary-container/60 text-on-surface font-mono-data-sm text-mono-data-sm tracking-wider rounded transition-colors duration-150 cursor-pointer">
+          <span class="text-outline">VIEW:</span>
+          <span class="font-semibold text-primary" id="shift-name-label">TODAY (ALL SHIFTS)</span>
+          <span class="material-symbols-outlined text-outline text-[16px]">sync</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- TOP 4 KPI SUMMARY CARDS -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Total Detections -->
+      <div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">TOTAL DETECTIONS</span>
+          <span class="material-symbols-outlined text-outline text-[16px]">visibility</span>
+        </div>
+        <div class="font-mono-data-lg text-[28px] font-bold text-on-surface" id="total-detections-label">250</div>
+        <div class="text-[11px] text-on-surface-variant mt-1">Logged handling activities</div>
+      </div>
+      <!-- Primary Pattern -->
+      <div class="p-4 bg-surface-container-low border border-secondary/40 rounded">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">PRIMARY PATTERN</span>
+          <span class="material-symbols-outlined text-secondary text-[16px]">warning</span>
+        </div>
+        <div class="font-headline-md text-headline-md font-bold text-secondary" id="kpi-top-pattern">DRAGGING</div>
+        <div class="text-[11px] text-on-surface-variant mt-1">42% of shift handling events</div>
+      </div>
+      <!-- Top Risk Hotspot -->
+      <div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">TOP HOTSPOT</span>
+          <span class="material-symbols-outlined text-outline text-[16px]">location_on</span>
+        </div>
+        <div class="font-headline-md text-headline-md font-semibold text-on-surface" id="kpi-top-hotspot">BAY 01 // DOCK A</div>
+        <div class="text-[11px] text-on-surface-variant mt-1">18 elevated events recorded</div>
+      </div>
+      <!-- Shift Improvement -->
+      <div class="p-4 bg-surface-container-low border border-primary-container/30 rounded">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-label-caps text-label-caps text-primary-container uppercase tracking-wider">PREVENTION IMPACT</span>
+          <span class="material-symbols-outlined text-primary-container text-[16px]">trending_down</span>
+        </div>
+        <div class="font-mono-data-lg text-[28px] font-bold text-primary-container">↓ 33%</div>
+        <div class="text-[11px] text-on-surface-variant mt-1">Reduction in recurring dragging</div>
+      </div>
+    </div>
+
+    <!-- CORE TWO-COLUMN GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- LEFT COLUMN: Behaviour Frequency & Recurring Pattern (7 Cols) -->
+      <section class="lg:col-span-7 space-y-6">
+        <!-- MODULE A: BEHAVIOUR FREQUENCY BREAKDOWN -->
+        <div class="bg-surface-container-low border border-outline-variant/30 rounded p-5 relative overflow-hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-outline-variant/20 mb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-3 bg-secondary"></span>
+              <h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider uppercase">
+                BEHAVIOUR FREQUENCY // SHIFT BREAKDOWN
+              </h2>
+            </div>
+            <span class="font-mono-data-sm text-mono-data-sm text-outline" id="freq-shift-tag">ALL ACTIVE CAMERAS</span>
+          </div>
+          <!-- Proportion Bars List -->
+          <div class="space-y-4" id="behaviour-bars-container">
+            <!-- 1. Dragging -->
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary">01. CARTON / KD FLOOR DRAGGING</span>
+                  <span class="px-1.5 py-0.2 bg-secondary/10 border border-secondary/30 text-secondary font-label-caps text-[9px] rounded">ELEVATED</span>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-mono-data-lg text-mono-data-lg font-bold text-secondary">105</span>
+                  <span class="font-mono-data-sm text-mono-data-sm text-outline">events (42.0%)</span>
+                </div>
+              </div>
+              <div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded overflow-hidden">
+                <div class="h-full bg-secondary animate-bar rounded" style="width: 84%;"></div>
+              </div>
+            </div>
+            <!-- 2. Improper Stacking -->
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <span class="font-mono-data-sm text-mono-data-sm text-on-surface">02. IMPROPER STACKING (INVERTED PYRAMID)</span>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-mono-data-lg text-mono-data-lg font-bold text-primary-container">62</span>
+                  <span class="font-mono-data-sm text-mono-data-sm text-outline">events (24.8%)</span>
+                </div>
+              </div>
+              <div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded overflow-hidden">
+                <div class="h-full bg-primary-container/80 animate-bar rounded" style="width: 50%;"></div>
+              </div>
+            </div>
+            <!-- 3. Stepping / Standing -->
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <span class="font-mono-data-sm text-mono-data-sm text-on-surface">03. STEPPING / STANDING ON CARTON</span>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-mono-data-lg text-mono-data-lg font-bold text-primary-container">45</span>
+                  <span class="font-mono-data-sm text-mono-data-sm text-outline">events (18.0%)</span>
+                </div>
+              </div>
+              <div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded overflow-hidden">
+                <div class="h-full bg-primary-container/60 animate-bar rounded" style="width: 36%;"></div>
+              </div>
+            </div>
+            <!-- 4. Throwing / Sliding -->
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <span class="font-mono-data-sm text-mono-data-sm text-on-surface">04. CARTON THROWING / SLIDING</span>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-mono-data-lg text-mono-data-lg font-bold text-primary-container">23</span>
+                  <span class="font-mono-data-sm text-mono-data-sm text-outline">events (9.2%)</span>
+                </div>
+              </div>
+              <div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded overflow-hidden">
+                <div class="h-full bg-primary-container/40 animate-bar rounded" style="width: 18%;"></div>
+              </div>
+            </div>
+            <!-- 5. Near-Miss Precursor (USP) -->
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono-data-sm text-mono-data-sm text-on-surface">05. PREDICTIVE NEAR-MISS (USP)</span>
+                  <span class="px-1.5 py-0.2 bg-primary-container/10 border border-primary-container/30 text-primary-container font-label-caps text-[9px] rounded">PREVENTATIVE</span>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-mono-data-lg text-mono-data-lg font-bold text-primary-container">15</span>
+                  <span class="font-mono-data-sm text-mono-data-sm text-outline">warnings (6.0%)</span>
+                </div>
+              </div>
+              <div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded overflow-hidden">
+                <div class="h-full bg-primary-container/30 animate-bar rounded" style="width: 12%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE B: RECURRING PATTERN SPOTLIGHT -->
+        <div class="bg-surface-container-low border border-secondary/50 rounded p-6 relative overflow-hidden bg-gradient-to-r from-surface-container-low via-surface-container-low to-secondary/10">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-outline-variant/20">
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-secondary/15 border border-secondary/40 text-secondary font-label-caps text-label-caps tracking-widest rounded">
+              <span class="material-symbols-outlined text-[14px]">warning</span>
+              RECURRING PATTERN DETECTED
+            </div>
+            <span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant font-medium">AI CONFIDENCE: 94.2%</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            <div class="md:col-span-8 space-y-3">
+              <div class="flex items-baseline gap-4 flex-wrap">
+                <h3 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight text-[28px]"
+                  id="top-pattern-title">DRAGGING</h3>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-headline-lg text-[32px] font-bold text-secondary leading-none" id="top-pattern-count">61</span>
+                  <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">EVENTS</span>
+                </div>
+                <span class="inline-flex items-center px-2 py-0.5 bg-secondary/15 border border-secondary/40 text-secondary font-label-caps text-label-caps rounded font-semibold"
+                  id="top-pattern-share">24.4% OF FACILITY TOTAL</span>
+              </div>
+              <p class="font-body-md text-on-surface-variant leading-relaxed" id="top-pattern-desc">
+                Repeated dragging behaviour is concentrated during unloading operations. In-feed units indicate frequent manual parcel relocation without trolley dock engagement.
+              </p>
+            </div>
+            <div class="md:col-span-4 flex flex-col justify-center gap-3 bg-surface-container-lowest/80 border border-outline-variant/30 rounded p-4">
+              <div class="flex justify-between items-center">
+                <span class="font-label-caps text-label-caps text-outline uppercase">PRIMARY HOTSPOT</span>
+                <span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary" id="top-pattern-hotspot">BAY 01 // DOCK A</span>
+              </div>
+              <div class="flex justify-between items-center pt-2 border-t border-outline-variant/20">
+                <span class="font-label-caps text-label-caps text-outline uppercase">SHARE OF SHIFT</span>
+                <span class="font-mono-data-sm text-mono-data-sm font-semibold text-on-surface" id="top-pattern-share-stat">24.4%</span>
+              </div>
+              <div class="flex justify-between items-center pt-2 border-t border-outline-variant/20">
+                <span class="font-label-caps text-label-caps text-outline uppercase">RISK LEVEL</span>
+                <span class="font-mono-data-sm text-mono-data-sm font-semibold text-secondary">ELEVATED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: Topology Hotspots & Action Directives (5 Cols) -->
+      <section class="lg:col-span-5 space-y-6">
+        <!-- MODULE C: RISK HOTSPOT MATRIX -->
+        <div class="bg-surface-container-low border border-outline-variant/30 rounded p-5">
+          <div class="flex items-center justify-between pb-3 border-b border-outline-variant/20 mb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-3 bg-primary-container"></span>
+              <h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider uppercase">
+                HOTSPOT DENSITY BY LOCATION
+              </h2>
+            </div>
+            <span class="font-mono-data-sm text-mono-data-sm text-outline">NORTH WAREHOUSE</span>
+          </div>
+          <div class="space-y-3">
+            <!-- Bay 01 -->
+            <div class="p-3 bg-surface-container-lowest border border-secondary/60 rounded flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+                  <span class="font-headline-sm text-headline-sm font-bold text-secondary">LOADING BAY 01</span>
+                </div>
+                <div class="font-mono-data-sm text-mono-data-sm text-on-surface-variant mt-0.5">Gate A Dock • Dragging Concentration</div>
+              </div>
+              <div class="text-right">
+                <span class="font-mono-data-lg text-mono-data-lg font-bold text-secondary">18</span>
+                <span class="font-label-caps text-[10px] text-outline block">EVENTS</span>
+              </div>
+            </div>
+            <!-- Staging Area -->
+            <div class="p-3 bg-surface-container-lowest border border-outline-variant/30 rounded flex items-center justify-between">
+              <div>
+                <span class="font-headline-sm text-headline-sm font-semibold text-on-surface">STAGING AREA ZONE-4</span>
+                <div class="font-mono-data-sm text-mono-data-sm text-on-surface-variant mt-0.5">Buffer Pallet Stacking Area</div>
+              </div>
+              <div class="text-right">
+                <span class="font-mono-data-lg text-mono-data-lg font-semibold text-on-surface">9</span>
+                <span class="font-label-caps text-[10px] text-outline block">EVENTS</span>
+              </div>
+            </div>
+            <!-- Bay 02 -->
+            <div class="p-3 bg-surface-container-lowest border border-outline-variant/30 rounded flex items-center justify-between">
+              <div>
+                <span class="font-headline-sm text-headline-sm font-semibold text-on-surface">LOADING BAY 02</span>
+                <div class="font-mono-data-sm text-mono-data-sm text-outline mt-0.5">Gate B In-Flow • Controlled Transport</div>
+              </div>
+              <div class="text-right">
+                <span class="font-mono-data-lg text-mono-data-lg font-semibold text-outline">4</span>
+                <span class="font-label-caps text-[10px] text-outline block">EVENTS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE D: AI STRATEGIC DIRECTIVE -->
+        <div class="bg-surface-container-low border border-primary-container/40 rounded p-5 relative bg-gradient-to-br from-surface-container-low via-surface-container-low to-primary-container/10">
+          <div class="flex items-center justify-between pb-3 border-b border-outline-variant/20 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary-container text-[20px]">psychology</span>
+              <h2 class="font-label-caps text-label-caps text-primary-container font-bold tracking-wider uppercase">
+                AI COACHING DIRECTIVE
+              </h2>
+            </div>
+            <span class="px-2 py-0.5 bg-primary-container/15 border border-primary-container/40 text-primary-container font-label-caps text-[10px] font-semibold rounded">
+              SOP ALIGNED
+            </span>
+          </div>
+          <div class="space-y-3">
+            <blockquote class="text-body-md text-on-surface leading-relaxed border-l-2 border-primary-container pl-3 py-0.5 italic font-medium">
+              “Dragging is the most frequent risky behaviour in the current shift, with the highest concentration occurring in <span class="text-secondary font-bold not-italic">Loading Bay 01</span>.”
+            </blockquote>
+            <div class="p-3 bg-surface-container-lowest/90 border border-outline-variant/30 rounded space-y-1">
+              <span class="font-label-caps text-[10px] text-primary-container uppercase tracking-wider block font-semibold">Recommended Supervisor Action</span>
+              <p class="font-body-sm text-on-surface-variant">
+                Conduct a 5-minute toolbox talk on trolley staging at Gate A. Ensure operators utilize mechanical handling equipment rather than manual floor pulling.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE E: QUICK ACTION LINKS -->
+        <div class="bg-surface-container-low border border-outline-variant/30 rounded p-5 space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-outline-variant/20">
+            <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">SUPERVISOR ACTIONS</span>
+            <span class="font-mono-data-sm text-mono-data-sm text-outline">DIRECT INTEGRATION</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="incidents.html"
+              class="py-2.5 px-3 bg-surface-container-high border border-outline-variant hover:border-primary-container/80 text-on-surface font-label-caps text-label-caps uppercase tracking-wider text-center transition-all duration-150 rounded active:scale-95 font-semibold flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">replay</span>
+              REVIEW INCIDENTS
+            </a>
+            <a href="prevention.html"
+              class="py-2.5 px-3 bg-primary-container text-surface-container-lowest font-label-caps text-label-caps font-bold uppercase tracking-wider text-center hover:bg-primary-fixed-dim transition-all duration-150 rounded active:scale-95 flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              MITIGATION DESK
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOTTOM BENCHMARK SECTION -->
+    <div class="pt-4 border-t border-outline-variant/30">
+      <div class="flex items-center justify-between pb-3">
+        <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">PREVENTION METRICS // SHIFT DELTA BENCHMARK</span>
+        <span class="font-mono-data-sm text-mono-data-sm text-outline">24-HOUR PROGRESS</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Benchmark Card 1 -->
+        <div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded flex items-center justify-between">
+          <div class="space-y-1">
+            <span class="font-label-caps text-label-caps text-outline uppercase">DRAGGING FREQUENCY</span>
+            <div class="flex items-center gap-3 font-mono-data-lg text-mono-data-lg font-bold">
+              <span class="text-outline line-through text-body-md font-normal">PREV: 18</span>
+              <span class="text-primary-container">CURR: 12</span>
+            </div>
+            <span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant">Shift average across Bay 01 &amp; Bay 02</span>
+          </div>
+          <div class="flex flex-col items-end">
+            <div class="px-2.5 py-1 bg-primary-container/10 border border-primary-container/30 text-primary-container font-mono-data-md font-bold rounded">
               ↓ 33% IMPROVEMENT
             </div>
-<span class="font-label-caps text-[9px] text-outline mt-1">VERIFIED AT EDGE</span>
-</div>
-</div>
-<!-- Benchmark Card 2 -->
-<div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded-DEFAULT flex items-center justify-between">
-<div class="space-y-1">
-<span class="font-label-caps text-label-caps text-outline uppercase">IMPROPER STACKING</span>
-<div class="flex items-center gap-3 font-mono-data-lg text-mono-data-lg font-bold">
-<span class="text-outline line-through text-body-md font-normal">PREV: 10</span>
-<span class="text-primary-container">CURR: 7</span>
-</div>
-<span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant">Staging zone buffer pallet alignment score</span>
-</div>
-<div class="flex flex-col items-end">
-<div class="px-2 py-1 bg-primary-container/10 border border-primary-container/30 text-primary-container font-mono-data-md font-bold rounded-DEFAULT">
+            <span class="font-label-caps text-[9px] text-outline mt-1">VERIFIED EVIDENCE</span>
+          </div>
+        </div>
+        <!-- Benchmark Card 2 -->
+        <div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded flex items-center justify-between">
+          <div class="space-y-1">
+            <span class="font-label-caps text-label-caps text-outline uppercase">IMPROPER STACKING</span>
+            <div class="flex items-center gap-3 font-mono-data-lg text-mono-data-lg font-bold">
+              <span class="text-outline line-through text-body-md font-normal">PREV: 10</span>
+              <span class="text-primary-container">CURR: 7</span>
+            </div>
+            <span class="font-mono-data-sm text-mono-data-sm text-on-surface-variant">Staging zone buffer pallet alignment score</span>
+          </div>
+          <div class="flex flex-col items-end">
+            <div class="px-2.5 py-1 bg-primary-container/10 border border-primary-container/30 text-primary-container font-mono-data-md font-bold rounded">
               ↓ 30% IMPROVEMENT
             </div>
-<span class="font-label-caps text-[9px] text-outline mt-1">VERIFIED AT EDGE</span>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- ================================================================= -->
-<!-- FOOTER (Shared Component Execution)                               -->
-<!-- ================================================================= -->
+            <span class="font-label-caps text-[9px] text-outline mt-1">VERIFIED EVIDENCE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
-    const totalDetectionsLabel = document.getElementById('total-detections-label');
-    const barsContainer = document.getElementById('behaviour-bars-container');
-    const topTitle = document.getElementById('top-pattern-title');
-    const topCount = document.getElementById('top-pattern-count');
-    const topShare = document.getElementById('top-pattern-share');
-    const topShareStat = document.getElementById('top-pattern-share-stat');
-    const topHotspot = document.getElementById('top-pattern-hotspot');
-
-    try {
-      const res = await fetch(`${API_BASE}/api/metrics`);
-      if (!res.ok) throw new Error('API failed');
-      const data = await res.json();
-
-      if (totalDetectionsLabel && data.total_events) {
-        totalDetectionsLabel.textContent = `${data.total_events} TOTAL DETECTIONS`;
+  <!-- SCRIPTS -->
+  <script>
+    // Live Clock
+    function updateClock() {
+      const el = document.getElementById('behaviour-clock');
+      if (el) {
+        const now = new Date();
+        el.textContent = now.toTimeString().split(' ')[0];
       }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
 
-      if (data.top_behaviours && data.top_behaviours.length > 0 && barsContainer) {
-        const total = data.total_events || 250;
-        // Render top 5
-        barsContainer.innerHTML = data.top_behaviours.slice(0, 5).map((item, idx) => {
-          const pct = ((item.count / total) * 100).toFixed(1);
-          const isHighest = idx === 0;
-          const colorClass = isHighest ? 'text-secondary' : 'text-primary-container';
-          const barColor = isHighest ? 'bg-secondary' : 'bg-primary-container/70';
-          const badge = isHighest ? '<span class="px-1.5 py-0.2 bg-secondary/10 border border-secondary/30 text-secondary font-label-caps text-label-caps rounded-DEFAULT">ELEVATED</span>' : '';
-          const barWidth = Math.min(100, Math.max(10, Math.round((item.count / data.top_behaviours[0].count) * 100)));
+    // Shift Filter Cycle (Clean inline badge update, zero annoying alerts)
+    const shifts = ['TODAY (ALL SHIFTS)', 'SHIFT 1 (MORNING)', 'SHIFT 2 (AFTERNOON)', 'SHIFT 3 (NIGHT)'];
+    let currentShiftIdx = 0;
+    function cycleShiftFilter() {
+      currentShiftIdx = (currentShiftIdx + 1) % shifts.length;
+      const label = document.getElementById('shift-name-label');
+      if (label) label.textContent = shifts[currentShiftIdx];
+    }
 
-          return `
+    // Dynamic Data Population from /api/metrics
+    document.addEventListener('DOMContentLoaded', async () => {
+      const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
+      const totalDetectionsLabel = document.getElementById('total-detections-label');
+      const barsContainer = document.getElementById('behaviour-bars-container');
+      const topTitle = document.getElementById('top-pattern-title');
+      const topCount = document.getElementById('top-pattern-count');
+      const topShare = document.getElementById('top-pattern-share');
+      const topShareStat = document.getElementById('top-pattern-share-stat');
+      const topHotspot = document.getElementById('top-pattern-hotspot');
+      const kpiTopPattern = document.getElementById('kpi-top-pattern');
+      const kpiTopHotspot = document.getElementById('kpi-top-hotspot');
+
+      try {
+        const res = await fetch(`${API_BASE}/api/metrics`);
+        if (!res.ok) throw new Error('API failed');
+        const data = await res.json();
+
+        if (totalDetectionsLabel && data.total_events) {
+          totalDetectionsLabel.textContent = data.total_events;
+        }
+
+        if (data.top_behaviours && data.top_behaviours.length > 0 && barsContainer) {
+          const total = data.total_events || 250;
+          barsContainer.innerHTML = data.top_behaviours.slice(0, 5).map((item, idx) => {
+            const pct = ((item.count / total) * 100).toFixed(1);
+            const isHighest = idx === 0;
+            const colorClass = isHighest ? 'text-secondary' : 'text-primary-container';
+            const barColor = isHighest ? 'bg-secondary' : 'bg-primary-container/70';
+            const badge = isHighest ? '<span class="px-1.5 py-0.2 bg-secondary/10 border border-secondary/30 text-secondary font-label-caps text-[9px] rounded">ELEVATED</span>' : '';
+            const barWidth = Math.min(100, Math.max(10, Math.round((item.count / data.top_behaviours[0].count) * 100)));
+
+            return `
             <div class="space-y-1">
               <div class="flex justify-between items-baseline">
                 <div class="flex items-center gap-2">
@@ -522,159 +594,35 @@
                   <span class="font-mono-data-sm text-mono-data-sm text-outline">events (${pct}%)</span>
                 </div>
               </div>
-              <div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded-DEFAULT overflow-hidden">
-                <div class="h-full ${barColor} animate-bar rounded-DEFAULT" style="width: ${barWidth}%;"></div>
+              <div class="w-full h-2 bg-surface-container-lowest border border-outline-variant/20 rounded overflow-hidden">
+                <div class="h-full ${barColor} animate-bar rounded" style="width: ${barWidth}%;"></div>
               </div>
             </div>
           `;
-        }).join('');
+          }).join('');
 
-        // Update Module B top pattern
-        const top = data.top_behaviours[0];
-        if (top) {
-          const topPct = ((top.count / total) * 100).toFixed(1);
-          if (topTitle) topTitle.textContent = top.name.toUpperCase();
-          if (topCount) topCount.textContent = top.count;
-          if (topShare) topShare.textContent = `${topPct}% OF FACILITY TOTAL`;
-          if (topShareStat) topShareStat.textContent = `${topPct}%`;
-        }
+          // Update Top Pattern Card
+          const top = data.top_behaviours[0];
+          if (top) {
+            const topPct = ((top.count / total) * 100).toFixed(1);
+            if (topTitle) topTitle.textContent = top.name.toUpperCase();
+            if (kpiTopPattern) kpiTopPattern.textContent = top.name.toUpperCase();
+            if (topCount) topCount.textContent = top.count;
+            if (topShare) topShare.textContent = `${topPct}% OF FACILITY TOTAL`;
+            if (topShareStat) topShareStat.textContent = `${topPct}%`;
+          }
 
-        if (data.cameras && data.cameras.length > 0 && topHotspot) {
-          topHotspot.textContent = data.cameras[0].camera_name.replace(' // ', ' // ');
+          if (data.cameras && data.cameras.length > 0) {
+            const camName = data.cameras[0].camera_name;
+            if (topHotspot) topHotspot.textContent = camName;
+            if (kpiTopHotspot) kpiTopHotspot.textContent = camName;
+          }
         }
+      } catch (err) {
+        console.warn('Telemetry metrics loaded from local default store:', err);
       }
-    } catch (err) {
-      console.warn('Could not load /api/metrics:', err);
-    }
-  });
+    });
+  </script>
+</body>
 
-  let currentShiftIdx = 0;
-  const shiftList = ['SHIFT: TODAY', 'SHIFT: 1 (MORNING)', 'SHIFT: 2 (AFTERNOON)', 'SHIFT: 3 (NIGHT)'];
-  function toggleShiftFilter() {
-    currentShiftIdx = (currentShiftIdx + 1) % shiftList.length;
-    const btn = document.getElementById('btnShiftFilter');
-    if (btn) btn.innerHTML = shiftList[currentShiftIdx] + ' <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>';
-    alert('Filtered telemetry to: ' + shiftList[currentShiftIdx]);
-  }
-
-</script>
-
-<script>
-function showNavGridModal() {
-  const modalId = 'soc-nav-grid-modal';
-  let modal = document.getElementById(modalId);
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.id = modalId;
-    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4';
-    modal.innerHTML = `
-      <div class="bg-surface-container-low border border-outline-variant/40 max-w-xl w-full p-6 shadow-2xl relative font-body-md text-on-surface">
-        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3 mb-4">
-          <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary-container">grid_view</span>
-            <h3 class="font-headline-sm font-semibold tracking-wide">WAREHOUSE CAMERA MATRIX</h3>
-          </div>
-          <button onclick="document.getElementById('${modalId}').remove()" class="text-outline hover:text-white text-xl p-1 cursor-pointer">&times;</button>
-        </div>
-        <p class="text-on-surface-variant font-body-sm mb-4">Select active CCTV edge sensor node to view live perception stream:</p>
-        <div class="grid grid-cols-2 gap-3 mb-5">
-          <a href="intelligence.html" class="p-3 bg-surface-container border border-primary-container/40 hover:border-primary-container block group transition-all">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-mono-data-sm text-primary-container font-bold">CAM_01</span>
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            </div>
-            <div class="font-semibold text-white group-hover:text-primary-container">Loading Bay 01</div>
-            <div class="text-[11px] text-outline">Unloading Gate A (LIVE)</div>
-          </a>
-          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-mono-data-sm text-outline font-bold">CAM_02</span>
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            </div>
-            <div class="font-semibold text-white group-hover:text-primary-container">Aisle 04 Storage</div>
-            <div class="text-[11px] text-outline">High-Bay Racks (STANDBY)</div>
-          </a>
-          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-mono-data-sm text-outline font-bold">CAM_03</span>
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            </div>
-            <div class="font-semibold text-white group-hover:text-primary-container">Sorting Hub Central</div>
-            <div class="text-[11px] text-outline">Pallet Staging (ACTIVE)</div>
-          </a>
-          <a href="intelligence.html" class="p-3 bg-surface-container border border-outline-variant/30 hover:border-primary-container block group transition-all">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-mono-data-sm text-outline font-bold">CAM_04</span>
-              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-            </div>
-            <div class="font-semibold text-white group-hover:text-primary-container">Staging Dock West</div>
-            <div class="text-[11px] text-outline">Dispatch Buffer (HIGH DENSITY)</div>
-          </a>
-        </div>
-        <div class="flex justify-end">
-          <button onclick="document.getElementById('${modalId}').remove()" class="px-4 py-1.5 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/40 text-on-surface font-mono-data-sm cursor-pointer">CLOSE</button>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-}
-
-function showNavTuneModal() {
-  const modalId = 'soc-nav-tune-modal';
-  let modal = document.getElementById(modalId);
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.id = modalId;
-    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4';
-    modal.innerHTML = `
-      <div class="bg-surface-container-low border border-outline-variant/40 max-w-lg w-full p-6 shadow-2xl relative font-body-md text-on-surface">
-        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3 mb-4">
-          <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary-container">tune</span>
-            <h3 class="font-headline-sm font-semibold tracking-wide">EDGE SENSOR &amp; CV TUNING</h3>
-          </div>
-          <button onclick="document.getElementById('${modalId}').remove()" class="text-outline hover:text-white text-xl p-1 cursor-pointer">&times;</button>
-        </div>
-        <div class="space-y-4 mb-6">
-          <div class="space-y-1">
-            <div class="flex justify-between text-xs font-mono-data-sm">
-              <span class="text-on-surface-variant">YOLOv8-Pose Confidence Threshold</span>
-              <span class="text-primary-container font-bold" id="tune-conf-val">0.65</span>
-            </div>
-            <input type="range" min="0.4" max="0.9" step="0.05" value="0.65" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-conf-val').textContent = this.value">
-          </div>
-          <div class="space-y-1">
-            <div class="flex justify-between text-xs font-mono-data-sm">
-              <span class="text-on-surface-variant">ByteTrack IoU Association Threshold</span>
-              <span class="text-primary-container font-bold" id="tune-iou-val">0.60</span>
-            </div>
-            <input type="range" min="0.3" max="0.8" step="0.05" value="0.60" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-iou-val').textContent = this.value">
-          </div>
-          <div class="space-y-1">
-            <div class="flex justify-between text-xs font-mono-data-sm">
-              <span class="text-on-surface-variant">Near-Miss Predictive Alarm Trigger</span>
-              <span class="text-secondary font-bold" id="tune-risk-val">70%</span>
-            </div>
-            <input type="range" min="50" max="90" step="5" value="70" class="w-full accent-secondary cursor-pointer" oninput="document.getElementById('tune-risk-val').textContent = this.value + '%'">
-          </div>
-          <div class="space-y-1">
-            <div class="flex justify-between text-xs font-mono-data-sm">
-              <span class="text-on-surface-variant">Supervisor Audio Chime Volume</span>
-              <span class="text-primary-container font-bold" id="tune-vol-val">85%</span>
-            </div>
-            <input type="range" min="0" max="100" step="5" value="85" class="w-full accent-primary-container cursor-pointer" oninput="document.getElementById('tune-vol-val').textContent = this.value + '%'">
-          </div>
-        </div>
-        <div class="flex justify-end gap-3">
-          <button onclick="document.getElementById('${modalId}').remove()" class="px-3.5 py-1.5 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/40 text-on-surface font-mono-data-sm cursor-pointer">CANCEL</button>
-          <button onclick="alert('✓ Edge Sensor Node Parameters synchronized across 4 CCTV cameras.'); document.getElementById('${modalId}').remove();" class="px-4 py-1.5 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest font-mono-data-sm font-semibold cursor-pointer">APPLY &amp; SYNC</button>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-}
-</script>
-
-</body></html>
+</html>
