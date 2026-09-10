@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>FIELD INTELLIGENCE — PREVENTION &amp; ACTION CENTER</title>
+  <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#ffb95f",
+            "secondary-fixed": "#ffddb8",
+            "on-secondary": "#472a00",
+            "surface": "#10141a",
+            "on-primary-fixed-variant": "#004f58",
+            "surface-bright": "#353940",
+            "surface-container": "#1c2026",
+            "surface-container-high": "#262a31",
+            "on-secondary-container": "#5b3800",
+            "on-surface": "#dfe2eb",
+            "on-tertiary": "#690003",
+            "primary": "#c3f5ff",
+            "on-primary-container": "#00626e",
+            "tertiary-fixed-dim": "#ffb4aa",
+            "surface-dim": "#10141a",
+            "on-tertiary-fixed": "#410001",
+            "surface-variant": "#31353c",
+            "outline-variant": "#3b494c",
+            "on-error-container": "#ffdad6",
+            "tertiary": "#ffe8e4",
+            "on-surface-variant": "#bac9cc",
+            "on-tertiary-fixed-variant": "#930005",
+            "on-tertiary-container": "#b60009",
+            "error-container": "#93000a",
+            "on-primary": "#00363d",
+            "surface-tint": "#00daf3",
+            "error": "#ffb4ab",
+            "primary-fixed": "#9cf0ff",
+            "surface-container-highest": "#31353c",
+            "primary-fixed-dim": "#00daf3",
+            "secondary": "#ffb95f",
+            "on-background": "#dfe2eb",
+            "inverse-primary": "#006875",
+            "tertiary-container": "#ffc2ba",
+            "on-error": "#690005",
+            "secondary-container": "#ee9800",
+            "tertiary-fixed": "#ffdad5",
+            "inverse-on-surface": "#2d3137",
+            "on-secondary-fixed-variant": "#653e00",
+            "on-primary-fixed": "#001f24",
+            "inverse-surface": "#dfe2eb",
+            "surface-container-lowest": "#0a0e14",
+            "on-secondary-fixed": "#2a1700",
+            "primary-container": "#00e5ff",
+            "surface-container-low": "#181c22",
+            "background": "#10141a",
+            "outline": "#849396"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "body-md": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"],
+            "mono-data-lg": ["JetBrains Mono"],
+            "body-lg": ["Space Grotesk"],
+            "mono-data-md": ["JetBrains Mono"],
+            "body-sm": ["Space Grotesk"],
+            "display-xl": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "mono-data-sm": ["JetBrains Mono"],
+            "label-caps": ["JetBrains Mono"],
+            "display-xl-mobile": ["Space Grotesk"],
+            "headline-sm": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "mono-data-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "mono-data-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "mono-data-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "label-caps": ["10px", { "lineHeight": "14px", "letterSpacing": "0.14em", "fontWeight": "600" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      vertical-align: middle;
+    }
+
+    @keyframes dashflow {
+      to { stroke-dashoffset: -40; }
+    }
+
+    .animate-dashflow {
+      animation: dashflow 2.4s linear infinite;
+    }
+
+    @keyframes pulse-node {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7);
+      }
+      50% {
+        transform: scale(1.08);
+        opacity: 0.85;
+        box-shadow: 0 0 0 6px rgba(0, 229, 255, 0);
+      }
+    }
+
+    .node-pulse {
+      animation: pulse-node 2.2s infinite ease-in-out;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-surface-container-lowest min-h-screen flex flex-col font-body-md text-body-md">
+  <!-- TOP APP BAR -->
+  <header
+    class="flex justify-between items-center h-14 w-full px-6 border-b border-outline-variant/30 bg-surface/90 backdrop-blur-md sticky top-0 z-50">
+    <!-- Brand -->
+    <div class="flex items-center gap-3">
+      <div
+        class="w-5 h-5 border border-primary-container flex items-center justify-center rotate-45 transition-transform hover:rotate-90 duration-300">
+        <div class="w-2 h-2 bg-primary-container"></div>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface">ImpactZero</span>
+        <span class="font-label-caps text-label-caps text-outline tracking-widest text-[9px] -mt-1">PREDICTIVE DAMAGE
+          PREVENTION</span>
+      </div>
+    </div>
+    <!-- Navigation Links -->
+    <nav class="hidden md:flex items-center space-x-7 h-full">
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="overview.html">OVERVIEW</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="intelligence.html">INTELLIGENCE</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="incidents.html">INCIDENTS</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="behaviour.html">BEHAVIOUR</a>
+      <a class="text-primary-container border-b-2 border-primary-container font-medium py-4 flex items-center gap-1"
+        href="prevention.html">
+        <span class="font-label-caps text-label-caps uppercase tracking-widest">PREVENTION</span>
+      </a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors duration-150"
+        href="assistance.html">ASSISTANT</a>
+    </nav>
+    <!-- Right Telemetry -->
+    <div class="flex items-center gap-4">
+      <div
+        class="flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest border border-outline-variant/30 rounded">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+        <span class="font-label-caps text-label-caps text-primary-container tracking-wider">● SYSTEM ONLINE</span>
+      </div>
+      <div
+        class="hidden lg:block font-mono-data-sm text-mono-data-sm text-on-surface-variant/80 border-l border-outline-variant/30 pl-3">
+        10 SEP 2026 / <span class="text-on-surface font-semibold" id="prevention-clock">14:52:00</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN OPERATIONAL CANVAS -->
+  <main class="flex-1 w-full max-w-[1760px] mx-auto px-4 md:px-6 py-6 z-10 pb-16 space-y-6">
+    <!-- HERO HEADER SECTION -->
+    <section class="flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant/30 pb-4 gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded border border-primary-container/30 bg-primary-container/10 text-primary-container font-label-caps text-label-caps">
+            AUTOMATED MITIGATION DESK
+          </span>
+          <span class="text-outline font-label-caps text-label-caps">// ZONE A &amp; DOCKS</span>
+        </div>
+        <h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">FROM RISK TO PREVENTION</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Transform recurring handling anomalies into concrete standard operating procedures (SOPs) and targeted supervisor coaching before product damage occurs.
+        </p>
+      </div>
+      <!-- Right Shift Stats (Strictly Allowed Metric: High-risk events per shift) -->
+      <div class="bg-surface-container-low border border-outline-variant/40 px-3.5 py-2 rounded flex items-center gap-3 self-start md:self-auto">
+        <span class="material-symbols-outlined text-secondary">analytics</span>
+        <div class="font-mono-data-sm text-mono-data-sm">
+          <span class="text-outline uppercase tracking-wider font-label-caps text-label-caps">OPERATIONAL TELEMETRY // </span>
+          <span class="text-secondary font-medium"><span id="prevHighRiskCount">260</span> HIGH-RISK EVENTS PER SHIFT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TWO-COLUMN OPERATIONAL ACTION GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- LEFT COLUMN: Priority Action & Evidence Bridge (7 Columns) -->
+      <section class="lg:col-span-7 space-y-6">
+        <!-- PRIMARY ACTION CARD -->
+        <div class="bg-surface-container-low border border-secondary/40 rounded p-6 relative overflow-hidden">
+          <div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+          
+          <!-- Header Badges -->
+          <div class="flex items-center justify-between gap-2 mb-3 pl-1">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-secondary/50 bg-secondary/15 text-secondary font-label-caps text-label-caps uppercase">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping inline-block"></span>
+                HIGH PRIORITY
+              </span>
+              <span class="text-outline font-label-caps text-label-caps tracking-wider">OPERATIONAL INITIATIVE #PRV-04</span>
+            </div>
+            <span class="text-outline font-mono-data-sm text-mono-data-sm">ZONE: BAY-01</span>
+          </div>
+
+          <!-- Title & Description -->
+          <div class="pl-1 mb-4">
+            <h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">TROLLEY HANDLING REFRESHER</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+              Repeated floor-level dragging was detected during unloading operations at Gate A.
+            </p>
+          </div>
+
+          <!-- Evidence Connection Panel -->
+          <div class="bg-surface-container-lowest/90 border border-outline-variant/30 rounded p-4 mb-4">
+            <div class="flex items-center justify-between text-outline font-label-caps text-label-caps uppercase pb-2 border-b border-outline-variant/20 mb-3">
+              <span class="flex items-center gap-1 text-primary-container">
+                <span class="material-symbols-outlined text-[14px]">leak_add</span>
+                EVIDENCE TELEMETRY
+              </span>
+              <span>AI CORRELATION</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="bg-surface-container-low/60 p-2.5 border border-outline-variant/20 rounded">
+                <div class="text-outline font-label-caps text-label-caps">REPEAT BEHAVIOUR DENSITY</div>
+                <div class="font-mono-data-lg text-mono-data-lg text-primary-container font-semibold mt-0.5 flex items-baseline gap-1">
+                  <span id="prevIncidentDensity">18</span>
+                  <span class="font-label-caps text-[9px] text-on-surface-variant uppercase">RELATED EVENTS</span>
+                </div>
+              </div>
+              <div class="bg-surface-container-low/60 p-2.5 border border-outline-variant/20 rounded">
+                <div class="text-outline font-label-caps text-label-caps">RISK EVENTS BY LOADING BAY</div>
+                <div class="font-mono-data-md text-mono-data-md text-on-surface font-medium mt-0.5" id="prevDetectionSite">
+                  LOADING BAY 01
+                </div>
+                <div class="font-mono-data-sm text-[10px] text-outline">CAM-01 DOCK WEST</div>
+              </div>
+              <div class="bg-surface-container-low/60 p-2.5 border border-outline-variant/20 rounded">
+                <div class="text-outline font-label-caps text-label-caps">REDUCTION IN INCIDENTS</div>
+                <div class="font-mono-data-md text-mono-data-md text-secondary font-medium mt-0.5 flex items-center gap-1">
+                  <span id="prevTrendPct">↓ 33.3%</span>
+                  <span class="font-label-caps text-[9px] text-outline uppercase">IMPROVEMENT</span>
+                </div>
+                <div class="font-mono-data-sm text-[10px] text-secondary/80">SHIFT COMPARISON</div>
+              </div>
+            </div>
+            <!-- Animated Linking Line -->
+            <div class="mt-3 pt-2 border-t border-outline-variant/20 flex items-center justify-between">
+              <span class="font-label-caps text-label-caps text-outline">EVENT → ACTION PATH:</span>
+              <svg class="h-4 flex-1 mx-3" fill="none" preserveAspectRatio="none" viewBox="0 0 200 16">
+                <path d="M0,8 L200,8" stroke="#3b494c" stroke-width="1.5"></path>
+                <path class="animate-dashflow" d="M0,8 L200,8" stroke="#00e5ff" stroke-dasharray="6 4" stroke-width="1.5"></path>
+              </svg>
+              <span class="font-label-caps text-label-caps text-primary-container">READY FOR IMPLEMENTATION</span>
+            </div>
+          </div>
+
+          <!-- Section: WHY THIS MATTERS -->
+          <div class="mb-4 pl-1">
+            <div class="flex items-center gap-1.5 text-secondary font-label-caps text-label-caps uppercase tracking-wider mb-1">
+              <span class="material-symbols-outlined text-[15px]">info</span>
+              <span>WHY THIS MATTERS</span>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface-variant bg-surface-container-low/50 p-2.5 border-l-2 border-secondary/60 rounded-r">
+              Dragging cartons across concrete degrades bottom sealing tape and KD corner integrity, resulting in package punctures and downstream transit damage.
+            </p>
+          </div>
+
+          <!-- Section: RECOMMENDED PRACTICE -->
+          <div class="mb-5 pl-1">
+            <div class="flex items-center justify-between mb-1.5">
+              <div class="flex items-center gap-1.5 text-primary-container font-label-caps text-label-caps uppercase tracking-wider">
+                <span class="material-symbols-outlined text-[15px]">verified</span>
+                <span>RECOMMENDED PRACTICE</span>
+              </div>
+              <span class="text-outline font-label-caps text-[9px]">SOP-LOG-108 REV.B</span>
+            </div>
+            <div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-4 flex flex-col sm:flex-row gap-4 items-center">
+              <!-- Technical Diagram -->
+              <div class="w-28 h-24 sm:w-32 sm:h-24 shrink-0 bg-surface-container-low border border-outline-variant/30 rounded flex items-center justify-center p-2 relative overflow-hidden">
+                <svg class="relative z-10" fill="none" height="74" viewBox="0 0 100 74" width="100" xmlns="http://www.w3.org/2000/svg">
+                  <line stroke="#3b494c" stroke-dasharray="3 3" stroke-width="1.5" x1="6" x2="94" y1="64" y2="64"></line>
+                  <circle cx="26" cy="60" fill="#10141a" r="5" stroke="#00e5ff" stroke-width="1.5"></circle>
+                  <circle cx="26" cy="60" fill="#00e5ff" r="2"></circle>
+                  <circle cx="74" cy="60" fill="#10141a" r="5" stroke="#00e5ff" stroke-width="1.5"></circle>
+                  <circle cx="74" cy="60" fill="#00e5ff" r="2"></circle>
+                  <rect fill="#849396" height="4" rx="1" width="64" x="18" y="52"></rect>
+                  <line stroke="#00e5ff" stroke-width="1" x1="20" x2="80" y1="53" y2="53"></line>
+                  <path d="M78 52 L78 20 L86 16" stroke="#849396" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                  <circle cx="86" cy="16" fill="#00e5ff" r="1.5"></circle>
+                  <rect fill="#181c22" fill-opacity="0.8" height="28" rx="1" stroke="#00e5ff" stroke-width="1.5" width="42" x="28" y="24"></rect>
+                  <line stroke="#3b494c" stroke-width="1" x1="49" x2="49" y1="24" y2="52"></line>
+                  <line stroke="#3b494c" stroke-width="1" x1="28" x2="70" y1="38" y2="38"></line>
+                  <path d="M12 40 L18 40" stroke="#00e5ff" stroke-linecap="round" stroke-width="1"></path>
+                </svg>
+              </div>
+              <!-- Text -->
+              <div class="space-y-1">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">USE SUITABLE HANDLING EQUIPMENT</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Trolley, pallet truck, or appropriate hand-trucks must be used instead of dragging products on the floor. Verify trolley availability in Bay 01 staging rack.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call to Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-3 border-t border-outline-variant/30 pl-1">
+            <a href="incidents.html"
+              class="bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest font-body-md text-body-sm font-semibold px-4 py-2 rounded transition-all duration-150 flex items-center gap-2">
+              <span>REVIEW RELATED EVENTS</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+            <a href="assistance.html"
+              class="bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/50 text-on-surface font-body-md text-body-sm font-medium px-4 py-2 rounded transition-colors duration-150 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-outline text-[16px]">chat</span>
+              <span>ASK AI ASSISTANT</span>
+            </a>
+            <span class="text-outline font-label-caps text-label-caps ml-auto hidden sm:inline">DISPATCHED TO SHIFT SUPERVISOR</span>
+          </div>
+        </div>
+
+        <!-- RESPONSIBLE AI BANNER (Strict PRD Line 34 Requirement) -->
+        <div class="p-3 bg-surface-container-lowest border border-outline-variant/20 rounded flex items-center justify-between text-outline font-mono-data-sm text-mono-data-sm">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container text-[16px]">shield</span>
+            <span>SYSTEM FOCUS: PROCESS REFINEMENT &amp; ERGONOMIC SAFETY — NO PUNITIVE AUTO-DECISIONS</span>
+          </div>
+          <span class="font-label-caps text-[9px] text-outline/70 uppercase">RESPONSIBLE AI PROTOCOL</span>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: Mitigation Lifecycle & Improvement Tracking (5 Columns) -->
+      <section class="lg:col-span-5 space-y-6">
+        <!-- 1. ACTION STATUS WORKFLOW -->
+        <div class="bg-surface-container-low border border-outline-variant/30 rounded p-5">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-outline-variant/20">
+            <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">MITIGATION LIFECYCLE</span>
+            <span class="text-primary-container font-mono-data-sm text-[11px]">ACTIVE WORKFLOW</span>
+          </div>
+          <div class="grid grid-cols-4 gap-2 text-center">
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded bg-primary-container/20 border border-primary-container text-primary-container flex items-center justify-center font-mono-data-sm font-bold mb-1">
+                ✓
+              </div>
+              <span class="font-label-caps text-[9px] text-primary-container uppercase font-semibold">IDENTIFIED</span>
+              <span class="font-mono-data-sm text-[9px] text-outline">08:30</span>
+            </div>
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded bg-primary-container/20 border border-primary-container text-primary-container flex items-center justify-center font-mono-data-sm font-bold mb-1">
+                ✓
+              </div>
+              <span class="font-label-caps text-[9px] text-primary-container uppercase font-semibold">RECOMMENDED</span>
+              <span class="font-mono-data-sm text-[9px] text-outline">09:15</span>
+            </div>
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded bg-primary-container/30 border border-primary-container text-primary-container flex items-center justify-center font-mono-data-sm font-bold mb-1 node-pulse">
+                ○
+              </div>
+              <span class="font-label-caps text-[9px] text-primary-container uppercase font-semibold">PLANNED</span>
+              <span class="font-mono-data-sm text-[9px] text-secondary font-semibold">IN PROGRESS</span>
+            </div>
+            <!-- Step 4 -->
+            <div class="flex flex-col items-center opacity-50">
+              <div class="w-7 h-7 rounded bg-surface-container-highest border border-outline-variant text-outline flex items-center justify-center font-mono-data-sm mb-1">
+                ○
+              </div>
+              <span class="font-label-caps text-[9px] text-outline uppercase font-semibold">TRACKED</span>
+              <span class="font-mono-data-sm text-[9px] text-outline">PENDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. COACHING INITIATIVE -->
+        <div class="bg-surface-container-low border border-outline-variant/30 rounded p-5 space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-label-caps text-label-caps text-primary-container tracking-wider flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">co_present</span>
+              TRAINING OPPORTUNITY // COACHING NOTE
+            </span>
+            <span class="px-1.5 py-0.5 rounded border border-secondary/40 bg-secondary/10 text-secondary font-label-caps text-[9px] uppercase">
+              HIGH PRIORITY
+            </span>
+          </div>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+            TROLLEY &amp; MATERIAL-HANDLING PRACTICES
+          </h3>
+          <div class="space-y-1 font-body-sm text-body-sm">
+            <div class="flex items-center gap-2">
+              <span class="text-outline font-label-caps text-label-caps">TARGET:</span>
+              <span class="text-on-surface font-medium font-mono-data-sm">UNLOADING SHIFT 2 (BAY 01)</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-outline font-label-caps text-label-caps shrink-0 mt-0.5">REASON:</span>
+              <span class="text-on-surface-variant font-mono-data-sm">Repeated dragging behaviour detected across shift.</span>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-outline-variant/20 flex flex-col gap-1.5">
+            <button onclick="dispatchTrainingBrief()"
+              class="w-full bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/60 hover:border-primary-container/40 text-on-surface font-body-md text-body-sm font-semibold py-2 px-3 rounded transition-colors duration-150 cursor-pointer flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-primary-container text-[16px]">assignment</span>
+              <span id="training-btn-text">DISPATCH TOOLBOX TALK BRIEF</span>
+            </button>
+            <p class="text-[10px] font-mono-data-sm text-outline text-center">
+              Facilitates supervisor toolbox talk. AI recommends, supervisor decides.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. OTHER ACTIVE NOTICES -->
+        <div class="bg-surface-container-low border border-outline-variant/30 rounded p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">OTHER ACTIVE NOTICES</span>
+            <span class="font-label-caps text-[9px] text-outline">2 SOP RECOMMENDATIONS</span>
+          </div>
+          <div class="space-y-2">
+            <!-- Stacking -->
+            <div class="p-3 bg-surface-container-lowest border border-outline-variant/20 rounded flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-headline-sm text-body-md text-on-surface font-medium">IMPROPER STACKING</span>
+                  <span class="px-1.5 py-0.2 rounded border border-secondary/30 bg-secondary/10 text-secondary font-label-caps text-[9px]">12 EVENTS</span>
+                </div>
+                <div class="font-label-caps text-[10px] text-outline mt-0.5">AISLE 04 • OVERHEIGHT RISK (SOP-LOG-112)</div>
+              </div>
+              <a href="behaviour.html" class="text-primary-container font-label-caps text-label-caps flex items-center gap-1 hover:underline">
+                <span>VIEW</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+              </a>
+            </div>
+            <!-- Rough Handling -->
+            <div class="p-3 bg-surface-container-lowest border border-outline-variant/20 rounded flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-headline-sm text-body-md text-on-surface font-medium">ROUGH HANDLING</span>
+                  <span class="px-1.5 py-0.2 rounded border border-outline-variant bg-surface-container text-on-surface-variant font-label-caps text-[9px]">8 EVENTS</span>
+                </div>
+                <div class="font-label-caps text-[10px] text-outline mt-0.5">SORTING TABLE 02 • VELOCITY SPIKE (SOP-LOG-115)</div>
+              </div>
+              <a href="incidents.html" class="text-primary-container font-label-caps text-label-caps flex items-center gap-1 hover:underline">
+                <span>VIEW</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. IMPROVEMENT TREND LINE -->
+        <div class="bg-surface-container-low border border-outline-variant/30 rounded p-5">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">REDUCTION IN HANDLING-RELATED INCIDENTS</span>
+            <span class="px-2.5 py-1 rounded bg-primary-container/15 border border-primary-container/40 text-primary-container font-mono-data-md font-bold tracking-wider" id="prevReductionBadge">
+              ↓ 33% IMPROVEMENT
+            </span>
+          </div>
+          <div class="text-on-surface-variant font-mono-data-sm text-mono-data-sm mb-3">
+            <span class="text-on-surface font-medium">DRAGGING // UNLOADING OPERATIONS</span>
+          </div>
+          <div class="bg-surface-container-lowest p-3 border border-outline-variant/20 rounded mb-3">
+            <div class="flex items-center justify-between text-mono-data-sm mb-2">
+              <div>
+                <span class="text-outline font-label-caps text-[9px] block">PREVIOUS SHIFT</span>
+                <span class="text-on-surface-variant font-medium">18 EVENTS</span>
+              </div>
+              <div class="text-right">
+                <span class="text-outline font-label-caps text-[9px] block">CURRENT SHIFT</span>
+                <span class="text-primary-container font-bold text-mono-data-md">12 EVENTS</span>
+              </div>
+            </div>
+            <!-- Downward Trend Line -->
+            <div class="relative w-full h-20 flex items-center pt-2">
+              <svg class="w-full h-20" fill="none" preserveAspectRatio="none" viewBox="0 0 280 60">
+                <line stroke="#3b494c" stroke-dasharray="2 2" stroke-width="0.7" x1="0" x2="280" y1="52" y2="52"></line>
+                <line stroke="#3b494c" stroke-dasharray="2 2" stroke-width="0.7" x1="0" x2="280" y1="10" y2="10"></line>
+                <path d="M10,14 C70,18 130,32 190,38 L265,48" stroke="#00e5ff" stroke-linecap="round" stroke-width="2.5"></path>
+                <circle cx="10" cy="14" fill="#849396" r="3.5"></circle>
+                <circle cx="265" cy="48" fill="#00e5ff" r="4"></circle>
+              </svg>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+            <span class="material-symbols-outlined text-outline text-[16px]">sync</span>
+            <span>Continuous monitoring active. Baseline stabilizing over consecutive shifts.</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Live Clock
+    function updateClock() {
+      const el = document.getElementById('prevention-clock');
+      if (el) {
+        const now = new Date();
+        el.textContent = now.toTimeString().split(' ')[0];
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function dispatchTrainingBrief() {
+      const btn = document.getElementById('training-btn-text');
+      if (btn) {
+        btn.textContent = '✓ TOOLBOX TALK BRIEF DISPATCHED';
+        setTimeout(() => {
+          btn.textContent = 'DISPATCH TOOLBOX TALK BRIEF';
+        }, 3000);
+      }
+    }
+
+    // Dynamic Real-Data Population from /api/prevention/summary & /api/metrics
+    document.addEventListener('DOMContentLoaded', async () => {
+      const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
+      try {
+        const [prevRes, mRes] = await Promise.all([
+          fetch(`${API_BASE}/api/prevention/summary`),
+          fetch(`${API_BASE}/api/metrics`)
+        ]);
+
+        if (prevRes.ok) {
+          const pData = await prevRes.json();
+          const hrEl = document.getElementById('prevHighRiskCount');
+          if (hrEl && pData.high_risk_events_per_shift !== undefined) {
+            hrEl.textContent = pData.high_risk_events_per_shift;
+          }
+          if (pData.recurring_risk) {
+            const densEl = document.getElementById('prevIncidentDensity');
+            if (densEl && pData.recurring_risk.events_count) {
+              densEl.textContent = pData.recurring_risk.events_count;
+            }
+            const siteEl = document.getElementById('prevDetectionSite');
+            if (siteEl && pData.recurring_risk.location) {
+              siteEl.textContent = pData.recurring_risk.location.toUpperCase();
+            }
+          }
+          if (pData.historical_comparison && pData.historical_comparison.improvement_pct) {
+            const badge = document.getElementById('prevReductionBadge');
+            const trend = document.getElementById('prevTrendPct');
+            const pctText = `↓ ${pData.historical_comparison.improvement_pct}%`;
+            if (badge) badge.textContent = `${pctText} IMPROVEMENT`;
+            if (trend) trend.textContent = pctText;
+          }
+        }
+      } catch (err) {
+        console.warn('Prevention data live fetch fallback:', err);
+      }
+    });
+  </script>
+</body>
+
+</html>

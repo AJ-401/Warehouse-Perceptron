@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Field Intelligence — Incident Investigation &amp; Near-Miss Replay (#NM-0042)</title>
+  <!-- Material Symbols Outlined -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Fonts: Space Grotesk & JetBrains Mono -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#004f58",
+            "primary-container": "#00e5ff",
+            "surface-container-lowest": "#0a0e14",
+            "secondary-fixed": "#ffddb8",
+            "canvas-deep": "#070a0e",
+            "surface-container-low": "#181c22",
+            "secondary": "#ffb95f",
+            "secondary-fixed-dim": "#ffb95f",
+            "on-secondary-fixed": "#2a1700",
+            "error-container": "#93000a",
+            "on-secondary": "#472a00",
+            "surface-dim": "#10141a",
+            "primary": "#c3f5ff",
+            "surface-container-highest": "#31353c",
+            "surface-tint": "#00daf3",
+            "on-surface-variant": "#bac9cc",
+            "tertiary-container": "#ffc2ba",
+            "secondary-container": "#ee9800",
+            "surface-variant": "#31353c",
+            "surface-container": "#1c2026",
+            "inverse-surface": "#dfe2eb",
+            "background": "#10141a",
+            "on-error": "#690005",
+            "tertiary-fixed-dim": "#ffb4aa",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-fixed": "#410001",
+            "error": "#ffb4ab",
+            "tertiary": "#ffe8e4",
+            "on-primary": "#00363d",
+            "on-background": "#dfe2eb",
+            "primary-fixed-dim": "#00daf3",
+            "on-secondary-fixed-variant": "#653e00",
+            "on-tertiary": "#690003",
+            "on-secondary-container": "#5b3800",
+            "outline-variant": "#3b494c",
+            "on-tertiary-container": "#b60009",
+            "surface-bright": "#353940",
+            "tertiary-fixed": "#ffdad5",
+            "on-tertiary-fixed-variant": "#930005",
+            "surface-container-high": "#262a31",
+            "on-primary-fixed": "#001f24",
+            "on-surface": "#dfe2eb",
+            "inverse-on-surface": "#2d3137",
+            "on-primary-container": "#00626e",
+            "surface": "#10141a",
+            "primary-fixed": "#9cf0ff",
+            "inverse-primary": "#006875",
+            "outline": "#849396"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "unit-2xs": "2px",
+            "gutter-standard": "12px",
+            "margin-screen": "16px",
+            "unit-xl": "24px",
+            "unit-2xl": "32px",
+            "unit-sm": "8px",
+            "unit-xs": "4px",
+            "unit-lg": "16px",
+            "unit-md": "12px",
+            "gutter-dense": "8px"
+          },
+          "fontFamily": {
+            "display-xl": ["Space Grotesk"],
+            "label-caps": ["JetBrains Mono"],
+            "body-sm": ["Space Grotesk"],
+            "body-lg": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "headline-sm": ["Space Grotesk"],
+            "mono-data-lg": ["JetBrains Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "mono-data-md": ["JetBrains Mono"],
+            "body-md": ["Space Grotesk"],
+            "mono-data-sm": ["JetBrains Mono"],
+            "display-xl-mobile": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "display-xl": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "label-caps": ["10px", { "lineHeight": "14px", "letterSpacing": "0.14em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "mono-data-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "mono-data-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "mono-data-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "display-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    .hud-bracket {
+      position: relative;
+    }
+
+    .hud-bracket::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 8px;
+      height: 8px;
+      border-top: 2px solid #00e5ff;
+      border-left: 2px solid #00e5ff;
+    }
+
+    .hud-bracket::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      border-bottom: 2px solid #00e5ff;
+      border-right: 2px solid #00e5ff;
+    }
+
+    .hud-bracket-amber::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 8px;
+      height: 8px;
+      border-top: 2px solid #ffb95f;
+      border-left: 2px solid #ffb95f;
+    }
+
+    .hud-bracket-amber::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      border-bottom: 2px solid #ffb95f;
+      border-right: 2px solid #ffb95f;
+    }
+
+    .scanline {
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 229, 255, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      background-size: 100% 3px, 6px 100%;
+    }
+
+    /* Custom Scrubber Track */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 14px;
+      width: 6px;
+      background: #00e5ff;
+      cursor: pointer;
+      box-shadow: 0 0 8px #00e5ff;
+      border-radius: 1px;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-surface-container-lowest min-h-screen flex flex-col font-body-md overflow-x-hidden">
+  <!-- Background Shader Injection -->
+  <!-- STITCH_SHADER_START:ANIMATION_25 class="fixed inset-0 w-full h-full pointer-events-none -z-10" -->
+  <div class="fixed inset-0 w-full h-full pointer-events-none -z-10" style="display:block;">
+    <canvas id="shader-canvas-ANIMATION_25" style="display:block;width:100%;height:100%"></canvas>
+    <script>
+        (function () {
+          const canvas = document.getElementById('shader-canvas-ANIMATION_25');
+
+          // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+          // This fires on initial layout and whenever the element is resized.
+          function syncSize() {
+            const w = canvas.clientWidth || 1280;
+            const h = canvas.clientHeight || 720;
+            if (canvas.width !== w || canvas.height !== h) {
+              canvas.width = w;
+              canvas.height = h;
+            }
+          }
+          if (typeof ResizeObserver !== 'undefined') {
+            new ResizeObserver(syncSize).observe(canvas);
+          }
+          syncSize();
+
+          const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+          if (!gl) return;
+          const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+          const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+
+float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+
+float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    return mix(mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
+               mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+}
+
+float fbm(vec2 p) {
+    float v = 0.0;
+    float a = 0.5;
+    mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
+    for (int i = 0; i < 4; ++i) {
+        v += a * noise(p);
+        p = rot * p * 2.0 + vec2(u_time * 0.03, u_time * 0.02);
+        a *= 0.5;
+    }
+    return v;
+}
+
+void main() {
+    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+    vec2 aspectUV = uv * vec2(u_resolution.x / u_resolution.y, 1.0);
+    
+    // Industrial calm atmospheric haze
+    float mist = fbm(aspectUV * 1.5 + vec2(u_time * 0.02, -u_time * 0.015));
+    float vignette = smoothstep(1.2, 0.2, length(uv - 0.5));
+    
+    vec3 baseColor = vec3(0.062, 0.078, 0.102); // #10141a dark graphite
+    vec3 mistTint = vec3(0.02, 0.09, 0.12);    // deep cyan industrial haze
+    
+    vec3 finalColor = mix(baseColor, baseColor + mistTint * mist * 0.65, vignette);
+    
+    // Very subtle grid line shimmer
+    vec2 grid = abs(fract(aspectUV * 16.0 - 0.5) - 0.5) / fwidth(aspectUV * 16.0);
+    float gridLine = 1.0 - min(min(grid.x, grid.y), 1.0);
+    finalColor += vec3(0.0, 0.85, 1.0) * gridLine * 0.012;
+    
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+          function cs(type, src) {
+            const s = gl.createShader(type);
+            gl.shaderSource(s, src);
+            gl.compileShader(s);
+            return s;
+          }
+          const prog = gl.createProgram();
+          gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+          gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+          gl.linkProgram(prog);
+          gl.useProgram(prog);
+          const buf = gl.createBuffer();
+          gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+          const pos = gl.getAttribLocation(prog, 'a_position');
+          gl.enableVertexAttribArray(pos);
+          gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+          const uTime = gl.getUniformLocation(prog, 'u_time');
+          const uRes = gl.getUniformLocation(prog, 'u_resolution');
+          const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+          // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+          // Shaders that need normalized coords should use: u_mouse / u_resolution.
+          let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+          window.addEventListener('mousemove', (event) => {
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width && rect.height) {
+              const nx = (event.clientX - rect.left) / rect.width;
+              const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+              mouse.x = nx * canvas.width;
+              mouse.y = ny * canvas.height;
+            }
+          });
+
+          function render(t) {
+            if (typeof ResizeObserver === 'undefined') syncSize();
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            if (uTime) gl.uniform1f(uTime, t * 0.001);
+            if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+            if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+            requestAnimationFrame(render);
+          }
+          render(0);
+        })();
+    </script>
+  </div>
+  <!-- STITCH_SHADER_END:ANIMATION_25 -->
+  <!-- 1. TOP NAVIGATION (Standard Clean Format) -->
+  <header
+    class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-14 bg-surface/90 backdrop-blur-md border-b border-outline-variant/30">
+    <div class="flex items-center gap-3">
+      <div
+        class="w-5 h-5 border border-primary-container flex items-center justify-center rotate-45 transition-transform hover:rotate-90 duration-300">
+        <div class="w-2 h-2 bg-primary-container"></div>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface leading-tight">ImpactZero</span>
+        <span class="font-label-caps text-label-caps text-outline tracking-widest text-[9px] -mt-0.5">PREDICTIVE DAMAGE PREVENTION</span>
+      </div>
+    </div>
+    <!-- Centered Navigation Links -->
+    <nav class="hidden md:flex items-center space-x-7 h-full">
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="overview.html">OVERVIEW</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="intelligence.html">INTELLIGENCE</a>
+      <a class="text-primary-container border-b-2 border-primary-container font-medium py-4 flex items-center gap-1"
+        href="incidents.html">
+        <span class="font-label-caps text-label-caps uppercase tracking-widest">INCIDENTS</span>
+      </a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="behaviour.html">BEHAVIOUR</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="prevention.html">PREVENTION</a>
+      <a class="text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest py-4 hover:text-primary-container transition-colors"
+        href="assistance.html">ASSISTANT</a>
+    </nav>
+    <!-- Right Telemetry -->
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest border border-outline-variant/30 rounded">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+        <span class="font-label-caps text-label-caps text-primary-container tracking-wider">● SYSTEM ONLINE</span>
+      </div>
+      <div class="hidden lg:block font-mono-data-sm text-mono-data-sm text-on-surface-variant/80 border-l border-outline-variant/30 pl-3">
+        10 SEP 2026 / <span class="text-on-surface font-semibold" id="clockIncidents">14:42:00</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="flex-1 mt-14 mb-8 px-4 md:px-6 py-4 max-w-[1760px] w-full mx-auto flex flex-col gap-4">
+
+    <!-- 2. INCIDENT SELECTOR & INVESTIGATION STRIP -->
+    <section class="bg-surface-container-low border border-outline-variant/30 p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-sm">
+      <div class="flex flex-col gap-1.5">
+        <div class="flex items-center gap-2 font-mono-data-sm text-mono-data-sm text-on-surface-variant">
+          <span class="text-primary-container">FIELD FORENSICS</span>
+          <span class="text-outline-variant/60">/</span>
+          <span>INCIDENT VIDEO INVESTIGATION</span>
+          <span class="text-outline-variant/60">/</span>
+          <span class="text-secondary font-semibold" id="headerLocation">LOADING BAY AREA</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <h1 class="font-headline-lg text-headline-lg font-bold text-white tracking-tight" id="headerIncidentId">INCIDENT #EVT-20260908-0006</h1>
+          <span id="headerRiskBadge" class="px-2.5 py-0.5 bg-red-950/60 border border-red-500/60 text-red-300 font-label-caps text-label-caps font-bold tracking-widest uppercase">
+            CRITICAL RISK
+          </span>
+          <span id="headerNearMissBadge" class="px-2.5 py-0.5 bg-amber-950/60 border border-secondary/60 text-secondary font-label-caps text-label-caps font-bold tracking-widest uppercase">
+            NEAR-MISS
+          </span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl" id="headerSubtitle">
+          Inspect the recorded video clip and frames where the unsafe event was detected to understand the root cause.
+        </p>
+      </div>
+
+      <!-- Quick Selector Controls -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+        <!-- Filter Tabs -->
+        <div class="flex items-center bg-surface-container border border-outline-variant/30 p-0.5 text-xs font-mono-data-sm">
+          <button id="btnFilterAll" onclick="setFilter('all')" class="px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer">ALL</button>
+          <button id="btnFilterWebcam" onclick="setFilter('webcam')" class="px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer">WEBCAM LIVE</button>
+          <button id="btnFilterNM" onclick="setFilter('near_miss')" class="px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer">NEAR-MISS</button>
+          <button id="btnFilterHigh" onclick="setFilter('high_risk')" class="px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer">HIGH RISK</button>
+        </div>
+
+        <!-- Dropdown Selector -->
+        <div class="flex items-center gap-2">
+          <select id="incidentDropdown" onchange="onSelectIncident(this.value)" class="bg-surface-container-lowest border border-outline-variant/40 text-on-surface text-xs font-mono-data-sm py-2 px-3 focus:border-primary-container focus:ring-0 max-w-xs md:max-w-md cursor-pointer">
+            <!-- Dynamically populated from /api/incidents -->
+            <option value="">Loading flagged incidents...</option>
+          </select>
+          <div class="flex items-center gap-1">
+            <button onclick="navigateIncident(-1)" class="p-2 bg-surface-container border border-outline-variant/40 text-on-surface hover:text-primary-container transition-colors cursor-pointer" title="Previous Incident">
+              <span class="material-symbols-outlined text-sm">chevron_left</span>
+            </button>
+            <button onclick="navigateIncident(1)" class="p-2 bg-surface-container border border-outline-variant/40 text-on-surface hover:text-primary-container transition-colors cursor-pointer" title="Next Incident">
+              <span class="material-symbols-outlined text-sm">chevron_right</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MAIN INVESTIGATION WORKSPACE (2 Columns: Video & Controls 60% | Why Flagged Forensics 40%) -->
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
+
+      <!-- LEFT COLUMN: VIDEO CLIP & FRAME INSPECTION (7 cols ~58%) -->
+      <div class="xl:col-span-7 flex flex-col gap-3">
+        <div class="bg-surface-container-low border border-outline-variant/30 flex flex-col relative overflow-hidden shadow-xl">
+
+          <!-- Viewport Header HUD Strip -->
+          <div class="px-4 py-2.5 bg-surface-container-lowest border-b border-outline-variant/30 flex flex-wrap items-center justify-between gap-2 z-20">
+            <div class="flex items-center gap-2.5 font-mono-data-sm text-xs">
+              <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+              <span class="text-on-surface font-semibold" id="camSourceLabel">CAMERA FEED // DOCK GATE A</span>
+              <span class="text-outline-variant/60">|</span>
+              <span class="text-outline truncate max-w-xs" id="videoSourceFile">Loading video...</span>
+            </div>
+            <!-- View Mode Switcher: Video vs AI Frame -->
+            <div class="flex items-center gap-1 font-mono-data-sm text-xs">
+              <button id="btnModeVideo" onclick="setViewMode('video')" class="px-2.5 py-1 bg-primary-container text-surface-container-lowest font-bold flex items-center gap-1 cursor-pointer transition-all">
+                <span class="material-symbols-outlined text-xs">videocam</span>
+                <span>VIDEO REPLAY</span>
+              </button>
+              <button id="btnModeFrame" onclick="setViewMode('frame')" class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary-container border border-outline-variant/40 flex items-center gap-1 cursor-pointer transition-all">
+                <span class="material-symbols-outlined text-xs">center_focus_strong</span>
+                <span>AI DETECTION FRAME</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Video Display Canvas -->
+          <div class="relative w-full aspect-video bg-black flex items-center justify-center overflow-hidden">
+            <!-- Real HTML5 Video Player for MP4 Footage -->
+            <video id="incidentVideo" class="w-full h-full object-contain" playsinline preload="auto" controls>
+              Your browser does not support HTML5 video playback.
+            </video>
+
+            <!-- AI Annotated Single Keyframe Image (Overlay Mode) -->
+            <img id="incidentFrameImg" class="w-full h-full object-contain absolute inset-0 hidden bg-black" alt="AI Annotated Keyframe" />
+
+            <!-- Incident Window Highlight Overlay Badge -->
+            <div id="eventOverlayBadge" class="absolute top-3 left-3 bg-surface-container-lowest/90 border border-secondary/80 px-3 py-1 text-xs font-mono-data-sm text-secondary flex items-center gap-2 backdrop-blur-sm pointer-events-none">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+              <span class="font-bold tracking-wider">EVENT FRAME WINDOW</span>
+              <span class="text-white" id="overlayFrameWindow">FRAMES: 296 - 306</span>
+            </div>
+          </div>
+
+          <!-- Video Playback & Frame Scrubber Control Bar -->
+          <div class="p-3.5 bg-surface-container-lowest border-t border-outline-variant/30 flex flex-col gap-2.5">
+            <!-- Timeline Track -->
+            <div class="flex items-center gap-3">
+              <span class="font-mono-data-sm text-xs text-outline w-12 text-right" id="lblCurrentTime">00:00</span>
+              <input type="range" id="videoTimelineSlider" min="0" max="100" step="0.05" value="0" class="flex-1 h-1.5 bg-surface-container appearance-none cursor-pointer focus:outline-none" oninput="onSliderScrub(this.value)">
+              <span class="font-mono-data-sm text-xs text-outline w-12" id="lblTotalDuration">00:00</span>
+            </div>
+
+            <!-- Operational Control Buttons -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="jumpToEventStart()" class="px-2.5 py-1.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 text-on-surface hover:text-primary-container text-xs font-mono-data-sm flex items-center gap-1 transition-all cursor-pointer" title="Seek to the exact beginning of the flagged event">
+                  <span class="material-symbols-outlined text-sm">first_page</span>
+                  <span>JUMP TO EVENT START</span>
+                </button>
+                <button id="btnPlayPause" onclick="togglePlayPause()" class="px-3.5 py-1.5 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest text-xs font-bold font-mono-data-sm flex items-center gap-1 transition-all cursor-pointer">
+                  <span class="material-symbols-outlined text-sm" id="iconPlayPause">play_arrow</span>
+                  <span id="textPlayPause">PLAY</span>
+                </button>
+                <button onclick="jumpToEventEnd()" class="px-2.5 py-1.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 text-on-surface hover:text-primary-container text-xs font-mono-data-sm flex items-center gap-1 transition-all cursor-pointer" title="Seek to the end of the flagged event">
+                  <span>EVENT END</span>
+                  <span class="material-symbols-outlined text-sm">last_page</span>
+                </button>
+              </div>
+
+              <!-- Loop Event Segment Toggle -->
+              <div class="flex items-center gap-3">
+                <label class="flex items-center gap-1.5 text-xs font-mono-data-sm text-on-surface-variant cursor-pointer select-none">
+                  <input type="checkbox" id="chkLoopSegment" checked class="rounded bg-surface-container border-outline-variant text-primary-container focus:ring-0">
+                  <span>LOOP EVENT WINDOW</span>
+                </label>
+                <div class="font-mono-data-sm text-xs px-2 py-1 bg-surface-container border border-outline-variant/30 text-primary-container font-semibold" id="frameCounterDisplay">
+                  FRAME: 296 // OFFSET: 09.86s
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frame Timeline Sequence Bar -->
+        <div class="bg-surface-container-low border border-outline-variant/30 p-3 flex items-center justify-between gap-3 text-xs font-mono-data-sm">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container text-sm">view_timeline</span>
+            <span class="text-outline uppercase tracking-wider">EVENT SPAN:</span>
+            <span class="text-white font-semibold" id="timelineSpanText">10 FRAMES (0.33 SECONDS)</span>
+          </div>
+          <div class="flex items-center gap-2 text-outline">
+            <span>START: <strong class="text-primary" id="spanStartTime">00:00:09.86</strong></span>
+            <span>→</span>
+            <span>END: <strong class="text-secondary" id="spanEndTime">00:00:10.20</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: UNIFIED FORENSIC INVESTIGATION & ACTION PLAN (5 cols ~42%) -->
+      <div class="xl:col-span-5 flex flex-col gap-4">
+
+        <div class="bg-surface-container-low border-l-4 border-l-secondary border-t border-r border-b border-outline-variant/30 p-5 space-y-4 shadow-lg">
+          
+          <!-- Header -->
+          <div class="flex items-center justify-between border-b border-outline-variant/20 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-base">emergency</span>
+              <h2 class="font-headline-sm text-headline-sm text-white font-semibold tracking-wide">WHY WAS THIS FLAGGED?</h2>
+            </div>
+            <div class="flex items-center gap-1.5 font-mono-data-sm text-xs text-outline">
+              <span>LOCATION:</span>
+              <strong class="text-white font-semibold" id="flaggedLocationName">Loading Bay Area</strong>
+            </div>
+          </div>
+
+          <!-- Combined Flagged Behaviour & AI Perception Reasoning -->
+          <div class="p-4 bg-surface-container-lowest border border-outline-variant/40 space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-label-caps text-[10px] text-outline uppercase tracking-wider">FLAGGED BEHAVIOUR</span>
+              <span class="font-mono-data-sm text-xs font-bold text-secondary tracking-wide uppercase" id="flaggedBehaviourName">Rapid Unsafe Carry</span>
+            </div>
+            <div class="pt-1.5 border-t border-outline-variant/20">
+              <div class="font-label-caps text-[10px] text-outline uppercase tracking-wider mb-1">AI PERCEPTION REASONING:</div>
+              <p class="font-body-md text-sm text-on-surface font-medium leading-relaxed" id="flaggedReasonText">
+                "Carton #1001 carried by operator #164 at elevated height (1.21m) and excessive speed (529.1 px/s). Live alert raised before drop occurred."
+              </p>
+            </div>
+          </div>
+
+          <!-- Recommended Supervisor Action -->
+          <div class="space-y-2 pt-1">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary-container text-base">assignment_turned_in</span>
+              <h3 class="font-headline-sm text-xs text-white font-semibold uppercase tracking-wider">RECOMMENDED SUPERVISOR ACTION</h3>
+            </div>
+            <div class="p-3.5 bg-surface-container border-l-2 border-primary-container text-on-surface font-body-md text-sm leading-relaxed" id="recommendedActionText">
+              "Immediate dock supervisor audio alert: operator must slow down and lower carry elevation."
+            </div>
+          </div>
+
+          <!-- Single Direct Action Button -->
+          <div class="pt-2">
+            <a href="prevention.html" class="w-full py-2.5 px-4 bg-primary-container hover:bg-primary-fixed-dim text-surface-container-lowest font-label-caps text-xs font-bold tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer">
+              <span>OPEN PREVENTION PLAN</span>
+              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            </a>
+          </div>
+
+          <!-- Ethical AI Footer -->
+          <div class="pt-2 border-t border-outline-variant/20 flex items-start gap-2 text-[11px] font-mono-data-sm text-outline">
+            <span class="material-symbols-outlined text-xs text-primary-container mt-0.5">verified_user</span>
+            <span>Responsible AI: Operational analysis is strictly grounded in facility and ergonomic events. Zero worker scorekeeping.</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4. RECENT FLAGGED INCIDENTS CAROUSEL / QUICK BROWSER -->
+    <section class="bg-surface-container-low border border-outline-variant/30 p-4 space-y-3">
+      <div class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-container text-sm">view_carousel</span>
+          <span class="font-label-caps text-label-caps text-white font-semibold uppercase tracking-wider">ALL FLAGGED WAREHOUSE INCIDENTS</span>
+        </div>
+        <span class="font-mono-data-sm text-xs text-outline" id="incidentsTotalBadge">Loading incidents...</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 max-h-80 overflow-y-auto pr-1 pb-1" id="incidentCardsGrid">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JAVASCRIPT: REAL INCIDENT REPLAY & FORENSICS CONTROLLER -->
+  <script>
+    let incidentsData = [];
+    let currentIncident = null;
+    let currentIndex = 0;
+    let currentFilter = 'all';
+    let isPlaying = false;
+    let loopCheckInterval = null;
+
+    // Elements
+    const video = document.getElementById('incidentVideo');
+    const frameImg = document.getElementById('incidentFrameImg');
+    const slider = document.getElementById('videoTimelineSlider');
+    const incidentDropdown = document.getElementById('incidentDropdown');
+    const chkLoop = document.getElementById('chkLoopSegment');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const iconPlayPause = document.getElementById('iconPlayPause');
+    const textPlayPause = document.getElementById('textPlayPause');
+
+    // Live Clock
+    function updateClock() {
+      const el = document.getElementById('clockIncidents');
+      if (el) el.textContent = new Date().toTimeString().split(' ')[0];
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Fetch Incidents from Backend
+    async function fetchIncidents() {
+      try {
+        const res = await fetch(`/api/incidents?filter_type=${currentFilter}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        incidentsData = await res.json();
+        
+        document.getElementById('incidentsTotalBadge').textContent = `${incidentsData.length} FLAGGED INCIDENTS`;
+        populateDropdown();
+        renderIncidentCards();
+
+        if (incidentsData.length > 0) {
+          loadIncident(0);
+        }
+      } catch (err) {
+        console.error('Failed to load incidents', err);
+        document.getElementById('headerSubtitle').textContent = '⚠️ Could not load incidents from backend. Ensure server is running on http://localhost:8000';
+      }
+    }
+
+    // Populate Dropdown
+    function populateDropdown() {
+      incidentDropdown.innerHTML = '';
+      incidentsData.forEach((inc, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        const tag = inc.is_near_miss ? '[NEAR-MISS]' : `[${inc.risk_level.toUpperCase()}]`;
+        opt.textContent = `${tag} #${inc.incident_id} — ${inc.behaviour} (${inc.location})`;
+        incidentDropdown.appendChild(opt);
+      });
+    }
+
+    // Render Quick Cards
+    function renderIncidentCards() {
+      const grid = document.getElementById('incidentCardsGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      incidentsData.forEach((inc, idx) => {
+        const card = document.createElement('div');
+        const isActive = idx === currentIndex;
+        card.className = `p-2.5 bg-surface-container border ${isActive ? 'border-primary-container shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'border-outline-variant/30 hover:border-primary-container/60'} rounded cursor-pointer transition-all flex flex-col justify-between gap-1.5`;
+        card.onclick = () => loadIncident(idx);
+
+        const rk = (inc.risk_level || 'HIGH').toUpperCase();
+        const riskColor = rk === 'CRITICAL' ? 'text-red-400' : (rk === 'HIGH' ? 'text-amber-400' : 'text-cyan-400');
+        const nmPill = inc.is_near_miss ? '<span class="px-1.5 py-0.2 bg-amber-950/80 border border-amber-500/60 text-amber-300 text-[9px] font-bold">NEAR-MISS</span>' : '';
+        
+        card.innerHTML = `
+          <div class="flex items-center justify-between font-mono-data-sm text-[10px]">
+            <span class="font-bold ${riskColor}">${rk}</span>
+            <div class="flex items-center gap-1">
+              ${nmPill}
+              <span class="text-outline">${inc.start_time || '00:00'}</span>
+            </div>
+          </div>
+          <div class="font-headline-sm text-xs font-semibold text-white leading-snug line-clamp-2">
+            ${inc.behaviour}
+          </div>
+          <div class="font-mono-data-sm text-[10px] text-on-surface-variant/80 truncate">
+            #${inc.incident_id} // ${inc.location}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Load Specific Incident
+    function loadIncident(index) {
+      if (index < 0 || index >= incidentsData.length) return;
+      currentIndex = index;
+      currentIncident = incidentsData[index];
+      incidentDropdown.value = index;
+
+      const frStart = currentIncident.frame_start || 1;
+      const frEnd = currentIncident.frame_end || (frStart + 30);
+      const frCount = Math.max(1, frEnd - frStart);
+
+      // Update Header
+      const headId = document.getElementById('headerIncidentId');
+      if (headId) headId.textContent = `INCIDENT #${currentIncident.incident_id}`;
+      
+      const headLoc = document.getElementById('headerLocation');
+      if (headLoc) headLoc.textContent = (currentIncident.location || 'LOADING BAY AREA').toUpperCase();
+
+      const riskBadge = document.getElementById('headerRiskBadge');
+      if (riskBadge) {
+        const rk = (currentIncident.risk_level || 'HIGH').toUpperCase();
+        riskBadge.textContent = `${rk} RISK`;
+        if (rk === 'CRITICAL') {
+          riskBadge.className = 'px-2.5 py-0.5 bg-red-950/80 border border-red-500/80 text-red-300 font-label-caps text-label-caps font-bold tracking-widest uppercase';
+        } else if (rk === 'HIGH') {
+          riskBadge.className = 'px-2.5 py-0.5 bg-amber-950/80 border border-amber-500/80 text-amber-300 font-label-caps text-label-caps font-bold tracking-widest uppercase';
+        } else {
+          riskBadge.className = 'px-2.5 py-0.5 bg-cyan-950/80 border border-cyan-500/80 text-cyan-300 font-label-caps text-label-caps font-bold tracking-widest uppercase';
+        }
+      }
+
+      const nmBadge = document.getElementById('headerNearMissBadge');
+      if (nmBadge) {
+        if (currentIncident.is_near_miss) {
+          nmBadge.classList.remove('hidden');
+          nmBadge.style.display = 'inline-block';
+        } else {
+          nmBadge.classList.add('hidden');
+          nmBadge.style.display = 'none';
+        }
+      }
+
+      // Update Forensics Right Panel
+      const reasonEl = document.getElementById('flaggedReasonText');
+      if (reasonEl) reasonEl.textContent = `"${currentIncident.reason || 'Safety deviation flagged by AI kinematics tracking.'}"`;
+      
+      const behEl = document.getElementById('flaggedBehaviourName');
+      if (behEl) behEl.textContent = currentIncident.behaviour || 'Handling Deviation';
+      
+      const locEl = document.getElementById('flaggedLocationName');
+      if (locEl) locEl.textContent = currentIncident.location || 'Loading Bay Area';
+      
+      const recEl = document.getElementById('recommendedActionText');
+      if (recEl) recEl.textContent = `"${currentIncident.recommendation || 'Review handling posture and area safety clearance.'}"`;
+
+      // Update Video Player & Overlays
+      const camLabel = document.getElementById('camSourceLabel');
+      if (camLabel) camLabel.textContent = `CAMERA FEED // ${(currentIncident.location || 'LOADING BAY AREA').toUpperCase()}`;
+
+      const vidSource = document.getElementById('videoSourceFile');
+      if (vidSource) vidSource.textContent = currentIncident.video || 'Live Stream';
+
+      const ovlWindow = document.getElementById('overlayFrameWindow');
+      if (ovlWindow) ovlWindow.textContent = `FRAMES: ${frStart} - ${frEnd}`;
+
+      const spanStart = document.getElementById('spanStartTime');
+      if (spanStart) spanStart.textContent = currentIncident.start_time || '00:00:00';
+
+      const spanEnd = document.getElementById('spanEndTime');
+      if (spanEnd) spanEnd.textContent = currentIncident.end_time || '00:00:05';
+
+      const tlSpan = document.getElementById('timelineSpanText');
+      if (tlSpan) tlSpan.textContent = `${frCount} FRAMES (${currentIncident.duration_seconds || 1} SECONDS)`;
+
+      // Set video src
+      if (currentIncident.video_url) {
+        video.src = currentIncident.video_url;
+        video.currentTime = currentIncident.start_seconds || 0;
+        setViewMode('video');
+      } else {
+        // Fallback for webcam or live stream
+        video.src = '';
+        setViewMode('frame');
+      }
+
+      // Set AI frame img
+      if (frameImg) frameImg.src = currentIncident.ai_frame_url || '';
+
+      // Update cards highlighting
+      renderIncidentCards();
+    }
+
+    // View Mode Switcher
+    function setViewMode(mode) {
+      const btnVideo = document.getElementById('btnModeVideo');
+      const btnFrame = document.getElementById('btnModeFrame');
+
+      if (mode === 'frame') {
+        video.classList.add('hidden');
+        frameImg.classList.remove('hidden');
+        btnFrame.className = 'px-2.5 py-1 bg-primary-container text-surface-container-lowest font-bold flex items-center gap-1 cursor-pointer transition-all';
+        btnVideo.className = 'px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary-container border border-outline-variant/40 flex items-center gap-1 cursor-pointer transition-all';
+      } else {
+        frameImg.classList.add('hidden');
+        video.classList.remove('hidden');
+        btnVideo.className = 'px-2.5 py-1 bg-primary-container text-surface-container-lowest font-bold flex items-center gap-1 cursor-pointer transition-all';
+        btnFrame.className = 'px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary-container border border-outline-variant/40 flex items-center gap-1 cursor-pointer transition-all';
+      }
+    }
+
+    // Playback Controls
+    function togglePlayPause() {
+      if (video.paused) {
+        video.play();
+        iconPlayPause.textContent = 'pause';
+        textPlayPause.textContent = 'PAUSE';
+        isPlaying = true;
+      } else {
+        video.pause();
+        iconPlayPause.textContent = 'play_arrow';
+        textPlayPause.textContent = 'PLAY';
+        isPlaying = false;
+      }
+    }
+
+    function jumpToEventStart() {
+      if (!currentIncident) return;
+      video.currentTime = currentIncident.start_seconds || 0;
+      video.play();
+      iconPlayPause.textContent = 'pause';
+      textPlayPause.textContent = 'PAUSE';
+      isPlaying = true;
+    }
+
+    function jumpToEventEnd() {
+      if (!currentIncident) return;
+      video.currentTime = currentIncident.end_seconds || (video.duration || 10);
+    }
+
+    // Loop enforcement
+    video.addEventListener('timeupdate', () => {
+      if (!currentIncident) return;
+      const cur = video.currentTime;
+      const dur = video.duration || 1;
+
+      // Update scrubber slider
+      slider.max = dur;
+      slider.value = cur;
+
+      // Update label
+      const curMin = Math.floor(cur / 60);
+      const curSec = Math.floor(cur % 60);
+      document.getElementById('lblCurrentTime').textContent = `${curMin < 10 ? '0' : ''}${curMin}:${curSec < 10 ? '0' : ''}${curSec}`;
+
+      const durMin = Math.floor(dur / 60);
+      const durSec = Math.floor(dur % 60);
+      document.getElementById('lblTotalDuration').textContent = `${durMin < 10 ? '0' : ''}${durMin}:${durSec < 10 ? '0' : ''}${durSec}`;
+
+      const approxFrame = Math.floor(cur * 30);
+      document.getElementById('frameCounterDisplay').textContent = `FRAME: ${approxFrame} // ${cur.toFixed(2)}s`;
+
+      // Check loop boundary
+      if (chkLoop.checked && currentIncident.end_seconds) {
+        if (cur >= currentIncident.end_seconds) {
+          video.currentTime = currentIncident.start_seconds || 0;
+        }
+      }
+    });
+
+    video.addEventListener('ended', () => {
+      if (chkLoop.checked && currentIncident) {
+        video.currentTime = currentIncident.start_seconds || 0;
+        video.play();
+      } else {
+        iconPlayPause.textContent = 'play_arrow';
+        textPlayPause.textContent = 'PLAY';
+        isPlaying = false;
+      }
+    });
+
+    function onSliderScrub(val) {
+      video.currentTime = parseFloat(val);
+    }
+
+    function onSelectIncident(val) {
+      if (val !== '') loadIncident(parseInt(val));
+    }
+
+    function navigateIncident(delta) {
+      let nextIdx = currentIndex + delta;
+      if (nextIdx < 0) nextIdx = incidentsData.length - 1;
+      if (nextIdx >= incidentsData.length) nextIdx = 0;
+      loadIncident(nextIdx);
+    }
+
+    function setFilter(type) {
+      currentFilter = type;
+      const activeClass = 'px-2.5 py-1 text-primary-container bg-surface-container-lowest font-semibold border border-outline-variant/30 cursor-pointer';
+      const inactiveClass = 'px-2.5 py-1 text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer';
+
+      if (document.getElementById('btnFilterAll')) document.getElementById('btnFilterAll').className = type === 'all' ? activeClass : inactiveClass;
+      if (document.getElementById('btnFilterWebcam')) document.getElementById('btnFilterWebcam').className = type === 'webcam' ? activeClass : inactiveClass;
+      if (document.getElementById('btnFilterNM')) document.getElementById('btnFilterNM').className = type === 'near_miss' ? activeClass : inactiveClass;
+      if (document.getElementById('btnFilterHigh')) document.getElementById('btnFilterHigh').className = type === 'high_risk' ? activeClass : inactiveClass;
+      fetchIncidents();
+    }
+
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchIncidents();
+    });
+  </script>
+</body>
+
+</html>

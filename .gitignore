@@ -3,18 +3,25 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Environments
+# Environments & Secrets
 .env
+.env.*
+!.env.example
 .venv
 env/
 venv/
 ENV/
 
-# Temporary and scratch images
+# Chat session memory
+data/memory/
+
+# Temporary and scratch images & scripts
 *.jpg
 *.jpeg
 *.png
 !assets/*.png
+*.zip
+scratch/
 
 # Output folders & Video files (too large for standard Git pushes)
 outputs_live/
@@ -32,8 +39,8 @@ Thumbs.db
 # IDE configuration
 .vscode/
 .idea/
-
 # Weights & Temporary
 *.pt
+!weights/*.pt
 ~$*
 evidence/
