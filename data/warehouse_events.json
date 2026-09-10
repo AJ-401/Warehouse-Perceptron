@@ -1,6 +1,204 @@
 {
   "events": [
     {
+      "event_id": "EVT-20260910-0368",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "20:54:22",
+      "timestamp_end": "20:54:22",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 1.99,
+        "floor_contact_duration_sec": 9.37,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 dragged across warehouse floor (1.99m over 9.37s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789053862",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0367",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "20:54:17",
+      "timestamp_end": "20:54:17",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 1.99,
+        "floor_contact_duration_sec": 7.97,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 dragged across warehouse floor (1.99m over 7.97s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789053857",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0366",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "20:54:12",
+      "timestamp_end": "20:54:12",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 1.99,
+        "floor_contact_duration_sec": 6.77,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": true,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 dragged across warehouse floor (1.99m over 6.77s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789053852",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0365",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "20:54:08",
+      "timestamp_end": "20:54:08",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Floor Dragging (No Equipment)",
+      "behaviour_code": "UNSAFE_FLOOR_DRAG",
+      "risk_level": "High",
+      "confidence_stage": "Potential Risk",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_distance_m": 1.99,
+        "floor_contact_duration_sec": 5.5,
+        "drop_height_m": 0.0,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 dragged across warehouse floor (1.99m over 5.5s) without mechanical handling equipment.",
+      "recommended_action": "Inspect bottom surface of carton for abrasion damage. Recommend trolley/pallet-truck training.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789053848",
+        "clip_url": null
+      }
+    },
+    {
+      "event_id": "EVT-20260910-0364",
+      "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
+      "timestamp_start": "20:54:02",
+      "timestamp_end": "20:54:02",
+      "frame_range": [
+        1,
+        30
+      ],
+      "location_id": "Inspection Bay // Device Camera",
+      "behaviour_type": "Carton Throwing / Sliding",
+      "behaviour_code": "ROUGH_THROW_SLIDE",
+      "risk_level": "Medium",
+      "confidence_stage": "Observed",
+      "is_near_miss": false,
+      "near_miss_probability": 0.0,
+      "entities_involved": {
+        "person_track_ids": [
+          1
+        ],
+        "package_track_ids": [
+          101
+        ],
+        "equipment_detected": null
+      },
+      "telemetry": {
+        "horizontal_speed_m_per_sec": 0.47,
+        "is_repeated_behaviour": false,
+        "boxes_detected": 1,
+        "source": "DEVICE_WEBCAM_LIVE"
+      },
+      "reason": "Carton #1001 propelled horizontally across floor/surface at excessive speed (0.47 m/s).",
+      "recommended_action": "Strictly prohibit package throwing. Review footage with operator to reinforce controlled placement.",
+      "evidence": {
+        "snapshot_url": "/api/video_frame?video=__DEVICE_WEBCAM__&mask=true&t=1789053842",
+        "clip_url": null
+      }
+    },
+    {
       "event_id": "EVT-20260910-0363",
       "video_id": "MY DEVICE WEBCAM (LIVE AI INFERENCE)",
       "timestamp_start": "19:05:59",
@@ -13800,9 +13998,9 @@
     }
   ],
   "shift_summary": {
-    "total_events": 363,
+    "total_events": 368,
     "near_misses_prevented": 21,
-    "high_critical_risks": 260,
+    "high_critical_risks": 264,
     "estimated_damage_avoided_inr": 67500.0,
     "most_frequent_risk": "Floor Dragging (No Equipment)"
   }

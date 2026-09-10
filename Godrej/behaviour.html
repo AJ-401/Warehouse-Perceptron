@@ -205,43 +205,43 @@
       </div>
     </div>
 
-    <!-- TOP 4 KPI SUMMARY CARDS -->
+    <!-- TOP 4 KPI SUMMARY CARDS (Strictly Allowed Metrics) -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- Total Detections -->
+      <!-- High-Risk Events Per Shift (Operational Performance) -->
       <div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded">
         <div class="flex justify-between items-center mb-1">
-          <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">TOTAL DETECTIONS</span>
-          <span class="material-symbols-outlined text-outline text-[16px]">visibility</span>
+          <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">HIGH-RISK EVENTS PER SHIFT</span>
+          <span class="material-symbols-outlined text-outline text-[16px]">emergency</span>
         </div>
-        <div class="font-mono-data-lg text-[28px] font-bold text-on-surface" id="total-detections-label">250</div>
-        <div class="text-[11px] text-on-surface-variant mt-1">Logged handling activities</div>
+        <div class="font-mono-data-lg text-[28px] font-bold text-on-surface" id="kpi-high-risk-events">260</div>
+        <div class="text-[11px] text-on-surface-variant mt-1">High &amp; critical severity flags</div>
       </div>
-      <!-- Primary Pattern -->
+      <!-- Repeat Behaviour Frequency (Operational Performance) -->
       <div class="p-4 bg-surface-container-low border border-secondary/40 rounded">
         <div class="flex justify-between items-center mb-1">
-          <span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">PRIMARY PATTERN</span>
+          <span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">REPEAT BEHAVIOUR FREQUENCY</span>
           <span class="material-symbols-outlined text-secondary text-[16px]">warning</span>
         </div>
         <div class="font-headline-md text-headline-md font-bold text-secondary" id="kpi-top-pattern">DRAGGING</div>
-        <div class="text-[11px] text-on-surface-variant mt-1">42% of shift handling events</div>
+        <div class="text-[11px] text-on-surface-variant mt-1" id="kpi-top-pattern-sub">42% of shift handling events</div>
       </div>
-      <!-- Top Risk Hotspot -->
+      <!-- Risk Events by Loading Bay (Operational Performance) -->
       <div class="p-4 bg-surface-container-low border border-outline-variant/30 rounded">
         <div class="flex justify-between items-center mb-1">
-          <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">TOP HOTSPOT</span>
+          <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">RISK EVENTS BY LOADING BAY</span>
           <span class="material-symbols-outlined text-outline text-[16px]">location_on</span>
         </div>
         <div class="font-headline-md text-headline-md font-semibold text-on-surface" id="kpi-top-hotspot">BAY 01 // DOCK A</div>
-        <div class="text-[11px] text-on-surface-variant mt-1">18 elevated events recorded</div>
+        <div class="text-[11px] text-on-surface-variant mt-1" id="kpi-top-hotspot-sub">118 elevated events recorded</div>
       </div>
-      <!-- Shift Improvement -->
+      <!-- Reduction in Handling-Related Incidents (Business Impact) -->
       <div class="p-4 bg-surface-container-low border border-primary-container/30 rounded">
         <div class="flex justify-between items-center mb-1">
-          <span class="font-label-caps text-label-caps text-primary-container uppercase tracking-wider">PREVENTION IMPACT</span>
+          <span class="font-label-caps text-label-caps text-primary-container uppercase tracking-wider">REDUCTION IN INCIDENTS</span>
           <span class="material-symbols-outlined text-primary-container text-[16px]">trending_down</span>
         </div>
-        <div class="font-mono-data-lg text-[28px] font-bold text-primary-container">↓ 33%</div>
-        <div class="text-[11px] text-on-surface-variant mt-1">Reduction in recurring dragging</div>
+        <div class="font-mono-data-lg text-[28px] font-bold text-primary-container" id="kpi-shift-reduction">↓ 33%</div>
+        <div class="text-[11px] text-on-surface-variant mt-1">Shift improvement delta</div>
       </div>
     </div>
 
@@ -387,7 +387,7 @@
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-3 bg-primary-container"></span>
               <h2 class="font-label-caps text-label-caps text-on-surface font-semibold tracking-wider uppercase">
-                HOTSPOT DENSITY BY LOCATION
+                RISK EVENTS BY LOADING BAY
               </h2>
             </div>
             <span class="font-mono-data-sm text-mono-data-sm text-outline">NORTH WAREHOUSE</span>
@@ -483,7 +483,7 @@
     <!-- BOTTOM BENCHMARK SECTION -->
     <div class="pt-4 border-t border-outline-variant/30">
       <div class="flex items-center justify-between pb-3">
-        <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">PREVENTION METRICS // SHIFT DELTA BENCHMARK</span>
+        <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">REDUCTION IN HANDLING-RELATED INCIDENTS // SHIFT DELTA BENCHMARK</span>
         <span class="font-mono-data-sm text-mono-data-sm text-outline">24-HOUR PROGRESS</span>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -547,10 +547,11 @@
       if (label) label.textContent = shifts[currentShiftIdx];
     }
 
-    // Dynamic Data Population from /api/metrics
+    // Dynamic Data Population from /api/metrics (Strictly Allowed Metrics)
     document.addEventListener('DOMContentLoaded', async () => {
       const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
-      const totalDetectionsLabel = document.getElementById('total-detections-label');
+      const kpiHighRisk = document.getElementById('kpi-high-risk-events');
+      const kpiShiftReduction = document.getElementById('kpi-shift-reduction');
       const barsContainer = document.getElementById('behaviour-bars-container');
       const topTitle = document.getElementById('top-pattern-title');
       const topCount = document.getElementById('top-pattern-count');
@@ -559,18 +560,26 @@
       const topHotspot = document.getElementById('top-pattern-hotspot');
       const kpiTopPattern = document.getElementById('kpi-top-pattern');
       const kpiTopHotspot = document.getElementById('kpi-top-hotspot');
+      const kpiTopHotspotSub = document.getElementById('kpi-top-hotspot-sub');
 
       try {
         const res = await fetch(`${API_BASE}/api/metrics`);
         if (!res.ok) throw new Error('API failed');
         const data = await res.json();
 
-        if (totalDetectionsLabel && data.total_events) {
-          totalDetectionsLabel.textContent = data.total_events;
+        // Operational Performance: High-Risk Events Per Shift
+        if (kpiHighRisk && data.critical_high_count !== undefined) {
+          kpiHighRisk.textContent = data.critical_high_count;
         }
 
+        // Business Impact: Reduction in Handling-Related Incidents
+        if (kpiShiftReduction && data.shift_improvement_pct) {
+          kpiShiftReduction.textContent = `↓ ${data.shift_improvement_pct}%`;
+        }
+
+        // Operational Performance: Repeat Behaviour Frequency
         if (data.top_behaviours && data.top_behaviours.length > 0 && barsContainer) {
-          const total = data.total_events || 250;
+          const total = data.total_events || 363;
           barsContainer.innerHTML = data.top_behaviours.slice(0, 5).map((item, idx) => {
             const pct = ((item.count / total) * 100).toFixed(1);
             const isHighest = idx === 0;
@@ -584,7 +593,7 @@
               <div class="flex justify-between items-baseline">
                 <div class="flex items-center gap-2">
                   <span class="font-mono-data-sm text-mono-data-sm font-semibold ${isHighest ? 'text-secondary' : 'text-on-surface'}">
-                    0${idx + 1}. ${item.name.toUpperCase()}
+                    0${idx + 1}. ${(item.name || item.behaviour || 'ANOMALY').toUpperCase()}
                   </span>
                   ${badge}
                 </div>
@@ -603,19 +612,24 @@
           // Update Top Pattern Card
           const top = data.top_behaviours[0];
           if (top) {
+            const topName = (top.name || top.behaviour || 'DRAGGING').toUpperCase();
             const topPct = ((top.count / total) * 100).toFixed(1);
-            if (topTitle) topTitle.textContent = top.name.toUpperCase();
-            if (kpiTopPattern) kpiTopPattern.textContent = top.name.toUpperCase();
+            if (topTitle) topTitle.textContent = topName;
+            if (kpiTopPattern) kpiTopPattern.textContent = topName;
+            const sub = document.getElementById('kpi-top-pattern-sub');
+            if (sub) sub.textContent = `${topPct}% of shift handling events`;
             if (topCount) topCount.textContent = top.count;
             if (topShare) topShare.textContent = `${topPct}% OF FACILITY TOTAL`;
             if (topShareStat) topShareStat.textContent = `${topPct}%`;
           }
+        }
 
-          if (data.cameras && data.cameras.length > 0) {
-            const camName = data.cameras[0].camera_name;
-            if (topHotspot) topHotspot.textContent = camName;
-            if (kpiTopHotspot) kpiTopHotspot.textContent = camName;
-          }
+        // Operational Performance: Risk Events by Loading Bay
+        if (data.hotspots && data.hotspots.length > 0) {
+          const topH = data.hotspots[0];
+          if (topHotspot) topHotspot.textContent = topH.camera_id;
+          if (kpiTopHotspot) kpiTopHotspot.textContent = topH.camera_id;
+          if (kpiTopHotspotSub) kpiTopHotspotSub.textContent = `${topH.count} elevated events recorded`;
         }
       } catch (err) {
         console.warn('Telemetry metrics loaded from local default store:', err);

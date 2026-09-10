@@ -214,14 +214,12 @@
           Transform recurring handling anomalies into concrete standard operating procedures (SOPs) and targeted supervisor coaching before product damage occurs.
         </p>
       </div>
-      <!-- Right Shift Stats -->
+      <!-- Right Shift Stats (Strictly Allowed Metric: High-risk events per shift) -->
       <div class="bg-surface-container-low border border-outline-variant/40 px-3.5 py-2 rounded flex items-center gap-3 self-start md:self-auto">
         <span class="material-symbols-outlined text-secondary">analytics</span>
         <div class="font-mono-data-sm text-mono-data-sm">
-          <span class="text-outline uppercase tracking-wider font-label-caps text-label-caps">TODAY // </span>
-          <span class="text-on-surface font-medium">24 DETECTED EVENTS</span>
-          <span class="text-outline-variant mx-1.5">•</span>
-          <span class="text-secondary font-medium">08 HIGH-RISK EVENTS</span>
+          <span class="text-outline uppercase tracking-wider font-label-caps text-label-caps">OPERATIONAL TELEMETRY // </span>
+          <span class="text-secondary font-medium"><span id="prevHighRiskCount">260</span> HIGH-RISK EVENTS PER SHIFT</span>
         </div>
       </div>
     </section>
@@ -265,26 +263,26 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div class="bg-surface-container-low/60 p-2.5 border border-outline-variant/20 rounded">
-                <div class="text-outline font-label-caps text-label-caps">INCIDENT DENSITY</div>
+                <div class="text-outline font-label-caps text-label-caps">REPEAT BEHAVIOUR DENSITY</div>
                 <div class="font-mono-data-lg text-mono-data-lg text-primary-container font-semibold mt-0.5 flex items-baseline gap-1">
-                  <span>18</span>
+                  <span id="prevIncidentDensity">18</span>
                   <span class="font-label-caps text-[9px] text-on-surface-variant uppercase">RELATED EVENTS</span>
                 </div>
               </div>
               <div class="bg-surface-container-low/60 p-2.5 border border-outline-variant/20 rounded">
-                <div class="text-outline font-label-caps text-label-caps">DETECTION SITE</div>
-                <div class="font-mono-data-md text-mono-data-md text-on-surface font-medium mt-0.5">
+                <div class="text-outline font-label-caps text-label-caps">RISK EVENTS BY LOADING BAY</div>
+                <div class="font-mono-data-md text-mono-data-md text-on-surface font-medium mt-0.5" id="prevDetectionSite">
                   LOADING BAY 01
                 </div>
                 <div class="font-mono-data-sm text-[10px] text-outline">CAM-01 DOCK WEST</div>
               </div>
               <div class="bg-surface-container-low/60 p-2.5 border border-outline-variant/20 rounded">
-                <div class="text-outline font-label-caps text-label-caps">SHIFT TREND</div>
+                <div class="text-outline font-label-caps text-label-caps">REDUCTION IN INCIDENTS</div>
                 <div class="font-mono-data-md text-mono-data-md text-secondary font-medium mt-0.5 flex items-center gap-1">
-                  <span>↑ 32%</span>
-                  <span class="font-label-caps text-[9px] text-outline uppercase">VS PREV CYCLE</span>
+                  <span id="prevTrendPct">↓ 33.3%</span>
+                  <span class="font-label-caps text-[9px] text-outline uppercase">IMPROVEMENT</span>
                 </div>
-                <div class="font-mono-data-sm text-[10px] text-secondary/80">ACCUMULATING RISK</div>
+                <div class="font-mono-data-sm text-[10px] text-secondary/80">SHIFT COMPARISON</div>
               </div>
             </div>
             <!-- Animated Linking Line -->
@@ -494,8 +492,8 @@
         <!-- 4. IMPROVEMENT TREND LINE -->
         <div class="bg-surface-container-low border border-outline-variant/30 rounded p-5">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">IS THE RISK IMPROVING?</span>
-            <span class="px-2.5 py-1 rounded bg-primary-container/15 border border-primary-container/40 text-primary-container font-mono-data-md font-bold tracking-wider">
+            <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">REDUCTION IN HANDLING-RELATED INCIDENTS</span>
+            <span class="px-2.5 py-1 rounded bg-primary-container/15 border border-primary-container/40 text-primary-container font-mono-data-md font-bold tracking-wider" id="prevReductionBadge">
               ↓ 33% IMPROVEMENT
             </span>
           </div>
@@ -554,6 +552,44 @@
         }, 3000);
       }
     }
+
+    // Dynamic Real-Data Population from /api/prevention/summary & /api/metrics
+    document.addEventListener('DOMContentLoaded', async () => {
+      const API_BASE = (window.location.port !== '8000') ? 'http://localhost:8000' : '';
+      try {
+        const [prevRes, mRes] = await Promise.all([
+          fetch(`${API_BASE}/api/prevention/summary`),
+          fetch(`${API_BASE}/api/metrics`)
+        ]);
+
+        if (prevRes.ok) {
+          const pData = await prevRes.json();
+          const hrEl = document.getElementById('prevHighRiskCount');
+          if (hrEl && pData.high_risk_events_per_shift !== undefined) {
+            hrEl.textContent = pData.high_risk_events_per_shift;
+          }
+          if (pData.recurring_risk) {
+            const densEl = document.getElementById('prevIncidentDensity');
+            if (densEl && pData.recurring_risk.events_count) {
+              densEl.textContent = pData.recurring_risk.events_count;
+            }
+            const siteEl = document.getElementById('prevDetectionSite');
+            if (siteEl && pData.recurring_risk.location) {
+              siteEl.textContent = pData.recurring_risk.location.toUpperCase();
+            }
+          }
+          if (pData.historical_comparison && pData.historical_comparison.improvement_pct) {
+            const badge = document.getElementById('prevReductionBadge');
+            const trend = document.getElementById('prevTrendPct');
+            const pctText = `↓ ${pData.historical_comparison.improvement_pct}%`;
+            if (badge) badge.textContent = `${pctText} IMPROVEMENT`;
+            if (trend) trend.textContent = pctText;
+          }
+        }
+      } catch (err) {
+        console.warn('Prevention data live fetch fallback:', err);
+      }
+    });
   </script>
 </body>
 

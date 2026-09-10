@@ -466,9 +466,8 @@ void main() {
 
           </div>
           <div class="flex items-center gap-4 font-mono-data-sm text-[11px] text-outline">
-            <span class="text-primary-container font-mono">60.0 FPS</span>
             <span class="">4K LOW-LATENCY FEED</span>
-            <span class="hidden sm:inline">AI INFERENCE: <span id="aiInferenceMs"
+            <span class="hidden sm:inline">DETECTION LATENCY: <span id="aiInferenceMs"
                 class="text-on-surface font-semibold">14ms</span></span>
             <span class="text-on-surface font-mono tracking-tighter" id="video-timer">14:32:12.238</span>
           </div>
@@ -1185,7 +1184,7 @@ void main() {
     const btnNavTune = document.getElementById('btnNavTune');
     if (btnNavTune) {
       btnNavTune.addEventListener('click', () => {
-        alert('⚙️ FIELD INTELLIGENCE CALIBRATION\n\n• YOLOv8-Pose Model: Active (17 Keypoints)\n• ByteTrack IoU Threshold: 0.65\n• Risk Alarm Sensitivity: 70%\n• Audio Alarm Volume: 85%\n• Frame Rate: 30.0 FPS Sync\n\nAll CV edge nodes operating nominally.');
+        alert('⚙️ FIELD INTELLIGENCE CALIBRATION\n\n• Model Pipeline: YOLOv8-Pose (17 Keypoints) + ByteTrack\n• Detection Latency: 14ms – 35ms\n• Average Warning Lead: 1.8s\n• Active Grounded Events: 363 Telemetry Records\n\nAll CV edge nodes operating nominally.');
       });
     }
 
